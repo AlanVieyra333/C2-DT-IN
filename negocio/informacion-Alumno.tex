@@ -1,0 +1,110 @@
+%En la figura \ref{fig:infoAlumno} se puede observar un modelado de los datos que serán utilizados en el Calmecac para indicar las relaciones que un Alumno dentro del Instituto tiene y que se van generando a lo largo de su trayectoria escolar, así como de su información personal.
+
+
+%\begin{figure}
+%	\fbox{\includegraphics[width=\textwidth]{../negocio/images/informacion-Alumno}}
+%	\label{fig:infoAlumno}
+%	\caption{Modelo de Información del Alumno}
+%\end{figure}
+
+
+%===Entidad Alumno
+\begin{cdtEntidad}[Es alumno aquella persona que al concluir un proceso de inscripción en el Instituto recibe un número de boleta y un documento que indica su asignación a un programa académico en una unidad académica en cualquier nivel educativo y modalidad educativa.]{Alumno}{Alumno}%
+	\brAttr{nombre}{Nombre}{frase}{Representa la palabra o conjunto de palabras con las que se designan y se distinguen a una persona que se encuentra inscrita en algún programa académico que se imparta en cualquier nivel educativo y modalidad educativa que ofrece el Instituto Politécnico Nacional.}{\datRequerido}
+	\brAttr{primerApellido}{Primer Apellido}{frase}{Representa la palabra o conjunto de palabras que sigue al nombre de pila de una persona y que se transmite de padres a hijos.}{\datRequerido}
+	\brAttr{segundoApellido}{Segundo Apellido}{frase}{Representa la palabra o conjunto de palabras que sigue al primer apellido de una persona y que se transmite de padres a hijos.}{\datOpcional}
+	\brAttr{curp}{CURP}{palabra}{Representa la clave alfanumérica compuesta de 18 caracteres que permite identificar a un ciudadano residente de México. En el Instituto es otro de los mecanismos que ayudan a identificar a un Alumno.}{\datRequerido}
+	\brAttr{fechaDeNacimiento}{Fecha de Nacimiento}{fecha}{Es la fecha que, en el Acta de Nacimiento de un alumno, establece el día en que nació.}{\datRequerido}
+	\brAttr{fechaDeUltimaActualizacion}{Fecha de Última Actualización}{fecha}{Indica la fecha en la que en el sistema se llevo a cabo una modificación o actualización en los datos o relaciones de un alumno con otras entidades.}{\datOpcional}
+	\brAttr{fotografia}{Fotografía}{archivo}{Es una imagen que contiene el rostro del alumno.}{\datOpcional}
+	\brAttr{lugarDeNacimiento}{Lugar de nacimiento}{Entidad}{Indica de qué parte de la República Mexicana proviene el Alumno si su nacionalidad es mexicana.  En otro caso este atributo quedará vacío para indicar que el Alumno es extranjero}{\datOpcional}
+	\brAttr[Entidad]{domicilio}{Domicilio}{Domicilio}{Indica el lugar dentro de un estado de la República Mexicana en la que el alumno reside.}{\datRequerido}
+	\brAttr{sexo}{Sexo}{Sexo}{Indica la sexualidad de un alumno con base en su acta de nacimiento.}{\datRequerido}
+	\brAttr{pais}{País}{Pais}{Indica la nacionalidad de un alumno y sirve para especificar el atributo \refElem{Alumno.entidad} en caso de que sea Mexicano o dejarlo vacío en cualquier otro caso.}{\datRequerido}
+	\brAttr[Entidad]{informacionMedica}{Información Médica}{InformacionMedica}{Un alumno posee un conjunto de datos que especifican su estado de salud, así como su afiliación correspondiente con el Instituto Mexicano del Seguro Social.}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelComposition}{\refElem{DocumentoDeIdentidad}}{Un alumno posee uno o más documentos que comprueban su identidad así como su nacionalidad, su fecha de nacimiento, su mayoría de edad entre otros aspectos.}
+	\brRel{\brRelComposition}{\refElem{ContactoDeAlumno}}{Un alumno posee varios mecanismos que utiliza para comunicarse o para ser informado acerca de acontecimientos relacionados a su trayectoria académica en el Instituto.}
+	\brRel{\brRelAgregation}{\refElem{tdTipoDeDeporte}}{Un alumno puede o no realizar actividades físicas.}
+	\brRel{\brRelComposition}{\refElem{ContactoPersonal}}{Un alumno esta relacionado con un conjunto de personas a las que generalmente se les atribuye un grado de responsabilidad en el que se ven incluidos aspectos con respecto a su trayectoria académica o en casos de emergencia médica.}
+\end{cdtEntidad}
+
+%===Domicilio
+\begin{cdtEntidad}[Es la entidad que almacena el domicilio geográfico en la que un Alumno reside. En algunas Unidades Académicas es requerido conocer este domicilio para  generar un criterio con el cual se realiza la asignación de turnos de aspirantes a un programa académico.]{Domicilio}{Domicilio}
+	\brAttr{codigoPostal}{Código Postal}{entero}{Es una combinación de números con la que se identifica la zona de una población en la que reside un alumno.}{\datRequerido}
+	\brAttr{colonia}{Colonia}{frase}{Es la palabra o conjunto de palabras que identifican el área geográfica dentro de una delegación o municipio de un estado en la que reside un alumno.}{\datRequerido}
+	\brAttr{calle}{Calle}{frase}{Es la palabra o conjunto de palabras que identifican la vía pública, habitualmente asfaltada o empedrada, dentro de una colonia en la que reside un alumno.}{\datRequerido}
+	\brAttr{numeroExterior}{Número Exterior}{frase}{Es una combinación de números y/o símbolos que identifican la casa, vecindad o edificio dentro de una vía pública en la que reside un alumno.}{\datRequerido}
+	\brAttr{numeroInterior}{Número Interior}{frase}{Es una combinación de números y/o símbolos que identifican la habitación dentro de una vecindad o edificio en la que reside un alumno.}{\datOpcional}
+	\brAttr{municipio}{Municipio}{Municipio}{Un domicilio se encuentra dentro de los limites de una delegación o municipio de un estado de la República Mexicana.}{\datRequerido}
+	\brAttr{entidad}{Entidad}{Entidad}{Un domicilio se encuentra dentro de los limites de una delegación o municipio de un estado de la República Mexicana}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelComposition}{\refElem{Alumno}}{Indica el lugar dentro de un estado de la República Mexicana en la que el alumno reside.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es un documento en el que se avala la identidad de un alumno entre otros aspectos como:
+\begin{Citemize}
+	\item Nacionalidad.
+	\item Sexualidad y Edad.
+	\item C.U.R.P.
+\end{Citemize}]{DocumentoDeIdentidad}{Documento de Identidad}
+	\brAttr{tipoDeDocumentacion}{Tipo de Documentación}{TipoDeDocumentacion}{Específica el documento que avala la identidad del alumno.}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelComposition}{\refElem{Alumno}}{ Un alumno posee uno o más documentos que comprueban su identidad así como su nacionalidad, su fecha de nacimiento, su mayoría de edad entre otros aspectos.}
+\end{cdtEntidad}
+%===Datos de Contacto de Alumno
+\begin{cdtEntidad}[Un alumno posee varios mecanismos que utiliza para comunicarse o para ser informado acerca de acontecimientos relacionados a su trayectoria académica en el Instituto.]{ContactoDeAlumno}{Contacto de Alumno}
+	\brAttr{dato}{Dato}{palabra}{Es la combinación de números, letras o símbolos que representan a un mecanismo utilizado por un Alumno para mantenerse informado o para comunicarse con otras entidades del Instituto.}{\datRequerido}
+	\brAttr{contactoAuxiliarA}{Contacto Auxiliar A}{palabra}{Es un carácter o conjunto de caractere que tienen la utilidad de almacenar información adicional.}{\datOpcional}
+	\brAttr{contactoAuxiliarB}{Contacto Auxiliar B}{palabra}{Es un carácter o conjunto de caractere que tienen la utilidad de almacenar información adicional.}{\datOpcional}
+	\brAttr{tipoDeContacto}{Tipo de Contacto}{TipoDeContacto}{Se utiliza para especificar y clasificar al contacto por sus características.}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelComposition}{\refElem{Alumno}}{Un alumno posee varios mecanismos que utiliza para comunicarse o para ser informado acerca de acontecimientos relacionados a su trayectoria académica en el Instituto.}
+	\brRel{\brRelComposition}{\refElem{ContactoPersonal}}{Una persona que es responsable de un alumno posee varios mecanismos que utiliza para comunicarse o para ser informado acerca de acontecimientos relacionados a la trayectoria académica del alumno en el Instituto.}
+\end{cdtEntidad}
+
+%====Contacto Personal de Alumno
+\begin{cdtEntidad}[Un alumno esta relacionado con un conjunto de personas a las que generalmente se les atribuye un grado de responsabilidad en el que se ven incluidos aspectos con respecto a su trayectoria académica o en casos de emergencia médica.]{ContactoPersonal}{Contacto Personal}
+
+	\brAttr{nombre}{Nombre}{frase}{Representa la palabra o conjunto de palabras con las que se designan y se distinguen a una persona que tiene una relación con un Alumno.}{\datRequerido}
+	\brAttr{primerApellido}{Primer Apellido}{frase}{Representa la palabra o conjunto de palabras que sigue al nombre de pila de una persona y que se transmite de padres a hijos.}{\datRequerido}
+	\brAttr{segundoApellido}{Segundo Apellido}{frase}{Representa la palabra o conjunto de palabras que sigue al primer apellido de una persona y que se transmite de padres a hijos.}{\datOpcional}
+	\brAttr{esTutor}{Es Tutor}{booleano}{Indica si la persona con la que se tiene la relación tiene la autoridad para cuidar de un Alumno. Este dato generalmente es utilizado para nivel medio superior.}{\datOpcional}
+	\brAttr{tipoDeParentesco}{Tipo de Parentesco}{TipoDeParentesco}{Indica la clasificación a la que pertenece la relación entre una persona y un Alumno.}{\datRequerido}
+	\cdtEntityRelSection	
+	\brRel{\brRelComposition}{\refElem{Alumno}}{Un alumno esta relacionado con un conjunto de personas a las que generalmente se les atribuye un grado de responsabilidad en el que se ven incluidos aspectos con respecto a su trayectoria académica o en casos de emergencia médica.}
+	\brRel{\brRelComposition}{\refElem{ContactoDeAlumno}}{Una persona que es responsable de un alumno posee varios mecanismos que utiliza para comunicarse o para ser informado acerca de acontecimientos relacionados a la trayectoria académica del alumno en el Instituto.}
+\end{cdtEntidad}
+
+%======Datos Medicos de Alumno
+\begin{cdtEntidad}[Un alumno posee un conjunto de datos que especifican su estado de salud, así como su afiliación correspondiente con el Instituto Mexicano del Seguro Social.]{InformacionMedica}{Información Médica}
+
+	\brAttr{numeroDeSeguroSocial}{Número de Seguro Social}{palabra}{Es la combinación de 11 números que forman una clave única e intranseferible que se utiliza para especificar que un Alumno se encuentra afiliado al Seguro Social y es otro mecanismo que se puede utilizar para identificarlo dentro del Instituto.}{\datRequerido}
+	\brAttr{fechaDeIngreso}{Fecha de Ingreso}{fecha}{Indica el día a partir del cual la afiliación del alumno al seguro social inicia o se considera como activa.}{\datRequerido}
+	\brAttr{fechaDeVigencia}{Fecha de Vigencia}{fecha}{Indica el día en que la afiliación del alumno al seguro social se considera como inactiva.}{\datRequerido}
+	\brAttr{peso}{Peso}{flotante}{Es el número que representa la masa del cuerpo de un alumno en kilogramos.}{\datRequerido}
+	\brAttr{estatura}{Estatura}{flotante}{Es el número que representa la altura de un alumno en metros.}{\datRequerido}
+	\brAttr{observaciones}{Observaciones}{texto}{Es un conjunto de palabras que tienen como propósito indicar la falta o lesión de una facultad física de un alumno.}{\datOpcional}
+	\brAttr{tienePiePlano}{Tiene Pie Plano}{booleano}{Indica si un alumno tiene el padecimiento en el que uno de sus pies tiene una deformación caracterizada por la desaparición del puente del pie.}{\datRequerido}
+	\brAttr{estaTatuado}{Esta Tatuado}{booleano}{Indica si un alumno tiene uno o más dibujos grabados en su piel.}{\datRequerido}
+	\brAttr{tipoDeSangre}{Tipo de Sangre}{TipoDeSangre}{Indica al grupo sanguíneo al que el alumno pertenece.}{\datRequerido}	
+	\cdtEntityRelSection
+	\brRel{\brRelComposition}{\refElem{Alumno}}{Un alumno posee un conjunto de datos que especifican su estado de salud, así como su afiliación correspondiente con el Instituto Mexicano del Seguro Social.}
+	\brRel{\brRelAgregation}{\refElem{Enfermedad}}{Un alumno puede o no tener un conjunto de alteraciones leves o graves que afectan el funcionamiento normal de su cuerpo.}
+	\brRel{\brRelAgregation}{\refElem{tdTipoDeDiscapacidad}}{Un alumno puede o no tener conjunto de faltas o limitaciones de alguna facultad física o mental que imposibilita o dificulta el desarrollo normal de sus actividades.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{Enfermedad} y \refElem{InformacionMedica} y tiene como propósito almacenar todas aquellas alteraciones leves o graves que afectan el funcionamiento normal de su cuerpo.]{EnfermedadEnInformacionMedica}{Enfermedad en Información Médica}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{tdTipoDeDiscapacidad} y \refElem{InformacionMedica} y tiene como propósito almacenar todas aquellas faltas o limitaciones de alguna facultad física o mental que imposibilita o dificulta el desarrollo normal de sus actividades.]{DiscapacidadEnInformacionMedica}{Discapacidad en Información Médica}%
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{ContactoPersonal} y \refElem{Contacto} y tiene como propósito almacenar todos los medios por los cuales es posible comunicarse con el tutor legal de un alumno para informarle acerca de su trayectoria académica o para emergencias médicas.]{ContactoDeTutor}{Contacto de Tutor}
+\end{cdtEntidad}%
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{ContactoDeAlumno} y \refElem{Alumno} y tiene como propósito almacenar todos los medios por los cuales es posible comunicarse con el Alumno para notificarle acerca de su trayectoria escolar en el Instituto]{ContactoDeAlumno}{Contacto de Alumno}
+\end{cdtEntidad}%
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{Alumno} y \refElem{tdDeporte} y tiene como propósito almacenar todas aquellas actividades físicas en las que el alumno se desempeña.]{AlumnoConDeporte}{Alumno con Deporte}
+\end{cdtEntidad}%

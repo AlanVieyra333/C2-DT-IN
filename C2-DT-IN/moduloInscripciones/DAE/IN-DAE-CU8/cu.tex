@@ -1,0 +1,123 @@
+\begin{UseCase}{IN-DAE-CU8}{Buscar estudiantes}{
+	
+	Permite al actor realizar una búsqueda de algún aspirante cuando solamente se conoce de este los siguientes datos: \textbf{Pre-Boleta,Boleta,CURP}.
+	
+	
+	}
+    \UCccitem{Versión}{0.1}
+    \UCccsection{Datos para el control Interno}	
+    \UCccitem{Elaboró}{Bruno Suárez Cruz }
+    \UCccitem{Supervisó}{}
+    \UCccitem{Operación}{Modificar}
+    \UCccitem{Prioridad}{Media}
+    \UCccitem{Complejidad}{Baja}
+    \UCccitem{Volatilidad}{Alta}
+    \UCccitem{Madurez}{Baja}
+    \UCccitem{Estatus}{Desarrollo}
+    \UCccitem{Dificultades}{ 4 de Enero del 2018}
+    %\UCccs{}
+    \UCccitem{Fecha}{}
+    \UCccitem{Evaluador}{}
+    \UCccitem{Resultado}{}
+    \UCccitem{Observaciones}{}
+    %	\UCsection{Atributos}{}
+    \UCitem{Actor}{
+    	\begin{Titemize}
+    		\Titem \refElem{DAEJefeDeRegistro}
+    		\Titem \refElem{DAEAdministradorDeRegistro}
+    		
+    \end{Titemize}}
+    \UCitem{Propósito}{Realizar la búsqueda de un aspirante de alguna Unidad Académica, cuando se conoce la Pre-Boleta, Boleta, CURP, Nombre.}
+    \UCitem{Entradas}{
+    	\begin{Titemize}
+    
+    	\Titem Número de Boleta/Pre-boleta.
+    	\Titem Nombre de estudiante.
+    	\Titem CURP.
+    	
+    \end{Titemize}
+    }
+    \UCitem{Origen}{ 	
+    	\begin{Titemize}
+    		\Titem \ioObtener
+    		\Titem  Se ingresa con el teclado.
+    	\end{Titemize}
+    }	
+    \UCitem{Salidas}{
+    		\begin{Titemize}
+    		
+    		\Titem Pre-Boleta/Boleta como resultado de la búsqueda.
+    		\Titem CURP como resultado de la búsqueda.
+    		\Titem Nombre como resultado de búsqueda.	
+    		\Titem Unidad académica como resultado de búsqueda.
+    		\Titem Programa Académico como resultado de búsqueda.
+    		\Titem Ultima Actualización como resultado de búsqueda.
+    		
+    		\Titem Muestra en la pantalla  el mensaje  \refIdElem{MSG3} cuando no se encuentra algún resultado derivado de la búsqueda.
+    	\end{Titemize}			
+    }
+    \UCitem{Destino}{Pantalla}
+    \UCitem{Precondición}{
+    		%\begin{Titemize}
+    		%\Titem 
+    		\textbf{Sistematizada:} Que se haya seleccionado previamente un Ciclo Escolar y una Modalidad.    		
+    	%\end{Titemize}	
+    }
+    \UCitem{Postcondiciones}{ Se mostrara el resultado de la búsqueda. }
+    \UCitem{Reglas de Negocio}{Ninguna
+%    	\begin{Titemize}
+%    		\Titem \refElem{BR-N028}
+%    		\Titem \refElem{BR-N029}
+%    \end{Titemize} 
+}
+    \UCitem{Errores}{
+  	 \UCerr{Uno}{Cuando no se encuentra la información pertinente de la búsqueda muestra el mensaje \refIdElem{MSG3} en la pantalla \refIdElem{IN-DAE-IU8} y termina el caso de uso.} 
+    	 
+     }
+     
+    \UCitem{Viene de}{\refIdElem{IN-DAE-MN1}}
+    \UCitem{Disparadores}{
+    	El actor requiere realizar una búsqueda de un aspirante conociendo uno de los siguientes campos \textbf{Número de Pre-Boleta,Boleta,CURP,Nombre.}
+    }
+ 
+    \UCitem{Condiciones de Término}{ Se mostrará el resultado de la búsqueda.}
+    \UCitem{Referencia Documental}{}
+    \UCitem{Auditable}{Si}
+    \UCitem{Datos sensibles}{
+\begin{Titemize}
+		\Titem Nombre
+	    \Titem CURP
+   \end{Titemize}     
+
+}    
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+
+\UCpaso [\UCactor] Presiona la opción Búsqueda de Aspirante del menú \refIdElem{IN-DAE-MN1}.
+
+\UCpaso Obtiene los campos para realizar la búsqueda (Número de Pre-Boleta/Boleta,CURP).
+
+\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU8} con los campos de búsqueda obtenidos.
+
+\UCpaso [\UCactor] Selecciona la opción correspondiente de búsqueda.
+
+\UCpaso [\UCactor] Ingresa los datos correspondientes para realizar la búsqueda.
+
+\UCpaso [\UCactor] Presiona el botón \IUbutton{Buscar}.
+
+\UCpaso Obtiene los datos correspondientes \textbf{Pre-Boleta/Boleta,CURP}. \refErr{Uno}
+	
+\UCpaso Obtiene el acrónimo de la Unidad Académica, el Programa Académico al que se encuentra asociado el estudiante. 
+
+\UCpaso Obtiene la ultima fecha en el que se actualizo la información del aspirante.
+
+\UCpaso Muestra una tabla con los datos obtenido como resultados de búsqueda en la pantalla  \refIdElem{IN-DAE-IU8}.
+
+\end{UCtrayectoria}
+
+
+

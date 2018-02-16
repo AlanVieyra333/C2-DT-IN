@@ -1,0 +1,131 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DEMS-CU1}{Gestionar oferta de ciclo escolar}{
+	% V 0.1 Ok.
+	Permite realizar las acciones requeridas para controlar la oferta educativa propuesta para un \refElem{tCicloEscolar} en las \textbf{Unidades Académicas}\footnote{\refElem{tUnidadAcademica}} del Instituto de nivel Medio Superior.\\
+
+}
+	\UCccitem{Versión}{1.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Administración}
+	\UCccitem{Prioridad}{Alta} 
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Baja} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Edición}
+	\UCccitem{Dificultades}{}
+	\UCccitem{Fecha del último estatus}{30 de enero del 2018}
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{5 de Diciembre del 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Aprobada}
+	\UCccitem{Observaciones}{Ninguna}
+	\UCsection{Atributos}
+	% V 0.1 Ok.
+	\UCitem{Actor}{%
+		\begin{Titemize}
+			\Titem \refElem{DESEncargadoDeOfertaEducativa}
+		\end{Titemize}
+	} 
+	% V 0.1 Ok.
+	\UCitem{Propósito}{Brindar una herramienta que permita controlar la oferta educativa que será dada en un ciclo escolar programado para obtener la planificación del número de aspirantes que serán aceptados en dicho ciclo.}
+	% V 0.1 Ok.
+	\UCitem{Entradas}{%
+		\begin{Titemize}
+			\Titem \refElem{tUnidadAcademica}
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Origen}{%
+		\begin{Titemize}
+			\Titem \ioSeleccionar
+			\Titem \ioObtener
+		\end{Titemize}
+	}
+	\UCitem{Salidas}{%
+	% V 0.1 Ok.
+		\begin{Titemize}
+			\Titem El \refElem{UnidadAcademica.nombre} de las Unidades Académicas del nivel Medio Superior.
+			\Titem {\bf Oferta Educativa Total de Unidad Académica}.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado un \textbf{Ciclo Escolar} y \textbf{Modalidad}.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Ninguna} 
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{\begin{Titemize}
+			\Titem \refIdElem{BR-IN-N007}
+		\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Errores}{Ninguno}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{Primario}
+	% V 0.1 Ok.
+	\UCitem{Disparador}{La Comisión especial ha acordado el numero de lugares a ofertar en el Instituto.}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se muestra la oferta educativa por unidad académica.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{Ninguno.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 Ok.
+	\UCitem{Auditable}{No aplica}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No aplica}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+
+	\UCpaso [\UCactor] Solicita gestionar la oferta educativa dando clic en la opción \textbf{Oferta Educativa} del menú \refIdElem{IN-DES-MN1}.
+	
+	\UCpaso Obtiene las \textbf{Unidades Educativas} del nivel Medio Superior.
+	
+	\UCpaso Obtiene la oferta educativa registrada para el primer y segundo periodo de las Unidades Académicas con base en la regla de negocio \refIdElem{BR-IN-N006}.
+	
+	\UCpaso Calcula la \textbf{Oferta Educativa Total} con base en la regla de negocio \refIdElem{BR-IN-N007}.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-DEMS-IU1} con la información obtenida
+
+	\UCpaso [\UCactor] \label{IN-DEMS-CU1:Gestionar} Gestiona la oferta educativa con los botones \IUEditar y \IUArchivo.
+\end{UCtrayectoria}
+
+\subsubsection{Comportamiento de acciones}
+
+La tabla \ref{TablaComportamiento-IN-DEMS-CU1} muestra el comportamiento que se tendrá en los íconos de la pantalla \refIdElem{IN-DEMS-IU1}. Los cuales son mostrados dependiendo del estado en el que se encuentre la oferta educativa.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Estado & \IUArchivo & \IUEditar \\
+			\hline \hline
+			Registrado & Ocultar & Mostrar \\ \hline
+			No registrado & Mostrar & Ocultar \\ \hline
+			No ofertada & Ocultar & Mostrar \\ \hline
+		\end{tabular}
+		\caption{Comportamiento de acciones para gestionar la oferta educativa.}
+		\label{TablaComportamiento-IN-DEMS-CU1}
+	\end{center}
+\end{table}
+
+\subsection{Puntos de extensión}	 
+
+\UCExtensionPoint{Registrar oferta educativa}
+{El \refElem{DESEncargadoDeOfertaEducativa} requiere registrar la oferta educativa de una Unidad Académica}
+{Paso \ref{IN-DEMS-CU1:Gestionar} de la trayectoria principal}
+{\refIdElem{IN-DEMS-CU1.1}}
+
+\UCExtensionPoint{Editar oferta educativa}
+{El \refElem{DESEncargadoDeOfertaEducativa} requiere editar la oferta educativa de una Unidad Académica}
+{Paso \ref{IN-DEMS-CU1:Gestionar} de la trayectoria principal}
+{\refIdElem{IN-DEMS-CU1.2}}

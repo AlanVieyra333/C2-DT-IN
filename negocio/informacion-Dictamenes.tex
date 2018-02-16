@@ -1,0 +1,169 @@
+\begin{cdtEntidad}[En el Instituto, un Consejo Consultivo es el órgano compuesto por profesores, alumnos, analistas y comisiones que se encarga de resolver situaciones académicas.]{Consejo}{Consejo}
+	\brAttr{numeroDeConsejo}{Número de Consejo}{entero}{Es el dígito que representa a un consejo el cual es asignado cuando este es activado por primera vez siguiendo un orden consecutivo tomando como base al último consejo activo y concluido.}{\datOpcional}
+	\brAttr{fechaDeInicio}{Fecha de Inicio}{fecha}{Indica el día en que el consejo comienza a realizar sus actividades y recibir las solicitudes de dictamen que le correspondan.}{\datRequerido}
+	\brAttr{fechaDeFin}{Fecha de Fin}{fecha}{Indica el día en que el consejo concluirá sus actividades y como consecuencia ya no tendrá las atribuciones para dictaminar.}{\datRequerido}
+	\brAttr{estadoDeConsejo}{Estado de Consejo}{EstadoDeConsejo}{Indica si un consejo tiene las atribuciones para ejercer como órgano colegiado.}{\datRequerido}
+	\cdtEntityRelSection%
+	\brRel{\brRelGeneralization}{\refElem{ConsejoTecnicoConsultivoEscolar}}{El Consejo Técnico Consultivo Escolar es el órgano colegiado que reside en cada unidad académica y que se encarga de resolver problemáticas de la unidad académica a la que pertenece.}
+	\brRel{\brRelGeneralization}{\refElem{ConsejoGeneralConsultivo}}{El Consejo General Consultivo es el máximo órgano colegiado  en el que se deliberan problemáticas y situaciones académicas del Instituto.}
+	\brRel{\brRelComposition}{\refElem{Consejero}}{Un Consejo está constituido por varios consejeros  que tienen la labor de deliberar las distintas problemáticas que se presentan en una unidad académica.}
+	\brRel{\brRelAgregation}{\refElem{AnalistaParaLaCOSIE}}{Es el personal de apoyo de un Consejo que examina las solicitudes de dictamen que llegan a la COSIE para emitir una predictaminación.}
+	\brRel{\brRelComposition}{\refElem{Sesion}}{Una sesión es una reunión que se celebra en el  Consejo en la que están presentes los Consejeros para realizar las labores propias del órgano colegiado.}
+	\brRel{\brRelAgregation}{\refElem{Solicitud}}{Una solicitud tiene como destino un Consejo, en donde un analista realiza su predictaminación o redirección a otro Consejo. Posteriormente la solicitud adquiere una resolución por parte de un Consejero.}
+	\brRel{\brRelAgregation}{\refElem{Redireccion}}{La redirección de una solicitud de dictamen a otro Consejo es ocasionada cuando el órgano colegiado al que fue  dirigida la solicitud no le compete. }
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Un Consejo Técnico Consultivo Escolar es el órgano colegiado de una unidad académica constituido por funcionarios, profesores y alumnos (a los que se les conoce como consejeros) y de analistas cuya labor radica en la resolución y deliberación de las problemáticas de su unidad. ]{ConsejoTecnicoConsultivoEscolar}{Consejo Técnico Consultivo Escolar}
+	\cdtEntityRelSection	
+	\brRel{\brRelGeneralization}{\refElem{Consejo}}{El Consejo Técnico Consultivo Escolar es el órgano colegiado que reside en cada unidad académica y que se encarga de resolver problemáticas de la unidad académica a la que pertenece.}	
+	\brRel{\brRelAgregation}{\refElem{UnidadAcademica}}{En una unidad académica se crean consejos cada cierto tiempo. }
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el máximo órgano colegiado que se constituye con el fin de deliberar las distintas situaciones académicas que se presentan en el Instituto.micas. Está compuesto por funcionarios, profesores, alumno y analistas que pertenecen al Instituto.]{ConsejoGeneralConsultivo}{Consejo General Consultivo}
+	\cdtEntityRelSection	
+	\brRel{\brRelGeneralization}{\refElem{Consejo}}{El Consejo General Consultivo es el máximo órgano colegiado  en el que se deliberan problemáticas y situaciones académicas del Instituto.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es una alumno o profesor  que tiene como propósito realizar la dictaminación de solicitudes hechas por alumnos. La deliberación de las problemáticas que se presentan se realizan con base en el R.G.E. y a los acuerdos previos al comienzo de una sesión de Consejo.]{Consejero}{Consejero}
+	\cdtEntityRelSection	
+	\brRel{\brRelGeneralization}{\refElem{AlumnoConsejero}}{Un alumno consejero es un \refElem{Consejero} que adquirió por votación en una Unidad Académica las facultades requeridas para participar en un \refElem{Consejo} .}	
+	\brRel{\brRelGeneralization}{\refElem{ProfesorConsejero}}{Un profesor consejero es un profesor del Instituto que adquirió por funciones las facultades requeridas para participar en un Consejo.}	
+	\brRel{\brRelComposition}{\refElem{Consejo}}{Un Consejo está constituido por varios consejeros  que tienen la labor de deliberar las distintas problemáticas que se presentan en una unidad académica si pertenecen del C.T.C.E. o del Instituto si pertenecen al C.G.C. .}		
+	\brRel{\brRelComposition}{\refElem{Equipo}}{En una sesión de consejo se constituyen equipos los cuales están conformados por los consejeros presentes en la sesión.}
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es un alumno del Instituto que ha adquirido por votación, la facultad para pertenecer a un Consejo cumpliendo los requisitos.]{AlumnoConsejero}{Alumno Consejero}
+	\cdtEntityRelSection
+	\brRel{\brRelGeneralization}{\refElem{Consejero}}{Un alumno consejero es un consejero que adquirió por votación en una unidad académica las facultades requeridas para participar 	Consejo.}
+	\brRel{\brRelAgregation}{\refElem{AlumnoAsignado}}{}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es un profesor del Instituto que ha adquirido la facultad de pertenecer a un consejo debido  a sus funciones. ]{ProfesorConsejero}{Profesor Consejero}
+	\brAttr{tipoDeProfesorConsejero}{Tipo de Profesor Consejero}{TipoProfesorConsejero}{Indica el conjunto al que un profesor pertenece de acuerdo a sus características o funciones adquiridas.}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelGeneralization}{\refElem{Consejero}}{Un profesor consejero es un Profesor del Instituto que adquirió por funciones las facultades requeridas para participar en un \refElem{Consejo}.}
+	\brRel{\brRelAgregation}{\refElem{ProfesorIPN}}{Un profesor consejero es un profesor cuya relación con el Instituto está designada por un contrato o convenio ejercido por la Dirección de Capital Humano.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es una persona que cuya experiencia y conocimiento del RGE y el Reglamento Orgánico del Instituto tiene las competencias requeridas para realizar la predictaminación de solicitudes de dictamen.]{AnalistaParaLaCOSIE}{Analista para la COSIE}
+	\brAttr{estado}{Estado}{entero}{Indica cuando un analista se encuentra habilitado para realizar las labores propias de un analista dentro de un Consejo.}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelAgregation}{\refElem{Consejo}}{Es el personal de apoyo de un Consejo que examina las solicitudes de dictamen que llegan a la COSIE para emitir una predictaminación.}
+	\brRel{\brRelAgregation}{\refElem{Recurso Humano}}{Un analista es un Recurso Humano que tiene una relación con el Instituto para realizar las actividades académicas como lo es la predictaminación de solicitudes de dictamen.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es una reunión que se celebra en un Consejo en la que están presentes Consejeros y Analistas de la COSIE para realizar las labores propias del órgano colegiado. En una sesión se pasa lista de asistencia a los consejeros para realizar la conformación de los equipos que trabajarán previo a la conclusión de la misma o a un receso.]{Sesion}{Sesión}
+	\brAttr{numeroDeLaSesion}{Número de la Sesión}{entero}{Es el dígito con que se representa a una sesión de un consejo, el cual es asignado cuando esta inicia siguiendo un orden consecutivo tomando como base la última sesión concluida.}{\datOpcional}
+	\brAttr{fechaDeRealizacion}{Fecha de Realización}{fecha}{Indica el día en que se llevará a cabo la sesión de la COSIE.}{\datRequerido}
+	\brAttr{fechaLimiteDeRecepcion}{Fecha Límite de Recepción}{fecha}{Indica el día límite para que las solicitudes de dictamen sean asociadas a una sesión de la COSIE.}{\datRequerido}
+	\brAttr{horaDeInicio}{Hora de Inicio}{hora}{Indica la hora en el día de la fecha de realización especificada en la que se llevará a cabo la sesión de consejo, esta hora es aproximada y no influye la ejecución de la misma.}{\datRequerido}
+	\brAttr{actaSintetica}{Acta Sintética}{archivo}{Es el archivo que contiene el resumen global de lo acontecido en una sesión. }{\datOpcional}
+	\brAttr{estadoDeSesion}{Estado de Sesión}{EstadoDeSesion}{Indica la situación ejecutoria en la que se encuentra una sesión de la COSIE .}{\datRequerido}
+	\brAttr{tipoDeSesion}{Tipo de Sesión}{TipoDeSesion}{Indica el conjunto al que una sesión pertenece de acuerdo a las características que se le atribuyen en el momento de su registro y de acuerdo a las necesidades del Consejo.}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelComposition}{\refElem{Consejo}}{Una sesión es una reunión que se celebra en el  Consejo en la que están presentes los Consejeros para realizar las labores propias del órgano colegiado} %copuy
+	\brRel{\brRelAgregation}{\refElem{Equipo}}{Es el grupo de consejeros que se reúnen en la sesión de la COSIE para deliberar acerca de las solicitudes de dictamen.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es la conformación de consejeros que como órgano colegiado tiene la facultad para organizarse y solventar las distintas situaciones escolares de los alumnos.]{Equipo}{Equipo}
+		\brAttr{nombre}{Nombre}{texto}{Palabra o conjunto de palabras que denotan a un equipo y que hace referencia al criterio de trabajo con el que estarán trabajando a lo largo de una sesión.}{\datRequerido}
+		\brAttr{criterioDeTrabajo}{Criterio de Trabajo}{CriterioDeTrabajo}{Denota uno  de los criterios de trabajo aplicables para el Consejo mediante el cual se constituirá un equipo en una sesión que definirá el conjunto finito de solicitudes de dictamen que atenderán.}{\datRequerido}
+		\brAttr{modalidad}{Modalidad}{Modalidad}{Denota la modalidad del programa académico para la cual el equipo realizará la dictaminación de solicitudes de dictamen.}{\datRequerido}
+		\cdtEntityRelSection
+		\brRel{\brRelAgregation}{\refElem{Sesion}}{Es el grupo de consejeros que se reúnen en la sesión de la COSIE para deliberar acerca de las solicitudes de dictamen.}
+		\brRel{\brRelComposition}{\refElem{Consejero}}{En una sesión de consejo se constituyen equipos los cuales están conformados por los consejeros presentes en la sesión.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el mecanismo que se utiliza para delegar a un Consejo distinto que realice la deliberación de una solicitud, se establece una justificación escrita y un archivo que contiene la documentación que apoya la decisión tomada por un Analista en Consejo.]{Redireccion}{Redirección}
+	\brAttr{justificacion}{Justificación}{frase}{Es el conjunto de palabras que denotan los motivos por los cuales el Analista decidió redirigir una solicitud a otro Consejo.}{\datRequerido}
+	 \brAttr{archivoJustificante}{Archivo Justificante}{archivo}{Es el conjunto de datos en un formato que contiene los documentos requeridos que sustentan la decisión del analista.}{\datRequerido}
+	 \cdtEntityRelSection
+	% \brRel{\brRelComposition}{\refElem{Solicitud}}{Una \refElem{Solicitud} es redirigida a otro \refElem{Consejo} cuando un analista ha decidico, con base en su experiencia, que  no puede ser atendida por el Consejo al cual fue enviada. }	 
+		%\brRel{\brRelAgregation}{\refElem{Consejo}}{La \refElem{Redireccion} de una Solicitud de Dictamen a otro Consejo es ocasionada cuando el órgano colegiado al que fue  dirigida la solicitud no le compete. }
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Resultado de la relación entre Equipo y Consejero. Un consejero puede formar parte de uno o varios equipos de acuerdo al número de asistentes y número de Solicitudes programadas para la sesión.]{MiembroEnEquipo}{Miembro en Equipo}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Resultado de la relación entre Consejo y Analista para la COSIE.Un analista puede pertenecer a uno o varios Consejos en los que realiza la labor de predictaminación de Solicitudes.]{AnalistaEnConsejo}{Analista en Consejo}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el mecanismo existente en el Instituto que un alumno utiliza para solicitar a un Consejo la autorización para continuar con la calidad de alumno dentro del Instituto. Una solicitud contiene puntos basados en la situación escolar del alumno que requieren ser regularizadas los cuales se convierten después en los criterios de trabajo.]{SolicitudDeDictamen}{Solicitud de Dictámen}
+	\brAttr{fechaDeIngreso}{Fecha de Recepción}{fecha}{Indica el día en que el Alumno envía su solicitud una vez que se ha determinado su situación escolar y que ha aceptado los términos y condiciones del uso de su información personal.}{\datRequerido}
+	\brAttr{estadoDeSolicitud}{Estado de Solicitud}{EstadoDeSolicitud}{Indica la condición de una solicitud de dictamen y en consecuencia sus procesos aplicables.}{\datRequerido}
+	\brAttr{criterio}{Criterio}{Criterio}{Presenta aquellos puntos con los que una solicitud de dictamen se registra y que apoya a la formación de equipos así como la resolución del dictamen. }{\datRequerido}
+	\cdtEntityRelSection	
+	\brRel{\brRelComposition}{\refElem{Redireccion}}{Una solicitud de dictamen es redirigida a otro Consejo cuando un analista ha decidido, con base en su experiencia, que  no puede ser atendida por el Consejo al cual fue enviada. }	
+	\brRel{\brRelComposition}{\refElem{SolicitudEnConsejo}}{}	
+	\brRel{\brRelComposition}{\refElem{Dictamen}}{Una \refElem{Solicitud} concluirá en forma de \refElem{Dictamen} en el que se especifica la aprobación de criterios o la negación de los mismos de acuerdo a la evaluación de un Consejero.}
+\end{cdtEntidad}
+
+%\begin{cdtEntidad}{SolicitudEnConsejo}{Solicitud en Consejo}
+%
+%	\brAttr{sugerencia}{Sugerencia}{texto}{}{\datOpcional}%
+%	\brAttr{archivoComplementario}{Archivo Complementario}{archivo}{}{\datOpcional}%
+%	\brAttr[Entidad]{solicitudDeDictamen}{SolicitudDeDictamen}{}{}{\datRequerido}
+%	\cdtEntityRelSection
+%	\brRel{\brRelAgregation}{\refElem{AnalistaParaLaCOSIE}}{}
+%	\brRel{\brRelAgregation}{\refElem{Sesion}}{}
+%	\brRel{\brRelAgregation}{\refElem{Consejo}}{}
+%	
+%\end{cdtEntidad}
+	\brAttr{sugerencia}{Sugerencia}{texto}{}{\datOpcional}%
+	\brAttr{archivoComplementario}{Archivo Complementario}{archivo}{}{\datOpcional}%
+	\brAttr[Entidad]{solicitudDeDictamen}{SolicitudDeDictamen}{}{\datRequerido}
+	\cdtEntityRelSection
+	\brRel{\brRelAgregation}{\refElem{AnalistaParaLaCOSIE}}{}
+	\brRel{\brRelAgregation}{\refElem{Sesion}}{}
+	\brRel{\brRelAgregation}{\refElem{Consejo}}{}
+\end{cdtEntidad}
+
+%
+%
+%\begin{cdtEntidad}[Es el mecanismo que se utiliza para solicitar a un Consejo distinto que realice la dictaminación de una solicitud, se establece una justficación escrita y un archivo que contiene la documentación que apoya la desición tomada por el Analista en Consejo]{Redireccion}{Redirección}
+%
+%	\brAttr{justificacion}{Justificación}{frase}{Es el conjunto de palabras que denotan la desición del Analista para redirigir la solicitud.}{\datRequerido}
+%	
+%	 \brAttr{archivoJutificante}{Archivo Justificante}{archivo}{Es el archivo que contiene todos los documentos requeridos que apoyan la desición del analista.}{\datRequerido}
+%	 
+%	 \cdtEntityRelSection
+%	 
+%	 \brRel{\brRelComposition}{\refElem{Solicitud}}{Una \refElem{Solicitud} es redirigida a otro \refElem{Consejo} cuando un analista ha decidico, con base en su experiencia, que  no puede ser atendida por el Consejo al cual fue enviada. }	
+%	 
+%	 \brRel{\brRelAgregation}{\refElem{Consejo}}{Una \refElem{Redireccion} de Solicitud es agregada al Consejo distinto y activo para que realice la dictaminación correspondiente.}
+%
+%\end{cdtEntidad}
+%
+%\begin{cdtEntidad}[Es el mecanismo,en forma de documento, por el cual un Consejero, evalúa los criterios solicitados por el Alumno así como su historial académico  para determinar que acciones o circunstancias solventan su situación escolar. ]{Dictamen}{Dictámen}
+%	
+%	\brAttr{estadoDeSolicitud}{Estado de Solicitud}{EstadodeSolicitud}{Indica la situación del dictámen a través del tiempo y de las acciones que con ella se realizan durante una sesión de Consejo hasta concluir con su Dictaminación.}{\datRequerido}
+%	
+%	\brAttr{evaluacion}{Evaluación}{Evaluacion}{Indica el resultado de la dictaminación, con una frase, especificando las acciones que debe realizar el alumno para regularizar su situación escolar.}{\datRequerido}
+%
+%	\brAttr{criterio}{Criterio}{Criterio}{Indica aquellos criterios que el dictamen contiene para que el Alumno regularice su situación escolar.}{\datRequerido}
+%	
+%	\cdtEntityRelSection
+%	
+%	\brRel{\brRelAgregation}{\refElem{MiembroenEquipo}}{Un \refElem{MiembroenEquipo} realiza la dictaminación de acuerdo a los criterios solicitados y existentes por el Alumno, siguiendo las pautas acordadas previas a la sesión o por su experiencia.}
+%	
+%\end{cdtEntidad}
+%
+%\begin{cdtEntidad}[Resultado de la relación entre Consejo y Analista para la COSIE.Un analista puede pertenecer a uno o varios Consejos en los que realiza la labor de predictaminación de Solicitudes.]{AnalistaenConsejo}{Analista en Consejo}
+%\end{cdtEntidad}
+%
+%
+%
+%\begin{cdtEntidad}[Resultado de la relación entre Miembro en Equipo y Dictámen. Un miembro de equipo puede votar a favor o en contra de la decisión o evaluación acordada por el equipo para una solicitud.]{Voto}{Voto}
+%
+%	\brAttr{estado}{Estado del Voto}{entero}{Indica si el voto de un Miembro de un Equipo es favorable o no.}{\datRequerido}
+%
+%\end{cdtEntidad}
+%
+%\begin{cdtEntidad}[Resultado de la relación entre Criterio y Solicitud.Almacena cada uno de los criterios que el Alumno solicitó o el Sistema identificó para que la situación del alumno se regularice.]{CriteriodeSolicitud}{Criterio de Solicitud}
+%
+%\end{cdtEntidad}
+%
+%\begin{cdtEntidad}[Resultado de la relación entre Criterio y Dictámen.Almacena cada uno de los criterios que tienen efectos en el dictamen y que el Alumno requiere seguir para regularizar su situación escolar.]{CriteriodeDictamen}{Criterio de Dictámen}
+%
+%\end{cdtEntidad}

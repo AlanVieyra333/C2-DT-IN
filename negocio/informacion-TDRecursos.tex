@@ -1,0 +1,156 @@
+\begin{TipoDeDato}{tdTipoDeRecurso}{Tipo de Recurso}{Es un catálogo que tiene como propósito almacenar información acerca  de la clasificación que reciben los distintos conjuntos de personas que laboran en el Instituto y ser un mecanismo que apoye a la identificación del personal para labores administrativas o académicas. Esta clasificación se le es otorgada al Recurso  por medio de un contrato o un convenio aplicable. }
+		
+		\begin{tdAtributos}
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una clasificación del personal que labora en el Instituto en actividades administrativas o académicas.}
+			
+			\tdAttr{descripcion}{Descripción}{tdtexto}{Es el conjunto de palabras que tienen como propósito exponer las características que definen a la agrupación a la que un Recurso Humano pertenece.}
+		\end{tdAtributos}
+		
+		\subsection{Valores Iniciales}
+		
+		 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente y cuyas descripciones fueron obtenidas del \textbf{Reglamento de las condiciones interiores de trabajo del Personal Académico del Instituto Politécnico Nacional} y del \textbf{Reglamento de las condiciones generales de trabajo del Personal No Docente del Instituto Politécnico Nacional}. \cdtEmpty
+		
+		\begin{longtable}{| p{0.3\textwidth}| p{0.5\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Tipo de Recurso & \bf \color{white}  Descripción \\
+	 			\hline
+	 			\endhead
+	 			\hline
+	 			Personal Académico Docente & Responsable institucional de las funciones y labores académicas, que debe desarrollar de manera permanente. Realiza actividades de docencia, investigación científica, desarrollo tecnológico y además actividades complementarias.\\
+	 			\hline
+	 			Personal Académico Visitante & Responsable de funciones académicas específicas, por tiempo determinado, cuyas actividades, obligaciones y derechos quedan sujetos a los contratos celebrados con las autoridades del Instituto, o bien, al convenio correspondiente. \\
+	 			\hline
+	 			Personal Académico Visitante por Honorarios & Responsable de funciones académicas específicas, por tiempo determinado, cuyas actividades, obligaciones y derechos quedan sujetos a los contratos por honorarios celebrados con las autoridades del Instituto, o bien, al convenio correspondiente.\\
+	 			\hline
+	 			Personal No Docente & Persona que presta sus servicios al Instituto Politécnico Nacional, desempeñando trabajos administrativos, técnicos y manuales.\\
+	 			\hline
+	 			Personal No Docente por Honorarios & Persona que presta sus servicios al Instituto Politécnico Nacional, desempeñando trabajos administrativos, técnicos y manuales y que es contratado por honorarios.\\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+	
+	\begin{TipoDeDato}{tdTipoDeUnidadAdscripcion}{Tipo de Unidad de Adscripción}{Es un catálogo que tiene como propósito almacenar las distintas clasificaciones que se generan a partir del conjunto de funciones que se realizan dentro de un área, departamento o división del Instituto.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a un conjunto de funciones dentro de un área, departamento o división del Instituto.}
+		
+		\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito explicar las características que definen a la agrupación a la que una Unidad de Adscripción pertenece.}
+	
+	\end{tdAtributos}
+	
+		\subsection{Valores Iniciales}
+		
+		 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente y que fueron obtenidos de acuerdo al \textbf{Artículo 2do} del \textbf{Reglamento Órganico} del Instituto Politécnico Nacional.\cdtEmpty
+		
+		\begin{longtable}{| p{0.3\textwidth}| p{0.5\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Descripción \\
+	 			\hline
+	 			Unidad Académica & Establecimiento académico en los que se realizan actividades de docencia, investigación y difusión de la cultura de nivel medio superior y superior.\\
+	 			\hline
+	 			Unidad Administrativa & Establecimiento encargado para el apoyo del Director General, para la regulación o evaluación o para la integración, seguimiento y control(tales como la Dirección de Educación Superior, Dirección de Educación Media Superior o la Dirección de Administración Escolar). \\
+				\hline
+				Centro de Investigación & Establecimiento académico en el que se realiza investigación científica y tecnológica y docencia de nivel posgrado.\\
+				\hline
+				Órgano Consultivo & Órgano Colegiado compuesto por varias partes de la comunidad politécnica que se dedica a la resolución de situaciones o conflictos en una o en varias Unidad Académicas. \\
+				\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+	
+	\begin{TipoDeDato}{tdCategoria}{Categoría}{Es un catálogo donde se define el nivel de plaza con que cuenta un profesor. Esta categoría va aumentando de acuerdo a varios factores(antigüedad, grado de estudios, promociones) e indica el número de horas que debe cubrir el profesor frente a grupo como carga académica.}
+	
+		\begin{tdAtributos}
+		
+			\tdAttr{clave}{Clave}{tdpalabra}{Es un conjunto de dígitos alfanuméricos que tienen como propósito identificar a una categoría. Se puede validar a partir de la siguiente expresión regular :
+			\begin{Citemize}
+				\item $[A-Z]((2|3)[0-9]\{3\})$
+			\end{Citemize}}
+			
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es el conjunto de palabras que identifican a una categoría describiendo un tipo de profesor y la cantidad de horas que debe cubrir frente a grupo.}
+			
+			%\tdAttr{abreviatura}{Abreviatura}{tdfrase}{Es el símbolo o conjunto de símbolos que forman una clave con la cual se representa el nombre de una categoría.}
+		\end{tdAtributos}
+	
+		\subsection{Valores Iniciales}
+				
+		Para conocer estos valores es requerido ver el \textbf{Tabulador del Personal Académico}.
+	\end{TipoDeDato}
+	
+	\begin{TipoDeDato}{tdTipoDeNombramiento}{Tipo de Nombramiento}{Es un catálogo en el que se describe la formalización de manera oficial de la categoría y el número de horas que el profesor debe cubrir frente a grupo por cada plaza con la que se cuente.}
+	
+		\begin{tdAtributos}
+			\tdAttr{nombre}{Nombre}{tdpalabra}{Es el conjunto de caracteres que identifica a una categoría y el número de horas que un profesor debe cubrir frente a grupo.}
+			
+			\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito explicar las características que definen a la agrupación a la que un Profesor pertenece.}
+		\end{tdAtributos}
+		
+		\subsection{Valores Iniciales}	
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente. \cdtEmpty
+		\begin{longtable}{| p{0.3\textwidth}| p{0.5\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white}  Descripción \\
+	 			\hline
+	 			\endhead
+	 			Basificado & Indica que las horas de una plaza son propiedad del profesor. \\
+	 			\hline
+	 			Candidato & Indica que las horas de una plaza cubren una incidencia o una necesidad para la creación de una estructura educativa. Estas horas no son propiedad del profesor. \\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+	\begin{TipoDeDato}{tdRolFuncional}{Rol Funcional}{Es un catálogo en el que se almacenan la agrupaciones de funcionalidades del Sistema a la que un Recurso Humano tiene acceso de acuerdo a la labor que desempeña en el Instituto.}
+		
+		\begin{tdAtributos}
+		
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras identifican a un rol asignado a un Recurso Humano en el Sistema.}
+			
+			\tdAttr{descripcion}{Descripción}{tdfrase}{Es un conjunto de palabras que describen a el rol asignado y sus actividades dentro del Sistema.}
+		\end{tdAtributos}
+		
+		\subsection{Valores Iniciales}
+		 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado  inicialmente. \cdtEmpty
+		\begin{longtable}{| p{0.3\textwidth}| p{0.6\textwidth}|}
+			\rowcolor{colorPrincipal}
+	 		\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 		\hline
+	 		\rowcolor{colorSecundario}
+	 		\bf \color{white} Nombre & \bf \color{white}  Descripción \\
+	 		\hline
+	 		\endhead
+			Encargado de la COSIE de Medio Superior &	Es una persona que tiene como labor realizar la definición en el sistema requerida de los Consejos, sus Sesiones y los Consejeros que participarán en una Unidad Académica de nivel Medio Superior.\\
+			\hline
+			Encargado de la COSIE de Superior & Es una persona que tiene como labor realizar la definición en el sistema requerida de los Consejos, sus Sesiones y los Consejeros que participarán en una Unidad Académica de nivel Superior.\\	
+			\hline
+			Analista de la COSIE de Medio Superior	& Es un Recurso Humano que tiene como labor elaborar la predictaminación de Solicitudes de Dictamen en una Unidad Académica de nivel Medio Superior.\\
+			\hline
+			Analista de la COSIE de Superior & Es un Recurso Humano que tiene como labor elaborar la predictaminación de Solicitudes de Dictamen en una Unidad Académica de nivel Superior.\\
+			\hline
+			Responsable de la Estructura Educativa de Medio Superior & Es un Recurso Humano que tiene como labor realizar la planeación de la Estructura Educativa de una Unidad Académica de nivel Medio Superior.	\\
+			\hline
+			Responsable de la Estructura Educativa de Superior & Es un Recurso Humano que tiene como labor realizar la planeación de la Estructura Educativa de una Unidad Académica de nivel Superior.\\
+			\hline	
+			Auxiliar Estructura Eductiva de Medio Superior - Soporte Documental & Es un Recurso Humano que tiene como labor realizar la documentación necesaria para el Soporte Documental  de la Estructura Educativa de una Unidad Académica de nivel Medio Superior.\\
+			\hline
+			Auxiliar Estructura Eductiva de Superior - Soporte Documental & Es un Recurso Humano que tiene como labor realizar la documentación necesaria para el Soporte Documental  de la Estructura Educativa de una Unidad Académica de nivel Superior.\\
+			\hline
+			Auxiliar Estructura Educativa de Medio Superior - Horarios & Es un Recurso Humano que tiene como labor realizar la documentación necesaria para la generación de Horarios de la Estructura Educativa de una Unidad Académica de nivel Medio Superior.\\
+			\hline
+			Auxiliar Estructura Educativa de Superior - Horarios & Es un Recurso Humano que tiene como labor realizar la documentación necesaria para la generación de Horarios de la Estructura Educativa de una Unidad Académica de nivel Superior.\\
+			\hline
+			Auxiliar de Estructura Educativa de Medio Superior - Ambos & Es un Recurso Humano que tiene como labor realizar la documentación necesaria para el Soporte Documental y para la generación de Horarios de la Estructura Educativa de una Unidad Académica de nivel Medio Superior.\\
+			\hline
+			Auxiliar de Estructura Educativa de Superior - Ambos & Es un Recurso Humano que tiene como labor realizar la documentación necesaria para el Soporte Documental y para la generación de Horarios de la Estructura Educativa de una Unidad Académica de nivel Superior.\\
+			\hline
+	 		\end{longtable}
+\end{TipoDeDato}

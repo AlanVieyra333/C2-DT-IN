@@ -1,0 +1,85 @@
+id,name
+MSG1,Operaci\IeC {\'o}n Exitosa
+MSG2,Operaci\IeC {\'o}n Fallida
+MSG3,Elementos No Disponibles
+MSG4,Elemento No Disponible
+MSG5,Duplicado de Informaci\IeC {\'o}n
+MSG6,Falta dato obligatorio
+MSG7,Formato de campo Incorrecto
+MSG8,Operaci\IeC {\'o}n por Atender
+MSG9,L\IeC {\'\i }mite de Tiempo
+MSG10,Cierre de Operaci\IeC {\'o}n
+MSG11,Recomendaci\IeC {\'o}n para revisar configuraci\IeC {\'o}n de servicios web
+MSG12,Confirmar operaci\IeC {\'o}n sin cambios posteriores
+MSG13,Operaci\IeC {\'o}n en Curso
+MSG14,No tienes notificaciones por atender
+MSG15,No existe informaci\IeC {\'o}n en el sistema
+MSG16,Condiciones necesarias para realizar operaci\IeC {\'o}n
+MSG17,Eliminar elemento
+MSG18,Relaci\IeC {\'o}n de fechas incorrecta
+MSG19,Relaci\IeC {\'o}n de cantidades incorrecta
+MSG20,Relaci\IeC {\'o}n de horas incorrecta
+MSG21,Elementos m\IeC {\'\i }nimos necesarios
+MSG22,Notificaci\IeC {\'o}n de operaci\IeC {\'o}n.
+MSG23,No es posible realizar operaci\IeC {\'o}n sobre elemento
+MSG24,Confirmaci\IeC {\'o}n de eliminaci\IeC {\'o}n en cadena
+MSG25,Confirmaci\IeC {\'o}n de operaci\IeC {\'o}n
+MSG26,El per\IeC {\'\i }odo escolar ya inici\IeC {\'o}
+MSG27,Usuario y/o contrase\IeC {\~n}a incorrectos
+MSG28,Usuario Inhabilitado
+MSG29,Usuario bloqueado
+MSG30,Bienvenida
+MSG31,Vuelva Pronto
+MSG32,Cancelaci\IeC {\'o}n de pr\IeC {\'e}stamo
+MSG33,No es posible cancelar el pr\IeC {\'e}stamo
+MSG34,Alerta de eliminaci\IeC {\'o}n de bibliograf\IeC {\'\i }a
+MSG35,Advertencia sobre duraci\IeC {\'o}n de per\IeC {\'\i }odo escolar
+MSG36,Traslape de per\IeC {\'\i }odos escolares
+MSG37,Inconsistencia de fechas de actividad con su tipo
+MSG38,Duraci\IeC {\'o}n exacta de per\IeC {\'\i }odo
+MSG40,Inhabilitar usuario
+MSG41,Habilitar usuario
+MSG42,Confirmaci\IeC {\'o}n de operaci\IeC {\'o}n con errores
+MSG43,Elemento listo para revisi\IeC {\'o}n
+MSG44,Solicitud de cambios
+MSG45,"Elemento aprobado, operaci\IeC {\'o}n necesaria"
+MSG46,Cambio de estado en elemento
+MSG47,Longitud incorrecta
+MSG48,No existe informaci\IeC {\'o}n registrada para elemento
+MSG49,Relaci\IeC {\'o}n de fecha y referencia incorrecta
+MSG50,Correo de confirmaci\IeC {\'o}n para la solicitud de dictamen
+MSG51,Mensaje de notificaci\IeC {\'o}n de calidad de alumno
+MSG52,Mensaje de notificaci\IeC {\'o}n de t\IeC {\'e}rminos y condiciones de la solicitud del dictamen
+MSG53,Responsabilidad de comprensi\IeC {\'o}n de dictamen
+MSG54,Expiraci\IeC {\'o}n de Token de confirmaci\IeC {\'o}n
+MSG55,Solicitudes de dict\IeC {\'a}menes sin atender
+MSG56,Dictam\IeC {\'e}nes sin resolver
+MSG57,Formato de archivo
+MSG58,Operaci\IeC {\'o}n fuera de periodo
+MSG61,Profesor asignado a un horario
+MSG62,Porcentaje de calificaci\IeC {\'o}n err\IeC {\'o}neo
+MSG63,Actividad fuera de periodo
+MSG64,Traslape de horarios
+MSG65,Horario no correspondiente
+MSG67,Hora inicial del turno vespertino
+MSG68,Valor num\IeC {\'e}rico fuera de rango
+MSG125,Periodo demasiado Corto
+MSG126,Periodo demasiado Largo
+MSG129,Eliminaci\IeC {\'o}n de proceso
+MSG130,Periodo fuera de rango
+MSG131,Correo: Se agreg\IeC {\'o} un Calendario Acad\IeC {\'e}mico
+MSG132,Correo: Se modific\IeC {\'o} el Calendario Acad\IeC {\'e}mico
+MSG133,Correo: Se quit\IeC {\'o} un Calendario Acad\IeC {\'e}mico
+MSG134,Modificaci\IeC {\'o}n de periodo no iniciado inv\IeC {\'a}lida
+MSG135,Modificaci\IeC {\'o}n de periodo iniciado o caducado inv\IeC {\'a}lida
+MSG136,Confirmar eliminaci\IeC {\'o}n de calendario acad\IeC {\'e}mico
+MSG157,Lugares no definidos
+MSG178,Oferta educativa registrada
+MSG181,Carencia de estudiantes para inscripci\IeC {\'o}n
+MSG182,Programa Acad\IeC {\'e}mico no v\IeC {\'a}lido
+MSG183,Estructura Educativa no v\IeC {\'a}lida
+MSG184,Capacida de Unidad de Aprendizaje excedida
+MSG185,Carga m\IeC {\'\i }nima no cubierta
+MSG186,Confirmaci\IeC {\'o}n de inscripci\IeC {\'o}n por grupo
+MSG187,Selecci\IeC {\'o}n de periodo escolar necesaria
+MSG188,N\IeC {\'u}mero de preboletas/boletas excedido

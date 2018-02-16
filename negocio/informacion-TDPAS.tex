@@ -1,0 +1,201 @@
+\begin{TipoDeDato}{tdNivelAcademico}{Nivel Académico}{También conocido como \textbf{Nivel Educativo}, es un catálogo en el que se almacenan los nombres de las distintas etapas en las que el Instituto estructura sus Programas Académicos y Planes de Estudio. Tiene como propósito ser un mecanismo que indique:
+	\begin{itemize}
+		\item El nivel en el que debe ofrecerse o impartir un programa académico.
+		\item Los niveles educativos que se imparten en las Unidades Académicas.
+		\item El nivel al que corresponde un Segmento de Estructura Educativa de una Unidad Académica.
+	\end{itemize}}
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es el conjunto de palabras que identifican y distinguen a una de las etapas en las que se estructuran Programas y Planes de Estudio en el Instituto.}
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente y que fueron obtenidos de acuerdo al \textbf{Articulo 3ro.} del \textbf{Reglamento General de Estudios} del Instituto Politécnico Nacional.\cdtEmpty
+		
+		\begin{longtable}{| p{0.5\textwidth}| }
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre  \\
+	 			\hline
+	 			Nivel Medio Superior\\
+	 			\hline
+	 			Nivel Superior\\
+	 			\hline
+	 			Nivel Posgrado\\
+	 			\hline
+	 		\end{longtable}
+
+\end{TipoDeDato}
+
+
+\begin{TipoDeDato}{tdRamaDelConocimiento}{Rama del Conocimiento}{Es un catálogo en  el que se almacenan el nombre de los campos de estudio en el que los programas académicos del Instituto organizan y definen sus contenidos.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es el conjunto de palabras que identifican a un campo de estudio que el Instituto utiliza para ofrecer y definir los contenidos de los Planes de Estudio de sus Programas Académicos.}
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente y que fueron obtenidos de la página oficial del Instituto y del \textbf{Artículo 2do.} del \textbf{Reglamento Orgánico} del Instituto.
+		
+		\begin{longtable}{| p{0.5\textwidth}| }
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre  \\
+	 			\hline
+	 			\hline
+	 			Área de Ingeniería y Ciencias Físico Matemáticas\\
+	 			\hline
+	 			Área de Ciencias Médico Biológicas\\
+	 			\hline
+	 			Área de Ciencias Sociales y Administrativas\\
+	 			\hline
+	 		\end{longtable}
+\end{TipoDeDato}
+
+
+\begin{TipoDeDato}{tdTipoDeDivision}{Tipo de División}{Es un catálogo en el que se almacenan el nombre de las distintas formas en las que un Plan de Estudio se estructura, esto con el propósito de posicionar las Unidades de Aprendizaje que lo conforman. }
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una forma en la que un Plan de Estudio se estructura para posicionar las Unidades de Aprendizaje que lo conforman.}
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente. S\cdtEmpty
+		
+		\begin{longtable}{| p{0.5\textwidth}| }
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre  \\
+	 			\hline
+	 			Nivel\\
+	 			\hline
+	 			Semestre\\
+	 			\hline
+	 		\end{longtable}
+\end{TipoDeDato}
+
+
+\begin{TipoDeDato}{tdEstadoDePlanDeEstudio}{Estado de Plan de Estudio}{Es un catálogo en el que se almacenan cada una de las posibles condiciones en las que un Plan de Estudio se encuentra determinando así, su posibilidad para ofertarse en el Instituto, o para indicar que no hay aspirantes ni alumnos que puedan inscribirse en las Unidades de Aprendizaje que conforman al Plan.}
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican e indican la condición en la que un Plan de Estudio se encuentra dentro de una Unidad Académica.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+
+	 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente. Para conocer la descripción de estos estados es requerido ver el primer entregable \textbf{C2-DT} de Programas Académicos e Infraestructura.\cdtEmpty
+		
+		\begin{longtable}{| p{0.5\textwidth}| }
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre  \\
+	 			\hline
+	 			Edición\\
+	 			\hline
+	 			Revisión\\
+	 			\hline
+	 			Aprobado\\
+	 			\hline
+	 			Vigente\\
+	 			\hline
+	 			Liquidación\\
+	 			\hline
+	 			Derogado\\
+	 			\hline
+	 			Eliminado\\
+	 			\hline
+	 		\end{longtable}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdTipoDeEnsenanza}{Tipo de Enseñanza}{Es un catálogo en el que se almacenan los nombres de las distintas formas en que los contenidos de una Unidad de Aprendizaje deben ser transmitidos de un docente a un conjunto de Alumnos.}
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una de las formas en que los contenidos de una Unidad de Aprendizaje deben ser transmitidos a un conjunto de Alumnos.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.\cdtEmpty
+		
+		\begin{longtable}{| p{0.5\textwidth}| }
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre  \\
+	 			\hline
+	 			Teórica\\
+	 			\hline
+	 			Práctica\\
+	 			\hline
+	 			Teórica - Práctica \\
+	 			\hline
+	 		\end{longtable}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdTipoDeUdeA}{Tipo de Unidad de Aprendizaje}{Es un catálogo en el que se encuentra el nombre de la clasificación que una Unidad de Aprendizaje tiene dentro de un Plan de Estudio.}
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una agrupación a la que una o varias Unidades de Aprendizaje de un Plan de Estudio pertenecen.}
+		
+		\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito explicar las características que definen a una agrupación a la que una o varias Unidades de Aprendizaje de un Plan de Estudio pertenecen.}
+	
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente y que fueron obtenidos del \textbf{Artículo 34avo.} del \textbf{Reglamento General de Estudios} del Instituto Politécnico Nacional.\cdtEmpty
+		
+		\begin{longtable}{| p{0.25\textwidth}| p{0.45\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{c}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre  & \bf \color{white} Descripción\\
+	 			\hline
+	 			Obligatoria & La unidad de aprendizaje es indispensable para la formación del alumno.\\
+	 			\hline 
+	 			Optativa & La unidad de aprendizaje posibilita la formación específica en un área del conocimiento y que deberá ser seleccionadas de entre las señaladas en el plan de estudio.\\
+	 			\hline
+	 			Electiva & La unidad de aprendizaje permite al alumno satisfacer inquietudes vocacionales propias, enfatizar algún aspecto de su formación o complementar la misma y que podrán elegirse de entre la oferta
+institucional o de otras instituciones, si así lo autoriza la Dirección de Coordinación competente.\\
+	 			\hline
+	 		\end{longtable}
+\end{TipoDeDato}
+
+
+\begin{TipoDeDato}{tdModalidad}{Modalidad}{Es un catálogo en el que se describe la forma y/o mecanismos que utiliza el Instituto para impartir y ofertar  sus programas académicos.}
+	
+	\textbf{Restricciones}: Un profesor que cubre su carga académica en modalidad escolarizada tiene la oportunidad de impartir otras unidades de aprendizaje, que pudieran ser  en modalidad mixta o no escolarizada, sin embargo, un profesor que cubre su carga académica en modalidad no escolarizada no podrá reglamentariamente(si  no está reglamentado quitar esto) impartir Unidades de Aprendizaje en modalidad escolarizada a menos que sea un profesor de base.
+		
+		\begin{tdAtributos}
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o conjunto de palabras que  identifica a una de las formas y/o mecanismos que el Instituto utiliza para impartir y ofertar sus programas académicos.}
+				
+			\tdAttr{abreviatura}{Abreviatura}{tdpalabra}{Es el símbolo o conjunto de símbolos que forman una clave con la cual se representa a una modalidad.}
+			
+		\end{tdAtributos}
+		\subsection{Valores Iniciales}
+			En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.Estos valores están definidos en el \textbf{Artículo 4rto} del \textbf{Reglamento General de Estudios}. \cdtEmpty
+		
+		\begin{longtable}{| p{0.3\textwidth}| p{0.3\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Abreviatura \\
+	 			\hline
+	 			Escolarizada & E\\
+	 			\hline
+	 			No Escolarizada & NE \\
+	 			\hline
+	 			Mixta & X \\
+	 			\hline
+	 		\end{longtable}
+\end{TipoDeDato}

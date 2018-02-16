@@ -1,0 +1,1227 @@
+%=======================================================================
+%=======================================================================
+%=======================================================================
+%==== R E G L A S   D E   N E G O C I O   I D E N T I F I C A D A S ====
+%=======================================================================
+%=======================================================================
+%=======================================================================
+
+%\subsection{Reglas de Negocio de Infraestructura y Programas Académicos}
+%======================================================================
+%\begin{BusinessRule}{BR-N001}{Cantidad de Periodos Escolares por modalidad}
+%	{\bcIntegridad}  % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisada.
+%	\BRItem[Propuesta por] Alberto.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 10 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Los periodos escolares\footnote{\refElem{tPeriodoEscolar}} asignados a una \refElem{UnidadAcademica} en una \refElem{tModalidad} no deben traslaparse.
+%	\BRItem[Sentencia] Sean ${\bf ua}$ una Unidad Académica; ${\bf p_{i}}$, ${\bf p_{j}}$ dos periodos escolares asignados a ${\bf ua}$ y ${\bf m}$ cualquiera de las Modalidades de la ${\bf ua}$\\
+%	si (${\bf p_{i}}\neq {\bf p_{j}}$) $\Rightarrow$\\
+%	${\bf p_{i}}.inicio \geq {\bf p_{j}}.fin$ o ${\bf p_{j}}.inicio \geq {\bf p_{i}}.fin$
+%	\BRItem[Motivación] Manejar varios calendarios escolares para distintas modalidades que no se traslapen.
+%	\BRItem[Ejemplo positivo] El siguiente conjunto de Periodos Escolares para una Unidad Académica {\bf cumple} con la regla:
+%		\begin{enumerate}
+%			\item Periodo escolar del 1-enero-2017 al 31-julio-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-agosto-2017 al 31-diciembre-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-enero-2017 al 28-febrero-2017 para la modalidad no escolarizada.
+%			\item Periodo escolar del 1-marzo-2017 al 30-abril-2017 para la modalidad no escolarizada.
+%		\end{enumerate}
+%		Aunque el periodo 1 se traslapa con el 3 y 4, estos pertenecen a otra modalidad. Por otro lado no hay traslapes con 1 y 2 y tampoco con 3 y 4.
+%	\BRItem[Ejemplo negativo] El siguiente conjunto de Periodos Escolares para una Unidad Académica {\bf no cumple} con la regla:
+%		\begin{enumerate}
+%			\item Periodo escolar del 1-enero-2017 al 5-agosto-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-agosto-2017 al 31-diciembre-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-enero-2017 al 28-febrero-2017 para la modalidad no escolarizada.
+%			\item Periodo escolar del 1-marzo-2017 al 30-abril-2017 para la modalidad no escolarizada.
+%		\end{enumerate}
+%		El periodo 1 se traslapa con el 2 por 5 días y pertenecen a la misma modalidad.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}.
+%\end{BusinessRule}
+
+%======================================================================
+%\begin{BusinessRule}{BR-N002}{Duración de un periodo.}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blInfluencing} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 10 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Un Periodo Escolar en Modalidad Escolarizada debe durar entre cinco y seis meses, mientras que en Modalida No Escolarizada y Mixta debe durar entre mes y medio y dos meses.
+%	\BRItem[Sentencia] \cdtEmpty
+%% - - - - - - - - - - - - - - - - - - - - - - - -
+%\begin{lstlisting}[language=C]
+%if (p.modalidad == escolarizada) {
+%	Max = 6; //meses
+%	Min = 5; //meses
+%	if (p.duracion >= Min && p.duracion <= Max) {
+%		return true;
+%	}else{
+%		return false;
+%	}
+%} else if(p.modalidad == no escolarizada) {
+%	Max = 2; //meses
+%	Min = 1.5; //meses
+%	if (p.duracion >= Min && p.duracion <= Max) {
+%		return true;
+%	}else{
+%		return false;
+%	}
+%}
+%\end{lstlisting}
+%% - - - - - - - - - - - - - - - - - - - - - - - -
+%	\BRItem[Motivación] Que los periodos cuenten con una duración óptima para que los alumnos, profesores y personal administrativo puedan aprovecharlo al máximo.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item El periodo escolar 2016-2017/1 Escolarizado inicia el 8 de agosto y termina el 21 de diciembre ({\em dura más de 5 meses y menos de 6}).
+%			\item El periodo escolar 2016-2017/3 No Escolarizado inicia el 18 de noviembre y termina el 16 de enero ({\em dura dos días menos de 2 meses}).
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item El periodo escolar 2016-2017/1 Escolarizado inicia el 8 de agosto y termina el 4 de noviembre ({\em dura menos de 5 meses}).
+%			\item El periodo escolar 2016-2017/3 No Escalarizado inicia el 14 de noviembre y termina el 17 de febrero({\em dura más de 2 meses}).
+%		\end{itemize}
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%\end{BusinessRule}
+
+%%======================================================================
+%\begin{BusinessRule}{BR-N003}{Actividades dentro del Periodo Escolar}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blInfluencing} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 12 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Las fechas y periodos identificados como Actividades dentro del Periodo Escolar\footnote{Ver \refElem{tActividadDentroDelPeriodoEscolar}}, deben estar dentro del Periodo Escolar en el que pertenecen.
+%	\BRItem[Sentencia] Sea $p$ un Perido Escolar y $\forall~a_{p}~\in~ActividadesDentroPeriodoEscolar(p)$ $\Rightarrow~a_{p}.inicio\geq p.inicio$ y $a_{p}.fin\leq p.fin$.
+%	\BRItem[Motivación] Garantizar que el Calmécac tenga un calendario escolar bien definido.
+%	\BRItem[Ejemplo positivo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, cumplen la regla:
+%		\begin{Cenumerate}
+%			\item Registro para la primer evaluación ordinaria del 9 al 13 de marzo.
+%			\item Semana de inducción del 30 de enero al 3 de febrero.
+%			\item Inscripciones del 23 al 27 de enero.
+%		\end{Cenumerate}
+%		Los ejemplos 1 y 2 son correctos por ser actividades dentro del calendario y sus fechas se encuentran dentro del perido escolar. El caso del ejemplo 3 cumple la regla puesto que no es una \refElem{tActividadDentroDelPeriodoEscolar}.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, NO cumplen la regla:
+%		\begin{itemize}
+%			\item Registro para la tercer evaluación ordinaria del 20 al 24 de junio.
+%			\item Semana de inducción del 29 de enero al 3 de febrero.
+%		\end{itemize}
+%		Ya que el primer ejemplo termina después de que haya terminado el periodo escolar y el segundo inicia antes de que inicie el periodo escolar.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refElem{DAE-CU1.2}.
+%\end{BusinessRule}
+%
+%%===============================================================
+%
+%\begin{BusinessRule}{BR-N004}{Actividades fuera del Periodo Escolar}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blInfluencing} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 26 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Las fechas y periodos identificados como Actividades fuera del Periodo Escolar\footnote{Ver \refElem{tActividadFueraDelPeriodoEscolar}}, deben estar fuera del Periodo Escolar en el que pertenecen.
+%	\BRItem[Sentencia] Sea $p$ un Perido Escolar y $\forall~a_{p}~\in~ActividadesDentroPeriodoEscolar(p)$ $\Rightarrow~a_{p}.inicio\leq p.inicio$ y $a_{p}.fin\geq p.fin$.
+%	\BRItem[Motivación] Garantizar que el Calmécac tenga un calendario escolar bien definido.
+%	\BRItem[Ejemplo positivo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, cumplen la regla:
+%	\begin{Cenumerate}
+%		\item Registro para la evaluación de título a suficiencia del 28 al 30 de junio.
+%		\item Periodo de inscripciones y reinscripciones del 28 al 30 de junio.
+%		\item Actividades Intersemestrales del 26 de junio al 7 de julio.
+%	\end{Cenumerate}
+%	Los ejemplos 1, 2 y 3 son correctos por ser actividades fuera del calendario y sus fechas se encuentran fuera del Periodo Escolar.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, NO cumplen la regla:
+%	\begin{itemize}
+%		\item Inscripciones y reinscripciones del 30 de enero al 3 de febrero.
+%		\item Registro de evaluación de título a suficiencia del 20 al 23 de junio.
+%	\end{itemize}
+%	Ya que ambos ejemplos están dentro del Periodo Escolar definido.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%\end{BusinessRule}
+
+%%================================================================
+%
+%\begin{BusinessRule}{BR-N005}{Saberes Previamente Adquiridos}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 26 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] La fecha límite para registrar la Evaluación por Saberes Previamente Adquiridos debe estar dentro del Periodo Escolar y debe ser menor al registro de la Primera Evaluación Ordinaria.
+%	\BRItem[Sentencia] Sea $p$ un Periodo Escolar, y $primeraEv_{p}$ el periodo par el registro de la primera evaluación de dicho periodo $\Rightarrow$ las fechas del periodo para registrar la Evaluación de Saberes Previamente Adquiridos de dicho periodo $perSabPrevios_{p}$ debe ser: $perSabPrevios_{p}.inicio=p.inicio$,~$perSabPrevios_{p}.fin~\in~(p.inicio, primeraEv_{p}.inicio)$.
+%	\BRItem[Motivación] Permitir que un alumno pueda aprobar asignaturas antes de recibir calificaciones de los profesores en caso de que tenga dicha asignatura inscrita. Evitar contradicciones entre el resultado de la Evaluación de Saberes Previamente Adquiridos y las evaluaciones registradas por el profesor en caso de que el alumno tenga la asignatura inscrita.
+%	\BRItem[Ejemplo positivo] Para el Periodo Escolar del 30-enero-2017 al 23-junio-2017, en el que el periodo para registro de la Primera Evaluación Ordinaria es del 9 al 13 de marzo, cumplen la regla:
+%	\begin{Cenumerate}
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 8 de marzo.
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 17 de febrero.
+%	\end{Cenumerate}
+%	Los ejemplos 1 y 2 son correctos por ser fechas que cumplen con estar después del inicio del Periodo Escolar y antes de la Primer Evaluación Ordinaria.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del ejemplo anterior, NO cumplen la regla:
+%	\begin{itemize}
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 10 de marzo.
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 30 de enero.
+%	\end{itemize}
+%	Ya que el primer ejemplo termina después de la primer evaluación ordinaria y en el segundo termina antes de que inicie el periodo escolar.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%
+%\end{BusinessRule}
+
+%================================================================
+
+%\begin{BusinessRule}{BR-N006}{Semana de Inducción}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler \\ \btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Alberto.
+%	\BRItem[Revisada por]
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] La Semana de Inducción debe estar dentro del Periodo Escolar y debe ser mayor al inicio del Periodo Escolar pero debe durar una semana.
+%	\BRItem[Sentencia] Sea $p$ un Perido Escolar y $\forall~i_{p}~\in~ActividadesDentroPeriodoEscolar(p)$ $\Rightarrow~i_{p} \geq p.inicio$ y $i_{p}\leq p.1sem$.
+%	\BRItem[Motivación] Garantizar que las personas de nuevo ingreso cuenten con una semana de inducción antes de que comiencen bien sus clases.
+%	\BRItem[Ejemplo positivo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, cumplen la regla:
+%	\begin{Cenumerate}
+%		\item Registro para la evaluación de título a suficiencia del 28 al 30 de junio.
+%		\item Periodo de inscripciones y reinscripciones del 28 al 30 de junio.
+%		\item Actividades Intersemestrales del 26 de junio al 7 de julio.
+%	\end{Cenumerate}
+%	Los ejemplos 1, 2 y 3 son correctos por ser actividades fuera del calendario y sus fechas se encuentran fuera del Perido Escolar.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, NO cumplen la regla:
+%	\begin{itemize}
+%		\item Inscripciones y reinscripciones del 30 de enero al 3 de febrero.
+%		\item Registro de evaluación de título a suficiencia del 20 al 23 de junio.
+%	\end{itemize}
+%	Ya que ambos ejemplos están dentro del Periodo Escolar definido.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%
+%\end{BusinessRule}
+
+%================================================================
+
+%\begin{BusinessRule}{BR-N007}{Editar un periodo escolar iniciado}
+%	{\bcAutorization}%Clase: \bcCondition, \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btExecutive}%Tipo: \btEnabler, \btTimer, \btExecutive.
+%	{\blControlling}%Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Alberto García.
+%	\BRItem[Revisada por]
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Un periodo escolar iniciado solo puede ser editado con previa autorización de la \refElem{DAE} y no podrán modificarse eventos ya transcurridos.
+%	\BRItem[Sentencia] Sean: \\ \\
+%	$ p \in PeriodosEscolares $ \\
+%	$ a \in p.Actividades$ \\
+%	$ EditablesPeriodo = $ \{ $ x \mid x $ es característica editable editable de $PeriodoEscolar$ \}  \\
+%	$ EditablesActividades = $ \{ $ x \mid x $ es característica editable de $ Actividad $ \}  \\ \\
+%	Se cumple que: \\ \\
+%	\begin{enumerate}
+%
+%		\item $ EditablesPeriodo = $ \{ $ x \mid x $ es característica de $ PeriodoEscolar $ \} \\
+%		$ EditablesActividades = $ \{ $ x \mid x $ es característica de $ Actividad $ \} \\
+%		$ SSI $ \\
+%		$ p.fechaInicio > fechaActual $ \\
+%
+%		\item $ EditablesPeriodo = $ \{ $ fechaFin $ \} \\
+%		$ EditablesActividades = $ \{ $ x \mid x $ es característica de $ Actividad $ \} \\
+%		$ SSI $ \\
+%		$ p.fechaInicio \leq fechaActual $ y $ a.fechaInicio > fechaActual$ \\
+%
+%		\item $ EditablesPeriodo = $ \{ $ fechaFin $ \} \\
+%		$ EditablesActividades = $ \{ $ fechaFin $ \} \\
+%		$ SSI $ \\
+%		$ p.fechaInicio \leq fechaActual $ y $ a.fechaInicio \leq fechaActual $ \\
+%
+%		\item $ EditablesPeriodo = $  $ \varnothing $  \\
+%		$ EditablesActividades = $  $ \varnothing $  \\
+%		$ SSI $ \\
+%		$ p.fechaFin \leq fechaActual $
+%
+%	\end{enumerate}
+%	\BRItem[Motivación] Garantizar que los Periodos Escolares se editen de manera correcta y no haya errores a la hora de editarlos.
+%	\BRItem[Ejemplo positivo] Para el \refElem{tPeriodoEscolar} del 30-enero-2017 al 23-junio-2017 y la fecha actual 31-marzo-2017, cumplen la regla:
+%		\begin{enumerate}
+%			\item Se edita el fin del \refElem{tPeriodoEscolar} para el 20-julio-2017
+%			\item Se edita el Registro de la Tercera Evaluación Ordinaria del 19-junio-2017 al 21-junio-2017
+%			\item Se agrega una suspensión de labores para el día 31-mayo-2017
+%		\end{enumerate}
+%	Los ejemplos 1, 2 y 3 son correcto ya que se editaron fechas posteriores a la fecha actual.
+%	\BRItem[Ejemplo negativo] Para el \refElem{tPeriodoEscolar} del 30-enero-2017 al 23-junio-2017 y la fecha actual 31-marzo-2017, \textbf{NO} cumplen la regla:
+%		\begin{enumerate}
+%			\item Se edita el Registro para la Primera Evaluación Ordinaria del 21-marzo-2017 al 23-marzo-2017
+%			\item Se edita la Fecha Límite para el Registro de Evaluación por Saberes Previamente Adquiridos al 14-marzo-2017
+%			\item Se edita la fecha de inicico del \refElem{tPeriodoEscolar} para el 23-enero-2017
+%		\end{enumerate}
+%	Los ejemplos 1, 2 y 3 \textbf{NO} cumplen con la regla debido a que se quieren modificar periodos o fechas que ya pasaron con respecto a la fecha actual.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.2}.
+%\end{BusinessRule}
+
+% Regla disponible
+%%======================================================================
+%\begin{BusinessRule}{BR-N008}{Unicidad de Unidades Académicas}
+%		{elija Clase}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%		{elija Tipo}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%		{elija Nivel}    % Nivel: \blControlling, \blInfluencing.
+%		\BRItem[Versión] 1.0.
+%		\BRItem[Estado] Propuesta.
+%		\BRItem[Propuesta por] \TODO{Escriba su nombre.}
+%		\BRItem[Revisada por] Pendiente.
+%		\BRItem[Aprobada por] Pendiente.
+%		\BRItem[Descripción] \TODO{Redacte la regla lo más claro posible.}
+%		\BRItem[Sentencia] \TODO{Redacte la regla lo más formalmente posible, puede apoyarse de : pseudocódigo, algoritmo o notación matemática.}
+%		\BRItem[Motivación] \TODO{Razón o causa de la regla. Puede describir lo que se desea evitar con la regla.}
+%		\BRItem[Ejemplo positivo] Cumplen la regla:
+%			\begin{itemize}
+%					\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%				\end{itemize}
+%		\BRItem[Ejemplo negativo] No cumplen con la regla:
+%			\begin{itemize}
+%					\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%				\end{itemize}
+%		\BRItem[Referenciado por] \TODO{Referencíe los casos de uso en dónde se cita esta regla}
+%\end{BusinessRule}
+
+\subsection{Reglas de Negocio del Negocio}
+%======================================================================
+%\begin{BusinessRule}{BR-N001}{Cantidad de Periodos Escolares por modalidad}
+%	{\bcIntegridad}  % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisada.
+%	\BRItem[Propuesta por] Alberto.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 10 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Los periodos escolares\footnote{\refElem{tPeriodoEscolar}} asignados a una \refElem{UnidadAcademica} en una \refElem{tModalidad} no deben traslaparse.
+%	\BRItem[Sentencia] Sean ${\bf ua}$ una Unidad Académica; ${\bf p_{i}}$, ${\bf p_{j}}$ dos periodos escolares asignados a ${\bf ua}$ y ${\bf m}$ cualquiera de las Modalidades de la ${\bf ua}$\\
+%	si (${\bf p_{i}}\neq {\bf p_{j}}$) $\Rightarrow$\\
+%	${\bf p_{i}}.inicio \geq {\bf p_{j}}.fin$ o ${\bf p_{j}}.inicio \geq {\bf p_{i}}.fin$
+%	\BRItem[Motivación] Manejar varios calendarios escolares para distintas modalidades que no se traslapen.
+%	\BRItem[Ejemplo positivo] El siguiente conjunto de Periodos Escolares para una Unidad Académica {\bf cumple} con la regla:
+%		\begin{enumerate}
+%			\item Periodo escolar del 1-enero-2017 al 31-julio-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-agosto-2017 al 31-diciembre-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-enero-2017 al 28-febrero-2017 para la modalidad no escolarizada.
+%			\item Periodo escolar del 1-marzo-2017 al 30-abril-2017 para la modalidad no escolarizada.
+%		\end{enumerate}
+%		Aunque el periodo 1 se traslapa con el 3 y 4, estos pertenecen a otra modalidad. Por otro lado no hay traslapes con 1 y 2 y tampoco con 3 y 4.
+%	\BRItem[Ejemplo negativo] El siguiente conjunto de Periodos Escolares para una Unidad Académica {\bf no cumple} con la regla:
+%		\begin{enumerate}
+%			\item Periodo escolar del 1-enero-2017 al 5-agosto-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-agosto-2017 al 31-diciembre-2017 para la modalidad escolarizada.
+%			\item Periodo escolar del 1-enero-2017 al 28-febrero-2017 para la modalidad no escolarizada.
+%			\item Periodo escolar del 1-marzo-2017 al 30-abril-2017 para la modalidad no escolarizada.
+%		\end{enumerate}
+%		El periodo 1 se traslapa con el 2 por 5 días y pertenecen a la misma modalidad.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}.
+%\end{BusinessRule}
+
+%======================================================================
+%\begin{BusinessRule}{BR-N002}{Duración de un periodo.}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blInfluencing} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 10 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Un Periodo Escolar en Modalidad Escolarizada debe durar entre cinco y seis meses, mientras que en Modalida No Escolarizada y Mixta debe durar entre mes y medio y dos meses.
+%	\BRItem[Sentencia] \cdtEmpty
+%% - - - - - - - - - - - - - - - - - - - - - - - -
+%\begin{lstlisting}[language=C]
+%if (p.modalidad == escolarizada) {
+%	Max = 6; //meses
+%	Min = 5; //meses
+%	if (p.duracion >= Min && p.duracion <= Max) {
+%		return true;
+%	}else{
+%		return false;
+%	}
+%} else if(p.modalidad == no escolarizada) {
+%	Max = 2; //meses
+%	Min = 1.5; //meses
+%	if (p.duracion >= Min && p.duracion <= Max) {
+%		return true;
+%	}else{
+%		return false;
+%	}
+%}
+%\end{lstlisting}
+%% - - - - - - - - - - - - - - - - - - - - - - - -
+%	\BRItem[Motivación] Que los periodos cuenten con una duración óptima para que los alumnos, profesores y personal administrativo puedan aprovecharlo al máximo.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item El periodo escolar 2016-2017/1 Escolarizado inicia el 8 de agosto y termina el 21 de diciembre ({\em dura más de 5 meses y menos de 6}).
+%			\item El periodo escolar 2016-2017/3 No Escolarizado inicia el 18 de noviembre y termina el 16 de enero ({\em dura dos días menos de 2 meses}).
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item El periodo escolar 2016-2017/1 Escolarizado inicia el 8 de agosto y termina el 4 de noviembre ({\em dura menos de 5 meses}).
+%			\item El periodo escolar 2016-2017/3 No Escalarizado inicia el 14 de noviembre y termina el 17 de febrero({\em dura más de 2 meses}).
+%		\end{itemize}
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%\end{BusinessRule}
+
+%%======================================================================
+%\begin{BusinessRule}{BR-N003}{Actividades dentro del Periodo Escolar}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blInfluencing} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 12 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Las fechas y periodos identificados como Actividades dentro del Periodo Escolar\footnote{Ver \refElem{tActividadDentroDelPeriodoEscolar}}, deben estar dentro del Periodo Escolar en el que pertenecen.
+%	\BRItem[Sentencia] Sea $p$ un Perido Escolar y $\forall~a_{p}~\in~ActividadesDentroPeriodoEscolar(p)$ $\Rightarrow~a_{p}.inicio\geq p.inicio$ y $a_{p}.fin\leq p.fin$.
+%	\BRItem[Motivación] Garantizar que el Calmécac tenga un calendario escolar bien definido.
+%	\BRItem[Ejemplo positivo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, cumplen la regla:
+%		\begin{Cenumerate}
+%			\item Registro para la primer evaluación ordinaria del 9 al 13 de marzo.
+%			\item Semana de inducción del 30 de enero al 3 de febrero.
+%			\item Inscripciones del 23 al 27 de enero.
+%		\end{Cenumerate}
+%		Los ejemplos 1 y 2 son correctos por ser actividades dentro del calendario y sus fechas se encuentran dentro del perido escolar. El caso del ejemplo 3 cumple la regla puesto que no es una \refElem{tActividadDentroDelPeriodoEscolar}.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, NO cumplen la regla:
+%		\begin{itemize}
+%			\item Registro para la tercer evaluación ordinaria del 20 al 24 de junio.
+%			\item Semana de inducción del 29 de enero al 3 de febrero.
+%		\end{itemize}
+%		Ya que el primer ejemplo termina después de que haya terminado el periodo escolar y el segundo inicia antes de que inicie el periodo escolar.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refElem{DAE-CU1.2}.
+%\end{BusinessRule}
+%
+%%===============================================================
+%
+%\begin{BusinessRule}{BR-N004}{Actividades fuera del Periodo Escolar}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blInfluencing} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 26 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Las fechas y periodos identificados como Actividades fuera del Periodo Escolar\footnote{Ver \refElem{tActividadFueraDelPeriodoEscolar}}, deben estar fuera del Periodo Escolar en el que pertenecen.
+%	\BRItem[Sentencia] Sea $p$ un Perido Escolar y $\forall~a_{p}~\in~ActividadesDentroPeriodoEscolar(p)$ $\Rightarrow~a_{p}.inicio\leq p.inicio$ y $a_{p}.fin\geq p.fin$.
+%	\BRItem[Motivación] Garantizar que el Calmécac tenga un calendario escolar bien definido.
+%	\BRItem[Ejemplo positivo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, cumplen la regla:
+%	\begin{Cenumerate}
+%		\item Registro para la evaluación de título a suficiencia del 28 al 30 de junio.
+%		\item Periodo de inscripciones y reinscripciones del 28 al 30 de junio.
+%		\item Actividades Intersemestrales del 26 de junio al 7 de julio.
+%	\end{Cenumerate}
+%	Los ejemplos 1, 2 y 3 son correctos por ser actividades fuera del calendario y sus fechas se encuentran fuera del Periodo Escolar.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, NO cumplen la regla:
+%	\begin{itemize}
+%		\item Inscripciones y reinscripciones del 30 de enero al 3 de febrero.
+%		\item Registro de evaluación de título a suficiencia del 20 al 23 de junio.
+%	\end{itemize}
+%	Ya que ambos ejemplos están dentro del Periodo Escolar definido.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%\end{BusinessRule}
+
+%%================================================================
+%
+%\begin{BusinessRule}{BR-N005}{Saberes Previamente Adquiridos}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Ivo.
+%	\BRItem[Revisada por] Ulises Vélez Saldaña, 26 de Julio, 2017.
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] La fecha límite para registrar la Evaluación por Saberes Previamente Adquiridos debe estar dentro del Periodo Escolar y debe ser menor al registro de la Primera Evaluación Ordinaria.
+%	\BRItem[Sentencia] Sea $p$ un Periodo Escolar, y $primeraEv_{p}$ el periodo par el registro de la primera evaluación de dicho periodo $\Rightarrow$ las fechas del periodo para registrar la Evaluación de Saberes Previamente Adquiridos de dicho periodo $perSabPrevios_{p}$ debe ser: $perSabPrevios_{p}.inicio=p.inicio$,~$perSabPrevios_{p}.fin~\in~(p.inicio, primeraEv_{p}.inicio)$.
+%	\BRItem[Motivación] Permitir que un alumno pueda aprobar asignaturas antes de recibir calificaciones de los profesores en caso de que tenga dicha asignatura inscrita. Evitar contradicciones entre el resultado de la Evaluación de Saberes Previamente Adquiridos y las evaluaciones registradas por el profesor en caso de que el alumno tenga la asignatura inscrita.
+%	\BRItem[Ejemplo positivo] Para el Periodo Escolar del 30-enero-2017 al 23-junio-2017, en el que el periodo para registro de la Primera Evaluación Ordinaria es del 9 al 13 de marzo, cumplen la regla:
+%	\begin{Cenumerate}
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 8 de marzo.
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 17 de febrero.
+%	\end{Cenumerate}
+%	Los ejemplos 1 y 2 son correctos por ser fechas que cumplen con estar después del inicio del Periodo Escolar y antes de la Primer Evaluación Ordinaria.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del ejemplo anterior, NO cumplen la regla:
+%	\begin{itemize}
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 10 de marzo.
+%		\item La Fecha Límite para el registro de Evaluación por Saberes Previamente Adquiridos es hasta el 30 de enero.
+%	\end{itemize}
+%	Ya que el primer ejemplo termina después de la primer evaluación ordinaria y en el segundo termina antes de que inicie el periodo escolar.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%
+%\end{BusinessRule}
+
+%================================================================
+
+%\begin{BusinessRule}{BR-N006}{Semana de Inducción}
+%	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization.
+%	{\btEnabler \\ \btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling} % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Alberto.
+%	\BRItem[Revisada por]
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] La Semana de Inducción debe estar dentro del Periodo Escolar y debe ser mayor al inicio del Periodo Escolar pero debe durar una semana.
+%	\BRItem[Sentencia] Sea $p$ un Perido Escolar y $\forall~i_{p}~\in~ActividadesDentroPeriodoEscolar(p)$ $\Rightarrow~i_{p} \geq p.inicio$ y $i_{p}\leq p.1sem$.
+%	\BRItem[Motivación] Garantizar que las personas de nuevo ingreso cuenten con una semana de inducción antes de que comiencen bien sus clases.
+%	\BRItem[Ejemplo positivo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, cumplen la regla:
+%	\begin{Cenumerate}
+%		\item Registro para la evaluación de título a suficiencia del 28 al 30 de junio.
+%		\item Periodo de inscripciones y reinscripciones del 28 al 30 de junio.
+%		\item Actividades Intersemestrales del 26 de junio al 7 de julio.
+%	\end{Cenumerate}
+%	Los ejemplos 1, 2 y 3 son correctos por ser actividades fuera del calendario y sus fechas se encuentran fuera del Perido Escolar.
+%	\BRItem[Ejemplo negativo] Para el periodo escolar del 30-enero-2017 al 23-junio-2017, NO cumplen la regla:
+%	\begin{itemize}
+%		\item Inscripciones y reinscripciones del 30 de enero al 3 de febrero.
+%		\item Registro de evaluación de título a suficiencia del 20 al 23 de junio.
+%	\end{itemize}
+%	Ya que ambos ejemplos están dentro del Periodo Escolar definido.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.1}, \refIdElem{DAE-CU1.2}.
+%
+%\end{BusinessRule}
+
+%================================================================
+
+%\begin{BusinessRule}{BR-N007}{Editar un periodo escolar iniciado}
+%	{\bcAutorization}%Clase: \bcCondition, \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btExecutive}%Tipo: \btEnabler, \btTimer, \btExecutive.
+%	{\blControlling}%Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Revisión.
+%	\BRItem[Propuesta por] Alberto García.
+%	\BRItem[Revisada por]
+%	\BRItem[Aprobada por] Por aprobar.
+%	\BRItem[Descripción] Un periodo escolar iniciado solo puede ser editado con previa autorización de la \refElem{DAE} y no podrán modificarse eventos ya transcurridos.
+%	\BRItem[Sentencia] Sean: \\ \\
+%	$ p \in PeriodosEscolares $ \\
+%	$ a \in p.Actividades$ \\
+%	$ EditablesPeriodo = $ \{ $ x \mid x $ es característica editable editable de $PeriodoEscolar$ \}  \\
+%	$ EditablesActividades = $ \{ $ x \mid x $ es característica editable de $ Actividad $ \}  \\ \\
+%	Se cumple que: \\ \\
+%	\begin{enumerate}
+%
+%		\item $ EditablesPeriodo = $ \{ $ x \mid x $ es característica de $ PeriodoEscolar $ \} \\
+%		$ EditablesActividades = $ \{ $ x \mid x $ es característica de $ Actividad $ \} \\
+%		$ SSI $ \\
+%		$ p.fechaInicio > fechaActual $ \\
+%
+%		\item $ EditablesPeriodo = $ \{ $ fechaFin $ \} \\
+%		$ EditablesActividades = $ \{ $ x \mid x $ es característica de $ Actividad $ \} \\
+%		$ SSI $ \\
+%		$ p.fechaInicio \leq fechaActual $ y $ a.fechaInicio > fechaActual$ \\
+%
+%		\item $ EditablesPeriodo = $ \{ $ fechaFin $ \} \\
+%		$ EditablesActividades = $ \{ $ fechaFin $ \} \\
+%		$ SSI $ \\
+%		$ p.fechaInicio \leq fechaActual $ y $ a.fechaInicio \leq fechaActual $ \\
+%
+%		\item $ EditablesPeriodo = $  $ \varnothing $  \\
+%		$ EditablesActividades = $  $ \varnothing $  \\
+%		$ SSI $ \\
+%		$ p.fechaFin \leq fechaActual $
+%
+%	\end{enumerate}
+%	\BRItem[Motivación] Garantizar que los Periodos Escolares se editen de manera correcta y no haya errores a la hora de editarlos.
+%	\BRItem[Ejemplo positivo] Para el \refElem{tPeriodoEscolar} del 30-enero-2017 al 23-junio-2017 y la fecha actual 31-marzo-2017, cumplen la regla:
+%		\begin{enumerate}
+%			\item Se edita el fin del \refElem{tPeriodoEscolar} para el 20-julio-2017
+%			\item Se edita el Registro de la Tercera Evaluación Ordinaria del 19-junio-2017 al 21-junio-2017
+%			\item Se agrega una suspensión de labores para el día 31-mayo-2017
+%		\end{enumerate}
+%	Los ejemplos 1, 2 y 3 son correcto ya que se editaron fechas posteriores a la fecha actual.
+%	\BRItem[Ejemplo negativo] Para el \refElem{tPeriodoEscolar} del 30-enero-2017 al 23-junio-2017 y la fecha actual 31-marzo-2017, \textbf{NO} cumplen la regla:
+%		\begin{enumerate}
+%			\item Se edita el Registro para la Primera Evaluación Ordinaria del 21-marzo-2017 al 23-marzo-2017
+%			\item Se edita la Fecha Límite para el Registro de Evaluación por Saberes Previamente Adquiridos al 14-marzo-2017
+%			\item Se edita la fecha de inicico del \refElem{tPeriodoEscolar} para el 23-enero-2017
+%		\end{enumerate}
+%	Los ejemplos 1, 2 y 3 \textbf{NO} cumplen con la regla debido a que se quieren modificar periodos o fechas que ya pasaron con respecto a la fecha actual.
+%	\BRItem[Referenciado por] %\refIdElem{DAE-CU1.2}.
+%\end{BusinessRule}
+
+% Regla disponible
+%%======================================================================
+%\begin{BusinessRule}{BR-N008}{Unicidad de Unidades Académicas}
+%		{elija Clase}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%		{elija Tipo}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%		{elija Nivel}    % Nivel: \blControlling, \blInfluencing.
+%		\BRItem[Versión] 1.0.
+%		\BRItem[Estado] Propuesta.
+%		\BRItem[Propuesta por] \TODO{Escriba su nombre.}
+%		\BRItem[Revisada por] Pendiente.
+%		\BRItem[Aprobada por] Pendiente.
+%		\BRItem[Descripción] \TODO{Redacte la regla lo más claro posible.}
+%		\BRItem[Sentencia] \TODO{Redacte la regla lo más formalmente posible, puede apoyarse de : pseudocódigo, algoritmo o notación matemática.}
+%		\BRItem[Motivación] \TODO{Razón o causa de la regla. Puede describir lo que se desea evitar con la regla.}
+%		\BRItem[Ejemplo positivo] Cumplen la regla:
+%			\begin{itemize}
+%					\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%				\end{itemize}
+%		\BRItem[Ejemplo negativo] No cumplen con la regla:
+%			\begin{itemize}
+%					\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%				\end{itemize}
+%		\BRItem[Referenciado por] \TODO{Referencíe los casos de uso en dónde se cita esta regla}
+%\end{BusinessRule}
+
+
+
+
+%%======================================================================
+\begin{BusinessRule}{BR-N009}{Restricciones para préstamo de espacios}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	%de parcial a toal que no exista parcial con alguien mas 
+	\BRItem[Descripción] Un espacio puede ser prestado bajo ciertas condiciones:
+			\begin{itemize}
+				\item Un espacio se puede prestar de forma parcial  siempre y cuando se encuentre registrado en la infraestructura propia de la unidad académica prestamista y no se encuentre prestado de manera total con otra unidad académica.
+				\item Un espacio se puede prestar de forma total siempre y cuando se encuentre registrado en la infraestructura propia de la unidad académica prestamista y no se encuentre prestado de manera total o parcial con otra unidad académica.
+			\end{itemize} %se puede prestar sólo si es propio y no tiene un préstamo total.
+	\BRItem[Sentencia]  {$ \forall e \in Espacios \Rightarrow e $ es prestable  parcialmente si y sólo si $ e $ es propio $ \land !(e$ tiene préstamo total $)$} $\lor$
+	{$ \forall e \in Espacios \Rightarrow e $ es prestable totalmente si y sólo si $ e $ es propio $ \land !(e$ tiene préstamo total o parcial$)$}
+	
+	
+	
+	\BRItem[Motivación] Evitar que se presten espacios que ya han sido prestados de forma total previamente.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Prestar el espacio Laboratorio 1 de forma parcial a ESIME Zacatenco y después prestarlo de forma parcial a ESIQIE también.
+			\item Prestar el espacio Aula 3 de forma total a la UPIBI sin que este espacio tenga un préstamo previo.
+			\item Prestar el espacio Salón 89 de forma parcial a la UPIIG sin que este espacio tengo un préstamo previo.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Prestar de forma total el espacio Laboratorio 1 a UPIBI y después prestarlo de forma parcial a ESIQIE.
+			\item Prestar de forma parcial el espacio Aula 3 a ESIME Zacatenco y después prestarlo de forma total a UPIIG.
+			\item Prestar de forma total el espacio Salón 89 a ESCA Santo Tomás y después prestarlo de forma total a ESCA Tepepan.
+		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{UA-CU2.1}
+\end{BusinessRule}
+
+
+%%======================================================================
+%\begin{BusinessRule}{BR-N010}{Eliminar espacio}
+%	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Ángeles
+%	\BRItem[Revisada por] Pendiente.
+%	\BRItem[Aprobada por] Pendiente.
+%	\BRItem[Descripción] Un espacio se puede eliminar sólo si:
+%		\begin{itemize}
+%			\item el espacio no se encuentra registrado en los horarios del semestre vigente y
+%			\item el espacio es propio o compartido
+%			\item el espacio no está asociado a una unidad de aprendizaje.
+%		\end{itemize}
+%	%Ponerlo en viñetas
+%	\BRItem[Sentencia] Sean $ E \in Espacios , horario \in HorariosSemestreVigente, ua \in UnidadesAprendizaje, R_1(x,y)$ la relación entre horarios y espacios y $R_2(x,y)$ la relación entre unidades de aprendizaje y espacios, $ E $ se puede eliminar si y sólo si: \\
+%		$ \forall horario \nexists  R_1(horario, E) \land E.estado \in \{propio, compartido\} \land \forall ua \nexists R_2(ua, E)$
+%	\BRItem[Motivación] Evitar que existan unidades de aprendizaje o actividades asociadas a espacios inexistentes así como evitar eliminar un espacio que se encuentre en uso o haya sido prestado.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item Eliminar un espacio propio que no está registrado en un horario del semestre en curso.
+%			\item Eliminar un espacio compartido que se encuentra registrado en un horario de un semestre previo.
+%			\item Eliminar un espacio propio que no es encuentra asociado a una unidad de aprendizaje.
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item Eliminar un espacio prestado.
+%			\item Eliminar un espacio propio que se encuentra registrado en un horario de semestre vigente.
+%			\item Eliminar un espacio compartido que se encuentra asociado a una unidad de aprendizaje.
+%		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{UA-CU1.2}, \refIdElem{UA-CU1.5}, \refIdElem{UA-CU1.5.3}, \refIdElem{UA-CU3.2.1}
+%\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N011}{Asignar espacio a una Unidad de Aprendizaje}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Solo se puede asociar un laboratorio, taller o clínica  propio o compartido a una unidad de aprendizaje que sea teórico-práctica o práctica.
+	\BRItem[Sentencia] Sean $ ua \in UnidadesAprendizaje, e \in Espacios, R(x,y) $ la relación entre unidades de aprendizaje y espacios, entonces:\\
+		$ R(ua, e) $ puede existir si y sólo si $ e.estado \in \{propio, compartido\} \land ua.tipo \in \{$ teórico, teórico-práctica$\}$
+
+	\BRItem[Motivación] Evitar que las Unidades Académicas asignen unidades de aprendizaje cuyos espacios ya han sido prestados y que no se puedan asignas espacios a Unidades de Aprendizaje que no son prácticas.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Asociar un laboratorio propio a la Unidad de Aprendizaje Sistemas Digitales.
+			\item Asociar un espacio compartido a la Unidad de Aprendizaje Cálculo.
+			\item Asociar un espacio propio a la Unidad de Aprendizaje Álgebrea Lineal.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Asociar un espacio prestado a la Unidad de Aprendizaje Economía I.
+			\item Asociar un espacio prestado a la Unidad de Aprendizaje Sociedad II.
+			\item Asociar un espacio prestado a la Unidad de Aprendizaje Economía y Sociedad.
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{UA-CU3.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N012}{Cancelación de préstamo de espacio}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El préstamo parcial o total se puede cancelar solo si la Unidad Académica con la que existe esta relación no utiliza el espacio en su estructura académica.
+	\BRItem[Sentencia] Sean $ e \in Espacios, ua \in UnidadesAcademicas, p$ el período escolar vigente y $R(x,y) $ la relación entre la estructura académica de una Unidad Académica y un espacio, tal que $ e.estado \in \{compartido, prestado \}  $ entonces :\\
+		$ e.estado $ puede cambiar a propio si y sólo si $ \nexists R(ua.estructuraAcademica, e) \land fechaActual < p.fechaInicio \land fechaActual > p.fechaTermino $
+	\BRItem[Motivación] Evitar que Unidades Académicas pierdan parte de su estructura académica debido a la cancelación de un préstamo de espacio.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Cancelar el préstamo de un espacio que no es usado por la Unidad Académica a la que se realizó el préstamo.
+			\item Cambiar el estado de compartido a propio de un espacio que no es usado por ninguna Unidad Académica.
+			\item Cancelar el préstamo de un espacio que es usado por la Unidad Académica propietaria pero no por la receptora del préstamo.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Cancelar el préstamo de un espacio que está asociado a un horario de la Unidad de Aprendizaje que recibió el préstamo.
+			\item Quitar el estado de compartido de un espacio que está considerado dentro de la estructura académica de una Unidad Académica.
+			\item Quitar el estado de compartido de un espacio que está asociado a una Unidad de Aprendizaje de la Unidad Académica que recibe el espacio.
+		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{UA-CU2.2}
+\end{BusinessRule}
+
+
+%%======================================================================
+\begin{BusinessRule}{BR-N013}{Fecha de autorización del plan de estudio	}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles Cerritos
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La fecha de autorización de un plan de estudio debe ser anterior o igual a la fecha actual.
+	\BRItem[Sentencia]
+	$	\forall p \in PlanesDeEstudio \Rightarrow p.fechaAutorizacion \leq fechaActual $
+
+
+	\BRItem[Motivación] Mantener un correcto control de los planes de estudio registrados en el Instituto.
+	\BRItem[Ejemplo positivo] Para el día 17 de Julio de 2018, cumplen la regla:
+	\begin{itemize}
+		\item 17 de Julio de 2018
+		\item 30 de Septiembre de 2017
+		\item 1 de Enero de 2014
+	\end{itemize}
+	\BRItem[Ejemplo negativo] Para el día 17 de Julio de 2018, no cumplen con la regla:
+	\begin{itemize}
+		\item 18 de Julio de 2018
+		\item 12 de Abril de 2019
+		\item 1 de Enero de 2020
+	\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{DES-CU1.5.1}, \refIdElem{DES-CU1.5.2}, 
+	
+%	\refIdElem{DEMS-CU1.5.1}, \refIdElem{DEMS-CU1.5.2}
+\end{BusinessRule}
+
+
+%%======================================================================
+%Actualización: 25-Agosto-2017
+\begin{BusinessRule}{BR-N014}{Entrada en vigor del plan de estudio}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles Cerritos
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La fecha de entrada en vigor de un plan de estudio debe ser igual o posterior a la fecha de autorización del plan de estudio.
+	\BRItem[Sentencia]
+	$	\forall p \in PlanesDeEstudio \Rightarrow p.fechaEntradaenVigor \geq p.fechaAutorizacion $
+	\BRItem[Motivación] Evitar que planes de estudio no autorizados estén en vigor.
+	\BRItem[Ejemplo positivo] Para la fecha de autorización 17 de Julio de 2018, las siguientes fechas de entrada en vigor cumplen la regla:
+	\begin{itemize}
+		\item 17 de Julio de 2018
+		\item 30 de Septiembre de 2019
+		\item 12 de Abril de 2020
+	\end{itemize}
+	\BRItem[Ejemplo negativo] Para la fecha de autorización 17 de Julio de 2018, las siguientes fechas de entrada en vigor no cumplen la regla:
+	\begin{itemize}
+		\item 16 de Julio de 2018
+		\item 13 de Marzo de 2017
+		\item 1 de Enero de 2012
+	\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{DES-CU1.5.1}, \refIdElem{DES-CU1.5.2},
+
+	%\refIdElem{DEMS-CU1.5.1}, \refIdElem{DEMS-CU1.5.2},
+	
+\end{BusinessRule}
+
+%%%======================================================================
+%\begin{BusinessRule}{BR-N015}{Tiempo asignado a una Unidad de Aprendizaje }
+%	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Ángeles Cerritos
+%	\BRItem[Revisada por] Pendiente.
+%	\BRItem[Aprobada por] Pendiente.
+%	\BRItem[Descripción] La suma de los tiempos asociados a todos los contenidos de una UA debe ser igual al tiempo total asignado a la UA.,
+%	\BRItem[Sentencia]
+%
+%	$\forall ua \in UnidadesAprendizaje \Rightarrow, n = \mid ua.contenidos \mid, c \in ua.contenidos $
+%	\[ \sum_{i=1}^{n} c.tiempoAsignado = ua.tiempoAsignado \]
+%
+%
+%	\BRItem[Motivación] Asegurar que los contenidos de una \refElem{unidadAprendizaje} se puedan revisar en el tiempo establecido para esa Unidad.
+%	\BRItem[Ejemplo positivo] Para una unidad de aprendizaje con tiempo asignado de 3 horas cumplen la regla:
+%	\begin{itemize}
+%		\item 3 contenidos con tiempo asignado de una hora cada uno.
+%		\item 2 contenidos con tiempo asignado de hora y media cada uno.
+%		\item 1 contenido con tiempo asignado de 3 horas.
+%	\end{itemize}
+%	\BRItem[Ejemplo negativo] Para una unidad de aprendizaje con tiempo asignado de 3 horas no cumplen la regla:
+%	\begin{itemize}
+%		\item 5 contenidos con tiempo asignado de una hora cada uno.
+%		\item 1 contenido con tiempo asignado de una hora.
+%		\item 2 contenidos con tiempo asignado de dos horas cada uno.
+%	\end{itemize}
+%	\BRItem[Referenciado por] \TODO{Referencíe los casos de uso en dónde se cita esta regla}
+%\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N016}{Conocimientos y experiencia del perfil docente}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El perfil docente debe incluir por lo menos un conocimiento y una experiencia docente.
+	\BRItem[Sentencia]
+		 $ \forall ua \in UnidadesAprendizaje$, sea $p = ua.perfilDocente$, entonces\\
+
+		 $ p.conocimientos \neq \emptyset \land p.experiencias \neq \emptyset $
+	\BRItem[Motivación] Mantener la información mínima necesaria del perfil docente de una unidad de aprendizaje.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Un perfil docente con una experiencia y un conocimiento.
+			\item Un perfil docente con dos experiencias, dos conocimientos y una actitud.
+			\item Un perfil docente con una experiencia, un conocimiento, una actitud y una habilidad.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Un perfil docente con una experiencia, una actitud y una habilidad.
+			\item Un perfil docente con una actitud y una habilidad.
+			\item Un perfil docente con diez actitudes.
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{UAS-CU2.7.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N017}{Duplicidad de Programas Académicos}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles Cerritos
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Pueden existir dos programas académicos idénticos siempre y cuando se impartan en unidades académicas diferentes.
+	\BRItem[Sentencia] Sean $ pa_1, pa_2 \in ProgramasAcademicos \Rightarrow pa_1.nombre = pa_2.nombre $ si y sólo si $ pa_1.ua \neq pa_2.ua $
+
+	\BRItem[Motivación] Mantener la independencia de programas académicos\footnote{\refElem{programaAcademico}} impartidos en las unidades académicas \footnote{\refElem{unidadAcademica}} del Instituto.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Ingeniería en Sistemas Computacionales impartida en ESCOM e Ingeniería en Sistemas Computacionales en UPIIZ.
+			\item Ingeniería en Sistemas Automotrices impartida en UPIIG e Ingeniería en Sistemas Automotrices impartida en ESIME Ticoman.
+			\item Licenciado en Contaduría impartida en ESCA Santo Tomás y Licenciado en Contaduría impartida en ESCA Tepepan.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Ingeniería en Sistemas Computacionales impartida en ESCOM e Ingería en Sistemas Computacionales en ESCOM.
+			\item Ingeniería en Sistemas Automotrices impartida en UPIIG e Ingeniería en Sistemas Automotrices impartida en UPIIG.
+			\item Licenciado en Contaduría impartida en ESCA Santo Tomás y Licenciado en Contaduría impartida en ESCA Santo Tomás.
+		\end{itemize}
+	\BRItem[Referenciado por] \refIdElem{DEMS-CU1.1}, \refIdElem{DEMS-CU1.2}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N018}{Relación entre las cargas de créditos de un plan de estudio}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles Cerritos
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La \refElem{tCargaMinima} debe ser menor que la \refElem{tCargaMedia} y a su vez ésta debe ser menor que la \refElem{tCargaMaxima}.
+	\BRItem[Sentencia]
+	\[ \forall pe \in PlanesEstudio \Rightarrow pe.cargaMinima < pe.cargaPromedio < pe.cargaMaxima \]
+	\BRItem[Motivación] Mantener una correcta relación entre las cargas de un plan de estudios.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Carga mínima: 6.5, carga media: 8.6, carga máxima: 10.4.
+			\item Carga mínima: 7.2, carga media: 9.5, carga máxima: 12.
+			\item Carga mínima: 8.0, carga media: 10.7, carga máxima: 12.5.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Carga mínima: 6.2, carga media: 5.2, carga máxima: 7.7.
+			\item Carga mínima: 10.4, carga media: 8.6, carga máxima: 6.4.
+			\item Carga mínima: 11.0, carga media: 11.0, carga máxima: 11.0.
+		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{DES-CU1.5.1}, \refIdElem{DES-CU1.5.2}, \refIdElem{DES-CU1.5.6.1}, \refIdElem{DES-CU1.5.6.2}
+	
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N019}{Actualización válida de número de divisiones en plan de estudio}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] David
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Para actualizar el número de divisiones (Niveles o Semestres) de un plan de estudio, ninguna división de dicho plan de estudio debe tener asociadas unidades de aprendizaje. 
+%	\BRItem[Sentencia]
+%	\[ \forall pe \in PlanesEstudio \Rightarrow pe.cargaMinima < pe.cargaPromedio < pe.cargaMaxima \]
+	\BRItem[Motivación] Evitar que existan incongruencias en las unidades de aprendizaje de las divisiones de un plan de estudio por eliminaciones o modificaciones no debidas.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+	\begin{itemize}
+		\item El \refElem{DESEncargadoDeRegistro} disminuye el número de divisiones cuando no existe ninguna unidad de aprendizaje asociada al plan de estudio.
+		\item El \refElem{DESEncargadoDeRegistro} actualiza el número de divisiones a 2 cuando no existe ninguna unidad de aprendizaje asociada al plan de estudio.
+		\item El \refElem{DEMSEncargadoDeRegistro} actualiza el número de divisiones a 4 cuando no existe ninguna unidad de aprendizaje asociada al plan de estudio.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	\begin{itemize}
+		\item El \refElem{DESEncargadoDeRegistro} disminuye el número de divisiones cuando existe una unidad de aprendizaje asociada al plan de estudio.
+		\item El \refElem{DESEncargadoDeRegistro} aumenta el número de divisiones a 2 cuando existen 2 unidades de aprendizaje asociadas al plan de estudio.
+		\item El \refElem{DEMSEncargadoDeRegistro} actualiza el número de divisiones a 4 cuando existen 5 unidades de aprendizaje asociadas al plan de estudio.
+\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{DES-CU1.5.2}.
+	
+\end{BusinessRule}
+
+%%======================================================================
+%\begin{BusinessRule}{BR-N019}{Duración del semestre}
+%	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Ángeles Cerritos
+%	\BRItem[Revisada por] Pendiente.
+%	\BRItem[Aprobada por] Pendiente.
+%	\BRItem[Descripción] Se considera que la duración del semestre es de 18 semanas de 5 días hábiles cada una.
+%	\BRItem[Sentencia]
+%		$ \mid Semestre \mid = 18$ semanas, $ \mid Semana \mid = 5$ días hábiles
+%	\BRItem[Motivación] Llevar un control de la duración de los semestres en el Instituto.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%		\end{itemize}
+%	\BRItem[Referenciado por] \TODO{Referencíe los casos de uso en dónde se cita esta regla}
+%\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N020}{Tiempo asignado a espacio de nivel medio superior}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] David Ortega Pacheco
+	\BRItem[Revisada por] .
+	\BRItem[Aprobada por] .
+	\BRItem[Descripción] Para cada tipo de espacio seleccionado, el total de hrs/semestre se obtiene multiplicando el valor ingresado por el usuario en el campo de hrs/semana por el número total de semanas de clase en un semestre de nivel medio superior, el cual es de 18 semanas.
+	\BRItem[Sentencia] \cdtEmpty Sea $T_{Semestre}$ el total de hrs/Semestre y $T_{Semana}$ el valor ingresado por el usuario para las hrs/semana para un tipo de espacio seleccionado, se tiene que: $ T_{Semestre} = T_{Semana} \cdot 18$
+
+	\BRItem[Motivación] Calcular el número total de horas al semestre para cada uno de los tipos de espacios seleccionados por el usuario en la definición de una unidad de aprendizaje de nivel medio superior.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Se ingresa el número 5.0 en el tipo de espacio Aula, el número total de hrs/semestre es de 90.0.
+			\item Se ingresa el número 1.5 en el tipo de espacio Taller, el número total de hrs/semestre es de 27.0.
+			\item Se ingresa el número 2.0 en el tipo de espacio Laboratorio, el número total de hrs/semestre es de 36.0.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Se ingresa el número 5.0 en el tipo de espacio Aula, el número total de hrs/smesre es de 56.0.
+			\item Se ingresa el número 1.5 en el tipo de espacio Taller, el número total de hrs/semestre es de 15.0.
+			\item Se ingresa el número 2.0 en el tipo de espacio Laboratorio, el número total de hrs/semestre es de 40.0.
+		\end{itemize}
+	%\BRItem[Referenciado por] \TODO
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N021}{Total de tiempos asignados a espacios de nivel medio superior}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] José David Ortega Pacheco
+	\BRItem[Revisada por] .
+	\BRItem[Aprobada por] .
+	\BRItem[Descripción] El total de tiempos asignados al semestre a espacios de nivel medio superior para una unidad de aprendizaje, se obtiene a partir de la sumatoria del total de hrs/semestre correspondiente a cada tipo de espacio seleccionado por el usuario.
+	\BRItem[Sentencia] Sea $T$ el total de hrs/Semestre para una unidad de aprendizaje y $TS_{i}$ el valor ingresado por el usuario para un tipo de espacio seleccionado, se tiene que: $T=$\[\sum_{i=1}^{n}TS_{i}\cdot18\].
+	\BRItem[Motivación] Sintetizar información importante del período escolar dentro de su nombre.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Se ingresa el número 4.5 para el tipo de espacio Aula y para el tipo de espacio Taller se ingresa el número 3.0, por lo tanto, la sumatoria total es de 135.0 hrs/semestre.
+			\item Se ingresa el número 1.5 para el tipo de espacio Taller y para el tipo de espacio Laboratorio se ingresa el número 2.5, por lo tanto, la sumatoria total es de 72.0 hrs/semestre.
+			\item Se ingresa el número 1.1 para el tipo de espacio Aula y para el tipo de espacio Otros ambientes de aprendizaje se ingresa el número 5.5, por lo tanto, la sumatoria total es de 118.8 hrs/semestre.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Se ingresa el número 4.5 para el tipo de espacio Aula y para el tipo de espacio Taller se ingresa el número 4.5, la sumatoria total es de 135.0 hrs/semestre.
+			\item Se ingresa el número 3.0 para el tipo de espacio Taller y para el tipo de espacio Laboratorio se ingresa el número 3.0, la sumatoria total es de 100.0 hrs/semestre.
+			\item Se ingresa el número 1.5 para el tipo de espacio Taller y para el tipo de espacio Otros ambientes de aprendizaje se ingresa el número 1.5, la sumatoria total es de 60.0 hrs/semestre.
+		\end{itemize}
+	%\BRItem[Referenciado por] \TODO
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N022}{Ciclo de vida de un Programa Académico}
+	{\bcAutorization}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Las operaciones que se pueden realizar sobre un Programa Académico así como los actores que pueden llevarlas a cabo deben ajustarse al ciclo de vida de un Programa Académico descrito en la sección \ref{sec:SM-PAS} para Nivel Superior y \ref{sec:SM-PAMS} para Nivel Medio Superior.
+	\BRItem[Motivación] Mantener una similitud con el proceso institucional que rige la vida de los Programas Académicos, al tiempo que se evitan incongruencias dentro de la estructura académica por eliminaciones o modificaciones no debidas.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Un \refElem{DESEncargadoDeRegistro} edita la información del Programa Académico en edición.
+			\item El \refElem{DESJefeDIA} solicita cambios sobre el Programa cuando ha sido enviado a revisión
+			\item El \refElem{UASSubdirectorAcademico} consulta la información del Programa Académico que ha sido aprobado.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item El \refElem{DESJefeDIA} cancela el Programa Académico cuando está siento editado.
+			\item El \refElem{UASSubdirectorAcademico} consulta la información del Programa Académico cuando está siendo revisado.
+			\item Un \refElem{DESEncargadoDeRegistro} edita la información de un Programa Académico cancelado.
+		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{DES-CU1}, \refIdElem{DES-CU1.2}, \refIdElem{DES-CU1.3}, \refIdElem{DES-CU1.5}, \refIdElem{DES-CU1.5.1}, \refIdElem{DEMS-CU1.5.3}, \refIdElem{DES-CU1.7}, \refIdElem{DES-CU1.7.1},\refIdElem{DEMS-CU1}, \refIdElem{DEMS-CU1.2}, \refIdElem{DEMS-CU1.3}, \refIdElem{DEMS-CU1.5}, \refIdElem{DEMS-CU1.7.1}, 
+	
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N023}{Ciclo de vida de un Plan de Estudio}
+	{\bcAutorization}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Las operaciones que se pueden realizar sobre un Plan de Estudio así como los actores que pueden llevarlas a cabo deben ajustarse al ciclo de vida de un Programa Académico descrito en la sección \ref{sec:SM-PES} para Nivel Superior y \ref{sec:SM-PEMS} para Nivel Medio Superior.
+	\BRItem[Motivación] Mantener una similitud con el proceso institucional que rige la vida de los Planes de Estudio, al tiempo que se evitan incongruencias dentro de la estructura académica por eliminaciones o modificaciones no debidas.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item El \refElem{DESJefeDIA} pone en vigor un Plan de Estudio aprobado.
+			\item El \refElem{UAMSEncargadoDeRegistro} realiza la especificación de las Unidades de Aprendizaje que conforman al Plan de Estudio mientras éste está vigente.
+			\item El \refElem{DESEncargadoDeRegistro} elimina un Plan de Estudio que no ha sido aprobado.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item El \refElem{DESJefeDIA} deroga un Plan de Estudio vigente.
+			\item El \refElem{DESEncargadoDeRegistro} edita las Unidades de Aprendizaje de un Plan de Estudio vigente.
+			\item El \refElem{UAMSEncargadoDeRegistro} realiza la especificación de las Unidades de Aprendizaje de un Plan de Estudio que aún no ha sido aprobado.
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{UAS-CU1}, \refIdElem{UAS-CU1.1}, \refIdElem{UAS-CU1.2}, \refIdElem{UAS-CU2.8}, \refIdElem{DES-CU1.5}, \refIdElem{DES-CU1.5.2}, \refIdElem{DES-CU1.5.5}, \refIdElem{DES-CU1.5.5.1}, \refIdElem{DES-CU1.7.2}, \refIdElem{DEMS-CU1.5}, \refIdElem{DEMS-CU1.5.2}, \refIdElem{DEMS-CU1.5.3}, \refIdElem{DEMS-CU1.5.5}, \refIdElem{DEMS-CU1.5.5.1}, \refIdElem{DEMS-CU1.5.5.2}, \refIdElem{DEMS-CU1.5.5.3}, \refIdElem{DEMS-CU1.7.2}, \refIdElem{DEMS-CU1.7.3}, 
+	
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-N024}{Ciclo de vida de una  Unidad de Aprendizaje}
+	{\bcAutorization}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Las operaciones que se pueden realizar sobre una Unidad de Aprendizaje así como los actores que pueden llevarlas a cabo deben ajustarse al ciclo de vida de una Unidad de Aprendizaje descrito en la sección \ref{sec:SM-UAprendizajeS} para Nivel Superior y \ref{sec:SM-UAprendizajeMS} para Nivel Medio Superior.
+	\BRItem[Motivación] Mantener una similitud con el proceso institucional que rige la vida de las Unidades de Aprendizaje, al tiempo que se evitan incongruencias dentro de la estructura académica por eliminaciones o modificaciones no debidas.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item Un \refElem{DESEncargadoDeRegistro} registra una Unidad de Aprendizaje.
+			\item El \refElem{DESJefeDIA} dictamina 'Aprobada' una Unidad de Aprendizaje.
+			\item Un \refElem{UAMSEncargadoDeRegistro} realiza la especificación de una Unidad de Aprendizaje cuando se aprobó el Plan de Estudio al que pertenece.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item Un \refElem{UAMSEncargadoDeRegistro} registra una Unidad de Aprendizaje.
+			\item Un \refElem{DESEncargadoDeRegistro} realiza la especificación de una Unidad de Aprendizaje.
+			\item El \refElem{DESJefeDIA} edita la información de la Unidad de Aprendizaje.
+		\end{itemize}
+		
+		%\referencedBy{BR-N024}
+	%\BRItem[Referenciado por] \refIdElem{UAS-CU2}, \refIdElem{UAS-CU2.2}, \refIdElem{UAS-CU2.4}, \refIdElem{UAS-CU2.5}, \refIdElem{UAS-CU2.5.1}, \refIdElem{UAS-CU2.5.2}, \refIdElem{UAS-CU2.5.3}, \refIdElem{UAS-CU2.8}, \refIdElem{UAS-CU2.9}, 
+	
+	%\refIdElem{UAMS-CU1}, \refIdElem{UAMS-CU1.2}, \refIdElem{UAMS-CU1.4}, \refIdElem{UAMS-CU1.4.1}, \refIdElem{UAMS-CU1.5}, \refIdElem{UAMS-CU1.5.1}, \refIdElem{UAMS-CU1.5.2}, \refIdElem{UAMS-CU1.5.3}, \refIdElem{UAMS-CU1.6}, \refIdElem{UAMS-CU1.6.1}, \refIdElem{UAMS-CU1.6.2}, \refIdElem{UAMS-CU1.6.4}, \refIdElem{UAMS-CU1.6.5}, \refIdElem{UAMS-CU1.6.5.1}, \refIdElem{UAMS-CU1.6.5.2}, \refIdElem{UAMS-CU1.6.5.4}, \refIdElem{UAMS-CU1.7}, \refIdElem{UAMS-CU1.7.1}, \refIdElem{UAMS-CU1.7.2}, \refIdElem{UAMS-CU1.7.4}, \refIdElem{UAMS-CU1.9}, 
+	
+	%\refIdElem{DES-CU1.5.5}, \refIdElem{DES-CU1.5.5.2}, \refIdElem{DES-CU1.7.3}, \refIdElem{DEMS-CU1.5.5.1}, \refIdElem{DEMS-CU1.5.5.2}, \refIdElem{DEMS-CU1.5.5.3}, \refIdElem{DEMS-CU1.7.3}, 
+	
+	
+	\end{BusinessRule}
+	 
+	
+%%%%%%%%%Regla de negocio BR-N025 Actualización de estado de unidad de aprendizaje de un plan de estudios%%%%%%%%%%%%
+	 \begin{BusinessRule}{BR-N025}{Actualización de estado de unidad de aprendizaje de un plan de estudios}
+	 	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	 	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	 	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	 	\BRItem[Versión] 1.0.
+	 	\BRItem[Estado] Propuesta.
+	 	\BRItem[Propuesta por] David
+	 	\BRItem[Revisada por] Pendiente.
+	 	\BRItem[Aprobada por] Pendiente.
+	 	\BRItem[Descripción] Las unidades de aprendizaje con estado \textbf{Aprobado}, son las únicas que pueden ser actualizadas al estado vigente o liquidación de un plan de estudio.
+	 	\BRItem[Motivación] Mantener actualizada la información de la oferta educativa de cada \refElem{tPlanEstudio} para la \refElem{DES} y por \refElem{tProgramaAcademico} para la \refElem{DEMS}.
+	 	\BRItem[Ejemplo positivo] Cumplen la regla:
+	 	\begin{itemize}
+	 		\item Una Unidad de Aprendizaje cambia de estado \textbf{Aprobado} a \textbf{Vigente} cuando un Plan de Estudio actualiza el estado de sus Unidades de Aprendizaje.
+	 	\end{itemize}
+	 	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	 	\begin{itemize}
+	 		\item Una Unidad de Aprendizaje se encuentra en estado \textbf{Edición} por lo que al actualizar las Unidades de Aprendizaje de un Plan de Estudio, la unidad en estado \textbf{Edición} se mantiene en este estado.
+	 	\end{itemize}
+	 	%\BRItem[Referenciado por:] \refIdElem{DEMS-CU1.7.2}
+\end{BusinessRule}
+
+%%%%%%%%%Regla de negocio BR-N026 Cambio de estado en un plan de estudio%%%%%%%%%%%%
+\begin{BusinessRule}{BR-N026}{Cambio de estado en un plan de estudio a Derogado}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] David
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Para cambiar el estado de un plan de estudio de \textbf{En Liquidación} a \textbf{Derogado}, el Plan de Estudio no debe tener asociado una o más Unidades de Aprendizaje en estado de \textbf{Edición}, \textbf{Revisión Local} o \textbf{Revisión General}.
+	\BRItem[Motivación] Evitar que las Unidades de Aprendizaje que siguen en registro o se siguen impartiendo lleguen al estado \textbf{Derogado} y genere un problema en el ciclo de vida de un \refElem{tPlanEstudio}
+	\begin{itemize}
+		\item Se deroga un Plan de Estudio con todas las unidades de aprendizaje aprobadas o en estados posteriores.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	\begin{itemize}
+		\item Se intenta derogar un Plan de Estudio con alguna unidad de aprendizaje en estado anterior a \textbf{Aprobado}.
+	\end{itemize}
+	%\BRItem[Referenciado por:] \refIdElem{DEMS-CU1.7.2}
+\end{BusinessRule}
+
+
+
+
+\begin{BusinessRule}{BR-N027}{Relación entre el número de optativas y optativas asociadas por división de un plan de estudio}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Esteban Martínez
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El número de optativas de cada división debe ser mayor o igual al número de unidades de aprendizaje optativas asociadas a cada división del plan de estudio.
+	\BRItem[Sentencia]
+	\[ \forall pe \in PlanesEstudio \Rightarrow pe.NoOptativas >= pe.NoOptativasAsociadas\]
+	\BRItem[Motivación] Mantener una correcta relación entre la definición del número de optativas por división y el número unidades de optativas ya asociadas a una división de un plan de estudio.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+	\begin{itemize}
+		\item Existen 3 unidades de aprendizaje optativas asociadas al plan de estudio en el tercer nivel y definimos 4 como número de optativas en dicho nivel.
+		\item Existen 2 unidades de aprendizaje optativas asociadas al plan de estudio en el cuarto nivel y definimos 5 como número de optativas en dicho nivel.
+		\item Existen 4 unidades de aprendizaje optativas asociadas al plan de estudio en el quinto nivel y definimos 4 como número de optativas en dicho nivel.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	\begin{itemize}
+		\item Existen 3 unidades de aprendizaje optativas asociadas al plan de estudio en el tercer nivel y definimos 2 como número de optativas en dicho nivel.
+		\item Existen 2 unidades de aprendizaje optativas asociadas al plan de estudio en el cuarto nivel y definimos 1 como número de optativas en dicho nivel.
+		\item Existen 4 unidades de aprendizaje optativas asociadas al plan de estudio en el quinto nivel y definimos 3 como número de optativas en dicho nivel.
+	\end{itemize}
+	%	\BRItem[Referenciado por] \refIdElem{DES-CU1.5.1}, \refIdElem{DES-CU1.5.2}, \refIdElem{DES-CU1.5.6.1}, \refIdElem{DES-CU1.5.6.2}
+	
+\end{BusinessRule}
+
+% Use la siguiente plantilla para crear una regla de negocio.
+%%======================================================================
+%\begin{BusinessRule}{SUB-BRXXX}{Nombre de la regla}
+%	{elija Clase}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{elija Tipo}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{elija Nivel}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] \TODO{Escriba su nombre.}
+%	\BRItem[Revisada por] Pendiente.
+%	\BRItem[Aprobada por] Pendiente.
+%	\BRItem[Descripción] \TODO{Redacte la regla lo más claro posible.}
+%	\BRItem[Sentencia] \TODO{Redacte la regla lo más formalmente posible, puede apoyarse de : pseudocódigo, algoritmo o notación matemática.}
+%	\BRItem[Motivación] \TODO{Razón o causa de la regla. Puede describir lo que se desea evitar con la regla.}
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%		\end{itemize}
+%	\BRItem[Referenciado por] \TODO{Referencíe los casos de uso en dónde se cita esta regla}
+%\end{BusinessRule}
+
+%\begin{BusinessRule}{BR-N026}{Restricciones en nivel escolarizado}
+%	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Nayeli Vega García
+%	\BRItem[Revisada por] Pendiente.
+%	\BRItem[Aprobada por] Pendiente.
+%	%de parcial a toal que no exista parcial con alguien mas 
+%	\BRItem[Descripción] Un nivel escolarizado no podrá ser desmarcado si tiene al menos un programa académico asocioado.	
+%	\BRItem[Motivación] Evitar que se pueda modificar el nivel escolarizado previamente seleccionado si existen programas académicos asociados.
+%	\BRItem[Ejemplo positivo] Cumplen la regla...
+%	\BRItem[Referenciado por] \refIdElem{UA-CU2.1}
+%\end{BusinessRule}

@@ -1,0 +1,183 @@
+% !TEX root = ../../../integrado.tex
+
+\begin{UseCase}{IN-DAE-CU4.1}{Registrar evaluación de E.T.S.}{
+		Permite registrar un periodo de E.T.S. a una unidad académica durante un ciclo escolar y modalidad determinada, definiendo la fecha de inicio y fin de:
+		\begin{itemize}
+			\item Periodo de E.T.S.
+			\item Registro de E.T.S.
+			\item Aplicación de E.T.S.
+			\item Registro de evaluación.
+		\end{itemize}
+	}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Alan Fernando Rincón Vieyra}
+	\UCccitem{Supervisó}{Eduardo Espino Maldonado}
+	\UCccitem{Operación}{Registrar}
+	\UCccitem{Prioridad}{Alta}
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Media}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Por revisar}
+	\UCccitem{Dificultades}{
+		\begin{Titemize}
+			\Titem Regla de negocio de periodo válido.
+			\Titem Modelo de información de los periodos de E.T.S.
+			\Titem Especificar cómo se usará el tipo de E.T.S.
+			\Titem ¿Quienes son los actores?
+		\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{09 de Enero del 2018}
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{}
+	\UCccitem{Evaluador}{}
+	\UCccitem{Resultado}{}
+	\UCccitem{Observaciones}{}
+	\UCsection{Atributos}
+	\UCitem{Actores}{
+		\begin{Titemize}
+			\Titem \refElem{Actor}
+		\end{Titemize}
+	}
+	\UCitem{Propósito}{Definir las fechas de los periodos de registro, aplicación y evaluación de E.T.S. que cada \refElem{tUnidadAcademica} realiza durante un \refElem{tCicloEscolar} y \refElem{tModalidad} determinada.}
+	
+	\UCitem{Entradas}{
+		\begin{Titemize}
+			\Titem \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del periodo de E.T.S.
+			\Titem \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del \refElem{Actividad.registroDeETS}.
+			\Titem \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} de la \refElem{Actividad.aplicacionDeETS}.
+			\Titem \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del \refElem{Actividad.registroDeEvaluacion}.
+		\end{Titemize}
+	}
+	\UCitem{Origen}{
+		\begin{Titemize}
+			\Titem Se selecciona con el mouse.
+		\end{Titemize}
+	}
+	\UCitem{Salidas}{
+		\begin{Titemize}
+			\Titem \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} asignadas para cada actividad del Periodo de E.T.S.
+		\end{Titemize}
+	}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un \refElem{CicloEscolar}, una \refElem{tModalidad} y una \refElem{tUnidadAcademica}.
+		\end{Titemize}
+	}
+	\UCitem{Postcondiciones}{
+		\begin{Titemize}
+			\Titem Se registra en el sistema un nuevo Periodo de E.T.S., el cual permite a los alumnos inscribirse a los mismos.
+		\end{Titemize}
+	}
+	\UCitem{Reglas de Negocio}{
+		\begin{Titemize}
+			\Titem \refIdElem{BR-IN-S014}
+			\Titem \refIdElem{BR-IN-S015}
+			\Titem \refIdElem{BR-IN-S016}
+			\Titem \refIdElem{BR-IN-S017}
+		\end{Titemize}
+	}
+	\UCitem{Errores}{
+		\begin{Titemize}
+			\Titem \UCerr{Uno}{Cuando se ha establecido un Periodo de E.T.S. inválido}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarPeriodo} de la trayectoria principal.}
+			\Titem \UCerr{Dos}{Cuando se ha establecido un periodo de Registro de E.T.S. inválido}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarRegistro} de la trayectoria principal.}
+			\Titem \UCerr{Tres}{Cuando se ha establecido un periodo de Registro de E.T.S. fuera del
+				Periodo de E.T.S.}{se muestra el mensaje \refIdElem{MSG130} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarRegistro} de la trayectoria principal.}
+			\Titem \UCerr{Cuatro}{Cuando se ha establecido un periodo de Aplicación de E.T.S. inválido}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarAplicacion} de la trayectoria principal.}
+			\Titem \UCerr{Cinco}{Cuando se ha establecido un periodo de Aplicación de E.T.S. fuera del
+				Periodo de E.T.S.}{se muestra el mensaje \refIdElem{MSG130} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarAplicacion} de la trayectoria principal.}
+			\Titem \UCerr{Seis}{Cuando se ha establecido un periodo de Aplicación de E.T.S. antes o durante el periodo de Registro de E.T.S.}{se muestra el mensaje \refIdElem{MSG130} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarAplicacion} de la trayectoria principal.}
+			\Titem \UCerr{Siete}{Cuando se ha establecido un periodo de Registro de evaluación inválido}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarEvaluacion} de la trayectoria principal.}
+			\Titem \UCerr{Ocho}{Cuando se ha establecido un periodo de Registro de evaluación fuera del
+				Periodo de E.T.S.}{se muestra el mensaje \refIdElem{MSG130} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarEvaluacion} de la trayectoria principal.}
+			\Titem \UCerr{Nueve}{Cuando se ha establecido un periodo de Registro de evaluación antes de la fecha de inicio del periodo de Aplicación de E.T.S.}{se muestra el mensaje \refIdElem{MSG130} y regresa al paso \ref{IN-DAE-CU4.1:seleccionarEvaluacion} de la trayectoria principal.}
+		\end{Titemize}
+	}
+
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU4}}
+	\UCitem{Disparador}{
+		\begin{Titemize}
+			\Titem El actor requiere Registrar un periodo de E.T.S.
+		\end{Titemize}
+	}
+
+	\UCitem{Condiciones de Término}{
+		\begin{Titemize}
+			\Titem Se muestra el nuevo Periodo de E.T.S. al final de los Periodos de E.T.S. previamente registrados.
+		\end{Titemize}
+	}
+	\UCitem{Efectos Colaterales}{Ninguno}
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	\UCitem{Auditable}{Si, se registra el usuario, la fecha y la acción que realizó.}
+	\UCitem{Datos sensibles}{Ninguno}
+	
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+
+
+\begin{UCtrayectoria}
+	\UCpaso [\UCactor]  \label{IN-DAE-CU4.1:solicitarRegistrar}Solicita registrar un Periodo de E.T.S. dando clic en el ícono {\IUAdd} en la pantalla \refIdElem{IN-DAE-IU4}
+	
+	\UCpaso Muestra un nuevo Periodo de E.T.S. con los campos  \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} habilitados.
+	
+	\UCpaso Muestra los subperiodos:
+		\begin{itemize}
+			\item Registro de E.T.S.
+			\item Aplicación de E.T.S.
+			\item Registro de evaluación.
+		\end{itemize}
+	con los campos \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} inhabilitados.
+	
+	\UCpaso[\UCactor]  \label{IN-DAE-CU4.1:seleccionarPeriodo} Selecciona la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del Periodo de E.T.S. dando clic en el ícono \IUCalendario. \refTray{A}
+	
+	\UCpaso Verifica si el Periodo de E.T.S. seleccionado es válido con base en la regla de negocio \refIdElem{BR-N0X1}. \refErr{Uno}
+	
+	\UCpaso Habilita los campos de \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del periodo de Registro de E.T.S.
+
+	\UCpaso[\UCactor]  \label{IN-DAE-CU4.1:seleccionarRegistro}Selecciona la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Registro de E.T.S. dando clic en el ícono \IUCalendario.
+	\refTray{A}
+	
+	\UCpaso Verifica si el periodo de Registro de E.T.S. seleccionado es válido con base en la regla de negocio \refIdElem{BR-N0X1}. \refErr{Dos}
+	
+	\UCpaso Verifica si el periodo de Registro de E.T.S. seleccionado se encuentra dentro del
+	Periodo de E.T.S. definido previamente en el paso \ref{IN-DAE-CU4.1:seleccionarPeriodo} con base en la regla de negocio \refIdElem{BR-IN-S015}. \refErr{Tres}
+	
+	\UCpaso Habilita los campos de \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del periodo de Aplicación de E.T.S.
+	
+	\UCpaso[\UCactor]  \label{IN-DAE-CU4.1:seleccionarAplicacion}Selecciona la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Aplicación de E.T.S. dando clic en el ícono \IUCalendario.
+	\refTray{A}
+	
+	\UCpaso Verifica si el periodo de Aplicación de E.T.S. seleccionado es válido con base en la regla de negocio \refIdElem{BR-N0X1}. \refErr{Cuatro}
+	
+	\UCpaso Verifica si el periodo de Aplicación de E.T.S. seleccionado se encuentra dentro del
+	Periodo de E.T.S. definido en el paso \ref{IN-DAE-CU4.1:seleccionarPeriodo} con base en la regla de negocio \refIdElem{BR-IN-S015}. \refErr{Cinco}
+	
+	\UCpaso Verifica que el periodo de Aplicación de E.T.S. seleccionado sea posterior al periodo de Registro de E.T.S. definido en el paso \ref{IN-DAE-CU4.1:seleccionarRegistro} con base en la regla de negocio \refIdElem{BR-IN-S016}. \refErr{Seis}
+	
+	\UCpaso Habilita los campos de \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del periodo de Registro de evaluación.
+	
+	\UCpaso[\UCactor]  \label{IN-DAE-CU4.1:seleccionarEvaluacion}Selecciona la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Registro de evaluación dando clic en el ícono \IUCalendario.
+	\refTray{A}
+	
+	\UCpaso Verifica si el periodo de Registro de evaluación seleccionado es válido con base en la regla de negocio \refIdElem{BR-N0X1}. \refErr{Siete}
+	
+	\UCpaso Verifica si el periodo de Registro de evaluación seleccionado se encuentra dentro del
+	Periodo de E.T.S. definido en el paso \ref{IN-DAE-CU4.1:seleccionarPeriodo} con base en la regla de negocio \refIdElem{BR-IN-S015} \refErr{Ocho}
+	
+	\UCpaso Verifica que el periodo de Registro de evaluación seleccionado sea posterior o igual a la fecha de inicio del periodo de Aplicación de E.T.S. definido en el paso \ref{IN-DAE-CU4.1:seleccionarAplicacion} con base en la regla de negocio \refIdElem{BR-IN-S017}. \refErr{Nueve}
+	
+	\UCpaso Registra el Periodo de E.T.S.
+	
+	\UCpaso Muestra el mensaje \refIdElem{MSG1} indicando que el registro del Periodo de E.T.S. se realizo de manera exitosa.
+	
+\end{UCtrayectoria}
+
+%Trayectorias Alternativas
+
+\begin{UCtrayectoriaA}[Fin del caso de uso.]{A}{El actor desea cancelar la operación.}
+	\UCpaso[\UCactor] Solicita cancelar la operacion presionando el botón \IUbutton{Regresar}.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.5}.
+\end{UCtrayectoriaA}

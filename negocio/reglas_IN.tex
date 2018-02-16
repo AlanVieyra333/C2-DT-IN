@@ -1,0 +1,745 @@
+
+\subsection{Reglas de Negocio de Inscripciones}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N001}{Duración de Periodo escolar recomendado }
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ulises Vélez Saldaña.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La duración de un periodo escolar no debería ser menor a 5 meses ni mayor a siete meses.
+	\BRItem[Sentencia] $5~{}meses \leq p.duracion \leq 7{}meses$.
+	\BRItem[Motivación] Evitar que por error se registren periodos demasiado pequeños o demasiado largos.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item $p(12/01/17, 12/07/17)$.
+			\item $p(12/01/17, 14/06/17)$.
+			\item $p(12/01/17, 10/08/17)$.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item $p(12/01/17, 13/08/17)$.
+			\item $p(12/01/17, 10/06/17)$.
+		\end{itemize}
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N002}{Las evaluaciones ordinarias deben estar dentro de los periodos escolares}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ulises Vélez Saldaña.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los periodos para el registro de evaluaciones ordinarias deben estar dentro de los periodos escolares correspondientes.
+	\BRItem[Sentencia] \[
+		\forall p\in PeriodoEscolar, ord \in PeriodoEvaluacionOrdinaria \Rightarrow p.inicio \leq ord.inicio, p.fin \geq ord.fin
+	\]
+	\BRItem[Motivación] Que las evaluaciones se realicen y registren dentro del Periodo escolar.
+	\BRItem[Ejemplo positivo] Para el periodo $p(12/01/17, 12/07/18)$. cumplen la regla:
+		\begin{itemize}
+			\item $ord(12/01/17, 20/01/17)$
+			\item $ord(12/02/17, 20/02/17)$
+			\item $ord(02/07/17, 12/07/17)$
+		\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item $ord(11/01/17, 20/01/17)$
+			\item $ord(02/07/17, 13/07/17)$
+		\end{itemize}
+\end{BusinessRule}
+
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N003}{Modificación de periodos de trabajo congruentes}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ulises Vélez Saldaña
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un periodo (compuesto por una fecha de inicio y una final) puede ser modificado de manera congruente con la fecha actual con base en lo siguiente:
+	\begin{itemize}
+		\item Si el periodo de tiempo aun no ha iniciado (es decir que la fecha actual es menor a la fecha de inicio) se pueden modificar ambas fechas siempre y cuando ambas sean posteriores a la fecha actual
+		\item Si el periodo está activo (es decir que la fecha actual está entre la fecha inicial y final del periodo) o Si el periodo está en el pasado (es decir que la fecha actual es posterior a la fecha final), entonces.
+	\end{itemize}
+	\BRItem[Sentencia] 
+    	\begin{equation*}
+    		\forall p \in Periodo = \left\{
+    		\begin{array}{rl}
+    			 p.fin_{mod} \geq hoy~{}y~{}p.inicio_{mod} \geq hoy  & \text{si} p.inicio \geq hoy\\ 
+    			 p.fin_{mod} \geq hoy &\text{si} p.inicio \leq hoy
+        	\end{array} \right.
+    	\end{equation*}
+	\BRItem[Motivación] Mantener la congruencia en el sistema manteniendo congruencia en el orden en que se realizan las actividades.
+	\BRItem[Ejemplo positivo] Para los periodos $p_{1}(12/09/17, 12/10/17)$, $p_{2}(12/08/17, 20/09/17)$, y $p_{3}(12/07/17, 12/08/17)$, con fecha actual $20/08/17$ las siguientes modificaciones son válidas:
+		\begin{itemize}
+			\item $p_{1}(21/08/17, 30/10/17)$ se modifican ambas fechas ampliando el tiempo.
+			\item $p_{1}(20/08/17, 20/08/17)$ se modifican cerrando la actividad.
+			\item $p_{2}(12/08/17, 12/10/17)$ se modifica solo la fecha final ampliando tiempo
+			\item $p_{2}(12/08/17, 20/08/17)$ se modifica la fecha final para cerrar la actividad.
+			\item $p_{3}(12/07/17, 20/09/17)$ se modifica la echa final para reactivar la actividad.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] Para los mismos periodos y la misma fecha actual, las siguientes modificaciones no son válidas
+		\begin{itemize}
+			\item $p_{1}(19/08/17, 30/10/17)$ se intenta modificar la fecha inicial para que sea anterior a la fecha actual.
+			\item $p_{1}(01/08/17, 10/08/17)$ se intenta modificar la fecha inicial y final para que sean anteriores a la fecha actual.
+			\item $p_{2}(15/08/17, 12/10/17)$ Se intenta modificar la fecha inicial para que sea anterior a la fecha actual.
+			\item $p_{3}(12/07/17, 19/08/17)$ Se intenta modificar la fecha final para que sea anterior a la fecha actual.
+		\end{itemize}
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N004}{Calcular Fecha inicial y final de un Ciclo Escolar}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ulises Vélez Saldaña
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La fecha inicial de un periodo escolar es la menor de las fechas de inicio de los periodos escolares que contiene y la fecha final es la mayor de las fechas finales de los periodos que contiene
+	\BRItem[Sentencia] 
+		\[
+			\forall p_{1}, p_{2} \in CicloEscolar\\
+			CicloEscolar.inicio = \left\{
+			\begin{array}{rl}
+    			 p_{1}.inicio & \text{si} p_{1}.inicio \leq p_{2}.inicio\\ 
+    			 p_{2}.inicio & \text{si} p_{2}.inicio \leq p_{1}.inicio\\
+    			 p_{1}.fin & \text{si} p_{1}.fin \geq p_{2}.fin\\ 
+    			 p_{2}.fin & \text{si} p_{2}.fin \geq p_{1}.fin\\
+        	\end{array} \right.
+		\]
+	\BRItem[Motivación] 
+	\BRItem[Ejemplo]:
+		\begin{itemize}
+			\item Para $p_{1}(21/08/17, 30/12/17)$ $p_{2}(3/01/18, 20/07/18)$, el CicloEscolar es $(21/08/17, 0/07/18)$
+		\end{itemize}
+\end{BusinessRule}
+
+
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N005}{Determinar Ciclo Escolar}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Bruno
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] 
+	
+El Ciclo Escolar Actual se determinará dependiendo del Día y Mes de la fecha de consulta, en función al sexto mes del año en curso. 
+
+
+
+		\BRItem[Sentencia]  Si la consulta se realiza previo al 6to mes del año en curso 
+		
+		ciclo escolar = año anterior - año actual.
+		
+		Si la consulta se realizara posterior al 6to mes del año en curso 
+		
+		ciclo escolar = año actual - año próximo inmediato.
+		\BRItem[Motivación] Evitar que se defina un ciclo escolar de manera errónea 
+		\BRItem[Ejemplos ] \cdtEmpty
+	%-Ciclo escolar \textbf{Anterior}
+	
+	Día de consulta: 20 de Mayo del 2017
+	
+	Mayo(Quinto mes del año) es menor que Junio(Sexto mes del año)
+	Ciclo Escolar = 2016-2017.
+	
+	-Ciclo escolar \textbf{Actual}
+	
+	Día de Consulta: 8 de Octubre del 2017
+	
+	Octubre (Décimo mes del año) es mayor que que Junio(Sexto mes del año)
+	
+	Ciclo Escolar = 2017-2018.
+
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N006}{Oferta Educativa Total de una Unidad Académica}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Aprobada
+	\BRItem[Propuesta por] Ulises Vélez Saldaña.
+	\BRItem[Revisada por] Ulises Vélez Saldaña.
+	\BRItem[Aprobada por] Ulises Vélez Saldaña.
+	\BRItem[Descripción] La {\bf Oferta Educativa Total de una Unidad académica} se refiere al total de espacios ofertados para una unidad académica en un Ciclo Escolar y Modalidad especificada.\\ 
+	Este término se refiere a un número entero positivo con la suma de los espacios ofertados en los dos semestres que conforman el Ciclo Escolar o como dos números con el total para cada semestre del Ciclo escolar.\\
+	 Este dato se calculas sumando los lugares ofertados de cada programa académico.
+	\BRItem[Sentencia] 
+	\[OfertaEducativaTotal(ce, mo, ua) = \sum_{\forall pa \in ua}\left(pa.lugaresOf(ce.s_{1})+pa.lugaresOf(ce.s_{2})\right)\]
+	Siendo:	
+        \begin{itemize}
+			\item $ce$: El Ciclo Escolar.
+			\item $mo$: La Modalidad.
+        	\item $ua$: La Unidad Académica.
+			\item $pa$: Los Programas Académicos ofertados en dicho Ciclo Escolar y Modalidad.
+			\item $ce.s_{1}$ y $ce.s_{2}$: El primer y segundo semestre del Ciclo Escolar.
+        \end{itemize}
+	\BRItem[Motivación] Llevar un concentrado de los lugares ofertados por programa por cada Unidad Académica.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%		\end{itemize}
+\end{BusinessRule}
+
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N007}{Oferta Educativa Total}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Aprobada
+	\BRItem[Propuesta por] Ulises Vélez Saldaña.
+	\BRItem[Revisada por] Ulises Vélez Saldaña.
+	\BRItem[Aprobada por] Ulises Vélez Saldaña.
+	\BRItem[Descripción] La {\bf Oferta Educativa Total} se refiere al total de espacios ofertados en el instituto en un Ciclo Escolar y Modalidad especificada.\\ 
+	Este término se refiere a un número entero positivo con la suma de los espacios ofertados en los dos semestres que conforman el Ciclo Escolar o como dos números con el total para cada semestre del Ciclo escolar.\\
+	 Este dato se calculas sumando las {\bf Ofertas Educativas Totales de todas las Unidades Académicas}.
+	\BRItem[Sentencia] 
+	\[OfertaEducativaTotal(ce, mo) = \sum_{\forall ua}\left(OfertaEducativaTotal(ce, mo, ua)\right)\]
+	Siendo:	
+        \begin{itemize}
+			\item $ce$: El Ciclo Escolar.
+			\item $mo$: La Modalidad.
+        	\item $ua$: Las Unidades Académicas del instituto.
+        \end{itemize}
+	\BRItem[Motivación] Llevar un concentrado de los lugares ofertados por programa por cada Unidad Académica.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%		\end{itemize}
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N008}{Valores de Oferta Educativa Válidos}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Aprobada
+	\BRItem[Propuesta por] Ulises Vélez Saldaña.
+	\BRItem[Revisada por] Ulises Vélez Saldaña.
+	\BRItem[Aprobada por] Ulises Vélez Saldaña.
+	\BRItem[Descripción] La {\bf Oferta Educativa} se refiere al total de espacios ofertados en el instituto en un Ciclo Escolar y Modalidad especificada, por lo que este dato debe ser positivo y mayor que cero.\\ 
+	\BRItem[Sentencia] $Programa-Academico-Ofertado.lugaresOfertados > 0$
+	\BRItem[Motivación] Llevar un conteo adecuado de los lugares ofertados.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%		\end{itemize}
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N009}{Porcentaje de avance}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para obtener el porcentaje de avance de los diferentes estados que tienen los estudiantes durante la carga de éstos por los procesos de inscripción ejecutados.
+	\BRItem[Sentencia] $$\frac{SECCION \times 100}{TOTAL}$$
+	siendo:
+		\begin{itemize}
+			\item {\bf SECCION:} El estado de los alumnos seleccionado.
+			\item {\bf TOTAL:} El número de oferta educativa registrado.
+		\end{itemize}
+	\BRItem[Motivación] Mostrar de forma cuantitativa el avance de estudiantes cargados al Calmécac.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N010}{Total de Aspirantes sin Inscribir por Unidad y Periodo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción]  Para Obtener el \textbf{Total de Aspirantes sin inscribir por Unidad y Periodo} es necesario realizar la sumatoria de cada aspirante que se encuentre en estado de \textbf{Aspirante no Inscrito} por cada Unidad Académica.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	$$ \sum  {Aspirantes con estado "Aspirante no inscrito" de cada unidad academica }$$ 
+	\BRItem[Motivación] Mostrar de forma cuantitativa la sumatoria.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N011}{Total de Aspirantes Inscritos por Unidad y Periodo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción]  Para Obtener el \textbf{Total de Aspirantes inscritos por Unidad y Periodo} es necesario realizar la sumatoria de cada aspirante que se encuentre en estado de \textbf{Aspirante Inscrito} por cada Unidad Académica.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	$$ \sum  {Aspirantes con estado "Aspirante Inscrito" de cada unidad academica }$$ 
+	\BRItem[Motivación] Mostrar de forma cuantitativa la sumatoria.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N012}{Total de Alumnos sin Inscribir por Unidad y Periodo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción]  Para Obtener el \textbf{Total de alumnos sin inscribir por Unidad y Periodo} es necesario realizar la sumatoria de cada Alumno que se encuentre en estado de \textbf{Alumno no Inscrito} por cada Unidad Académica.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	$$ \sum  {Alumno con estado "Alumno no Inscrito" de cada unidad academica }$$ 
+	\BRItem[Motivación] Mostrar de forma cuantitativa la sumatoria.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N013}{Total de alumnos inscritos por Unidad y Periodo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción]  Para Obtener el \textbf{Total de alumnos Inscritos por Unidad y Periodo} es necesario realizar la sumatoria de cada Alumno que se encuentre en estado de \textbf{Alumno Inscrito} por cada Unidad Académica.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	$$ \sum  {Alumno con estado "Alumno Inscrito" de cada unidad academica }$$ 
+	\BRItem[Motivación] Mostrar de forma cuantitativa la sumatoria.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N014}{Total de alumnos con cancelación por Unidad y Periodo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción]  Para Obtener el \textbf{Total de alumnos con cancelación por Unidad y Periodo} es necesario realizar la sumatoria de cada Alumno que se encuentre en estado de \textbf{ En cancelación} por cada Unidad Académica.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	$$ \sum  {Alumno con estado "En cancelacion" de cada unidad academica }$$ 
+	\BRItem[Motivación] Mostrar de forma cuantitativa la sumatoria.
+\end{BusinessRule}
+
+
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N015}{Actividad dentro de periodo}
+	{\bcAutorization}  %  \bdCondition % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}    %\btEnabler
+	% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Rincón Vieyra
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción]  El periodo de una actividad está definido como el periodo en el cual se realizan diversas tareas. El periodo de una actividad $A$ debe estar dentro de un periodo $B$.
+	
+	\BRItem[Sentencia] Sea $A$ una actividad y $B$ un periodo:
+	\begin{center}
+		$ \{ \{P_{Aini} >= P_{Bini} \} \&\& \{P_{Afin} <= P_{Bfin}\} 
+		\} = true$ 
+	\end{center}
+	
+	En donde:
+	\begin{itemize}
+		\item $P_{Aini}$: Fecha de inicio del periodo de la actividad $A$
+		\item $P_{Afin}$: Fecha de fin del periodo de la actividad $A$
+		\item $P_{Bini}$: Fecha de inicio del periodo $B$
+		\item $P_{Bfin}$: Fecha de fin del periodo $B$
+		
+	\end{itemize}
+	
+	\BRItem[Motivación] Tener congruencia en las fechas que tiene asignada una actividad dentro de un periodo.
+	
+	\BRItem[Ejemplo positivo] 
+	Sea $A$ el periodo de Registro de E.T.S. definido por: \\
+	$P_{Aini}=$ 11-01-2018
+	$P_{Afin}=$ 12-01-2018 \\
+	Y $B$ el Periodo de E.T.S. definido por:\\
+	$P_{Bini}=$ 11-01-2018
+	$P_{Bfin}=$ 24-01-2018 \\
+	
+	Cumple la regla:
+	$ \{ \{11-01-2018 >= 11-01-2018 \} \&\& \{12-01-2018 <= 24-01-2018\} 
+	\} = true$ 
+	
+	
+	\BRItem[Ejemplo negativo] 
+	Sea $A$ el periodo de Registro de E.T.S. definido por: \\
+	$P_{Aini}=$ 10-01-2018
+	$P_{Afin}=$ 12-01-2018 \\
+	Y $B$ el Periodo de E.T.S. definido por:\\
+	$P_{Bini}=$ 11-01-2018
+	$P_{Bfin}=$ 24-01-2018 \\
+	
+	No cumple la regla:
+	$ \{ \{10-01-2018 >= 11-01-2018 \} \&\& \{12-01-2018 <= 24-01-2018\} 
+	\} = true$
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N016}{Orden cronológico de actividades}
+	{\bcAutorization}  %  \bdCondition % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}    %\btEnabler
+	% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Rincón Vieyra
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción]  Una actividad está definida como el periodo en el cual se realizan diversas tareas. Los periodos $P$ de $n$ actividades deben iniciar en una fecha posterior o igual a la fecha de fin de su actividad anterior y deben terminar en una fecha anterior o igual a la fecha de inicio de su siguiente actividad.
+	
+	\BRItem[Sentencia] Sea:
+	\begin{itemize}
+		\item $P$ el conjunto de periodos de $n$ actividades.
+		\item $P(i)$ el periodo de la i-ésima actividad.
+	\end{itemize}
+	
+	\begin{center}
+		$ \{ \{P_{(i)ini} >= P_{(i-1)fin} \} \&\& \{P_{(i)fin} <= P_{(i+1)ini}\} \&\& \{P_{(0)fin} <= P_{(n-1)ini}\}
+		\} = true$ 
+	\end{center}
+	
+	\BRItem[Motivación] Evitar traslape de periodos en actividades que deben realizarse una después de otra.
+	
+	En donde:
+	\begin{itemize}
+		\item $P_{(i)ini}$: Fecha de inicio del periodo de la i-ésima actividad
+		\item $P_{(i)fin}$: Fecha de fin del periodo de la i-ésima actividad
+		\item $i$: $ [0, n-1] - \{0, n-1\}$
+	\end{itemize} 
+	
+	\BRItem[Ejemplo positivo] 
+	Sean 2 actividades:
+	\begin{itemize}
+		\item $P(0)$ el periodo de Registro de E.T.S. definido por: \\
+		$P_{(0)ini}=$ 11-01-2018
+		$P_{(0)fin}=$ 12-01-2018 \\
+		\item $P(1)$ el periodo de Aplicación de E.T.S. definido por:\\
+		$P_{(1)ini}=$ 15-01-2018
+		$P_{(1)fin}=$ 19-01-2018 \\
+	\end{itemize} 
+	
+	Cumple la regla:
+	$ \{ \{12-01-2018 <= 15-01-2018\}
+	\} = true$
+	
+	\BRItem[Ejemplo negativo] 
+	Sean 3 actividades:
+	\begin{itemize}
+		\item $P(0)$ el periodo de Registro de E.T.S. definido por: \\
+		$P_{(0)ini}=$ 11-01-2018
+		$P_{(0)fin}=$ 12-01-2018 \\
+		\item $P(1)$ el periodo de Aplicación de E.T.S. definido por:\\
+		$P_{(1)ini}=$ 15-01-2018
+		$P_{(1)fin}=$ 19-01-2018 \\
+		\item $P(2)$ el periodo de Evaluación de E.T.S. definido por:\\
+		$P_{(1)ini}=$ 17-01-2018
+		$P_{(1)fin}=$ 24-01-2018 \\
+	\end{itemize} 
+	
+	No cumple la regla:
+	$ \{ \{15-01-2018 >= 12-01-2018\} \&\& \{19-01-2018 <= 17-01-2018\} \&\& \{12-01-2018 <= 17-01-2018\}
+	\} = true$
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N017}{Periodo de Evaluación de E.T.S. traslapado con el periodo de Aplicación de E.T.S.}
+	{\bcAutorization}  %  \bdCondition % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}    %\btEnabler
+	% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Rincón Vieyra
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un periodo de Evaluación de E.T.S. está definido como el periodo en el cual se realizan las evaluaciones de los E.T.S.'s realizados por los alumnos durante el periodo de Aplicación de E.T.S. Un periodo de Evaluación de E.T.S. $A$:
+	\begin{itemize}
+		\item Puede iniciar en una fecha anterior, igual o posterior a la fecha de fin del periodo de Aplicación de E.T.S. $B$.
+		\item Debe iniciar en una fecha posterior o igual a la fecha de inicio del periodo de Aplicación de E.T.S. $B$.
+		\item Debe terminar en una fecha posterior o igual a la fecha de fin del periodo de Aplicación de E.T.S. $B$.
+	\end{itemize}
+	
+	\BRItem[Sentencia] Sea:
+	\begin{itemize}
+		\item $A$ el periodo de Evaluación de E.T.S.
+		\item $B$ el periodo de Aplicación de E.T.S.
+	\end{itemize}
+	
+	\begin{center}
+		$ \{
+		\{P_{Aini} >= P_{Bini}\} \&\&
+		\{P_{Afin} >= P_{Bfin}\}
+		\} = true$ 
+	\end{center}
+	
+	\BRItem[Motivación] Permitir que los profesores registren las evaluaciones de los E.T.S's inmediatamente después de que los alumnos los hayan realizado.
+	
+	En donde:
+	\begin{itemize}
+		\item $P_{Aini}$: Fecha de inicio del periodo de Evaluación de E.T.S.
+		\item $P_{Afin}$: Fecha de fin del periodo de Evaluación de E.T.S.
+		\item $P_{Bini}$: Fecha de inicio del periodo de Aplicación de E.T.S.
+		\item $P_{Bfin}$: Fecha de fin del periodo de Aplicación de E.T.S.
+	\end{itemize} 
+	
+	\BRItem[Ejemplo positivo] 
+	Sea $A$ el periodo de Evaluación de E.T.S. definido por: \\
+	$P_{Aini}=$ 15-01-2018
+	$P_{Afin}=$ 24-01-2018 \\
+	Y $B$ el periodo de Aplicación de E.T.S. definido por:\\
+	$P_{Bini}=$ 15-01-2018
+	$P_{Bfin}=$ 19-01-2018 \\
+	
+	Cumple la regla:
+	$ \{
+	\{15-01-2018 >= 15-01-2018\} \&\&
+	\{24-01-2018 >= 19-01-2018\}
+	\} = true$
+	
+	\BRItem[Ejemplo negativo] 
+	Sea $A$ el periodo de Evaluación de E.T.S. definido por: \\
+	$P_{Aini}=$ 15-01-2018
+	$P_{Afin}=$ 18-01-2018 \\
+	Y $B$ el periodo de Aplicación de E.T.S. definido por:\\
+	$P_{Bini}=$ 15-01-2018
+	$P_{Bfin}=$ 19-01-2018 \\
+	
+	No cumple la regla:
+	$ \{
+	\{15-01-2018 >= 15-01-2018\} \&\&
+	\{18-01-2018 >= 19-01-2018\}
+	\} = true$
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N018}{Determinar frecuencia de ejecución de proceso de inscripción}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para mostrar la frecuencia de ejecución de los procesos de inscripción registrados en el Calmécac se debe construir con base en la frecuencia y ejecución.
+	\BRItem[Sentencia] $$cada <FRECUENCIA> <EJECUCION>$$
+		siendo:
+		\begin{itemize}
+			\item $<FRECUENCIA>$: la \refElem{Programa.frecuenciaDeEjecucion} del proceso de inscripción.\cdtEmpty
+			\item $<EJECUCION>$: el tipo de ejecución que tendrá \footnote{Ver \refElem{ParteFecha.nombre}}
+		\end{itemize}
+	\BRItem[Motivación] Mostrar la frecuencia de ejecución que tendrán los procesos de inscripción registrados en el Calmécac.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N019}{Determinar periodo de programación de proceso de inscripción}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blInfluencing}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para mostrar el periodo de programación de los procesos de inscripción registrados en el Calmécac se debe construir con base en la fecha de inicio y fecha de término.
+	\BRItem[Sentencia] $$del <F_{inicio}> al <F_{termino}>$$
+		siendo:
+		\begin{itemize}
+			\item $F_{inicio}$: la \refElem{Programa.fechaDeInicio} del proceso de inscripción.
+			\item $F_{termino}$: la \refElem{Programa.fechaDeTermino} del proceso de inscripción,
+		\end{itemize}
+	\BRItem[Motivación] Mostrar el periodo de programación que tendrán los procesos de inscripción registrados en el Calmécac.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N020}{Fechas validas de registro}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blInfluencing}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Las fechas para registro de actividades y/o operaciones deben ser mayores o iguales al día en curso, y la fecha de término de la actividad debe ser mayor o igual que la fecha de inicio.
+	\BRItem[Sentencia] $$F_{curso} \leq F_{inicio} \leq F_{termino}$$
+		siendo:
+		\begin{itemize}
+			\item $F_{curso}$: la fecha del día en curso
+			\item $F_{inicio}$: la fecha de inicio de la actividad
+			\item $F_{termino}$: la fecha de término de la actividad
+		\end{itemize}
+	\BRItem[Motivación] Controlar los periodos de fechas dentro del Calmécac.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N024}{Estudiantes necesarios para inscripción}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Vieyra
+	\BRItem[Revisada por] Eduardo Espino Maldonado
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para inscribir estudiantes a una Unidad de Aprendizaje en una Unidad Académica se debe tener al menos un estudiante no inscrito cargado en el sistema.
+	\BRItem[Sentencia] $$Si A \in NI \therefore A puede inscribirse$$
+	siendo:
+	\begin{itemize}
+		\item $A$: un alumno
+		\item $NI$: el conjunto de alumnos no inscritos
+	\end{itemize}
+	\BRItem[Motivación] Controlar los alumnos necesarios para realizar la inscripción.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N025}{Capacidad máxima de sobrecupo a un grupo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Vieyra
+	\BRItem[Revisada por] Eduardo Espino Maldonado
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para poder otorgar sobrecupo a una Unidad de Aprendizaje, su ocupación debe ser menor o igual al 150$\%$ de su capacidad.
+	\BRItem[Sentencia] $$ocupacion \leq (capacidad \times 1.5)$$
+	siendo:
+	\begin{itemize}
+		\item $ocupacion$: \refElem{GrupoConUdeAEnOferta.ocupacion}  
+		\item $capacidad$: \refElem{GrupoConUdeAEnOferta.capacidad}
+	\end{itemize}
+	\BRItem[Motivación] Controlar los alumnos necesarios para realizar la inscripción.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N026}{Estructura Educativa válida}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Vieyra
+	\BRItem[Revisada por] Eduardo Espino Maldonado
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para inscribir estudiantes a una Unidad de Aprendizaje en una Unidad Académica, su Programa Académico debe tener una Estructura Educativa aprobada o en proceso de aprobación.
+	\BRItem[Sentencia] \textbf{Pendiente}
+	siendo:
+	%	\begin{itemize}
+	%		\item $A$: un alumno
+	%		\item $NI$: el conjunto de alumnos no inscritos
+	%	\end{itemize}
+	\BRItem[Motivación] Controlar los alumnos necesarios para realizar la inscripción.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N027}{Cálculo de sobrecupo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Vieyra
+	\BRItem[Revisada por] Eduardo Espino Maldonado
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El número de sobrecupos que tiene una Unidad de Aprendizaje es igual a 0 si la diferencia de su ocupabilidad menos su capacidad es negativa, en caso contrario es igual al resultado de la misma.
+	\BRItem[Sentencia] $$<SOBRECUPO> = <OCUPABILIDAD> - <CAPACIDAD>$$
+	siendo:
+		\begin{itemize}
+			\item $<SOBRECUPO>$: los número de sobrecupos que tiene una Unidad de Aprendizaje
+			\item $<OCUPABILIDAD>$: \refElem{GrupoConUdeAEnOferta.ocupacion}  
+			\item $<CAPACIDAD>$: \refElem{GrupoConUdeAEnOferta.capacidad}
+		\end{itemize}
+	\BRItem[Motivación] Verificar si los alumnos pueden inscribirse a un grupo.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N028}{Capacidad máxima de inscripción a un grupo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Vieyra
+	\BRItem[Revisada por] Eduardo Espino Maldonado
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para poder inscribir estudiantes en un grupo, el número de los mismos debe ser menor o igual al cupo de la Unidad de Aprendizaje que tenga la menor capacidad.
+	\BRItem[Sentencia] \textbf{Pendiente} %$$$$
+%	siendo:
+%	\begin{itemize}
+%		\item $<SOBRECUPO>$: los número de sobrecupos que tiene una Unidad de Aprendizaje
+%		\item $<OCUPABILIDAD>$: \refElem{GrupoConUdeAEnOferta.ocupacion}  
+%		\item $<CAPACIDAD>$: \refElem{GrupoConUdeAEnOferta.capacidad}
+%	\end{itemize}
+	\BRItem[Motivación] Controlar los alumnos necesarios para realizar la inscripción.
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-IN-N029}{Unidades de Aprendizaje necesarias para inscripción}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive. 
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1
+	\BRItem[Estado] Por Aprobar
+	\BRItem[Propuesta por] Alan Fernando Vieyra
+	\BRItem[Revisada por] Eduardo Espino Maldonado
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para inscribir estudiantes a una Unidad de Aprendizaje en una Unidad Académica se debe tener al menos una unidad de aprendizaje en oferta cargada en el sistema.
+	\BRItem[Sentencia] \textbf{Pendiente} %$$$$
+	%	siendo:
+	%	\begin{itemize}
+	%		\item $<SOBRECUPO>$: los número de sobrecupos que tiene una Unidad de Aprendizaje
+	%		\item $<OCUPABILIDAD>$: \refElem{GrupoConUdeAEnOferta.ocupacion}  
+	%		\item $<CAPACIDAD>$: \refElem{GrupoConUdeAEnOferta.capacidad}
+	%	\end{itemize}
+	\BRItem[Motivación] Controlar los alumnos necesarios para realizar la inscripción.
+\end{BusinessRule}

@@ -1,0 +1,177 @@
+% !TEX root = ../../../integrado.tex
+
+\begin{UseCase}{IN-CMP-CU1.1}{Registrar perido de evaluación}{
+		Permite registrar un periodo de evaluación del tipo seleccionado previamente (ordinaria, extraordinaria, E.T.S. y saberes previamente adquiridos) y lo muestra en el listado de evaluaciones registradas.
+	}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Alan Fernando Rincón Vieyra}
+	\UCccitem{Supervisó}{Eduardo Espino Maldonado}
+	\UCccitem{Operación}{Registro}
+	\UCccitem{Prioridad}{Media}
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Baja}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Revisión}
+	\UCccitem{Dificultades}{
+		\begin{Titemize}
+			\Titem Cuál es la RN para periodo válido?
+		\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{22 de Enero del 2018}
+	
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{}
+	\UCccitem{Evaluador}{}
+	\UCccitem{Resultado}{}
+	\UCccitem{Observaciones}{}
+	
+	\UCsection{Atributos}
+	\UCitem{Actores}{
+		\begin{Titemize}
+			\Titem \refElem{DAEJefeDeRegistro}
+			\Titem \refElem{DAEAdministradorDeRegistro}
+			\Titem \refElem{JefeDeControlEscolar}
+		\end{Titemize}
+	}
+
+	\UCitem{Propósito}{Dar de alta un nuevo periodo de evaluación para que una \refElem{UnidadAcademica} pueda registrar sus evaluaciones.}
+	
+	\UCitem{Entradas}{
+		Para evaluación ordinaria y extraordinaria:
+		\begin{itemize}
+			\item La \refElem{ActividadCalendario.fechaInicio} del periodo de Registro de Evaluación.
+			\item La \refElem{ActividadCalendario.fechaFin} del periodo de Registro de Evaluación.
+		\end{itemize}
+		Para evaluación de E.T.S. y Saberes Previamente Adquiridos:
+		\begin{itemize}
+			\item La \refElem{ActividadCalendario.fechaInicio} del periodo de Inscripción.
+			\item La \refElem{ActividadCalendario.fechaFin} del periodo de Inscripción.
+			\item La \refElem{ActividadCalendario.fechaInicio} del periodo de Aplicación.
+			\item La \refElem{ActividadCalendario.fechaFin} del periodo Aplicación.
+			\item La \refElem{ActividadCalendario.fechaInicio} del periodo de Registro de Evaluación.
+			\item La \refElem{ActividadCalendario.fechaFin} del periodo de Registro de Evaluación.
+		\end{itemize}
+	}
+
+	\UCitem{Origen}{
+		\begin{Titemize}
+			\Titem Se selecciona de un calendario.
+		\end{Titemize}
+	}
+
+	\UCitem{\TODO[Salidas]}{
+		\begin{Titemize}
+			\Titem Mensaje \refIdElem{MSG1}.
+		\end{Titemize}
+	}
+
+	\UCitem{Destino}{Pantalla}
+	
+	\UCitem{Precondiciones}{
+		\begin{Titemize}
+			\Titem \textbf{Manual:} Seleccionar el tipo de evaluación en el \refElem{IN-CMP-CU1}.
+		\end{Titemize}
+	}
+
+	\UCitem{Postcondiciones}{Ninguno}
+	
+	\UCitem{\TODO[Reglas de Negocio]}{
+		\begin{Titemize}
+			\Titem Ninguno
+		\end{Titemize}
+	}
+
+	\UCitem{\TODO[Errores]}{
+		\begin{Titemize}
+			\Titem \UCerr{Uno}{Cuando}{el \refElem{Calmecac} muestra el mensaje \refIdElem{MSGX} y regresa al paso \ref{IN-DAE-CUX.X:referencia} de la trayectoria principal.}
+			\Titem En caso de no existir datos de salida se debe colocar la palabra “Ninguno” sin viñeta.
+		\end{Titemize}
+	}
+
+	\UCitem{Viene de}{\refElem{IN-CMP-CU1}}
+
+	\UCitem{Disparador}{
+		\begin{Titemize}
+			\Titem El actor desea registrar un periodo de evaluación.
+		\end{Titemize}
+	}
+
+	\UCitem{Condiciones de Término}{Se mostrará el nuevo periodo de evaluación en la pantalla \refIdElem{IN-CMP-IU1}.}
+
+	\UCitem{Efectos Colaterales}{Ninguno}
+
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+
+	\UCitem{Auditable}{Si, se guardará el nombre de usuario, la fecha y los campos que registró.}
+
+	\UCitem{Datos sensibles}{No se encontró ninguno}
+	
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+
+
+\begin{UCtrayectoria}
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:solicitar} Solicita registrar un nuevo periodo de evaluación dando clic en el ícono {\IUAdd} en la pantalla \refIdElem{IN-CMP-IU1}. \refTray{A} \refTray{B} \refTray{C} \refTray{D}
+	
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:aceptar} Solicita registrar el periodo ingresado, presionando el botón \IUbutton{Aceptar}.
+	
+	\UCpaso Registra el nuevo periodo de evaluación en el sistema.
+
+	\UCpaso Muestra el mensaje \refIdElem{MSG1} en la pantalla \refIdElem{IN-CMP-IU1}.
+\end{UCtrayectoria}
+
+%Trayectorias Alternativas
+
+%-------------------------- Trayectoria Alternativa A———————————————— 
+
+\begin{UCtrayectoriaA}{A}{El actor desea registrar un periodo de evaluación ordinaria}
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:solicitarA} Solicita registrar un nuevo periodo de evaluación ordinaria dando clic en el ícono {\IUAdd} en la pantalla \refIdElem{IN-CMP-IU1}.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-CMP-IU1.1.1}.
+	
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:ingresarA} Ingresa la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Registro de Evaluación.
+	
+	\UCpaso Verifica que el periodo de evaluación ordinaria se encuentre dentro del \refElem{tPeriodoEscolar} con base en la regla de negocio \refIdElem{BR-IN-N002}. \refErr{Uno}
+	
+\end{UCtrayectoriaA}
+
+%-------------------------- Trayectoria Alternativa B———————————————— 
+
+\begin{UCtrayectoriaA}{B}{El actor desea registrar un periodo de evaluación extraordinaria}
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:solicitarB} Solicita registrar un nuevo periodo de evaluación extraordinaria dando clic en el ícono {\IUAdd} en la pantalla \refIdElem{IN-CMP-IU1}.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-CMP-IU1.1.2}.
+	
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:ingresarB} Ingresa la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Registro de Evaluación.
+	
+	\UCpaso Verifica que el periodo de evaluación extraordinaria se encuentre dentro del \refElem{tPeriodoEscolar} con base en la regla de negocio \refIdElem{BR-IN-N002}. \refErr{Dos}
+	
+\end{UCtrayectoriaA}
+
+%-------------------------- Trayectoria Alternativa C———————————————— 
+
+\begin{UCtrayectoriaA}{C}{El actor desea registrar un periodo de evaluación de Examen a Título de Suficiencia}
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:solicitarC} Solicita registrar un nuevo periodo de evaluación de Examen a Título de Suficiencia dando clic en el ícono {\IUAdd} en la pantalla \refIdElem{IN-CMP-IU1}.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-CMP-IU1.1.3}.
+	
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:ingresarInsC} Ingresa la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Inscripción.
+	
+	\UCpaso Verifica que el periodo de Inscripción sea un periodo válido con base en la regla de negocio \refIdElem{BR-IN-N022}. \refErr{Tres}
+	
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:ingresarAplC} Ingresa la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Aplicación.
+	
+	\UCpaso Verifica que el periodo de Aplicación sea un periodo válido con base en la regla de negocio \refIdElem{BR-IN-N022}. \refErr{Cuatro}
+	
+	\UCpaso Verifica que el periodo de Aplicación sea posterior al periodo de Inscripción con base en la regla de negocio \refIdElem{BR-IN-N016}. \refErr{Cinco}
+	
+	\UCpaso [\UCactor]  \label{IN-DAE-CU1.1:ingresarEvalC} Ingresa la \refElem{ActividadCalendario.fechaInicio} y la \refElem{ActividadCalendario.fechaFin} del periodo de Registro de Evaluación.
+	
+	\UCpaso Verifica que el periodo de Registro de Evaluación sea un periodo válido con base en la regla de negocio \refIdElem{BR-IN-N022}. \refErr{Seis}
+	
+	\UCpaso Verifica que el periodo de Aplicación sea posterior al periodo de Inscripción con base en la regla de negocio \refIdElem{BR-IN-N016}. \refErr{Siete}
+	
+\end{UCtrayectoriaA}

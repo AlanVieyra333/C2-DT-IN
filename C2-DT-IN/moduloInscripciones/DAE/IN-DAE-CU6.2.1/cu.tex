@@ -1,0 +1,126 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DAE-CU6.2.1}{Gestionar estudiantes cargados en programa académico}{
+	% V 0.1 Ok.
+	Permite visualizar los estudiantes que han sido cargados mediante un proceso de inscripción a una Unidad Académica en sus diversos Programas Académicos que ésta oferte.
+}
+	\UCccitem{Versión}{0.2}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Consulta}
+	\UCccitem{Prioridad}{Media} 
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Baja} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Edición}
+	\UCccitem{Dificultades}{Ninguno}
+	\UCccitem{Fecha del último estatus}{8 de enero de 2018}
+	%------------------------------------------------------
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{8 de enero de 2018}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Corregir}
+	\UCccitem{Observaciones}{Aplicar las correcciones marcadas en los TODO's.}
+	%------------------------------------------------------
+	% V 0.1 Ok.
+	\UCsection{Atributos}
+	\UCitem{Actor}{%
+		\begin{Titemize}	
+			\Titem \refElem{DAEJefeDeRegistro}
+			\Titem \refElem{DAEAdministradorDeRegistro}
+		\end{Titemize}
+	} 
+	% V 0.1 Ok.
+	\UCitem{Propósito}{Brindar una herramienta que permita visualizar el avance de los estudiantes de nuevo ingreso en una Unidad Académica en sus diversos Programas Académicos.}
+	% V 0.1 TODO: Escribir: La \refElem{ProgramaAcademico.clave} del Promara Académico.
+	\UCitem{Entradas}{\refElem{ProgramaAcademico.clave}}
+	% V 0.1 Ok.
+	\UCitem{Origen}{\ioSeleccionar}
+	% V 0.1 TODO: Agregar a la lista y a la pantalla: Estudiantes Inscritos con boleta y Estudiantes en cancelación. A la tabla agregar la columna de status del alumno.
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem El \refElem{PlanDeEstudio.planDeEstudio} vigente del Programa Académico seleccionado.
+			\Titem El \refElem{Modalidad.clave} de la modalidad a la que pertenece el Programa Académico.
+			\Titem Los \refElem{Especialidad.nombre} de las especialidades que tiene el Programa Académico (``ninguno'' en caso de que no tenga).
+			\Titem El número de \refElem{PlanDeEstudiosEnPeriodoDeUnidadAcademica.estudiantesEsperados} en el Programa Académico seleccionado.
+			\Titem El número de \refElem{PlanDeEstudiosEnPeriodoDeUnidadAcademica.estudiantesCargadosConBoleta} y  \refElem{PlanDeEstudiosEnPeriodoDeUnidadAcademica.estudiantesCargadosSinBoleta} en el Programa Académico seleccionado.
+			\Titem El número de \refElem{PlanDeEstudiosEnPeriodoDeUnidadAcademica.estudiantesInscritosConBoleta} en el Programa Académico seleccionado.
+			\Titem Tabla que muestra \refElem{AlumnoAsignado.preboleta} \refElem{AlumnoAsignado.boleta}, \refElem{Alumno.CURP}, \refElem{Alumno.nombre}, \refElem{Especialidad.nombre}, \refElem{AlumnoAsignado.fechaDeUltimaCarga} de los estudiantes asignados al Programa Académico seleccionado.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 TODO: Agregar que se haya definido la cantidad de 
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}	
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado un \textbf{Ciclo Escolar} y \textbf{Modalidad}.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Ninguna} 
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{Ninguna}
+	% V 0.1 Ok.
+	\UCitem{Errores}{Ninguno%
+		%
+		%	\begin{Titemize}
+		%	
+		%		\Titem \UCerr{Uno}{Cuando no hay lugares definidos para las Unidades Académicas,}{se muestra el mensaje \refIdElem{MSGX} y termina el caso de uso.}
+		%		% La DAE no ha definido los lugares disponibles, favor de contactarla.
+		%	
+		%	\end{Titemize}
+		%
+	}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU6.2}}
+	% V 0.1 Ok.
+	\UCitem{Disparador}{El actor requiere visualizar el avance de los {\bf estudiantes de nuevo ingreso} en un Programa Académico.}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se muestra el avance de estudiantes importados al Calmécac.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{Ninguno.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 Ok.
+	\UCitem{Auditable}{No}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No se encontró ninguno}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	% V 0.1 TODO: Agregar el paso: El actor selecciona el programa académico del cual desea realizar la consulta.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita visualizar el avance de aspirantes cargados a un Programa Académico dando clic en el ícono \IUVer{} de la pantalla \refIdElem{IN-DAE-IU6.2}.
+	% V 0.1 Ok.
+	\UCpaso Obtiene el nombre de los Programas Académicos ofertados para la Unidad Académica seleccionada.
+	% V 0.1 TODO: Agregar la vista de como se ve la pantalla cuando no tiene programa académico seleccionado o indicar que el sistema selecciona uno por defecto antes de mostrarla.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU6.2.1}.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Selecciona el programa académico del cual será visualizada la información de carga.
+	% V 0.1 Ok.
+	\UCpaso \label{IN-DES-CU6.2.1:Obtiene} Obtiene el número de plan de estudio, modalidad y especialidades asignadas al programa académico seleccionado.
+	% V 0.1 TODO: No requiere regla de negocio el numero de alumnos esperados ya que se obtiene del modelo de información. Listar todos los datos: aspirantes inscritos, no inscritos, alumnos inscritos, no inscritos y en cancelación.
+	\UCpaso Obtiene el número de aspirantes inscritos, aspirantes no inscritos, alumnos no inscritos, alumnos sin inscribir, aspirantes con cancelación y el total esperado.
+	% V 0.1 TODO: Agregar Estado del alumno.
+	\UCpaso Obtiene la pre-boleta, boleta, CURP, nombre, especialidad y Última actualización de los estudiantes asignados al Programa Académico seleccionado.
+	% V 0.1 Ok.
+	\UCpaso \label{IN-DAE-CU6.2.1:Gestiona} Actualiza la pantalla \refIdElem{IN-DAE-IU6.2.1} con la información obtenida.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Gestiona el avance de aspirantes cargados a un Programa Académico con el botón \IUVer. \refTray{A}
+\end{UCtrayectoria}
+
+\begin{UCtrayectoriaA}{A}{El actor desea regresar a la gestión por Unidad Académica.}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita regresar a la gestión por Unidad Académica dando clic en el botón \IUbutton{Regresar}.
+	% V 0.1 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU6.2}.
+\end{UCtrayectoriaA}
+
+\subsection{Puntos de extensión}
+
+\UCExtensionPoint{Ejecutar proceso de inscripción}
+{El actor requiere visualizar la información de un estudiante asignado al Programa Académico}
+{Paso \ref{IN-DAE-CU6.2.1:Gestiona} de la Trayectoria Principal}
+{\refIdElem{IN-DAE-CU7}}

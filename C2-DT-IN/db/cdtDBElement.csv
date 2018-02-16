@@ -1,0 +1,221 @@
+id,name
+Calmecac,CALM\IeC {\'E}CAC
+TipoDeProfesorConsejero,Tipo de Profesor Consejero
+Alumno,Alumno
+Alumno.nombre,Nombre
+Alumno.primerApellido,Primer Apellido
+Alumno.segundoApellido,Segundo Apellido
+Alumno.fechaDeNacimiento,Fecha de Nacimiento
+Alumno.fechaDeActualizacion,Fecha de Actualizaci\IeC {\'o}n
+Alumno.fotografia,Fotograf\IeC {\'\i }a
+CicloEscolar,Ciclo Escolar
+CicloEscolar.clave,Clave
+CicloEscolar.fechaDeInicio,Fecha de Inicio
+CicloEscolar.fechaDeTermino,Fecha de T\IeC {\'e}rmino
+CalendarioAcademico,Calendario Acad\IeC {\'e}mico
+CalendarioAcademico.nombre,Nombre
+PeriodoEscolar,Periodo Escolar
+PeriodoEscolar.clave,Clave
+PeriodoEscolar.fechaInicio,Fecha de Inicio
+PeriodoEscolar.fechaTermino,Fecha de T\IeC {\'e}rmino
+ActividadCalendario,Actividad de Calendario
+ActividadCalendario.fechaInicio,Fecha de Inicio
+ActividadCalendario.fechaFin,Fecha de Fin
+TipoDeActividad,Tipo de Actividad
+Actividad,Actividad
+Programa,Programa
+Programa.nombre,Nombre
+Programa.estado,Estado
+Programa.fechaInicio,Fecha de Inicio
+Programa.fechaTermino,Fecha de T\IeC {\'e}rmino
+Programa.confirmacionAutomatica,Confirmaci\IeC {\'o}n Autom\IeC {\'a}tica
+Programa.frecuenciaDeEjecucion,Frecuencia de Ejecuci\IeC {\'o}n
+Corrida,Corrida
+Corrida.duracion,Duraci\IeC {\'o}n
+Corrida.fechaDeEjecucion,Fecha de Ejecuci\IeC {\'o}n
+Corrida.resultado,Resultado
+UnidadAcademica,Unidad Acad\IeC {\'e}mica
+UnidadAcademica.nombre,Nombre
+UnidadAcademica.clave,Clave
+UnidadAcademica.acronimo,Acr\IeC {\'o}nimo
+PlanDeEstudio,Plan de Estudio
+PlanDeEstudio.cargaMinima,Carga M\IeC {\'\i }nima de Cr\IeC {\'e}ditos
+PlanDeEstudio.cargaMedia,Carga Media de Cr\IeC {\'e}ditos
+PlanDeEstudio.cargaMaxima,Carga M\IeC {\'a}xima de Cr\IeC {\'e}ditos
+PlanDeEstudio.division,Divisi\IeC {\'o}n
+PlanDeEstudio.red,Red
+PlanDeEstudio.planDeEstudio,Plan de Estudio
+PeriodoEnUnidadAcademica,Periodo en Unidad Acad\IeC {\'e}mica
+PeriodoEnUnidadAcademica.fechaInicio,Fecha de Inicio
+PeriodoEnUnidadAcademica.fechaTermino,Fecha de T\IeC {\'e}rmino
+PlanDeEstudioEnPeriodoDeUnidadAcademica,Plan de Estudio en Periodo de Unidad Acad\IeC {\'e}mica
+PlanDeEstudioEnPeriodoDeUnidadAcademica.oferta,Oferta
+PlanDeEstudioEnPeriodoDeUnidadAcademica.estudiantesEsperados,Estudiantes Esperados
+PlanDeEstudioEnPeriodoDeUnidadAcademica.estudiantesCargadosConBoleta,Estudiantes Cargados con Boleta
+PlanDeEstudioEnPeriodoDeUnidadAcademica.estudiantesCargadosSinBoleta,Estudiantes Cargados sin Boleta
+PlanDeEstudioEnPeriodoDeUnidadAcademica.estudiantesInscritosSinBoleta,Estudiantes Inscritos sin Boleta
+PlanDeEstudioEnPeriodoDeUnidadAcademica.estudiantesInscritosConBoleta,Estudiantes Inscritos con Boleta
+PlanDeEstudioEnPeriodoDeUnidadAcademica.estudiantesCancelados,Estudiantes Cancelados
+PlanDeEstudioEnPeriodoDeUnidadAcademica.fechaDeUltimaActualizacion,Fecha de \IeC {\'U}ltima Actualizaci\IeC {\'o}n
+PlanDeEstudioEnPeriodoDeUnidadAcademica.tipoDeCarga,Tipo de Carga
+AlumnoAsignado,Alumno Asignado
+AlumnoAsignado.observacionesDeDocumentacion,Observaciones de Documentaci\IeC {\'o}n
+AlumnoAsignado.folio,Folio
+AlumnoAsignado.claveEnElProceso,Clave del Proceso
+AlumnoAsignado.preboleta,Preboleta
+AlumnoAsignado.boleta,Boleta
+AlumnoAsignado.fechaDeUltimaCarga,Fecha de \IeC {\'U}ltima Carga
+AlumnoAsignado.estadoDeCargaDelAlumno,Estado de Carga del Alumno
+AlumnoAsignado.estadoDeDocumentacion,Estado de Documentaci\IeC {\'o}n
+AlumnoAsignado.estadoDelAlumno,Estado del Alumno
+SituacionEscolar,Situaci\IeC {\'o}n Escolar
+SituacionEscolar.promedioGeneral,Promedio General
+SituacionEscolar.creditosObtenidos,Cr\IeC {\'e}ditos Obtenidos
+SituacionEscolar.creditosFaltantes,Cr\IeC {\'e}ditos Faltantes
+SituacionEscolar.uDeAAprobadas,Unidades de Aprendizaje Aprobadas
+SituacionEscolar.uDeAReprobadas,Unidades de Aprendizaje Reprobadas
+SituacionEscolar.uDeADesfasadas,Unidades de Aprendizaje Desfasadas
+SituacionEscolar.semestreActual,Semestre Actual
+SituacionEscolar.periodosTranscurridos,Periodos Transcurridos
+SituacionEscolar.periodosDeBajaTemporal,Periodos de Baja Temporal
+SituacionEscolar.porcentajeDeCreditos,Porcentaje de Cr\IeC {\'e}ditos
+SituacionEscolar.periodosEstimados,Periodos Estimados
+DocumentoDeAlumnoAsignado,Documento de Alumno Asignado
+DocumentoDeAlumnoAsignado.estadoDevolucionDocumento,Estado de Devoluci\IeC {\'o}n de Documento
+EstructuraEducativa,Estructura Educativa
+EstructuraEducativa.estadoDeEstructuraEducativa,Estado de Estructura Educativa
+SegmentoDeEstructuraEducativa,Segmento de Estructura Educativa
+SegmentoDeEstructuraEducativa.estadoDeSegmentoDeEstructuraEducativa,Estado de Segmento de Estructura Educativa
+SegmentoDeEstructuraEducativa.nivelAcademico,Nivel Acad\IeC {\'e}mico
+SegmentoDeEstructuraEducativa.modalidad,Modalidad
+SegmentoDeEstructuraEducativa.dia,D\IeC {\'\i }a
+SegmentoDeEstructuraEducativa.turno,Turno
+Grupo,Grupo
+Grupo.nombre,Nombre del Grupo
+Grupo.traslapeDeHorario,Traslape de Horario
+Grupo.traslapeDeSalon,Traslape de Sal\IeC {\'o}n
+ProfesorEnSegmento,Profesor en Segmento
+ProfesorEnSegmento.numeroDeHoras,N\IeC {\'u}mero de Horas
+ProfesorEnSegmento.horasDeInterinato,Horas de Interinato
+ProfesorEnSegmento.horaDeAporte,Horas de Aporte
+ProfesorEnSegmento.actividadComplementaria,Actividad Complementaria
+UdeAEnOferta,Unidad de Aprendizaje en Oferta
+Periodo,Periodo
+Periodo.fechaDeInicio,Fecha de Inicio
+Periodo.fechaDeFin,Fecha de Fin
+SubUdeA,Sub Unidad de Aprendizaje
+SubUdeA.horas,Horas
+SubUdeA.profesores,Profesores
+SubUdeA.clave,Clave
+SubUdeA.tipoUnidadAprendizaje,Tipo de Unidad de Aprendizaje
+Exposicion,Exposici\IeC {\'o}n
+Exposicion.horaDeInicio,Hora de Inicio
+Exposicion.horaDeTermino,Hora de T\IeC {\'e}rmino
+Exposicion.tipoDeExposicion,Tipo de Exposici\IeC {\'o}n
+Exposicion.seccion,Secci\IeC {\'o}n
+Seccion,Secci\IeC {\'o}n
+Seccion.capacidad,Capacidad
+ProfesorEnExposicion,Profesor en Exposici\IeC {\'o}n
+ProfesorEnExposicion.tipoDeNombramiento,Tipo de Nombramiento
+PlaneacionAsignacion,Planeaci\IeC {\'o}n Asignaci\IeC {\'o}n
+PlaneacionAsignacion.horasDeInterinato,Horas de Interinato
+PlaneacionAsignacion.horasDeAporte,Horas de Aporte
+PlaneacionAsignacion.tipoDeAsignacion,Tipo de Asignaci\IeC {\'o}n
+TurnoEnSegmento,Turno en Segmento
+TurnoEnSegmento.horaDeInicio,Hora de Inicio
+TurnoEnSegmento.horaDeTermino,Hora de T\IeC {\'e}rmino
+DiaLaboral,D\IeC {\'\i }a Laboral
+ProfesorConActividadComplementaria,Profesor con Actividad Complementaria
+ProfesorConActividadComplementaria.horaDeInicio,Hora de Inicio
+ProfesorConActividadComplementaria.horaDeTermino,Hora de T\IeC {\'e}rmino
+GrupoConUdeAEnOferta,Grupo con Unidad de Aprendizaje en Oferta
+GrupoConUdeAEnOferta.capacidad,Capacidad
+GrupoConUdeAEnOferta.ocupacion,Ocupaci\IeC {\'o}n
+AnalistaDeEstructuraEducativa,Analista de Estructura Educativa
+AnalistaDeEstructuraEducativa.activo,Activo
+AnalistaenUnidadAcademica,Analista en Unidad Acad\IeC {\'e}mica
+AcademiaDeUdeA,Academia de Unidad de Aprendizaje
+AcademiaDeUdeA.vigente,Vigente
+ProgramaAcademico,Programa Acad\IeC {\'e}mico
+ProgramaAcademico.nombre,Nombre
+ProgramaAcademico.ramaDelConocimiento,Rama del Conocimiento
+ProgramaAcademico.nivelAcademico,Nivel Acad\IeC {\'e}mico
+PlanDeEstudio,Plan de Estudio
+PlanDeEstudio.cargaMinima,Carga M\IeC {\'\i }nima de Cr\IeC {\'e}ditos
+PlanDeEstudio.cargaMedia,Carga Media de Cr\IeC {\'e}ditos
+PlanDeEstudio.cargaMaxima,Carga M\IeC {\'a}xima de Cr\IeC {\'e}ditos
+PlanDeEstudio.division,Divisi\IeC {\'o}n
+PlanDeEstudio.red,Red
+PlanDeEstudio.nombre,Nombre
+PlanDeEstudio.tipoDeDivision,Tipo de Divisi\IeC {\'o}n
+PlanDeEstudio.estadoDePlanDeEstudio,Estado de Plan de Estudio
+UdeA,Unidad de Aprendizaje
+UdeA.udeA,Unidad de Aprendizaje
+UdeA.clave,Clave
+UdeA.creditosSATCA,Cr\IeC {\'e}ditos SATCA
+UdeA.creditosTEPIC,Cr\IeC {\'e}ditos TEPIC
+UdeA.horasTeoricasSemanales,Horas Te\IeC {\'o}ricas Semanales
+UdeA.horasPracticasSemanales,Horas Pr\IeC {\'a}cticas Semanales
+UdeA.semestreSugerido,Semestre Sugerido
+UdeA.horasDeOtrosAmbientes,Horas de Otros Ambientes
+UdeA.tipoDeEnsenanza,Tipo de Ense\IeC {\~n}anza
+UdeA.tipoDeUdeA,Tipo de Unidad de Aprendizaje
+Antecedente,Antecedente
+Antecedente.tipoDeAntecedente,Tipo de Antecedente
+Antecedente.tipoDeUdeA,Tipo de Unidad de Aprendizaje
+Division,Divisi\IeC {\'o}n
+Division.unidadesOptativas,Unidades de Aprendizaje Optativas por Divisi\IeC {\'o}n
+Division.creditosOptativos,N\IeC {\'u}mero de Cr\IeC {\'e}ditos Optativos por Divisi\IeC {\'o}n
+Especialidad,Especialidad
+Especialidad.nombre,Nombre
+Especialidad.tronco,Tronco
+EspecialidadDeUdeA,Especialidad de Unidad de Aprendizaje
+UnidadAcademicaConPlan,Unidad Acad\IeC {\'e}mica con Plan
+BR-S001,Campos obligatorios
+BR-S002,Informaci\IeC {\'o}n correcta
+BR-S003,Eliminaci\IeC {\'o}n l\IeC {\'o}gica de elementos
+BR-S004,Unicidad de elementos
+BR-IN-N001,Duraci\IeC {\'o}n de Periodo escolar recomendado 
+BR-IN-N002,Las evaluaciones ordinarias deben estar dentro de los periodos escolares
+BR-IN-N003,Modificaci\IeC {\'o}n de periodos de trabajo congruentes
+BR-IN-N004,Calcular Fecha inicial y final de un Ciclo Escolar
+BR-IN-N005,Determinar Ciclo Escolar
+BR-IN-N006,Oferta Educativa Total de una Unidad Acad\IeC {\'e}mica
+BR-IN-N007,Oferta Educativa Total
+BR-IN-N008,Valores de Oferta Educativa V\IeC {\'a}lidos
+BR-IN-N009,Porcentaje de avance
+BR-IN-N010,Total de Aspirantes sin Inscribir por Unidad y Periodo
+BR-IN-N011,Total de Aspirantes Inscritos por Unidad y Periodo
+BR-IN-N012,Total de Alumnos sin Inscribir por Unidad y Periodo
+BR-IN-N013,Total de alumnos inscritos por Unidad y Periodo
+BR-IN-N014,Total de alumnos con cancelaci\IeC {\'o}n por Unidad y Periodo
+BR-IN-N015,Actividad dentro de periodo
+BR-IN-N016,Orden cronol\IeC {\'o}gico de actividades
+BR-IN-N017,Periodo de Evaluaci\IeC {\'o}n de E.T.S. traslapado con el periodo de Aplicaci\IeC {\'o}n de E.T.S.
+BR-IN-N018,Determinar frecuencia de ejecuci\IeC {\'o}n de proceso de inscripci\IeC {\'o}n
+BR-IN-N019,Determinar periodo de programaci\IeC {\'o}n de proceso de inscripci\IeC {\'o}n
+BR-IN-N020,Fechas validas de registro
+BR-IN-N024,Estudiantes necesarios para inscripci\IeC {\'o}n
+BR-IN-N025,Capacidad m\IeC {\'a}xima de sobrecupo a un grupo
+BR-IN-N026,Estructura Educativa v\IeC {\'a}lida
+BR-IN-N027,C\IeC {\'a}lculo de sobrecupo
+BR-IN-N028,Capacidad m\IeC {\'a}xima de inscripci\IeC {\'o}n a un grupo
+BR-IN-N029,Unidades de Aprendizaje necesarias para inscripci\IeC {\'o}n
+UAJefeDeGestionEscolar,Jefe de Gesti\IeC {\'o}n Escolar
+IN-DAE-PR1,Cargar Aspirantes al CALM\IeC {\'E}CAC
+IN-UA-MN1,Men\IeC {\'u} del m\IeC {\'o}dulo de UA
+IN-UA-IU1,Selecci\IeC {\'o}n de Periodo Escolar y Modalidad
+IN-UA-IU3,Resumen del proceso de Inscripci\IeC {\'o}n
+IN-UA-IU3.1,Asignar grupo
+IN-UA-IU3.1.1,Selecci\IeC {\'o}n de grupo y Unidades de Aprendizaje
+IN-UA-IU3.1.1.2,Visualizaci\IeC {\'o}n de estatus de los alumnos
+IN-UA-IU3.1.1.3,Solicitud de sobrecupo en las Unidades de Aprendizaje
+IN-UA-IU3.1.1.4,Confirmaci\IeC {\'o}n de inscripci\IeC {\'o}n
+IN-UA-IU3.1.2,Introducci\IeC {\'o}n de la Boleta/Preboleta
+IN-UA-IU3.1.2.2,Visualizaci\IeC {\'o}n de la inscripci\IeC {\'o}n en las Unidades de Aprendizaje
+IN-UA-IU3.1.2.3,Adici\IeC {\'o}n de una Unidad de Aprendizaje
+IN-UA-IU3.1.2.4,Solicitud de sobrecupo en una Unidad de Aprendizaje
+IN-UA-IU3.1.2.5,Unidades de Aprendizaje empalmadas
+IN-UA-IU3.1.2.6,Confirmaci\IeC {\'o}n de inscripci\IeC {\'o}n
+IN-UA-IU4,Gestionar entrega de documentos
+IN-UA-IU4.1,Registrar entrega de documentos

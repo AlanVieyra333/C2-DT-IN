@@ -1,0 +1,159 @@
+\begin{UseCase}{IN-DAE-CU7}{Consultar datos de estudiantes}{
+	% V 0.1 Ok.	
+	Permite al actor consultar el estado en el que se encuentra el estudiante como datos personales, asignación en la unidad de aprendizaje, estado en que se encuentra su inscripción. 	
+}
+    \UCccitem{Versión}{0.1}
+    \UCccsection{Datos para el control Interno}	
+    \UCccitem{Elaboró}{Bruno Suárez Cruz }
+    \UCccitem{Supervisó}{Ulises Vélez Saldaña}
+    \UCccitem{Operación}{Consultar}
+    \UCccitem{Prioridad}{Media}
+    \UCccitem{Complejidad}{Baja}
+    \UCccitem{Volatilidad}{Alta}
+    \UCccitem{Madurez}{Baja}
+    \UCccitem{Estatus}{Revisado, por corregir.}
+    \UCccitem{Dificultades}{}
+    \UCccitem{Fecha del último estatus}{5 de Enero del 2018}
+    \UCccsection{Revisión versión 0.1}
+    \UCccitem{Fecha}{8 de Enero del 2018}
+    \UCccitem{Evaluador}{Ulises Vélez Saldaña}
+    \UCccitem{Resultado}{Aplicar correcciones marcadas en los TODO's.}
+    \UCccitem{Observaciones}{}
+    \UCsection{Atributos}
+    % V 0.1 Ok.	
+    \UCitem{Actor}{%
+    	\begin{Titemize}
+    		\Titem \refElem{DAEJefeDeRegistro}
+    		\Titem \refElem{DAEAdministradorDeRegistro}
+ 	   \end{Titemize}
+	}
+	% V 0.1 Ok.	
+    \UCitem{Propósito}{Visualizar los datos académicos y personales de un aspirante en especifico}
+    % V 0.1 Ok.	
+    \UCitem{Entradas}{Ninguna}
+    % V 0.1 Ok.	
+    \UCitem{Origen}{%
+    %	\begin{Titemize}
+    		%\Titem 
+    		\ioObtener
+    		%\Titem  Se selecciona con el mouse.
+    	%\end{Titemize}
+    }
+	% V 0.1 DONE: Referenicar al modelo de información. Coordinate con Francisco. Basate en el primer ejemplo.
+    \UCitem{Salidas}{%
+    	\begin{Titemize}		
+    		\Titem Se muestra en la pantalla los datos personales del estudiante: 			
+                \begin{Citemize}
+					 \item \refElem{Alumno.nombre}, \refElem{Alumno.primerAp} y \refElem{Alumno.segundoAp}.
+					 \item \refElem{Alumno.CURP}
+					 \item \refElem{tdSexo}
+					 \item Edad
+					 % Fecha de Nacimiento
+					 \item \refElem{Alumno.fechaDeNacimiento} 
+					 \item Lugar de Nacimiento
+					 %Entidad Federativa
+					 \item \refElem{tdEntidad.nombre}
+					 %Calle
+					 \item \refElem{DireccionDeAlumno.calle} 
+					 %Número
+					 \item \refElem{DireccionDeAlumno.numero} 
+					 %Colonia
+					 \item \refElem{DireccionDeAlumno.colonia} 
+					 %Municipio
+					 \item \refElem{DireccionDeAlumno.municipio} 
+					 %CP
+					 \item \refElem{DireccionDeAlumno.cp} 
+                \end{Citemize}
+    	 	\Titem Se muestra en la pantalla la escuela de procedencia.
+    		\Titem Se muestra en la pantalla la asignación del estudiante (Unidad Académica, Programa Académico, Nivel, Plan de estudios, Modalidad, Especialidad ).
+    		\Titem Se muestra en la pantalla Proceso, Folio, Preboleta, Boleta, Tipo.
+    		\Titem Se muestra en la pantalla datos de la carga (Tipo de Carga, Estatus de carga).
+    		\Titem Fotografía del estudiante.
+    	\end{Titemize}			
+    }
+	% V 0.1 Ok.
+    \UCitem{Destino}{Pantalla}
+    % V 0.1 Ok.
+    \UCitem{Precondición}{
+    		\begin{Titemize}
+    		\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un Ciclo Escolar y una Modalidad.
+    		\Titem \textbf{Sistematizada:} Que haya al menos una unidad académica registrada.
+    		\Titem \textbf{Sistematizada:} Que se encuentre un estudiante registrado.
+    	\end{Titemize}	
+    }
+    % V 0.1 Ok.
+    \UCitem{Postcondiciones}{ Ninguna }
+    % V 0.1 TODO: Terminar
+    \UCitem{Reglas de Negocio}{Ninguna
+    %Falta escribir bien las reglas de negocio que determinan la forma en que se obtine la información de 
+%    	\begin{Titemize}
+%    		\Titem \refElem{BR-X} 
+%		    \Titem  \refElem{BR-X}
+%		 \end{Titemize} 
+	}
+	% V 0.1 Ok.
+    \UCitem{Errores}{Ninguno
+	   % \Titem \UCerr{Uno}{Cuando se ha establecido un periodo demasiado corto muestra el mensaje \refIdElem{MSG125} en la pantalla \refIdElem{IN-DAE-UI2.2} y continuamos en el paso \ref{IN-DAE-CU2.6:sel} de la trayectoria principal.}  
+	}
+	% V 0.1 DONE: Referenciar el Caso de uso 6.2.1
+    \UCitem{Viene de}{\refIdElem{IN-DAE-CU6.2.1}}
+    % V 0.1 Ok.
+    \UCitem{Disparadores}{
+    	El actor requiere visualizar los datos de un estudiante.
+    }
+    % V 0.1 Ok.
+    \UCitem{Condiciones de Término}{
+	    Se muestran todas la información de un estudiante. 
+    }
+    % V 0.1 Ok.
+    \UCitem{Referencia Documental}{}
+	% V 0.1 DONE: Si, se debe guardar en la bitácora quien tiene aceso a los datos personales, fecha y hora.
+    \UCitem{Auditable}{Si, se debe guardar en la bitácora quien tiene aceso a los datos personales, fecha y hora.}
+    % V 0.1 DONE: Si, listar todos los datos personales del alumno.
+    \UCitem{Datos sensibles}{ 
+    \begin{Titemize}
+    \Titem Si,datos personales del alumno
+	\Titem Nombre.
+	\Titem CURP.
+	\Titem Genero.
+	\Titem Edad.
+	\Titem Fecha de Nacimiento.
+	\Titem Lugar de Nacimiento.
+	\Titem Entidad Federativa.
+	\Titem Calle
+	\Titem Número
+	\Titem Colonia
+	\Titem Delegación o Municipio 
+	\Titem C.P
+	\Titem Fotografía
+	  
+\end{Titemize} 
+    
+ }    
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Da clic en el icono \IUVer de la pantalla \refIdElem{IN-DAE-IU6.2.1} o \refIdElem{IN-DAE-IU8} del estudiante que se requiere ver su información.
+	% V 0.1 Ok.
+	\UCpaso Obtiene los datos personales (Nombre, CURP, Genero, Edad, Fecha de Nacimiento, Lugar de Nacimiento, Entidad Federativa, Calle, Número, Colonia, Delegación o Municipio, C.P y fotografiá) asignados al estudiante del que se requiere visualizar su información seleccionado previamente en el caso de uso \refIdElem{IN-DAE-CU6.2.1}.
+	% V 0.1 Ok.
+	\UCpaso Obtiene la escuela de procedencia del aspirante asociada.
+	% V 0.1 Ok.
+	\UCpaso Obtiene la asignación del estudiante en la unidad académica (Unidad Académica, programa académico, nivel, plan de estudios, modalidad, especialidad). 
+	
+	% V 0.1 TODO: Proponer la regla.
+	\UCpaso Obtiene el Proceso, Folio, Pre-Boleta, Boleta, Tipo y el Estatus que se encuentre asociado al aspirante dentro de la unidad académica a la que pertenece dicho estudiante.  
+	% V 0.1 DONE: Quitar tipo de carga, manejar solo, fecha y hora de untima actualización de datos.
+	\UCpaso Obtiene lo datos de la carga (Hora y Fecha) del momento en que la información del aspirantes de la ultima actualización. 
+	% V 0.1 Ok.
+	\UCpaso \label{IN-DAE-CU7:recarga} Muestra la pantalla \refIdElem{IN-DAE-IU7} con la información obtenida.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] El actor ya no requiere visualizar la información del estudiante y presiona el botón \IUbutton{Regresar}.
+\end{UCtrayectoria}
+
+\subsection{Puntos de extensión}
+
+\UCExtensionPoint{Se requiere refrescar la información}{El actor requiere refrescar la información}{ Paso \ref{IN-DAE-CU7:recarga} de la Trayectoria Principal}{\refElem{IN-DAE-PR-01}}
+

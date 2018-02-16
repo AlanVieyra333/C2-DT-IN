@@ -1,0 +1,137 @@
+%%======================================================================
+\begin{BusinessRule}{BR-S001}{Campos obligatorios}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.1.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los campos proporcionados al sistema marcados como obligatorios no se deben omitir.
+	\BRItem[Sentencia] Sea $campo$ un atributo de $Entidad$, tal que $campo.obligatorio = true$ entonces
+	$ \forall campo \Rightarrow campo.valor \neq \emptyset $
+	
+	\BRItem[Motivación] Evitar la falta de información relevante en el sistema causada por la omisión del actor al introducir datos.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+	\begin{itemize}
+		\item Para la entidad unidad aprendizaje, el actor introduce todos los atributos solicitados.
+		\item Para el Perfil Docente, el actor introduce todos los datos con excepción de habilidades y actitudes.
+		\item Para la entidad bibliografía, el actor introduce todos los atributos solicitados con excepción del ISSN.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	\begin{itemize}
+		\item El actor no proporciona el nombre para la entidad
+		\item El actor no proporciona la fecha de validación para la entidad Plan de Estudio
+		\item El actor no proporciona el lugar de realización para la entidad Practica
+	\end{itemize}
+\end{BusinessRule}
+
+
+%%======================================================================
+\begin{BusinessRule}{BR-S002}{Información correcta}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Todos los datos proporcionados al sistema deben respetar el formato establecido en el diccionario de datos.
+	\BRItem[Sentencia] Sea $formato$ la expresión regular que determina el formato de un campo definido en el diccionario de datos, $L$ el lenguaje que genera $formato$ y $campo$ un campo introducido por el actor, entonces
+	$ \forall campo \Rightarrow campo \in L $
+	\BRItem[Motivación] Mantener los datos del sistema dentro del formato definido en el diccionario de datos.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+	\begin{itemize}
+		\item El actor introduce el nombre de una Unidad Académica que solamente contiene caracteres alfabéticos.
+		\item El actor introduce un número de teléfono que contiene sólo números.
+		\item El actor introduce un correo electrónico que contiene un símbolo '@' y cuya terminación es un dominio de correo electrónico.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	\begin{itemize}
+		\item El actor introduce un nombre de Unidad Académica que contiene el símbolo '@'.
+		\item El actor introduce un número de teléfono que contiene símbolos alfabéticos.
+		\item El actor introduce un correo electrónico que no contiene el carácter '@'.
+	\end{itemize}
+\end{BusinessRule}
+
+%======================================================================
+\begin{BusinessRule}{BR-S003}{Eliminación lógica de elementos}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles Cerritos
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un elemento sólo se puede eliminar si no tiene asociaciones con otros elementos. Tomando en cuenta la definición de la sentencia, se tienen los siguientes valores para $e_1$ y $e_2$, respectivamente:
+	
+	\begin{itemize}
+		\item Espacio y Edificio.
+		\item Plan de Estudio y Programa Académico.
+		\item Espacio y Nivel.
+	\end{itemize}
+	
+	\BRItem[Sentencia] Sean $ e_1 \in Entidad1 , e_2 \in Entidad2, R(x,y) = x $ está asociado con $ y $ entonces
+	
+	$ e_2 $ se puede eliminar si y sólo si $ \nexists e_1 $ tal que $ R(e_1, e_2) $ se cumpla.
+	
+	
+	\BRItem[Motivación] Evitar que existan elementos en el sistema asociados a elementos que ya no existen dentro de él.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+	\begin{itemize}
+		\item Eliminar un edificio que no tiene espacios asociados.
+		\item Eliminar un Programa Académico que no tiene planes de estudio asociados.
+		\item Eliminar los espacios asociados a un edificio y después eliminar el edificio.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	\begin{itemize}
+		\item Eliminar un edificio con un espacio asociado.
+		\item Eliminar un edificio con tres espacios asociados.
+		\item Eliminar un Programa Académico con un Plan de Estudio asociado.
+	\end{itemize}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-S004}{Unicidad de elementos}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un elemento no se puede duplicar en el ámbito donde es utilizado ni registrarse en más de una ocasión. Dada la sentencia se consideran dentro de la regla las siguientes entidades y atributos:
+	
+	\begin{itemize}
+		\item Unidad Académica, \{nombre, acrónimo\}
+		\item Programa Académico, \{nombre\}
+		\item Unidad de Aprendizaje, \{nombre, Plan de Estudio, Programa Académico, Unidad Académica\}
+		\item Bibliografía, \{ISBN\}
+		\item Plan de Estudio, \{nombre, Programa Académico, Unidad Académica\}
+		\item Edificio,    \{Nombre por Unidad Académica\}
+		\item Espacio,     \{Nombre por Edificio por Unidad Académica\}
+		\item Consejero,   \{Número de boleta, Número de empleado\}
+		\item Analista,      \{CURP\}
+	\end{itemize}
+	\BRItem[Sentencia] Sean $ e_1, e_2 \in Entidad , atributos = {atributo_1, atributo_2,...,atributo_n}$ atributos de la entidad tal que:\\
+	Si $ \forall a \in atributos$ se cumple que $ e_1.a = e_2.a$ entonces $ e_1 = e_2 $.
+	
+	\BRItem[Motivación] Evitar la duplicidad de elementos dentro del sistema.
+	\BRItem[Ejemplo positivo] Cumplen la regla:
+	\begin{itemize}
+		\item Dos Unidades de Aprendizaje con diferentes nombres.
+		\item Dos prácticas con el mismo lugar de realización pero diferentes nombres.
+		\item Dos Unidades Académicas con la misma dirección pero diferente nombre.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	\begin{itemize}
+		\item Dos Unidades de Aprendizaje con el mismo nombre.
+		\item Dos Bibliografías con el mismo ISBN.
+		\item Dos Planes de Estudio con el mismo nombre.
+	\end{itemize}
+\end{BusinessRule}
+

@@ -1,0 +1,150 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DAE-CU3.1}{Crear configuración de proceso de inscripción}{
+	% V 0.1 TOCHK: Cambiar DES por DAE en los actores.
+	Permite al \refElem{DAEJefeDeRegistro} establecer una nueva configuración de procesos que ofrece el módulo de inscripciones. \\ \\
+	% V 0.1 TOCHK: Quitar este párrafo.
+%	Cuando el \refElem{DESJefeDeRegistro} desea establecer los parámetros de ejecución del servicio, tales como la periodicidad y frecuencia de las validaciones, se le otorgarán los permisos del perfil necesarios para realizarlo. \\ 
+	% V 0.1 Ok.
+	La ejecución de los procesos es necesaria para realizar las validaciones que se requieren sobre la información de los aspirantes y de esta manera evitar posibles complicaciones en el traslado de información ofrecida por el proceso.
+	}
+	\UCccitem{Versión}{0.2}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Registrar}
+	\UCccitem{Prioridad}{Alta}
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Media}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Por corregir}
+	\UCccitem{Dificultades}{Dudas sobre las validaciones que se deben realizar. Son por default o por qué se decidió quitarlas?}
+	\UCccitem{Fecha del último estatus}{14 de Diciembre de 2017}
+	
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{14 de Diciembre del 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Aplicar correcciones}
+	\UCccitem{Observaciones}{\TODO{Revisar los TODO's de los comentarios y al aplicarlos cambiar TODO por TOCHK.}}
+	
+	\UCsection{Atributos}
+	% V 0.1 TOCHK: es DAE, no DES
+	\UCitem{Actor}{\begin{Titemize}
+		\Titem \refElem{DAEJefeDeRegistro} 
+		\Titem \refElem{DAEAdministradorDeRegistro}
+	\end{Titemize}}
+	% V 0.1 TOCHK: Actualizar de manera eficiente la información de los eStudiantes de nuevo ingreso en el CALMECAC.
+	\UCitem{Propósito}{Actualizar de manera eficiente la información de los estudiantes de nuevo ingreso en el Calmécac.}
+	% V 0.1 TOCHK: Actualizar con base en el modelo de información, como ene ste caso es toda, puedes poner simplemente: Los datos de el \refElem{ProcesoDeCarga}
+	\UCitem{Entradas}{%
+		\begin{Titemize}
+%			\Titem El \refElem{UnidadAcademica.nombre} de las Unidades Académicas de nivel Medio-Superior y Superior.
+%			\Titem Todos los datos de el \refElem{Proceso}.
+			\Titem El \refElem{Programa.nombre} del proceso de inscripción 
+			\Titem La \refElem{Programa.frecuenciaDeEjecucion} del proceso de inscripción
+			\Titem El tipo de ejecución que tendrá el proceso \footnote{Ver \refElem{ParteFecha.nombre}}
+			\Titem La \refElem{Programa.fechaInicio} del proceso
+			\Titem La \refElem{Programa.fechaTermino} del proceso
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Origen}{%
+		\begin{Titemize}
+			\Titem \ioSeleccionar
+			\Titem \ioEscribir
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem \refIdElem{MSG1}.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{\textbf{Manual:} Se hayan establecido los periodos de ejecución de importación de información de los aspirantes.}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Se creará el proceso registrado.}
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{%
+		\begin{Titemize}
+			\Titem \refIdElem{BR-S001}
+			\Titem \refIdElem{BR-S002}
+			\Titem \refIdElem{BR-IN-N020}
+		\end{Titemize}
+	}
+	% V 0.1 TODO: Agreegar el error de cuando la fecha fin es anterior a la fecha de inicio.
+	\UCitem{Errores}{%
+		\begin{Titemize}
+			
+			\Titem \UCerr{Uno}{Cuando los campos marcados como obligatorios no fueron ingresados,}{se muestra el mensaje \refIdElem{MSG6} y regresa al paso \ref{IN-DAE-CU3.1:Ingresa} de la trayectoria principal.}
+			
+			\Titem \UCerr{Dos}{Cuando los campos ingresados no cumplen con el tipo de dato solicitado,}{se muestra el mensaje \refIdElem{MSG7} y regresa al paso \ref{IN-DAE-CU3.1:Ingresa} de la trayectoria principal.}
+			
+			\Titem \UCerr{Tres}{Cuando la fecha de inicio de ejecución es menor al día corriente,}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU3.1:Ingresa} de la trayectoria principal.}	
+			
+			\Titem \UCerr{Cuatro}{Cuando la fecha inicial es posterior a la fecha de término,}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU3.1:Ingresa} de la trayectoria principal.}
+			
+			\Titem \UCerr{Cinco}{Cuando la operación no se pudo llevar a cabo,}{se muestra el mensaje \refIdElem{MSG2} y regresa al paso \ref{IN-DAE-CU3.1:Aceptar} de la trayectoria principal.}
+			
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU3}}
+	% V 0.1 TOCHK: Cambiar por viñetas con: hay aspirantes aceptados, ha concluido algún proceso de ingreso, se han recibido alumnos de movilidad, se ha actualizado informacion por validación de documentos, Hay alumnos a los que se les ha aceptado su cambio de carrera.
+	\UCitem{Disparadores}{\begin{Titemize}
+	
+	\Titem Hay aspirantes aceptados
+	\Titem Ha concluido algún proceso de ingreso
+	\Titem Se han recibido alumnos de movilidad
+	\Titem Se ha actualizado información por validación de documentos
+	\Titem Hay alumnos a los que se les ha aceptado su cambio de carrera
+
+	\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se despliega una tabla donde se visualiza el nombre de la nueva configuración, así como su frecuencia y periodicidad de ejecución.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{El proceso será ejecutado en el periodo y frecuencia registrada.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 TOCHK: Si, se debe registrar en la bitácora del sistema: el usuario y hora que realizó la operación, el caso de uso, y los valores ingresados.
+	\UCitem{Auditable}{Si, se debe registrar en la bitácora del sistema: el usuario y hora que realizó la operación, el caso de uso, y los valores ingresados.}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No se identifico}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita registrar un nuevo proceso presionando el botón \IUbutton{Nueva configuración} de la pantalla \refIdElem{IN-DAE-IU3}.
+	% V 0.1 Ok.	
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU3.1}.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] \label{IN-DAE-CU3.1:Ingresa} Ingresa los datos solicitados.
+	% V 0.1 Ok.
+	\UCpaso  [\UCactor] \label{IN-DAE-CU3.1:Aceptar} Solicita registrar la nueva configuración presionando el botón \IUbutton{\IUEditar Registrar}. \refTray{A} 
+	% V 0.1 Ok.
+	\UCpaso Verifica que los datos marcados como obligatorios hayan sido ingresados con base en la regla de negocio \refIdElem{BR-S001}. \refErr{Uno}
+	% V 0.1 Ok.
+	\UCpaso Verifica que los datos ingresados cumplan con el tipo de dato definido en el diccionario de datos con base en la regla de negocio \refIdElem{BR-S002}. \refErr{Dos} 
+	% V 0.1 Ok.
+	\UCpaso Verifica que la fecha ingresada sea posterior al día corriente con base en la regla de negocio \refIdElem{BR-IN-N020}. \refErr{Tres} 
+	% TOCHK
+	\UCpaso Verifica que la fecha inicial registrada sea menor que la fecha final registrada con base en la regla de negocio \refIdElem{BR-IN-N020}. \refErr{Cuatro}
+	% V 0.1 Ok.
+	\UCpaso Persiste la nueva configuración de proceso para las Unidades Académicas seleccionadas. \refErr{Cinco}
+	% V 0.1 Ok.
+	\UCpaso Muestra el mensaje \refIdElem{MSG1} en la pantalla \refIdElem{IN-DAE-IU3} indicando que la nueva configuración de proceso fue registrada exitosamente.
+\end{UCtrayectoria}
+
+%----------------- Trayectoria A ----------------- 
+\begin{UCtrayectoriaA}[Fin del caso de uso]{A}{El actor desea cancelar la operación.}
+
+	\UCpaso [\UCactor] Solicita cancelar la operación presionando el botón \IUbutton{Cancelar}.
+
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU3}.
+
+\end{UCtrayectoriaA}
+
+

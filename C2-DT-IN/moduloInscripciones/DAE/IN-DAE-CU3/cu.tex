@@ -1,0 +1,139 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DAE-CU3}{Gestionar proceso de inscripción}{
+	% DONE V 0.1
+	Permite al \refElem{DAEJefeDeRegistro} ver la lista de los procesos programados para su ejecución y la configuración con la que cuenta cada uno de ellos. Cuando el \refElem{DAEJefeDeRegistro} requiera una configuración distinta a las listadas, tendrá la opción de registrar una nueva, así como las opciones de editar o eliminar una configuración existente.		
+	} 
+	\UCccitem{Versión}{0.2}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Gestionar}
+	\UCccitem{Prioridad}{Medio}
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Baja}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Por revisar con desarrollo}
+	\UCccitem{Dificultades}{}
+	\UCccitem{Fecha del último estatus}{01 de diciembre del 2017}
+	
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{1 de Diciembre del 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Corregir}
+	\UCccitem{Observaciones}{
+		\begin{Titemize}
+			\Titem Vamos a cambiar el nombre de ``Servicios WEB'' por ``procesos''.
+%			\Titem TOCHK Agregar al actor JefeDeRegistroDeLaDAE.
+			\Titem Realizar los cambios marcados en los comentarios con ``TODO''.
+			\Titem Terminar.
+		\end{Titemize}	
+	}
+	\UCccsection{Revisión Versión 0.2}
+	\UCccitem{Fecha}{13 de Diciembre del 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Correcto, pasa a revisión con desarrollo.}
+	\UCccitem{Observaciones}{Ninguna.}
+	\UCsection{Atributos}
+	% V 0.2 Ok.
+	\UCitem{Actor}{\begin{Titemize}
+			\Titem \refElem{DAEJefeDeRegistro} 
+			\Titem \refElem{DAEAdministradorDeRegistro}
+	\end{Titemize}}
+	% V 0.1 TOCHK: Cambiar por una explicación de ``para que sirve este CU'', por ejemplo: Proveer un mecanismo para que se carguen de manera automática y eficiente la información de los aspirantes aceptados, alumnos de cambio de carrera y de movilidad al CALMECEAC para su inscripción.
+	\UCitem{Propósito}{Proveer un mecanismo para programar la importación de información de los aspirantes de nuevo ingreso, de cambio de carrera o alumno de movilidad.}
+	% V 0.1 DONE.
+	\UCitem{Entradas}{Ninguna.}
+	% V 0.1 DONE.
+	\UCitem{Origen}{No aplica.}
+	% V 0.1 TOCHK: Hace falta actualizar la pantalla pero los datos de salida deben ser:
+	%  - Ciclo escolar.
+	%  - Nombre de la configuración.
+	%  - Frecuencia de ejecución.
+	%  - Periodo de ejecución.
+	% V 0.2 TOCHK: Agregar referencias al modelo de información. puede ser: Configuración.nombre, configuracion.frecuencia, etc. o si corresponde la lista con todos los atributos de la configuración poner solamente datos de la \refElem{Configuración}
+	\UCitem{Salidas}{
+		\begin{Titemize}
+%			\Titem \refElem{CicloEscolar.clave} del Ciclo Escolar
+			\Titem El \refElem{Programa.nombre} del proceso de inscripción.
+			\Titem La \refElem{Programa.frecuenciaDeEjecucion} del proceso de inscripción con base en la regla de negocio \refIdElem{BR-IN-N018}.
+			\Titem La \refElem{Programa.fechaInicio} y \refElem{Programa.fechaTermino} del proceso de inscripción \refIdElem{BR-IN-N019}.
+		\end{Titemize}	
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{Ninguna}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Ninguna}
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{\begin{Titemize}
+		\Titem \refIdElem{BR-IN-N018}
+		\Titem \refIdElem{BR-IN-N019}
+	\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Errores}{Ninguno}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{Primario}
+	% V 0.1 Ok.
+	\UCitem{Disparadores}{
+		\begin{Titemize}
+			\Titem El actor desea consultar las distintas configuraciones de los procesos.
+			\Titem El actor desea editar una configuración de procesos.
+			\Titem El actor desea eliminar una configuración de procesos.
+			\Titem El actor desea registrar una nueva configuración de procesos.
+	\end{Titemize}} 
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se despliega una tabla donde se visualizan las configuraciones de los procesos registrados.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{Ninguno.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 TOCHK: Cambiar por No. (No es lo mismo ``No'' que ``No aplica'')
+	% V 0.2 Ok.
+	\UCitem{Auditable}{No}
+	% V 0.1 TOCHK: Cambiar por Ninguno. (No es lo mismo ``Ninguno'' que ``No aplica'')
+	% V 0.2 Ok.
+	\UCitem{Datos sensibles}{Ninguno}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	% V 0.1 TOCHK: Cambiar ``Consejos'' por ``Configuraciones de proceos'', cambiar ``clic'' por ``click''. quitar la frase ``que viene''
+	% V 0.2 Ok.
+	\UCpaso [\UCactor] Solicita gestionar la configuración de procesos presionando la opción de \textbf{Procesos de Incripción} del menú \refElem{IN-DAE-MN1}.
+	% V 0.1 TOCHK: Terminar la trayectoria, considerar la trayectoria cuando no hay configuraciones registradas.
+	\UCpaso \label{IN-DAE-CU3:Obtiene} Busca las configuraciones de procesos registradas en el Calmécac.
+	
+	\UCpaso Determina las fechas de ejecución de los procesos de inscripción obtenidos en el paso \ref{IN-DAE-CU3:Obtiene} con base en la regla de negocio \refIdElem{BR-IN-N018}.
+	
+	\UCpaso Determina los periodos de programación de los procesos de inscripción obtenidos en el paso \ref{IN-DAE-CU3:Obtiene} con base en la regla de negocio \refIdElem{BR-IN-N019}.
+	% V 0.2 Ok.
+	\UCpaso Ordena por fecha de creación las configuraciones de procesos de la más reciente a la más antigua. 
+%	\UCpaso Habilita las opciones correspondientes a la gestión de configuraciones.  
+	% V 0.2 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU3} con la información obtenida.% en una tabla y las acciones que fueron habilitadas para su gestión.  
+	% V 0.2 Ok.
+	\UCpaso [\UCactor] \label{IN-DAE-CU3:Gestionar} Gestiona las configuraciones mediante el botón \IUbutton{Nueva configuración} y los iconos {\IUEditar}, {\IUEliminar}.
+\end{UCtrayectoria}
+
+\subsection{Puntos de extensión}
+
+% V 0.2 Ok.
+\UCExtensionPoint{Registrar nueva configuración de procesos}
+{El \refElem{DAEJefeDeRegistro} requiere registrar una nueva configuración de procesos}
+{En el paso \ref{IN-DAE-CU3:Gestionar} de la trayectoria principal}
+{\refIdElem{IN-DAE-CU3.1}}
+
+% V 0.2 Ok.
+\UCExtensionPoint{Editar configuración de procesos}
+{El \refElem{DAEJefeDeRegistro} requiere editar una configuración de procesos}
+{En el paso \ref{IN-DAE-CU3:Gestionar} de la trayectoria principal}
+{\refIdElem{IN-DAE-CU3.2}}
+
+% V 0.2 Ok.
+\UCExtensionPoint{Eliminar configuración de procesos}
+{El \refElem{DAEJefeDeRegistro} requiere eliminar una configuración de procesos}
+{En el paso \ref{IN-DAE-CU3:Gestionar} de la trayectoria principal}
+{\refIdElem{IN-DAE-CU3.3}}

@@ -1,0 +1,351 @@
+\begin{UseCase}{IN-UA-CU3.1.1}{Inscribir alumnos por grupo}{
+	% V 0.1 Ok.
+	Permite inscribir a uno o mas alumnos a las \refElem{tUnidadDeAprendizaje} pertenecientes a un \refElem{Grupo} determinado, durante el \refElem{PeriodoEscolar} previamente seleccionado.
+}
+    \UCccitem{Versión}{0.3}
+    \UCccsection{Datos para el control Interno}	
+    \UCccitem{Elaboró}{Alan Fernando Rincón Vieyra}
+    \UCccitem{Supervisó}{Ulises Vélez Saldaña}
+    \UCccitem{Operación}{Registro}
+    \UCccitem{Prioridad}{Alta}
+    \UCccitem{Complejidad}{Media}
+    \UCccitem{Volatilidad}{Baja}
+    \UCccitem{Madurez}{Baja}
+    \UCccitem{Estatus}{Revisada, por corregir}
+    \UCccitem{Dificultades}{}
+    \UCccitem{Fecha del último estatus}{07 de Febrero de 2018}
+    \UCsection{Revisión de la Versión 0.1}
+    \UCccitem{Fecha}{9 de febrero de 2018}
+    \UCccitem{Evaluador}{Ulises eVélez Saldaña}
+    \UCccitem{Resultado}{Corregir}
+    \UCccitem{Observaciones}{Aplicar los cambios marcados con TODO's}
+    \UCsection{Revisión de la Versión 0.2}
+    \UCccitem{Fecha}{14 de febrero de 2018}
+    \UCccitem{Evaluador}{Ulises eVélez Saldaña}
+    \UCccitem{Resultado}{Corregir}
+    \UCccitem{Observaciones}{Aplicar los cambios marcados con TODO's}
+    \UCsection{Revision de la Versión 0.3}
+    \UCccitem{Fecha}{14 de febrero de 2018}
+    \UCccitem{Evaluador}{Ulises eVélez Saldaña}
+    \UCccitem{Resultado}{Corregir}
+    \UCccitem{Observaciones}{Aplicar los cambios marcados con TODO's}
+    \UCsection{Atributos}
+	% V 0.1 Ok.
+    \UCitem{Actor}{
+    	\begin{Titemize}
+    		\Titem \refElem{UAJefeDeGestionEscolar}
+    	\end{Titemize}
+    }
+	% V 0.1 Ok.
+    \UCitem{Propósito}{
+    	\begin{Titemize}
+    		\Titem Inscribir varios alumnos a las Unidades de Aprendizaje de un grupo.
+    	\end{Titemize}
+    }
+	% V 0.1 Ok.
+    \UCitem{Entradas}{
+        \begin{Titemize}
+        	\Titem La \refElem{PlanDeEstudio.division} del \refElem{PlanDeEstudio.planDeEstudio} actual.
+        	\Titem El \refElem{Grupo.nombre}.
+        	\Titem La \refElem{UdeA.udeA}.
+        	\Titem La \refElem{AlumnoAsignado.boleta} ó \refElem{AlumnoAsignado.preboleta} de los estudiantes.
+        \end{Titemize}	
+    }
+	% V0.1 DONE: Indicar que datos se seleccionan y cuales se ingresan, puedes agrupar los que se seleccionan separdos por comas en un solo renglón
+	% V0.2 Ok.
+    \UCitem{Origen}{
+        \begin{Titemize}
+        	\Titem Se selecciona con el mouse la \refElem{PlanDeEstudio.division}, el \refElem{Grupo.nombre} y la \refElem{UdeA.udeA}.
+        	\Titem Se ingresa desde el teclado o Se importan desde una hoja de cálculo la \refElem{AlumnoAsignado.boleta} o \refElem{AlumnoAsignado.preboleta}.
+        \end{Titemize}
+    }
+	% V 0.1 TODO: Hace falta agregar todos los datos de salida, incluyendo los que llenan los combos de selección, creditos SATCA y TEPIC, lugares disponibles, etc.
+	% V 0.2 Ok.
+    \UCitem{Salidas}{
+    	\begin{Titemize}
+    		\Titem El \refElem{ProgramaAcademico.nombre} del programa académico seleccionado.
+    		
+    		\Titem El \refElem{PlanDeEstudio.nombre} del plan de estudio vigente del programa académico seleccionado.
+    		
+    		\Titem La \refElem{PeriodoEscolar.clave} del periodo escolar seleccionado.
+    		
+    		\Titem El \refElem{PlanDeEstudio.tipoDeCreditos} de créditos del plan de estudio vigente.
+
+    		\Titem La \refElem{PlanDeEstudio.cargaMinima} del plan de estudio vigente.
+
+    		\Titem La \refElem{PlanDeEstudio.cargaMedia} del plan de estudio vigente.
+    		
+    		\Titem La \refElem{PlanDeEstudio.cargaMaxima} del plan de estudio vigente.
+    		
+    		\Titem Numeración del 1 a ${n}$, donde ${n}$ es el número de niveles/semestres\footnote{Ver \refElem{PlanDeEstudio.division}} del plan de estudio vigente.
+    		
+    		\Titem El \refElem{Grupo.nombre} de los grupos registrados en la \refElem{EstructuraEducativa} correspondiente al plan de estudio y nivel/semestre seleccionados.
+    		
+    		\Titem El nombre de cada \refElem{UdeAEnOferta} en el grupo seleccionado.
+    		
+    		\Titem Los \refElem{UdeA.creditosSATCA} o \refElem{UdeA.creditosTEPIC} de cada unidad de aprendizaje ofertada en el grupo seleccionado dependiendo del tipo de créditos marcados en el Plan de estudios.
+    		
+    		\Titem La \refElem{GrupoConUdeAEnOferta.capacidad} de cada unidad de aprendizaje ofertada en el grupo seleccionado.
+    		
+    		\Titem La \refElem{GrupoConUdeAEnOferta.ocupacion} de cada unidad de aprendizaje ofertada en el grupo seleccionado.
+    		
+    		\Titem El número de sobrecupos que existen en una unidad de aprendizaje ofertada en un grupo, calculado con base en la regla de negocio \refIdElem{BR-IN-N027}.
+    		
+    		\Titem La \refElem{AlumnoAsignado.boleta} o \refElem{AlumnoAsignado.preboleta} de cada \refElem{tEstudiante} ingresado en el paso \ref{IN-UA-CU3.1.1:selBoletas}.
+    		
+    		\Titem El \refElem{Alumno.nombre} de cada \refElem{tEstudiante} ingresado en el paso \ref{IN-UA-CU3.1.1:selBoletas}.
+    		
+    		\Titem La \refElem{AlumnoAsignado.claveEnElProceso} de cada \refElem{tEstudiante} ingresado en el paso \ref{IN-UA-CU3.1.1:selBoletas}.
+    		
+    		\Titem El número total de inscripciones donde el \refElem{tEstudiante} puede inscribirse en cada \refElem{UdeA.udeA} seleccionadas en el paso \ref{IN-UA-CU3.1.1:selUA}.
+    		
+    		\Titem Los créditos SATCA de un \refElem{tEstudiante} son el resultado de la suma de los \refElem{UdeA.creditosSATCA} acumulados por cada \refElem{UdeA.udeA} en las que fue posible inscribirlo. 
+    		
+    		\Titem Los créditos TEPIC de un \refElem{tEstudiante} son el resultado de la suma de los \refElem{UdeA.creditosTEPIC} acumulados por cada \refElem{UdeA.udeA} en las que fue posible inscribirlo.
+    	\end{Titemize}	
+    }
+    % V 0.1 Ok.
+    \UCitem{Destino}{Pantalla.}
+    % V 0.1 TODO: Que la Unidad Académcia tenga alumnos por inscribir, que la Unidad académica tenga programas académcios vigentes o en transición en el periodo seleccionado, que el programa academico tenga una estructura educativa aprobada en el periodo escolar seleccionado.
+    % V 0.3 Ok.
+    \UCitem{Precondiciones}{%
+    	\begin{Titemize}
+    		\Titem \textbf{Sistematizada:} Que la \refElem{tUnidadAcademica} tenga al menos un \refElem{tEstudiante} por inscribir.
+    		
+    		\Titem \textbf{Sistematizada:} Que la \refElem{tUnidadAcademica} tenga al menos un \refElem{tProgramaAcademico} cuyo plan de estudios se encuentre vigente y ofertado en el \refElem{tPeriodoEscolar} y de la modalidad seleccionados.
+    		
+    		\Titem \textbf{Sistematizada:} Que el \refElem{tProgramaAcademico} tenga una \refElem{tEstructuraEducativa} aprobada o en proceso de aprobación en el \refElem{tPeriodoEscolar} seleccionado y con al menos un Grupo con una Unidad de Aprendizaje Ofertada.
+    	\end{Titemize}
+    }
+    % V 0.1 TODO: Se inscriben los alumnos seleccionados a las materias seleccionadas, se canbia el estado del alumno, se otorgan los sobrecupos cuando aplican.
+    % V 0.3 
+    \UCitem{Postcondiciones}{%
+    	\begin{Titemize}
+    		\Titem Se inscribe cada \refElem{tEstudiante} seleccionado a cada \refElem{tUnidadDeAprendizaje} seleccionada.
+    		\Titem Se cambia el estado de cada \refElem{tEstudiante} que se inscribió a inscrito.
+    		\Titem Se otorgan los sobrecupos cuando aplican.
+			\Titem Se actualiza la disponibilidad de cada Unidad de aprendizaje ofertada en la que se hayan inscrito estudiantes.
+    	\end{Titemize}
+    }
+    % V 0.1 TODO: Terminar la trayectoria primero para poder hacer la relaciónd e reglas.
+    % V 0.2 Ok
+    \UCitem{Reglas de Negocio}{%
+    	\begin{Titemize}
+    		\Titem \refIdElem{BR-IN-N024}
+    		\Titem \refIdElem{BR-IN-N025}
+    		\Titem \refIdElem{BR-IN-N026}
+    		\Titem \refIdElem{BR-IN-N027}
+    	\end{Titemize}
+    }
+    % V 0.1 TODO: Solicitar los mensajes que hagan falta y atregar los errores cuando no lah Programas Académicos, periodos, etc.
+    % V 0.3 
+    \UCitem{Errores}{%
+    	\begin{Titemize}
+    		\Titem \UCerr{Uno}{Cuando la \refElem{tUnidadAcademica} no tiene ningún \refElem{tEstudiante} sin inscribir a una \refElem{tUnidadDeAprendizaje},}{el sistema muestra el mensaje \refIdElem{MSG181} y termina el caso de uso.}
+    		
+    		\Titem \UCerr{Dos}{Cuando la \refElem{tUnidadAcademica} no tiene un \refElem{tProgramaAcademico} con plan de estudios vigente en el \refElem{tPeriodoEscolar},}{el sistema muestra el mensaje \refIdElem{MSG182} y termina el caso de uso.}
+    		
+    		\Titem \UCerr{Tres}{Cuando el Plan de estudios no tiene una \refElem{tEstructuraEducativa} aprobada o en proceso de aprobación,}{el sistema muestra el mensaje \refIdElem{MSG183} y termina el caso de uso.}
+    		
+	    	\Titem \UCerr{Cuatro}{Cuando no se encuentra \refElem{PlanDeEstudio.cargaMinima}, \refElem{PlanDeEstudio.cargaMedia} o \refElem{PlanDeEstudio.cargaMaxima} registrada,}{el sistema muestra el mensaje \refIdElem{MSG3} donde $<ELEMENTOS>$ = 'Datos de Carga' y termina el caso de uso.}
+	    	
+    		\Titem \UCerr{Cinco}{Cuando no se encuentra registrada la \refElem{PlanDeEstudio.division} del \refElem{tPlanEstudio} seleccionado,}{el sistema muestra el mensaje \refIdElem{MSG3} donde $<ELEMENTOS>$ = 'Semestres ó Niveles' y termina el caso de uso.}
+    		
+    		\Titem \UCerr{Seis}{Cuando no se encuentra ningún  \refElem{tGrupo} registrado,}{el sistema muestra el mensaje \refIdElem{MSG3} donde $<ELEMENTOS>$ = 'Grupos' y termina el caso de uso.}
+    		
+    		\Titem \UCerr{Siete}{Cuando no se encuentra ninguna  \refElem{tUnidadDeAprendizaje} registrada,}{el sistema muestra el mensaje \refIdElem{MSG3} donde $<ELEMENTOS>$ = 'Unidades de Aprendizaje' y termina el caso de uso.}
+    		    		
+    		\Titem \UCerr{Ocho}{Cuando el número de estudiantes ingresados sobrepasa el 150\% de la capacidad del grupo,}{el sistema muestra el mensaje \refIdElem{MSG188} y continúa en el paso \ref{IN-UA-CU3.1.1:selBoletas}.}
+    		
+    		\Titem \UCerr{Nueve}{Cuando el número de estudiantes inscritos que tiene una \refElem{tUnidadDeAprendizaje} es mayor o igual al de su capacidad,}{el sistema muestra el mensaje \refIdElem{MSG184} en la columna 'Mensaje' de la tabla mostrada en el paso \ref{IN-UA-CU3.1.1:tabla} y continúa con su trayectoria.}
+    		
+    		\Titem \UCerr{Diez}{Cuando la cantidad de créditos acumulados sea menor a la \refElem{PlanDeEstudio.cargaMinima},}{el sistema muestra el mensaje \refIdElem{MSG185} en la columna 'Mensaje' de la tabla mostrada en el paso \ref{IN-UA-CU3.1.1:tabla} y continúa con su trayectoria.}
+    	\end{Titemize}				
+    }
+	% V 0.1 TODO: Revisa lo que tien espino para ver que validó ya él y no hagas trabajo doble.
+	% V 0.3 Ok.
+    \UCitem{Viene de}{\refIdElem{IN-UA-CU3.1}}
+    % V 0.1 TODO: No está echo, corregir.
+    % V 0.3 Ok.
+    \UCitem{Disparadores}{
+    	\begin{Titemize}
+    		\Titem Requiere inscribir a los Estudiantes (Ver \refElem{tEstudiante}) a las Unidades de Aprendizaje (Ver \refElem{tUnidadDeAprendizaje}) en los Grupos(Ver \refElem{tGrupo}) deseados.
+    	\end{Titemize}
+    } 
+	% V 0.1 Ok.
+    \UCitem{Condiciones de Término}{
+    	Los Estudiantes (Ver \refElem{tEstudiante}) seleccionados quedan inscritos en las Unidades de Aprendizaje Ofertadas de un \refElem{tGrupo}.}
+	% V 0.1 TODO: Se puede quedar el grupo sin lugares, El alumno ya no puede volverse a inscribir mediante esta pantalla si cubre el mínimo de créditos.
+	% V 0.3 Ok.
+    \UCitem{Efectos Colaterales}{
+    	\begin{Titemize}
+    		\Titem Se puede quedar sin lugares un \refElem{tGrupo}.
+    		\Titem El \refElem{tEstudiante} ya no se puede volver a inscribir mediante esta pantalla si cubre la \refElem{PlanDeEstudio.cargaMinima} de Créditos\footnote{Ver \refElem{tCredito}}.
+    	\end{Titemize}
+    }
+	% V 0.1 Ok.
+    \UCitem{Referencia Documental}{}
+	% V 0.1 TODO: agregar operación, hora, usuario y descripcion del grupo, alumno y materias instritas.
+	% V 0.3 Ok.
+    \UCitem{Auditable}{Si, se registra la operación, fecha, hora, usuario que realizo la inscripción, el alumno, unidades de aprendizaje inscritas y los grupos inscritos}
+	% V 0.1 TODO: Datos personales , basate en la redacción del UA-CU4
+	% V 0.3 Ok.
+    \UCitem{Datos sensibles}{La consulta de los datos personales del alumno: Nombre completo y CURP. Este caso de uso habilita a los actores el uso de la CURP y nombre del alumno para su búsqueda e identificación para poder realizar su trabajo que es inscribirlos a las Unidades de Aprendizaje (Ver \refElem{tUnidadDeAprendizaje} de un \refElem{tGrupo} determinado.).}
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}	
+	% V 0.1 Ok.
+    \UCpaso[\UCactor] \label{IN-UA-CU3.1.1:solocitarInscribir}Presiona el botón \IUbutton{Inscribir por Grupo} de la pantalla \refIdElem{IN-UA-IU3.1}.
+    % V 0.1 DONE: Indicar de donde se toman los creditos y los demas datos, validar todas las precondiciones. aplica para los cuatro pasos
+    % Este dato aún no se tiene claro en el modelo de información.
+    %\UCpaso  \label{IN-UA-CU3.1.1:obtenerCreditos}Obtiene los tipos de \refElem{tCredito} vigentes en el \refElem{ProgramaAcademico}.\refErr{UnoFail}
+    % V 0.3 Ok.
+    \UCpaso Valida que la \refElem{tUnidadAcademica} tenga al menos un \refElem{tEstudiante} no inscrito cargado en el sistema con base en la regla de negocio \refIdElem{BR-IN-N024}.\refErr{Uno}
+    
+    \UCpaso Valida que el Programa académico tenga un Plan de estudios  vigente en el \refElem{tPeriodoEscolar} seleccionado en \refElem{IN-UA-CU3.1} con base en la regla de negocio \refIdElem{BR-IN-N025}.\refErr{Dos}
+    
+    \UCpaso Valida que el \refElem{tProgramaAcademico} tenga una \refElem{tEstructuraEducativa} aprobada en el \refElem{tPeriodoEscolar} seleccionado en \refElem{IN-UA-CU3.1} con base en la regla de negocio \refIdElem{BR-IN-N026}.\refErr{Tres}
+    
+    \UCpaso Obtiene la \refElem{PlanDeEstudio.cargaMinima}, \refElem{PlanDeEstudio.cargaMedia} y \refElem{PlanDeEstudio.cargaMaxima} del \refElem{PlanDeEstudio.nombre} vigente.\refErr{Cuatro}
+
+    \UCpaso Obtiene la \refElem{PlanDeEstudio.division} del \refElem{tPlanEstudio} vigente en el \refElem{PeriodoEscolar} seleccionado en \refIdElem{IN-UA-CU1} para determinar los niveles/semestres.\refErr{Cinco}
+    
+    \UCpaso Muestra la pantalla \refIdElem{IN-UA-IU3.1.1} con la información obtenida.
+    % V 0.1 Ok.
+    \UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:selNivel}Selecciona un nivel/semestre.
+    % V 0.1  Ok.
+    \UCpaso Obtiene los grupos que pertenecen al nivel/semestre seleccionado en el paso \ref{IN-UA-CU3.1.1:selNivel}.\refErr{Seis}
+    % V 0.1 Ok.
+    \UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:selGrupo}Selecciona un grupo.
+    % V 0.1 Ok.
+    \UCpaso \label{IN-UA-CU3.1.1:obtenerUA}Obtiene el nombre de la \refElem{UdeA.udeA}, los \refElem{UdeA.creditosSATCA}, los \refElem{UdeA.creditosTEPIC}, la \refElem{GrupoConUdeAEnOferta.capacidad} y la \refElem{GrupoConUdeAEnOferta.ocupacion} de cada unidad de aprendizaje que pertenece al grupo seleccionado en el paso \ref{IN-UA-CU3.1.1:selUA}.\refErr{Siete}
+    
+    % V 0.1 DONE: indicar que hay datos que se calculan, cuales se obtienen y cuales se calculan? para los cálculos se deben marcar las Reglas de Negocio que necesitas.
+    % V 0.3 Ok.
+    \UCpaso  \label{IN-UA-CU3.1.1:calcularSobrecupo}Calcula la cantidad de sobrecupo que tiene la \refElem{UdeA.udeA} con base en la regla de negocio \refIdElem{BR-IN-N027}.
+    % V 0.3 Ok.
+    \UCpaso Muestra una tabla con la información obtenida en el paso \ref{IN-UA-CU3.1.1:obtenerUA} y la información calculada en el paso \ref{IN-UA-CU3.1.1:calcularSobrecupo}, mostrándolos de izquierda a derecha:
+	    \begin{itemize}
+	    	\item unidad de aprendizaje
+	    	\item Créditos SATCA
+	    	\item Créditos TEPIC
+	    	\item Cupo
+	    	\item Inscritos
+	    	\item Sobrecupo
+	    \end{itemize}
+    % V 0.1 DONE: Cambia una o muchas por ``las''
+    % V 0.3 Ok.
+    \UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:selUA}Selecciona las Unidades de Aprendizaje deseadas.
+    % V 0.1 DONE: Cambia una o muchas por ``las''.
+    % V 0.3 Ok.
+    \UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:selBoletas}Ingresa las Boletas\footnote{Ver \refElem{AlumnoAsignado.boleta}}/Preboletas\footnote{Ver \refElem{AlumnoAsignado.preboleta}} deseadas.
+	% V 0.1 DONE: solo se validará que sean cadenas separadas por espacios comas tabuladores o enter.
+	% V 0.3 Ok.
+    \UCpaso Valida que la información ingresada en el paso \ref{IN-UA-CU3.1.1:selBoletas} sean cadenas separadas por espacios, comas, tabuladores o enter.
+    % V 0.3 Ok.
+    \UCpaso Valida que el número de Boletas\footnote{Ver \refElem{AlumnoAsignado.boleta}}/Preboletas\footnote{Ver \refElem{AlumnoAsignado.preboleta}} ingresadas en el paso \ref{IN-UA-CU3.1.1:selBoletas} no exceda el 150\% de la \refElem{GrupoConUdeAEnOferta.capacidad} del grupo con base en la regla de negocio \refIdElem{BR-IN-N027}.\refErr{Ocho}
+    % V 0.1 Ok.
+    \UCpaso Habilita el botón \IUbutton{Agregar al grupo}.
+    % V 0.1 Ok.    
+    \UCpaso[\UCactor] \label{IN-UA-CU3.1.1:agregarAlGrupo}Presiona el botón \IUbutton{Agregar al grupo}.
+    % V 0.1 DONE: No cimula, busca sus datos, lo agrega al grupo y lleva la cuenta de lugares ocupados para marcar cuando un alumno ya no cabe en el grupo
+    \UCpaso \label{IN-UA-CU3.1.1:obtenerEstudiante}Para cada boleta o preboleta ingresados en el paso \ref{IN-UA-CU3.1.1:selBoletas} obtiene sus datos (\refElem{AlumnoAsignado.boleta} o \refElem{AlumnoAsignado.preboleta}, \refElem{Alumno.nombre}, \refElem{AlumnoAsignado.claveEnElProceso}).
+    % V 0.3 Ok.
+    \UCpaso \label{IN-UA-CU3.1.1:calcularOcupabilidad}Agrega cada \refElem{tEstudiante} a cada Unidad de Aprendizaje Ofertada ingresada en el paso \ref{IN-UA-CU3.1.1:selUA}, llevando la cuenta de la Unidades de Aprendizaje a las que es posible agregarlo, y llevando la cuenta de los lugares ocupados en la \refElem{tUnidadDeAprendizaje} para verificar que éstos sean menor que su \refElem{GrupoConUdeAEnOferta.capacidad} con base en la regla de negocio \refIdElem{BR-IN-N027}.\refErr{Nueve} \refErr{Diez}
+    % V 0.3 Ok.
+    \UCpaso \label{IN-UA-CU3.1.1:calcularCreditosSATCA}Calcula la cantidad de créditos SATCA o TEPIC (según sea el caso) de cada \refElem{tEstudiante} sumando los \refElem{UdeA.creditosSATCA} SATCA o TEPIC acumulados por cada \refElem{UdeA.udeA} en las que fue posible agregarlo.
+    % V 0.3 Ok.
+    \UCpaso  \label{IN-UA-CU3.1.1:calcularCreditosTEPIC}Calcula la cantidad de créditos SATCA o TEPIC de cada \refElem{tEstudiante} sumando los creditos acumulados por cada \refElem{UdeA.udeA} en las que fue posible agregarlo.
+	% Marcar con trayectorias alternativas los mensajes que llegan a ocurrir.
+    % TOCHK El estandar que se esta utilizando en los procesos es que si sólo se muestra un mensaje, se maneje como error.
+    % V 0.3 Ok.
+    \UCpaso  \label{IN-UA-CU3.1.1:tabla}Muestra una tabla con la información obtenida en los pasos \ref{IN-UA-CU3.1.1:obtenerEstudiante}, \ref{IN-UA-CU3.1.1:calcularOcupabilidad}, \ref{IN-UA-CU3.1.1:calcularCreditosSATCA} y \ref{IN-UA-CU3.1.1:calcularCreditosTEPIC}, mostrando la misma de izquierda a derecha:
+	    \begin{itemize}
+	    	\item Boleta / Preboleta
+	    	\item Nombre
+	    	\item Tipo
+	    	\item No. de Materias
+	    	\item Créditos SATCA
+	    	\item Créditos TEPIC
+	    	\item Mensaje
+	    	\item Acciones
+	    \end{itemize}
+    % V 0.1 Ok.
+    \UCpaso Actualiza el número de estudiantes inscritos de cada \refElem{tUnidadDeAprendizaje}, sumándole la cuenta de los lugares ocupados calculados en el paso \ref{IN-UA-CU3.1.1:calcularOcupabilidad}.
+    % V 0.3 TODO: Agrega un paso para indicar que si no alcanza el mínimo de creditos se muestra el mensaje que indica que ``no cubre carga mínima''.
+
+    % V 0.1 Ok.    
+    \UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:inscribir}Presiona el botón \IUbutton{Inscribir}.\refTray{A} \refTray{B} \refTray{C}
+    % V 0.1 DONE: Calcula los datos del mensaje primero.
+    % V 0.3 Ok.
+    \UCpaso Calcula el número de \refElem{tEstudiante} que se inscribirán al \refElem{tGrupo} seleccionado en el paso \ref{IN-UA-CU3.1.1:selGrupo}.
+    % V 0.3 Ok.
+    \UCpaso Muestra el mensaje \refIdElem{MSG186} solicitando la confirmación de la inscripción.
+    % V 0.1 Ok.    
+    \UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:confirmar}Presiona el botón \IUbutton{Si}.\refTray{E}
+    % V 0.1 DONE: Actualiza el estado, actualiza los lugares disponibles, otorga sobre cupos si es necesario.
+    % V 0.3 Ok.
+    \UCpaso Registra a los estudiantes en las Unidades de Aprendizaje\footnote{Ver \refElem{tUnidadDeAprendizaje}} seleccionadas en el paso \ref{selUA}.
+    % V 0.3 Ok.
+    \UCpaso Actualiza el estado de los \refElem{tEstudiante} en las Unidades de Aprendizaje\footnote{Ver \refElem{tUnidadDeAprendizaje}} seleccionadas en el paso \ref{selUA}.
+    % V 0.3 Ok.
+    \UCpaso Actualiza la \refElem{GrupoConUdeAEnOferta.ocupacion} de cada \refElem{UdeA.udeA}, otorgando sobrecupos si es necesario en el \refElem{tGrupo} seleccionado en el paso \ref{IN-UA-CU3.1.1:selGrupo}.
+\end{UCtrayectoria}
+
+%Trayectoria Alternativas
+
+%----------------- A
+\begin{UCtrayectoriaA}{A}{El actor requiere cancelar la inscripción de un estudiante.}
+	% V 0.3 Ok.
+	\UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:eliminarEstudiante}Da clic sobre el ícono \IUBorrar.
+	% V 0.3 Ok.
+	\UCpaso Actualiza el número de estudiantes inscritos de cada \refElem{tUnidadDeAprendizaje} en la que el \refElem{tEstudiante} iba a ser inscrito, restándole 1.
+	% V 0.3 Ok.
+	\UCpaso Elimina la información del \refElem{tEstudiante} seleccionado en el paso \ref{IN-UA-CU3.1.1:eliminarEstudiante} de la tabla generada en el paso \ref{IN-UA-CU3.1.1:tabla}.
+	% V 0.3 Ok.
+	\UCpaso Continúa en el paso \ref{IN-UA-CU3.1.1:inscribir}  de la trayectoria principal.
+\end{UCtrayectoriaA}
+
+%----------------- B
+\begin{UCtrayectoriaA}{B}{El actor requiere dar sobrecupo a un estudiante.}
+	\UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:sobrecupo}Da clic sobre el ícono \IUContenido.
+	% V 0.3 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-UA-IU3.1} con las Unidades de Aprendizaje\footnote{Ver \refElem{tUnidadDeAprendizaje}} obtenidas en el paso \ref{IN-UA-CU3.1.1:obtenerUA}.
+	% V 0.3 Ok.
+	\UCpaso[\UCactor]  \label{IN-UA-CU3.1.1:sobrecupoSelUA}Selecciona las Unidades de Aprendizaje\footnote{Ver \refElem{tUnidadDeAprendizaje}} en las que desea dar sobrecupo.
+	% V 0.3 Ok.
+	\UCpaso[\UCactor] Presiona el botón \IUbutton{Aceptar}.\refTray{D}
+	% V 0.3 Ok.
+	\UCpaso Actualiza el número de estudiantes inscritos y el número de \refElem{GrupoConUdeAEnOferta.capacidad} de cada \refElem{tUnidadDeAprendizaje} seleccionadas en el paso \ref{IN-UA-CU3.1.1:sobrecupoSelUA}, sumándole 1.
+	% V 0.3 Ok.
+	\UCpaso Actualiza el estatus de la inscripción del \refElem{tEstudiante} en la tabla generada en el paso \ref{IN-UA-CU3.1.1:tabla}.
+	% V 0.3 Ok.
+	\UCpaso Continúa en el paso \ref{IN-UA-CU3.1.1:inscribir}  de la trayectoria principal.
+\end{UCtrayectoriaA}
+
+%----------------- C
+\begin{UCtrayectoriaA}[Termina el caso de uso]{C}{El actor requiere cancelar la inscripción.}
+	% V 0.3 Ok.    
+	\UCpaso[\UCactor] Presiona el botón \IUbutton{Cancelar}.
+	% V 0.3 Ok.    
+	\UCpaso Muestra la pantalla \refIdElem{IN-UA-IU3.1}.
+\end{UCtrayectoriaA}
+
+%----------------- D
+\begin{UCtrayectoriaA}{D}{El actor requiere cancelar la asignación de sobrecupo.}
+	% V 0.1 Ok.    
+	\UCpaso[\UCactor] Presiona el botón \IUbutton{Cancelar}.
+	% V 0.1 Ok.    
+	\UCpaso Continúa en el paso \ref{IN-UA-CU3.1.1:inscribir} de la trayectoria principal.
+\end{UCtrayectoriaA}
+
+%----------------- E
+\begin{UCtrayectoriaA}{E}{El actor requiere cancelar la confirmación de la inscripción.}
+	% V 0.3 Ok.    
+	\UCpaso[\UCactor] Presiona el botón \IUbutton{No}.
+	% V 0.1 Ok.    
+	\UCpaso Continúa en el paso \ref{IN-UA-CU3.1.1:inscribir} de la trayectoria principal.
+\end{UCtrayectoriaA}
+

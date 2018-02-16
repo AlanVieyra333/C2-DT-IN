@@ -1,0 +1,204 @@
+\begin{UseCase}{IN-DAE-CU6}{Gestionar estudiantes cargados por unidad académica}{
+	% V 0.1 DONE: Especificar la naturaleza de la información (por ejemplo, informacion de los aspirantes cargados e inscritos por cada Unidad académcia, etc.)
+	
+	Muestra al actor la información de los aspirantes que se encuentren inscritos y sin inscribir así como alumnos inscritos y sin inscribir de todas las unidades académicas correspondientes al instituto, dependiendo de la modalidad y periodo escolar del ciclo escolar seleccionado  permite consultar dicha información con los iconos \IUVer y  \IUSincro.
+	}
+    \UCccitem{Versión}{0.3}
+    \UCccsection{Datos para el control Interno}	
+    \UCccitem{Elaboró}{Bruno Suárez Cruz }
+    \UCccitem{Supervisó}{Ulises Vélez Saldaña}
+    \UCccitem{Operación}{Gestionar}
+    \UCccitem{Prioridad}{Media}
+    \UCccitem{Complejidad}{Baja}
+    \UCccitem{Volatilidad}{Alta}
+    \UCccitem{Madurez}{Baja}
+    \UCccitem{Estatus}{Por corregir}
+    \UCccitem{Dificultades}{}
+    \UCccitem{Fecha del último estatus}{4 de Enero del 2018}
+  
+    \UCccsection{Revisión Versión 0.2}
+    \UCccitem{Fecha}{5 de Enero del 2018}
+    \UCccitem{Evaluador}{Ulises Vélez Saldaña}
+    \UCccitem{Resultado}{Aplicar las correcciones marcadas en los TODO's}
+    \UCccitem{Observaciones}{Ver TODO's en los comentarios}
+    \UCsection{Atributos}
+    % V.0.2 Ok.
+    \UCitem{Actor}{%
+    	\begin{Titemize}
+    		\Titem \refElem{DAEJefeDeRegistro}
+    		\Titem \refElem{DAEAdministradorDeRegistro}		
+	    \end{Titemize}
+	}
+	% V.0.1 DONE: Cambiar por: Conocer el avance en el proceso de inscripción.
+	% V.0.2 Ok.
+    \UCitem{Propósito}{Conocer el avance en el proceso de inscripción.}
+    % V.0.1 DONE.
+    \UCitem{Entradas}{\refElem{PeriodoEscolar}}
+    % V.0.1 DONE.
+    \UCitem{Origen}{ 	
+    	\begin{Titemize}
+    		\Titem \ioObtener
+    		\Titem  Se selecciona con el mouse.
+    	\end{Titemize}
+    }	
+    % V.0.1 DONE: 
+    % - Referenciar Nivel educativo, 
+    % - La forma en que se calculan las cantidades si es fácil se describen en los pasos de los casos de uso y si no se deben escribir las reglas de negocio correspondientes.
+    % - Los datos que debe mostrar el caso de uso son: 
+    %   - El total de Alumnos sin escribir de cada unidad académica en un periodo escolar,
+    %   - El total de Alumnos inscritos de cada unidad académica en un periodo escolar.
+    %   - El total de Aspirantes sin escribir de cada unidad académica en un periodo escolar.
+    %   - El total de Aspirantes inscritos de cada unidad académica en un periodo escolar.
+    %   - El total de Aspirantes cuya inscripción quedó en cancelación por el proceso de admisión de cada unidad académica en un periodo escolar.
+    % - Actualizar también la pantalla correspondiente.
+    
+    % V.0.2 DONE: Referenciar la regla de negocio en cada caso, y explicar el nivel de desglose de la tabla. Guiarse por el primer ejemplo. las reglas que aplican son de la BR-IN-N055 en adelante.
+    
+    \UCitem{Salidas}{%
+    	Se muestra una tabla con un renglón por cada unidad académica participante en un Periodo Académico (ver \refElem{PeriodoEnUnidadAcademica}). En cada columna contiene de izquierda a derecha:
+    	\begin{Cenumerate}
+			\item El \refElem{UnidadAcademica.nombre} de la Unidad Académica.
+    		\item El \refElem{tNivelEducativo} de la Unidad Académica.
+    		
+			\item Total de Alumnos esperados de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N007}.
+			
+			\item Total de Aspirantes sin inscribir de cada unidad académica en un periodo escolar con base a la regla de negocio \refIdElem{BR-IN-N010}.
+			
+			\item Total de Aspirantes inscritos de cada unidad académica en un periodo escolar con base a la regla de negocio \refIdElem{BR-IN-N011}. 
+			
+			item Total de Alumnos sin inscribir de cada unidad académica en un periodo escolar con base a la regla de negocio \refIdElem{BR-IN-N012}. 
+			
+			\item Total de Alumnos inscritos de cada unidad académica en un periodo escolar con base a la regla de negocio \refIdElem{BR-IN-N013}. 
+		
+			\item Total de Aspirantes cuya inscripción quedó en cancelación por el proceso de admisión de cada unidad académica en un periodo escolar con base a la regla de negocio \refElem{BR-IN-N014}. 
+			
+			\item Total de las suma de los datos de cada columna (\textbf{Alumnos esperados,Aspirantes sin inscribir,Aspirantes inscritos,Alumnos sin inscribir,Alumnos inscritos,Aspirantes con cancelación})
+			
+    	\end{Cenumerate}			
+    }
+    % V.0.1 DONE.
+    \UCitem{Destino}{Pantalla}
+    % V.0.1 DONE.
+    \UCitem{Precondición}{
+    		\begin{Titemize}
+    		\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un Ciclo Escolar y una Modalidad.
+    		\Titem \textbf{Sistematizada:} Que haya al menos una unidad académica registrada.
+    	\end{Titemize}	
+    }
+    % V.0.1 DONE.
+    \UCitem{Postcondiciones}{ Ninguna}
+    % V.0.1 TODO: Actualizar en caso de que se definan regoas de negocio o quitar esta regla en caso de que no se referencíe ninguna.
+    % V.0.2 DONE: Idem.
+    %CUALES SERAN LOS NUEVOS IDENTIFICADORES
+       \UCitem{Reglas de Negocio}{%
+    
+    	\begin{Titemize}
+    		\Titem  \refIdElem{BR-IN-N007}.
+    		\Titem  \refIdElem{BR-IN-N008}.
+    		\Titem  \refIdElem{BR-IN-N010}.
+    		\Titem  \refIdElem{BR-IN-N011}.
+    		\Titem  \refIdElem{BR-IN-N012}.
+    		\Titem  \refIdElem{BR-IN-N013}.
+    		
+    		\Titem  \refIdElem{BR-IN-N014}.
+    		\Titem  \refIdElem{BR-EE-N037}.
+    		
+    		 %Regla de negocio para poder determinar por omisión el periodo que aparecerá, si ea que no existe en otro modulo.
+    	\end{Titemize}	
+	}
+	% V.0.2 DONE: Si no hay errores, colocar la palabra ``Ninguno.''
+    \UCitem{Errores}{Ninguno}
+	% V.0.1 DONE: Citar el CU correspondiente.
+	%Falta especificar el menu 
+	% V.0.2 DONE: Especificar el menú.
+    \UCitem{Viene de}{\refIdElem{IN-DAE-MN1}}
+    % V.0.1 DONE: Terminar
+    % V.0.2 Ok.
+    \UCitem{Disparadores}{ El actor requiere conocer el avance en el proceso de inscripción.
+    }
+    % V.0.1 DONE.
+    % V.0.2 Ok.
+    \UCitem{Condiciones de Término}{Se muestran los datos solicitados para las unidades académicas para el periodo.}
+    % V.0.1 DONE.
+    \UCitem{Referencia Documental}{}
+    % V.0.1 DONE.
+    \UCitem{Auditable}{No}
+    % V.0.1 DONE.
+    \UCitem{Datos sensibles}{Ninguno}    
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+	% V.0.1 DONE.
+    \UCpaso Obtiene el acrónimo y nombre de las Unidades Académicas para la modalidad y ciclo escolar seleccionados en el caso de uso \refIdElem{IN-DAE-CU1}. 
+    % V.0.1 DONE.
+    \UCpaso Obtiene los periodos escolares asociados al ciclo escolar seleccionado previamente.
+    % V.0.1 DONE: Referenciar la regla de negocios.
+    
+    % V.0.2 TODO: Referenciar la Regla de negocios.
+    
+    \UCpaso Obtiene el periodo escolar actual con base a la regla de negocio \refElem{BR-EE-N037}.  y lo establece por omisión.
+    
+    % V.0.1 DONE: Separar el dato de ``Nivel educativo'' del resto. Describir la forma de hacer el conteo para cada dato o referenciar las reglas de negocio correspondientes. En el caso de Aspirantes no inscritos: Suma la cantidad de estudiantes asignados a cada Unidad Académica en el periodo escolar seleccionado que no tienen registrada una boleta ni una inscripción.
+    
+    % V.0.2 DONEregar el paso en el que el sistema obtiene las Unidades Académicas que participan en el Periodo Escolar seleccionado.
+   
+    % V.0.2 DONE el siguiente paso cambiar la última parte por ``de cada Unidad Académica obtenida.''
+    
+    \UCpaso \label{IN-DAE-CU6:ges} Obtiene el Nivel educativo de cada Unidad Académica.       
+    
+    
+         % V.0.2 DONE: Especificar en pasos por separados para cada dato: Estudiantes esperados, Aspirantes inscriptos, aspirantes no inscritos, alumnos inscritos, alumnos no inscritos y aspirantes en cancelación.
+    
+   
+    
+     \UCpaso \label{IN-DAE-CU6:cambio} Obtiene el total de \textbf{Alumnos esperados} de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N005}
+     
+     \UCpaso Obtiene el total de \textbf{Aspirantes sin Inscribir} de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N010}
+     
+      \UCpaso Obtiene el total de \textbf{Aspirantes Inscritos} de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N011}
+      
+      \UCpaso Obtiene el total de \textbf{Alumnos sin Inscribir} de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N012}
+          
+      \UCpaso Obtiene el total de \textbf{Alumnos Inscritos} de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N013}
+      
+      \UCpaso Obtiene el total de \textbf{Alumnos con Cancelación} de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N014}
+    
+    % V.0.1 DONE: Agregar el paso en el que contabiliza el total del Instituto de cada dato.
+    
+    % V.0.2 DONEplicar como: ``Contabiliza el total decada columna sumando los datos de cada columna.''
+    \UCpaso Realiza la suma total de los datos sumando el valor de las celdas de cada columna (\textbf{Alumnos esperados,Aspirantes sin inscribir,Aspirantes inscritos,Alumnos sin inscribir,Alumnos inscritos,Aspirantes con cancelación})
+    
+    
+    % V.0.1 DONE.
+    
+    
+    % V.0.2 DONE: El error uno está comentado: agregar el error o quitar la referencia.
+    \UCpaso \label{IN-DAE-CU6:recarga} Muestra la pantalla \refIdElem{IN-DAE-UI6} con la información obtenida. \refTray{A}% cambio en el periodo escolar  
+    % V.0.1 DONE.
+    \UCpaso [\UCactor] Gestiona la información de las Unidades Académicas con los iconos \IUVer y  \IUSincro.\refTray{B}
+\end{UCtrayectoria}
+
+
+\begin{UCtrayectoriaA}{A}{Cambio de periodo escolar.}
+	% V.0.1 DONE.
+	\UCpaso [\UCactor] 	Selecciona el periodo escolar distinto al definido por omisión.
+	% V.0.1 DONE.
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU6:cambio}  de la trayectoria principal.·
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{B}{Se requiere refrescar la información.}
+	% V.0.1 Ok.
+	\UCpaso [\UCactor] 	Da clic en el icono \IUSincro para refrescar la información.
+	% V.0.1 DONE: No se ha definido el proceso pero el botón de recargar lo que hace es disparar el proceso de actulaización.
+	% V.0.2 Ok.
+	\UCpaso Se dispara el proceso de actualización (ver \refElem{IN-DAE-PR-01}).
+	% V.0.2 Ok.
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU6:cambio}  de la trayectoria principal.
+\end{UCtrayectoriaA}
+
+\subsection{Puntos de extensión}
+
+%Cueles son los puntos de extensión
+\UCExtensionPoint{Gestionar estudiantes cargados por programa académico}{El actor requiere Gestionar estudiantes cargados por programa académico}{ Paso \ref{IN-DAE-CU6:ges} de la Trayectoria Principal}{\refIdElem{IN-DAE-CU6.2}}
+

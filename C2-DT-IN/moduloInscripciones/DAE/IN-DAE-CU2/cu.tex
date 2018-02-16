@@ -1,0 +1,136 @@
+\begin{UseCase}{IN-DAE-CU2}{Gestionar Calendario Escolar}{
+		% V 0.1: DONE.
+		Permite realizar las acciones requeridas para controlar el \refElem{CalendarioAcademico} mediante el cual las Unidades Académicas llevarán a cabo sus funciones en un ciclo escolar.\\
+		El registro de los Calendarios Escolares se regirá por las distintas modalidades educativas dentro del Instituto, las Unidades Académicas podrán ser asociadas solo a un \refElem{CalendarioAcademico}, mientras que un Calendario Escolar puede tener una o más Unidades Académicas asociadas.
+	}
+	\UCccitem{Versión}{1.0}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Bruno Suárez Cruz }
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Definir}
+	\UCccitem{Prioridad}{Media}
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Alta}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Revisado por análisis. Listo para discutirse con desarrollo y Base de Datos.}
+	\UCccitem{Dificultades}{}
+	\UCccitem{Fecha del último estatus}{4 de Diciembre de 2017}
+	\UCccsection{Revisión V 0.1}
+	\UCccitem{Fecha}{4 de Diciembre de 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{
+		Aplicar correcciones marcadas en los TODO's.
+	}
+	\UCccsection{Revisión V 0.2}	
+	\UCccitem{Fecha del último estatus}{12 de Diciembre de 2017}
+	\UCccitem{Fecha}{12 de Diciembre de 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Pasa la revisión de análisis.}
+	\UCccitem{Observaciones}{
+		Ninguna.
+	}
+	\UCsection{Atributos}
+	% V 0.1 DONE: Agregar Actor, \refElelm{DAEJefeDeRegistro}
+	% V 0.2 Ok.
+	\UCitem{Actor}{%
+		\Titem \refElem{DAEJefeDeRegistro}
+		\Titem \refElem{DAEAdministradorDeRegistro}
+	}
+	\UCitem{Propósito}{%
+		% V 0.1 Ok.
+		Programar los tiempos en los cuales las actividades académicas y de gestión escolar se llevaran acabo en un ciclo escolar.
+	}
+	% V 0.1 DONE: Dejar como ninguna.
+	% V 0.2 Ok.
+	\UCitem{Entradas}{Ninguno}
+	% V 0.2 Ok.
+	\UCitem{Origen}{No aplica}
+	% V 0.1: Ok.
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem Acrónimos de las Unidades académicas asignadas a cada  \refElem{CalendarioAcademico}.
+			\Titem Cronograma con las fechas de las actividades en cada Calendario Escolar.
+			\Titem Acrónimos de las Unidades académicas de nivel superior, nivel medio superior y posgrado sin cronograma definido.
+		\end{Titemize}			
+	}
+	% V 0.1: Ok.
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondición}{%
+		% V 0.1: Ok.
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un Ciclo Escolar y una Modalidad.
+			\Titem \textbf{Sistematizada:} Que haya al menos una unidad académica registrada.
+		\end{Titemize}	
+	}
+	% V 0.1: Ok.
+	\UCitem{Postcondiciones}{Ninguna}
+	% V 0.1: Pendiente por revisar.
+	\UCitem{Reglas de Negocio}{Ninguna}
+	% V 0.1: Ok.
+	\UCitem{Errores}{
+		\begin{Titemize}	
+			\Titem \UCerr{Uno} {Cuando no se encuentra algún \textbf{CalendarioAcademico} muestra el mensaje \refIdElem{MSG3} indicando que no hay Calendarios escolares para el ciclo escolar y muestra la pantalla \refIdElem{IN-DAE-UI2a} y termina caso de uso}.
+		\end{Titemize}
+	}
+	% V 0.1: Ok.
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU1}}
+	% V 0.1: Ok.
+	\UCitem{Disparadores}{
+		\begin{Titemize}
+			\Titem El actor requiere definir un \textbf{Calendario Escolar} para el periodo escolar próximo a planear.
+			\Titem El actor requiere Visualizar el \textbf{Calendario Escolar} del periodo escolar actual o anterior.
+		\end{Titemize}
+	} 
+	% V 0.1: Ok.
+	\UCitem{Condiciones de Término}{Se muestran los cronogramas registrados con las unidades académicas asociadas y al final las unidades académicas que no tienen definido un cronograma.}
+	\UCitem{Referencia Documental}{}
+	\UCitem{Auditable}{No}
+	\UCitem{Datos sensibles}{Ninguno}
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+	% V 0.1: Ok.
+	\UCpaso [\UCactor] Da clic en la opción \textbf{Calendarios Académicos} de menú \refElem{IN-DAE-MN1}.
+	% V 0.1: Ok.
+	\UCpaso Obtiene los Calendarios Académicos registrados para el ciclo escolar y modalidad seleccionados. \refErr{Uno} 
+	% V 0.1: Ok.
+	\UCpaso Obtiene los acrónimos de las Unidades Académicas asociadas a cada Calendario.
+	% V 0.1: Ok.
+	\UCpaso Revisa cual de las Unidades Académicas cuentan con un Calendario Personalizado.
+	% V 0.1: Ok.
+	
+	\UCpaso Obtiene los Acrónimos de las Unidades Académicas que no cuentan con un Calendario asignado.
+	% V 0.1: Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2} con la información obtenida.
+	\UCpaso Deshabilita el botón \IUbutton{Eliminar} de los Calendarios Académicos donde la fecha de inicio de semestre establecida en el caso de uso \refIdElem{IN-DAE-CU2.1} es anterior a la fecha del dia de consulta . 
+	% V 0.1: Ok.
+	\UCpaso [\UCactor] \label{DaeIinCu1:ges} Gestiona los \textbf{Calendarios Escolares} con los botones: \IUbutton{Visualizar Calendario}, \IUbutton{Modificar Calendario}, \IUbutton{Eliminar Calendario}, \IUbutton{Definir Calendario} de las Unidades Académicas asociadas a cada Calendario Escolar. \refTray{A}
+\end{UCtrayectoria}
+
+
+\begin{UCtrayectoriaA}{A}{Se requiere Continuar con el Registro de Calendario}
+	
+	\UCpaso [\UCactor] 	Presiona el botón \IUbutton{Continuar con el Registro de Calendario} de la pantalla \refIdElem{IN-DAE-UI2a}.
+	
+	\UCpaso Extiende al caso de uso \refIdElem{IN-DAE-CU2.1}
+	
+\end{UCtrayectoriaA}
+
+
+
+\subsection{Puntos de extensión}
+
+% V 0.1: DONE: Definir la numeración de los CU.
+% V 0.2 Ok.
+
+\UCExtensionPoint{Definir Calendario Escolar}{El actor requiere definir un Calendario Escolar}{ Pasó \ref{DaeIinCu1:ges} de la Trayectoria Alternativa}{\refIdElem{IN-DAE-CU2.1}}
+
+\UCExtensionPoint{Modificar el Calendario Escolar}{El actor requiere \textbf{modificar} el Calendario Escolar}{ Pasó \ref{DaeIinCu1:ges} de la Trayectoria Principal}{\refIdElem{IN-DAE-CU2.2}}
+
+\UCExtensionPoint{Eliminar Calendario Escolar}{El actor requiere \textbf{Eliminar} el Calendario Escolar}{ Pasó \ref{DaeIinCu1:ges} de la Trayectoria Principal}{\refIdElem{IN-DAE-CU2.3}}
+
+\UCExtensionPoint{Visualizar el detalle del Calendario Escolar}{El actor requiere \textbf{visualizar} el detalle del Calendario Escolar}{ Paso \ref{DaeIinCu1:ges} de la Trayectoria Principal}{\refIdElem{IN-DAE-CU2.4}}
+
+\UCExtensionPoint{Visualizar el detalle del Calendario Escolar de una Unidad Académica}{El actor requiere Visualizar el detalle del Calendario Escolar de una Unidad Académica}{ Pasó \ref{DaeIinCu1:ges} de la Trayectoria Principal}{\refIdElem{IN-DAE-CU2.5}}

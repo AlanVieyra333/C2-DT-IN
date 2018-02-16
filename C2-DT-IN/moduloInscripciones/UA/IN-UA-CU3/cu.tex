@@ -1,0 +1,158 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-UA-CU3}{Visualizar proceso de inscripción}{
+	% V 0.1 TOCHK: Indicar que permite conocer el estado actual del proceso de inscripción, viendo desde los Programas académicos ofertados en el presente ciclo escolar, así como los lugares esperados, los estudiantes asignados y cuales de ellos ya son alumnos, cuales ya están inscritos y cuales están en proceso de cancelación.
+	% V 0.2 Ok.
+	Permite conocer el estado actual del proceso de inscripción, viendo: los Programas académicos ofertados en el ciclo escolar seleccionado, los lugares esperados, los estudiantes asignados y cuales de ellos ya son alumnos, cuales ya están inscritos y cuales están en proceso de cancelación.
+}
+	\UCccitem{Versión}{0.2}
+	\UCccsection{Datos para el control Interno}	
+		\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+		\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+		\UCccitem{Operación}{Gestión}
+		\UCccitem{Prioridad}{Alta}
+		\UCccitem{Complejidad}{Baja}
+		\UCccitem{Volatilidad}{Media}
+		\UCccitem{Madurez}{Alta}
+		\UCccitem{Estatus}{Revisado}
+		\UCccitem{Dificultades}{
+%			\begin{Titemize}
+%				\Titem \TODO
+%			\end{Titemize}
+		}
+		\UCccitem{Fecha del último estatus}{14 de Febrero del 2018}
+	\UCccsection{Revisión Versión 0.1}
+		\UCccitem{Fecha}{12 de Febrero de 2018}
+		\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+		\UCccitem{Resultado}{Aplicar correcciones}
+		\UCccitem{Observaciones}{Revisar los TODO's y aplicar correcciones}
+	\UCccsection{Revisión Versión 0.2}
+		\UCccitem{Fecha}{14 de Febrero de 2018}
+		\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+		\UCccitem{Resultado}{Aprobado}
+		\UCccitem{Observaciones}{Ninguna}
+	\UCsection{Atributos}
+		% V 0.1 Ok.
+		\UCitem{Actores}{\refElem{UAJefeDeGestionEscolar}}
+		% V 0.1 TOCHK: Saber si hay estudiantes que aun no han sido inscritos, si aun no tienen boleta o si aun no han sido cargados desde el sistema de admisiones.
+		% V 0.2 Ok.
+		\UCitem{Propósito}{Saber si hay estudiantes que aun no han sido inscritos, si aun no tienen boleta o si aun no han sido cargados desde el sistema de admisiones.}
+		% V 0.1 Ok.
+		\UCitem{Entradas}{Periodo escolar\footnote{Ver \refElem{PeriodoEscolar.clave}}}
+		% V 0.1 Ok.
+		\UCitem{Origen}{\ioSeleccionar}
+		% V 0.1 Ok.
+		\UCitem{Salidas}{%
+			\begin{Titemize}
+		
+				\Titem El número de Programas Académicos (Ver \refElem{tProgramaAcademico}) ofertados en la Unidad Académica.
+				
+				\Titem La \refElem{Corrida.fechaDeEjecucion} de la ultima carga que tuvo el proceso de inscripción.	
+				
+				\Titem Tabla que muestra el \refElem{PlanDeEstudio}, \refElem{Modalidad}, cantidad de estudiantes \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesEsperados}, \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesCancelados},  \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesCargadosSinBoleta},  \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesInscritosSinBoleta},  \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesCargadosConBoleta},  \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesInscritosConBoleta} de los \refElem{ProgramaAcademico} ofertados en el periodo escolar seleccionado.
+			\end{Titemize}
+		}
+		% V 0.1 Ok.
+		\UCitem{Destino}{Pantalla}
+		% V 0.1 TOCHK: Que la UA del actor tenga al menos un programa académico en la modalidad seleccionada, con plan de estudios vigente y que que participa en el ciclo escolar seleccionado, (?`podemos poner una regla de negocios que defina Programa Académico Ofertado en el ciclo escolar y Unidad académica, el cual implique que dicho PA pertenece a la UA, tiene un PE vigente y es ofertado en dicho Ciclo escolar?)
+		% V 0.2 Ok.
+		\UCitem{Precondiciones}{%
+			\begin{Titemize}
+				\Titem Que se haya seleccionado un \textbf{Ciclo Escolar}.
+				\Titem Que se haya seleccionado una \textbf{Modalidad}.
+				\Titem Que exista al menos un \textbf{Periodo Escolar} registrado en el sistema.
+				\Titem Que la UA del actor tenga al menos un programa académico en la modalidad seleccionada, con plan de estudios vigente y que que participa en el ciclo escolar seleccionado.
+		\end{Titemize}}
+		% V 0.1 Ok.
+		\UCitem{Postcondiciones}{Ninguna}
+		% V 0.1 Ok.
+		\UCitem{Reglas de Negocio}{%
+			\begin{Titemize}
+				\Titem \refIdElem{BR-IN-N010}
+				\Titem \refIdElem{BR-IN-N011}
+				\Titem \refIdElem{BR-IN-N012}
+				\Titem \refIdElem{BR-IN-N013}
+				\Titem \refIdElem{BR-IN-N014}	
+			\end{Titemize}
+		}
+		% V 0.1 Ok.
+		\UCitem{Errores}{%
+			\begin{Titemize}	
+				\Titem \UCerr{Uno}{Cuando no existe al menos un \textbf{Periodo Escolar} registrado en el sistema,}{se muestra el mensaje \refIdElem{MSG16} indicando que no es posible visualizar el proceso de inscripción pues es necesario que exista al menos un periodo escolar registrado y termina el caso de uso.}	
+				\Titem \UCerr{Dos}{Cuando no existe al menos un \textbf{Programa Académico} vigente con oferta educativa registrada en la Unidad Académica,}{se muestra el mensaje \refIdElem{MSG16} indicando que no es posible visualizar el proceso de inscripción pues es necesario que exista al menos un programa académico vigente con oferta educativa registrada  y termina el caso de uso.}	
+			\end{Titemize}
+		}
+		% V 0.1 Ok.
+		\UCitem{Viene de}{Primario}
+		% V 0.1 TOCHK: Agregar: Que el Actor desea inscribir alumnos a un programa académico. Que el actor necesita saber si hay alumnos por inscribir. Que el Actor necesita saber cuantos estudiantes no cuentan con boleta o cuantos ya cuentan con boleta.
+		% V 0.2 Ok.
+		\UCitem{Disparador}{%
+			\begin{Titemize}
+				\Titem El actor desea inscribir alumnos a un programa académico	
+				\Titem El actor necesita saber si hay alumnos por inscribir.	
+				\Titem El Actor necesita saber cuantos estudiantes no cuentan con boleta o cuantos ya cuentan con boleta.
+			\end{Titemize}
+		}
+		% V 0.1 Ok
+		\UCitem{Condiciones de Término}{Se muestra el avance de estudiantes importados al Calmécac.}
+		% V 0.1 Ok.
+		\UCitem{Efectos Colaterales}{Ninguno}
+		% V 0.1 Ok.
+		\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+		% V 0.1 Ok.
+		\UCitem{Auditable}{No}
+		% V 0.1 Ok.
+		\UCitem{Datos sensibles}{Ninguno}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+	% V 0.1 Ok.
+	\UCpaso[\UCactor] Solicita visualizar el proceso de inscripción dando clic en la opción \textbf{Asignar grupos} en el menú \textbf{Nuevo ingreso}(\refElem{IN-UA-MN1}).
+	% V 0.1 Ok.	
+	\UCpaso Obtiene los \textbf{Periodos Escolares} registrado en el sistema para el ciclo escolar seleccionado. \refErr{Uno}
+	% V 0.1 TOCHK: Referenciar una regla de negocios o indicar aquí, que se obtienen los nombres de los programas académicos que, tienen un programa académico vigente y que están siendo ofertados en el ciclo escolar actual (Disparar Err2 en caso de que no se haya cargado la oferta de carreras).
+	% V 0.2 Ok.
+	\UCpaso Obtiene el número de programas académicos vigentes ofertados en el ciclo escolar seleccionado en el caso de uso \refIdElem{IN-UA-CU1} de la Unidad Académica del actor. \refErr{Dos}
+	% V 0.1 DONE: Agregar el paso de obtiene los cinco programas escolares siguientes y los 5 anteriores.
+	% ¿Este no ya viene del caso de uso IN-UA-CU1?
+	% V 0.1 Ok. (Duda, al mostrarse la pantalla ?`ya está un periodo escolar seleccionado? ?`cual es? ?`o dice seleccione uno y los datos aparecen en guiones o interrogaciones o no aparece la tabla de abajo? en tal caso deberiamos agregar un mensaje de ``seleccione el periodo escolar del cual desea hacer la consulta''
+	% Ya se agrego el mensaje
+	\UCpaso Muestra la pantalla \refIdElem{IN-UA-IU3} con el mensaje \refIdElem{MSG187} y la información obtenida.
+	% V 0.1 Ok.
+	\UCpaso[\UCactor] Selecciona el \textbf{Periodo Escolar} del cual desea visualizar el proceso de inscripción.
+	% V 0.1 Ok.
+	\UCpaso Obtiene la fecha de la última actualización del proceso de inscripción ejecutado para la Unidad Académica del actor.
+	% V 0.1 TOCHK: Separar:
+	%	- El nombre de los programas académicos ofertados en la modalidad seleccionada.
+	%	- El nombre de los Planes de estudio vigentes de cada programa académico.
+	%	- El nombre de la modalidad seleccionada.
+	\UCpaso \label{IN-UA-CU3:ObtienePA} Obtiene el nombre de los programas académicos en la modalidad seleccionada vigentes en el Periodo Escolar seleccionado.
+	% V 0.2 Ok.
+	\UCpaso Muestra el nombre de los planes de estudio vigentes de cada programa académico.
+	% V 0.2 Ok.
+	\UCpaso Obtiene el nombre del ciclo escolar y modalidad seleccionada.
+	% V 0.2 Ok.
+	\UCpaso Obtiene el número de aspirantes esperados, con cancelación, aspirantes sin inscribir, aspirantes inscritos, alumnos sin inscribir y alumnos inscritos del \textbf{Perdio Escolar} y \textbf{Modalidad} seleccionados en el caso de uso \refIdElem{IN-UA-CU1}.
+	% V 0.1 Ok.
+	\UCpaso Calcula el número total de \textbf{aspirantes sin inscribir} con base en la regla de negocio \refIdElem{BR-IN-N010}.		
+	% V 0.1 Ok.
+	\UCpaso Calcula el número total de \textbf{aspirantes inscritos} con base en la regla de negocio \refIdElem{BR-IN-N011}.		
+	% V 0.1 Ok.
+	\UCpaso Calcula el número total de \textbf{alumnos sin inscribir} con base en la regla de negocio \refIdElem{BR-IN-N012}.		
+	% V 0.1 Ok.
+	\UCpaso Calcula el número total de \textbf{alumnos inscritos} con base en la regla de negocio \refIdElem{BR-IN-N013}.
+	% V 0.1 Ok.
+	\UCpaso Calcula el número total de \textbf{alumnos con cancelación} con base en la regla de negocio \refIdElem{BR-IN-N014}.
+	% V 0.1 Ok.
+	\UCpaso Actualiza la pantalla \refIdElem{IN-UA-IU3} con la información calculada.
+	% V 0.1 Ok.
+	\UCpaso[\UCactor] \label{IN-UA-CU3:Consulta} Visualiza el proceso de inscripción.
+\end{UCtrayectoria}
+
+\subsection{Puntos de extensión}
+
+% V 0.1 Ok.
+\UCExtensionPoint{Gestionar asignación de grupos}
+{El actor desea gestionar la asignación de grupos}
+{En el paso \ref{IN-UA-CU3:Consulta} de la trayectoria principal}
+{\refIdElem{IN-UA-CU3.1}}

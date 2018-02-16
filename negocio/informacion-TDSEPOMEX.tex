@@ -1,0 +1,26 @@
+\begin{TipoDeDato}{tdEntidad}{Entidad}{Es un catálogo que contiene a cada uno de los 32 estados miembros del Estado federal(México) con el propósito de especificar:
+	\begin{Citemize}
+		\item La entidad federativa en donde un alumno nació.
+		\item La entidad federativa en la que reside un alumno.
+		\item La entidad federativa en la que una Unidad Académica reside.
+	\end{Citemize}}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o conjunto de palabras que tienen como propósito identificar a una entidad federativa que se encuentra dentro de los límites de la República Mexicana.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	
+	La población de este catálogo es con base en el \href{}{Catálogo de Códigos Postales de S.E.P.O.M.E.X.}.
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdMunicipio}{Municipio}{Es un catálogo que contiene las distintas divisiones políticas y territoriales que se encuentran dentro de una entidad federativa con el propósito de especificar los domicilios de alumnos.}
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o conjunto de palabras que tienen como propósito identificar a un municipio o delegación(en el caso de la Ciudad de México).}
+		\tdAttr{entidad}{Entidad}{tdEntidad}{Indica la entidad federativa a la que pertenece un Municipio.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	
+	La población de este catálogo es con base en el \href{}{Catálogo de Códigos Postales de S.E.P.O.M.E.X.}.
+\end{TipoDeDato}

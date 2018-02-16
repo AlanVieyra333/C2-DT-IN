@@ -1,0 +1,123 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DAE-CU3.3}{Eliminar configuración de proceso de inscripción}{
+	% V 0.1 TODO: Cambiar DEs por DAE.
+	Permite al \refElem{DAEJefeDeRegistro} eliminar el registro de un proceso de inscripción que ya no será utilizado o probablemente fue registrado por error.
+	} 
+	\UCccitem{Versión}{0.2}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Eliminar}
+	\UCccitem{Prioridad}{Media}
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Media}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Por corregir}
+	\UCccitem{Dificultades}{¿El proceso tendrá estados y deberá estar en alguno para poder ser eliminada? RESPUESTA: Si, tiene estados de Activa e inactiva, sin embargo, se puede eliminar sin problemas.}
+	\UCccitem{Fecha del último estatus}{14 de Diciembre de 2017}
+	
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{14 de Diciembre de 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Aplicar correcciones}
+	\UCccitem{Observaciones}{Aplicar los TODO's de los comentarios. ?`Por que no se pudo llevar a cabo la operación?}
+	
+	\UCsection{Atributos}
+	% V 0.1 TOCHK: es DAE.
+	\UCitem{Actor}{\begin{Titemize}
+		\Titem \refElem{DAEJefeDeRegistro} 
+		\Titem \refElem{DAEAdministradorDeRegistro}
+\end{Titemize}}
+	% V 0.1 TOCHK: Eliminar una configuracion que no se necesita mas, quitar una que fue registrada por error.
+	\UCitem{Propósito}{Eliminar una configuracion que no se necesita mas, quitar una que fue registrada por error.}
+	% V 0.1 TOCHK: La configuracion que se desea eliminar
+	\UCitem{Entradas}{La configuracion que se desea eliminar}
+	% V 0.1 TOCHK: Se selecciona da una lista.
+	\UCitem{Origen}{\ioSeleccionar}
+	% V 0.1 Ok
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem \refIdElem{MSG1}
+			\Titem \refIdElem{MSG25}
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}
+			\Titem \textbf{Manual:} Se han establecido que el proceso no será necesario.
+		\end{Titemize}
+	}
+	% V 0.1 TOCHK: Se eliminará la configuración, se avisará al planificador de procesos para que actualice.
+	\UCitem{Postcondiciones}{Se eliminará la configuración, y se avisará al planificador de procesos para que actualice la configuración.}
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{Ninguna}
+	% V 0.1 TODO: Quitar el Uno, no entiendo el por que del Dos.
+	% Para cualquier operación que tuviera que ver con la  base de datos poniamos este error por cualquier cosa que no se contemplará
+	\UCitem{Errores}{Ninguno%
+%		\begin{Titemize}
+%			\Titem \UCerr{Uno}{Cuando el proceso está en estado \textbf{Activo},}{se muestra el mensaje \refIdElem{MSGX} y termina el caso de uso.}
+%		% MSGX 		Proceso en estado diferente
+%		% Tipo:		Error
+%		% Canal:		Sistema
+%		% Propósito:	Notificar al actor que la operación que desea realizar debe estar en un estado en especifico.
+%		% Redacción:	El proceso debe estar en estado $PROCESO_ESTADO$ para realizar esta operación.
+%		% Parámetros:	PROCESO_ESTADO: El estado del proceso en el que se debe estar para realizar una operación deseada.
+%		% Ejemplo:	El proceso debe estar en estado Inactivo para realizar esta operación
+%			\Titem \UCerr{Dos}{Cuando la operación no se pudo llevar a cabo,}{se muestra el mensaje \refIdElem{MSG2} y regresa al paso \ref{IN-DAE-CU3.3:Eliminar} de la trayectoria principal.}
+%		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU3}}
+	% V 0.1 TOCHK: Se detecta que se registró por error, Se detecta que ya no es necesaria.
+	\UCitem{Disparadores}{\begin{Titemize}
+		\Titem Se detecta que se registró por error.
+		\Titem Se detecta que ya no es necesaria
+	
+	\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se eliminará el registro de la tabla de la pantalla \refIdElem{IN-DAE-IU3}.}
+	% V 0.1 TOCHK: Se notificará al planificador y ya no se generaran mas instancias del proceso con base en la presente configuración. En caso de que el proceso se esté corriendo no será detenido.
+	\UCitem{Efectos Colaterales}{Se notificará al planificador y ya no se generaran mas instancias del proceso con base en la presente configuración. En caso de que el proceso se esté corriendo no será detenido.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 TOCHK: Si, se debe registrar el CU, usuario, hora y fecha y los datos de la configuración eliminada.
+	\UCitem{Auditable}{Si, se debe registrar el usuario, hora y fecha y los datos de la configuración eliminada.}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No se identifico}
+	
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	% V 0.1 TOCHK: ...registrado presionando el botón {\IUEliminar} del proceso correspondiente en la pantalla ...
+	\UCpaso [\UCactor] Solicita eliminar un proceso registrado presionando el botón {\IUEliminar} del proceso correspondiente de la pantalla \refIdElem{IN-DAE-IU3}.
+	% V 0.1 TOCHK: Quitar
+%	\UCpaso Verifica que el proceso este en estado \textbf{Inactivo} con base en el \refElem{Ciclo de vida de un proceso}. \refErr{Uno}
+	% V 0.1 TOCHK: Solicita la confirmación de la eliminación mostrando el mensaje...
+	\UCpaso Solicita la confirmación de la eliminación mostrando el mensaje \refIdElem{MSG25}.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] \label{IN-DAE-CU3.3:Eliminar}Presiona el botón \IUbutton{Sí}. \refTray{A}
+	% V 0.1 Ok.
+	\UCpaso Elimina la información del proceso seleccionado. \refErr{Dos}
+	% V 0.1 Ok.
+	\UCpaso Muestra el mensaje \refIdElem{MSG1} en la pantalla \refIdElem{IN-DAE-IU3} indicando que la operación se llevo a cabo de manera exitosa.
+	% V 0.1 TOCHK: Agregar el paso en el que se registra en la bitácora la acción y se notifica al planificador.
+%	\UCpaso Persiste el usuario, hora, fecha y datos de la configuración eliminada en la bitácora.
+	% TODO: ¿A quien se le va a notificar si solo el jefe y administrador de registro van a poder realizar la operación?
+	% \UCpaso Notifica al \refElem{DAEJefeDeRegistro} la eliminación del proceso con el mensaje \refIdElem{MSG127}
+	
+
+\end{UCtrayectoria}
+
+%Trayectoria Alternativas
+
+%----------------- Trayectoria A ----------------- 
+\begin{UCtrayectoriaA}[Fin del caso de uso]{A}{El actor desea cancelar la operación.}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita cancelar la operación presionando el botón \IUbutton{No}.
+	% V 0.1 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU3}.
+\end{UCtrayectoriaA}

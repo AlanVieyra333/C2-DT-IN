@@ -1,0 +1,33 @@
+\subsection{IN-DAE-UI2 Asignar Calendario Operativo }
+
+\subsubsection{Objetivo}
+
+Permite realizar las acciones requeridas para controlar el \textbf{Calendario Académico} mediante el cual las Unidades Académicas llevarán a cabo sus funciones en un ciclo escolar.
+
+\subsubsection{Diseño}
+
+Se mostrará la pantalla \ref{IN-DAE-UI2} un cronograma con las \textbf{Unidades Académicas} asignadas al mismo, en caso de que exista más de un cronograma, estos serán mostrados de forma consecutiva en como fueron definidos con sus respectivas \textbf{Unidades Académicas}.
+
+Las \textbf{Unidades Académicas} que no se han definido se mostrarán en la parte inferior de la pantalla. \refIdElem{IN-DAE-UI2}
+
+Se mostrará la pantalla \ref{IN-DAE-UI2a} cuando no se encuentre un cronograma definido, se mostrara el mensaje \refIdElem{MSG3} como se muestra en la pantalla \refIdElem{IN-DAE-UI2.1}
+
+
+\label{TablaComportamiento-IN-DAE-UI2}
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Estado & \IUDone & \IURechazar & \IUVer \\
+			\hline \hline
+			Modificado & Mostrar & Ocultar & Ocultar  \\ \hline
+			No asignado & Ocultar & Mostrar & Ocultar  \\ \hline
+			Sin Modificar & Ocultar & Ocultar & Mostrar  \\ \hline
+			
+		\end{tabular}
+		%\caption{Comportamiento de acciones para gestionar analistas del Consejo Técnico Consultivo Escolar.}
+	\end{center}
+\end{table}
+
+\IUfig[.9]{../moduloInscripciones/DAE/IN-DAE-CU2/images/INS_UI1.png}{IN-DAE-UI2}{Calendario Escolar}
+\IUfig[.9]{../moduloInscripciones/DAE/IN-DAE-CU2/images/INS_UI1_2.png}{IN-DAE-UI2a}{Calendario Escolar (Sin Definir)}

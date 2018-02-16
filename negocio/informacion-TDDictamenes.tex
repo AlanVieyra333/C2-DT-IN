@@ -1,0 +1,257 @@
+%% Catalogos de Dictamenes
+	\begin{TipoDeDato}{tdEstadoDeConsejo}{Estado de Consejo}{Es un catálogo en el que se almacenan cada una de las posibles condiciones en las que un Consejo se encuentra determinando así sus facultades para realizar las labores propias de un Consejo.}
+	 \begin{tdAtributos}
+	 	\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican la condición de un Consejo y con esto sus facultades para realizar las labores de un Consejo.}
+	 \end{tdAtributos}
+	
+	 \subsection{Valores Iniciales}
+
+	A continuación se presenta una tabla que contiene sólo los nombres de los posibles estados en los que un consejo se puede encontrar en el sistema, para conocer la descripción correspondiente ver la máquina de estados \refElem{ME-Consejo}.\cdtEmpty
+	
+	\begin{longtable}{| p{0.5\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Nombre del Estado\\
+	 			\hline
+	 				Edición \\
+	 				\hline
+	 				Activo \\
+	 	\hline
+	\end{longtable}
+	\end{TipoDeDato}
+	
+	\begin{TipoDeDato}{TipoDeProfesorConsejero}{Tipo de Profesor Consejero}{Es un catálogo en el que se almacena la clasificación que un profesor que participa en un Consejo puede adquirir determinando así el conjunto de
+ funcionalidades a las que puede acceder. }
+	\begin{tdAtributos}
+	\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una agrupación de profesores, definiendo así las atribuciones y por consiguiente las funcionalidades a las que tienen acceso.}
+	\tdAttr{abreviatura}{Abreviatura}{tdpalabra}{Es el símbolo o conjunto de símbolos que por medio de una clave se representa el nombre de una clasificación que le corresponde a un profesor que pertenece a un Consejo.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+  En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente. El campo \textbf{Accesos} no se encuentran definidos para la entidad, pero se utilizará para contextualizar las distinciones entre los tipos de profesores. \cdtEmpty
+	\begin{longtable}{| p{0.3\textwidth}| p{0.3\textwidth}| p{0.4\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{3}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Abreviatura & \bf\color{white}Acceso\\
+	 			\hline
+	 			Directivo & DIR & \begin{Titemize}
+	 				\Titem Iniciar una sesión de la COSIE.
+	 				\Titem Administrar una sesión de la COSIE.
+	 				\Titem Finalizar una sesión de la COSIE.
+	 				\Titem Registrar el Acta Sintética de una sesión de la COSIE.
+	 			\end{Titemize}\\
+	 			\hline
+	 			Profesor & PROF & Dictaminar\\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+
+	\begin{TipoDeDato}{tdEstadoDeSesion}{Estado de Sesión}{Es un catálogo en el que se almacenan cada una de las posibles condiciones en las que una sesión de la COSIE se encuentra definiendo así su ejecución y el conjunto de entradas que la conforman.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que representan la condición de una sesión de la COSIE y que definen su ejecución y el conjunto de entradas que puede incluir.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	A continuación se presenta una tabla que contiene los nombres de los posibles estados en los que una sesión de Consejo se puede encontrar en el sistema, para conocer la descripción correspondiente ver la máquina de estados \refElem{ME-Sesion}.\cdtEmpty
+	
+	\begin{longtable}{| p{0.5\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Nombre del Estado\\
+	 			\hline
+	 				Edición \\
+	 				\hline
+	 				En Proceso\\
+	 				\hline
+	 				En Receso \\
+	 				\hline
+	 				Finalizada\\
+	 			\hline
+	 \end{longtable}
+	\end{TipoDeDato}
+	
+\begin{TipoDeDato}{tdTipoDeSesion}{Tipo de Sesión}{Es un catálogo en el que se almacena la clasificación que una sesión de la COSIE adquiere de acuerdo a su naturaleza con el fin de determinar el conjunto de elementos que conforman sus entradas.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifica a una agrupación de sesiones de acuerdo a su naturaleza y al conjunto de elementos que conforman sus entradas.}
+		\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito exponer las características que definen a una agrupación de sesiones de acuerdo a su naturaleza. }
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente. \cdtEmpty
+
+		\begin{longtable}{| p{0.3\textwidth}| p{0.3\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Descripción \\
+	 			\hline
+	 			Ordinaria & Es la sesión de la COSIE que ha sido planificada por todo el Consejo. \\
+	 			\hline
+	 			Extraordinaria & Es la sesión de la COSIE que surge a raíz de las necesidades de la COSIE. \\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+	\begin{TipoDeDato}{tdEstadoDeSolicitud}{Estado de Solicitud}{Es un catálogo en el que se almacenan cada una de las posibles condiciones en las que una solicitud de dictamen se encuentra con el propósito de determinar sus procesos aplicables.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican la condición de una solicitud de dictamen y determina los procesos que son aplicables a esta.}
+	\end{tdAtributos}
+
+
+	\subsection{Valores Iniciales}
+	
+	A continuación se presenta una tabla que contiene sólo los nombres de los posibles estados en los que una sesión de Consejo se puede encontrar en el sistema, para conocer la descripción correspondiente ver la máquina de estados \refElem{ME-Predictamen}.\cdtEmpty
+	
+	\begin{longtable}{| p{0.20\textwidth}|p{0.20\textwidth}|p{0.20\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{3}{c}{\bf \color{white} Nombre del Estado}\\
+	 			\hline
+	 				Por Asociar & Por Predictaminar & En Predictaminación\\
+	 				\hline
+	 				Turnada & Por Registrar Sugerencia & En registro de Sugerencia\\
+	 				\hline
+	 				 Sugerencia Registrada & En modificación de sugerencia & Dictaminada\\
+	 			\hline
+	 \end{longtable}
+	\end{TipoDeDato}
+	
+\begin{TipoDeDato}{tdEstadoDeDictamen}{Estado de Dictamen}{Es un catálogo en el que se almacenan cada una de las posibles condiciones en las que un dictamen se encuentra con el propósito de determinar sus procesos aplicables.}
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que tienen como propósito identificar una condición de un dictamen y determinar así sus procesos aplicables,}
+	\end{tdAtributos}
+	\subsection{Valores Iniciales}
+	
+	\begin{longtable}{|p{0.5\textwidth}|}
+		\rowcolor{colorPrincipal}
+		\bf \color{white} Nombre del Estado\\
+		\hline
+		Predictaminado \\
+		\hline
+		En Dictaminación \\
+		\hline
+		Por Corregir Dictaminación\\
+		\hline
+		En Modificación de Predictamen\\
+		\hline
+		Resuelto\\
+		\hline
+	\end{longtable}
+\end{TipoDeDato}
+
+	\begin{TipoDeDato}{tdCriterio}{Criterio}{Es un catálogo en el que se almacena la jerarquía que define la forma de trabajo de una sesión del Consejo y que se conforman los puntos de una solicitud de dictamen.}
+		\begin{tdAtributos}	
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una de las jerarquías de trabajo de una sesión de la COSIE.}
+			\tdAttr{descripcion}{Descripción}{tdtexto}{Es el conjunto de frases que definen el criterio bajo el cual trabaja un Equipo de una sesión de la COSIE.}
+		\end{tdAtributos}
+		
+		 \subsection{Valores Iniciales}
+		En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.\cdtEmpty
+	
+		\begin{longtable}{| p{0.21\textwidth} | p{0.59\textwidth} |}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre  & \bf \color{white}Descripción \\
+	 			\hline
+	 			\endhead
+	 			\rowcolor{colorSecundario}
+	 			\multicolumn{2}{|c|}{\color{white}Los criterios aplicables al CGC son}\\
+	 			\hline
+	 			 Artículo 52 Fracción 1era & Si  el  alumno  se  encuentra  en  situación  escolar regular,  podrá  reinscribirse  en  un  número de créditos  comprendido  entre  la  carga  mínima  y  la máxima indicadas en el plan de estudio.  Cuando el alumno solicite reinscribirse a una carga menor  a  la  mínima  o  mayor  a  la  máxima,  deberá presentar  por  escrito  una  solicitud  justificada  al titular de la unidad académica para que, en su caso, 
+obtenga  la  autorización  correspondiente,  en  un término no mayor a tres días hábiles, siempre que  esto  no  implique  sobrepasar  la  duración  máxima del plan. \\
+	 			\hline
+	 			Artículo 52 Fracción 2da  &  Si el alumno tiene adeudos de unidades de aprendizaje, tendrá derecho a recursar sus adeudos de acuerdo con el Artículo 48 del Reglamento General de Estudios, e inscribir unidades de aprendizaje adicionales de su plan de estudio hasta completar al menos la carga mínima y sin rebasar la carga media de créditos del plan, siempre y cuando no se encuentre en el supuesto del Artículo 98 del Reglamento Interno. Cuando el alumno no pueda recursar las unidades de aprendizaje adeudadas en el periodo escolar correspondiente, no podrá sustituirlas por unidades de aprendizaje diferentes a las que adeuda. En caso de no poder reinscribirse, podrá presentar la evaluación a título de suficiencia en el periodo escolar correspondiente, el cual será contabilizado en la duración de su trayectoria escolar. Para conservar la calidad de alumno deberá participar en las acciones para la recuperación académica previstas en el Artículo 53 del Reglamento General de Estudios. \\
+	 			\hline
+	 			Artículo 52 Fracción 3ra & Si el alumno adeuda al menos una unidad de aprendizaje en términos de lo establecido en el Artículo 98 del Reglamento Interno, o si adeudando una unidad de aprendizaje de cualquier otro periodo escolar solicita reinscribirse a una carga menor a la mínima, deberá presentar por escrito una solicitud justificada a la Comisión de Situación Escolar del Consejo Técnico Consultivo
+Escolar para, en su caso, obtener la autorización correspondiente. Si el resultado de la división referida en el párrafo inicial de este artículo es mayor a la carga media definida en el plan de estudio, esto implica que no podrá concluir sus estudios en el plazo máximo establecido en el plan de estudio, por lo que deberá solicitar ante la Comisión de Situación Escolar del Consejo General Consultivo la autorización de reinscripción y, en su caso, ampliación de plazo para la conclusión del plan de estudio. \\
+	 			\hline
+	 			 Artículo 49 & El alumno de los niveles medio superior o superior podrá cursar un programa académico en un periodo de tiempo mínimo a un máximo, según lo establecido en el plan de estudio. El mínimo no será inferior al cincuenta por ciento de la duración total del plan de estudio; mientras que el máximo no será superior  al cincuenta por ciento más de la duración señalada por el mismo. En caso de haber agotado el plazo máximo, el alumno causará baja del Instituto, pero podrá solicitar a la Comisión de Situación Escolar del Consejo General Consultivo ampliación de tiempo para concluir sus estudios. Para el caso del alumno de posgrado, los tiempos para cursar los estudios se especificarán en los programas académicos respectivos.\\
+	 			\hline
+	 			 Artículo 57 Fracción 1era & El alumno de los niveles medio superior o superior causará baja del programa académico en la modalidad en la que se encuentre inscrito cuando:  I. Lo solicite por escrito;\\
+	 			\hline
+	 			 Artículo 57 Fracción 2da & II. No haya solicitado reinscripción o baja temporal al periodo escolar al que tenga derecho;\\
+	 			\hline
+	 			 Artículo 57 Fracción 3era & III. Haya agotado las oportunidades para concluir el plan de estudio según lo estipulado en los artículos 48 y 52 del Reglamento General de Estudios;\\
+	 			\hline
+	 			 Artículo 57 Fracción 4rta & IV. Haya transcurrido el tiempo máximo para concluir el programa académico;
+ \\
+	 			\hline
+	 			 Artículo 57 Fracción 5ta & V. Por resolución fundada y motivada de la Comisión de Situación Escolar del Consejo Técnico Consultivo Escolar de su unidad académica;\\
+	 			\hline
+	 			 Artículo 57 Fracción 6ta & VI. Por resolución fundada y motivada de la Comisión de Situación Escolar del Consejo General Consultivo. El alumno que curse un programa académico en las modalidades educativas diferentes a la escolarizada, se sujetará a lo previsto en los lineamientos correspondientes.\\
+	 			\hline
+	 			No contempladas & Son las solicitudes por las cuales el Sistema no pudo determinar a qué criterio pertenecía, debido a que la situación escolar del Alumno no esta contemplada en los reglamentos que emanan de la Ley Orgánica y el Reglamento General de Estudios.   \\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\multicolumn{2}{|c|}{\color{white}Los criterios aplicables al CTCE son}\\
+	 			\hline
+	 			Reinscripción por discontinuidad & Son las solicitudes de dictamen hechas por los alumnos los cuales regresan de una baja de al menos un semestre y solicitan reinscribirse.\\
+	 			\hline
+	 			Carga menor a la mínima & Son los alumnos que solicitan reinscripción con una cantidad de créditos menor a la establecida en el plan de estudios.\\
+	 			\hline
+	 			Desfasada & Son las solicitudes hechas por los alumnos , los cuales tienen Unidades de Aprendizaje adeudadas por más de tres periodos escolares a partir de su curse.\\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+
+	\begin{TipoDeDato}{tdEvaluacion}{Evaluación}{Es un catálogo en el que se almacenan los permisos que un analista o un consejero han establecido para un predictamen o un dictamen respectivamente. El resultado es con base en los criterios de una solicitud de dictamen y tiene como propósito indicar si un Dictamen autoriza o no al Alumno continuar con su trayectoria escolar.}
+	
+	\begin{tdAtributos}
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es el conjunto de palabras que representan el resultado obtenido durante la dictaminación de una solicitud con base en sus criterios, la predictaminación y / o la desición del Consejero.}
+			\tdAttr{descripcion}{Descripción}{tdfrase}{Es un conjunto de palabras que tiene la utilidad de ayudar a comprender al Alumno el resultado de una dictaminación.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.\cdtEmpty
+	
+	\begin{longtable}{| p{0.25\textwidth} | p{0.55\textwidth} |}
+	 	\rowcolor{colorPrincipal}
+	 	\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 	\hline
+	 	\rowcolor{colorSecundario}
+	 	\bf \color{white} Nombre & \bf \color{white}Descripción \\
+	 	\endhead
+	 	\hline
+	 		Dictamen Favorable & Se conoce como dictamen favorable a la resolución emitida por la COSIE que  autoriza a un Alumno continuar con su trayectoria escolar.\\
+	 	\hline
+	 		Dictamen No Favorable & Se conoce como dictamen no favorable a la resolución emitida por la COSIE que no autoriza a un Alumno continuar con su trayectoria escolar.\\
+	 	\hline
+	 \end{longtable}
+	
+   \end{TipoDeDato}
+   
+   
+   \begin{TipoDeDato}{tdCriterioResolutivo}{CriterioResolutivo}{Es un catálogo en el que se almacenan las distintas normas que establecen las acciones que el Alumno debe realizar para hacer cumplir su dictamen. }
+  
+   	\begin{tdAtributos}
+   		\tdAttr{nombre}{Nombre}{tdfrase}{Es un conjunto de palabras que tienen como propósito identificar a una de las normas que justifican la resolución favorable o no favorable de un Dictamen.}
+   		
+   		\tdAttr{formatoDeLeyenda}{Formato de Leyenda}{tdtexto}{Es un conjunto de frases cuyo fundamento legal se encuentra en el \textbf{Reglamento General de Estudios} o que condiciona las autorizaciones del contenido de un Dictamen.}
+   	\end{tdAtributos}
+   
+   	\subsection{Valores Iniciales}
+   	
+   	\begin{longtable}{|p{0.3\textwidth}|p{0.6\textwidth}|}
+	\rowcolor{colorPrincipal}
+	\multicolumn{2}{c}{\bf \color{white} Valores Iniciales}\\
+	\hline
+	\rowcolor{colorSecundario}
+	\bf\color{white} Nombre & \bf\color{white}Formato de Leyenda\\
+	\hline
+   	Ampliación de Tiempo & SE AUTORIZA AMPLIACIÓN DE TIEMPO POR $n$ PERIODOS ESCOLARES A PARTIR DE HABER AGOTADO EL PLAZO MÁXIMO DEL PLAN DE ESTUDIOS, CONFORME AL ARTÍCULO 49 DEL RGE.  EN EL SUPUESTO DE HABER AGOTADO EL PLAZO MÁXIMO, ESTA AMPLIACIÓN SE CONTABILIZARÁ A PARTIR DE LA EMISIÓN DEL PRESENTE DICTAMEN.\\
+	\hline
+	Revocación & SE REVOCA LA BAJA DEFINITIVA  $baja$ OTORGADA EN EL $dictamen$ Nº $no\_dictamen$ EMITIDO POR  $consejo\_emisor$.\\
+	\hline
+	E.T.S. / Recursamiento &  SE AUTORIZA PRESENTAR SU(S) ADEUDO(S), EN EL PERIODO DE E.T.S. DE $uno\_periodo\_ets$  Y(Ó) $dos\_periodo\_ets$ CONTEMPLADO EN EL CALENDARIO ACADÉMICO  Y(Ó) RECURSAR SU(S) ADEUDO(S) NO RECURSADOS PREVIAMENTE EN LA MISMA MODALIDAD EDUCATIVA, EN EL PERIODO ESCOLAR $uno\_periodo\_escolar$ Y(Ó) $dos\_periodo\_escolar$, DE CONFORMIDAD CON EL ARTÍCULO 48 DEL RGE.\\
+	\hline
+	Reinscripción para continuación & SE AUTORIZA REINSCRIPCIÓN A LA(S) UNIDAD(ES) DE APRENDIZAJE QUE LE CORRESPONDA CURSAR EN EL PERIODO ESCOLAR $periodo\_escolar$, DE CONFORMIDAD CON EL ARTÍCULO 52 DEL RGE.\\
+	\hline
+   	\end{longtable}
+   
+   \end{TipoDeDato}

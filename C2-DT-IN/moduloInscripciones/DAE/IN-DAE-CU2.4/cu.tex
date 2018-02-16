@@ -1,0 +1,78 @@
+\begin{UseCase}{IN-DAE-CU2.4}{Visualizar detalles de Calendario Académico}{
+	Permite visualizar los acrónimos de lasa Unidades Académicas, las fechas establecidas para las actividades por omisión, días inhábiles, periodos vacacionales y el calendario donde se muestran los días marcados definidos con anterioridad en el \refElem{CalendarioAcademico} mediante el cual las Unidades Académicas llevaran acabo sus funciones en un ciclo escolar.\\
+	}
+    \UCccitem{Versión}{0.1}
+    \UCccsection{Datos para el control Interno}	
+    \UCccitem{Elaboró}{Bruno Suárez Cruz }
+    \UCccitem{Supervisó}{Ulises Vélez Saldaña}
+    \UCccitem{Operación}{Visualizar}
+    \UCccitem{Prioridad}{Media}
+    \UCccitem{Complejidad}{Baja}
+    \UCccitem{Volatilidad}{Alta}
+    \UCccitem{Madurez}{Baja}
+    \UCccitem{Estatus}{Aprobado por análisis}
+    \UCccitem{Dificultades}{}
+    \UCccitem{Fecha del último estatus}{19 de Diciembre  de 2017}
+    %\UCccs{}
+    \UCccitem{Fecha}{}
+    \UCccitem{Evaluador}{}
+    \UCccitem{Resultado}{}
+    \UCccitem{Observaciones}{}
+    %	\UCsection{Atributos}{}
+    \UCitem{Actor}{%
+    	\begin{Titemize}
+    		\Titem \refElem{DAEJefeDeRegistro}
+    		\Titem \refElem{DAEAdministradorDeRegistro}
+	    \end{Titemize}
+	}
+    \UCitem{Propósito}{Visualizar el \textbf{Calendario Académico} con las Unidades Académicas y fechas previamente asociadas en el caso de uso \refIdElem{IN-DAE-CU2.1}.}
+    \UCitem{Entradas}{Ninguna}
+    \UCitem{Origen}{ 	
+    	\begin{Titemize}
+    		\Titem \ioObtener
+    		\Titem  Se selecciona con el mouse.
+    	\end{Titemize}
+    }	
+    \UCitem{Salidas}{%
+    	\begin{Titemize}	
+    		\Titem  \refElem{UnidadAcademica.acrinomo} 
+    		\Titem Actividades definidas por omisión para cada Calendario Académico.
+    		\Titem Fecha de inicio y fin de cada actividad a definir del calendario (ver \refElem{Actividad.fechaDeInicio} y \refElem{Actividad.fechaDeFin}).	
+    		\Titem Actividades definidas por el actor.(ver \refElem{Actividad.agregada}.)
+    	\end{Titemize}			
+    }
+    \UCitem{Destino}{Pantalla}
+    \UCitem{Precondición}{%
+    	\begin{Titemize}
+	    	\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un Ciclo Escolar y una Modalidad.
+    		\Titem \textbf{Sistematizada:} Que haya al menos un Calendario Académico registrado.
+	    \end{Titemize}	
+    }
+    \UCitem{Postcondiciones}{Ninguna}
+    \UCitem{Reglas de Negocio}{Ninguna}
+    \UCitem{Errores}{Ninguno}
+    \UCitem{Viene de}{\refIdElem{IN-DAE-CU2}}
+    \UCitem{Disparadores}{%
+    	El actor requiere visualizar el \textbf{Calendario Académico}, como consulta de las fechas establecidas para las actividades.
+    }
+    \UCitem{Condiciones de Término}{Ninguna}
+    \UCitem{Referencia Documental}{}
+    \UCitem{Auditable}{No}
+    \UCitem{Datos sensibles}{Ninguno}
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+    \UCpaso [\UCactor] Presiona el botón \IUbutton{Detalle} de la pantalla \refIdElem{IN-DAE-UI2} del calendario operativo que se requiere visualizar.
+    \UCpaso Obtiene los acrónimos de las Unidades Académicas asociadas a un Calendario Académico en el caso de uso \refIdElem{IN-DAE-CU2.1} para la modalidad y ciclo escolar seleccionados en el caso de uso \refIdElem{IN-DAE-CU1}.
+    \UCpaso  Obtiene las actividades definidas por omisión y por el actor así como las fechas correspondientes para el \textbf{Calendario Académico} previamente definido en el caso de uso \refIdElem{IN-DAE-CU2.1}, las cuales serán separadas por semestres.
+    \UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.4} con la información obtenida.
+    \UCpaso [\UCactor] Presiona el botón \IUbutton{Regresar}.
+    \UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2} 
+\end{UCtrayectoria}
+
+
+
+

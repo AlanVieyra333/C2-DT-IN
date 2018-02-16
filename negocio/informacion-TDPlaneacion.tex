@@ -1,0 +1,56 @@
+\begin{TipoDeDato}{tdActividad}{Actividad}{Es un catálogo en el que se almacenan todas las acciones académicas o administrativas que se desempeñan en el Instituto. Tiene como propósito ser un herramienta que permita la selección de estas acciones para la definición de Calendarios Académicos y/o de Cronogramas de Estructura Educativa.}
+		\begin{tdAtributos}
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es una palabra o conjunto de palabras que identifican a una acción académica o administrativa que se desempeña en el Instituto.}
+			
+			\tdAttr{tipoDeActividad}{Tipo de Actividad}{tdTipoDeActividad}{Es una palabra que indica si la actividad se debe realizar o no por su inclusión en el Calendario Académico o si al pertenecer al conjunto de actividades que generan el cronograma de Estructura Educativa sólo tiene como propósito informar acerca de una tarea al Responsable de Estructura Educativa de una Unidad Académica.}
+		\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente y que fueron obtenidos de acuerdo a los Calendarios Académicos Oficiales publicados por el Instituto Politécnico Nacional y como acuerdo en la minuta \textbf{20171012-13 M EE Evaluacion de propuesta DES-DEMS}.
+	 
+	 \begin{longtable}{|p{0.3\textwidth}|p{0.4\textwidth}|}
+	 	\hline
+	 	\rowcolor{colorPrincipal}
+	 	\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 	\hline
+	 	\rowcolor{colorSecundario}
+	 	\bf \color{white}Nombre & \bf \color{white} Tipo de Actividad \\
+	 	\hline
+	 	Inscripciones & Académica \\
+	 	\hline
+	 	Reinscripciones & Académica\\
+	 	\hline
+	 	Registro de Evaluación Extraordinaria & Académica\\
+	 	\hline
+	 	\TODO  Falta registrar las actividades de acuerdo a lo proporcionado por DGyCE& \\
+	 	\hline
+	 \end{longtable}
+
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdTipoDeActividad}{Tipo de Actividad}{Es un catálogo en el que se encuentra la clasificación de las actividades que se desempeñan en el Instituto. Tiene como propósito indicar cuando una Actividad pertenece al Cronograma de Estructura Educativa o al Calendario Académico.}
+
+	\begin{tdAtributos}
+	
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es una palabra o conjunto de palabras que tienen como propósito identificar al conjunto al que una Actividad pertenece y de esta forma determinar si su ejecución debe ser llevada a cabo por una Unidad Académica o no.}
+		
+		\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito explicar las características que definen a una agrupación a la que una Actividad pertenece y así indicar si debe ser incluida en un Calendario Académico o el Cronograma de Estructura Educativa.}
+	
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	 A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado inicialmente.\cdtEmpty
+	\begin{longtable}{|p{0.30\textwidth}| p{0.55\textwidth}}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{c}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre &  \bf \color{white} Descripción\\
+	 			\hline
+	 			Académica & Es una actividad que debe ser incluida en un Calendario Académico y rige un conjunto específico de funcionalidades.\\
+	 			\hline
+	 			Estructura Educativa & Es una actividad que debe ser incluida en un Cronograma de Estructura Educativa con el propósito de informar la ejecución de una actividad.\\
+	 			\hline
+		\end{longtable}
+\end{TipoDeDato}

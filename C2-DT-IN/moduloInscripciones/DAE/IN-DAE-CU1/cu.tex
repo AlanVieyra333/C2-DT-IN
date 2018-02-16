@@ -1,0 +1,142 @@
+\begin{UseCase}{IN-DAE-CU1}{Selección de Ciclo Escolar y Modalidad}{
+	% V 0.1 Ok.
+	Permite seleccionar una \refElem{tModalidad} y \refElem{CicloEscolar} para poder trabajar en la configuración de los elementos del sistema de una manera ordenada: Consultar el histórico de Ciclos escolares anteriores, Monitorear y gestionar lo relativo al ciclo escolar actual o planear lo relativo a el ciclo escolar próximo.
+}
+    \UCccitem{Versión}{0.1}
+    \UCccsection{Datos para el control Interno}	
+    \UCccitem{Elaboró}{Bruno Suárez Cruz}
+    \UCccitem{Supervisó}{Ulises Vélez Saldaña}
+    \UCccitem{Operación}{Seleccionar}
+    \UCccitem{Prioridad}{Baja}
+    \UCccitem{Complejidad}{Baja}
+    \UCccitem{Volatilidad}{Baja}
+    \UCccitem{Madurez}{Alta}
+    \UCccitem{Estatus}{Revisado}
+    \UCccitem{Dificultades}{}
+    \UCccitem{Fecha del último estatus}{05 de Diciembre de 2017}
+    %\UCccs{}
+    \UCccitem{Fecha}{05 de Diciembre de 2017}
+    \UCccitem{Evaluador}{Ulises Vélez Saldaña}
+    \UCccitem{Resultado}{Caso de Uso completo.}
+    \UCccitem{Observaciones}{Ninguna}
+    \UCsection{Atributos}
+    % V 0.1 Ok.
+    \UCitem{Actor}{%
+    	\begin{Titemize}
+    		\Titem \refElem{DAEJefeDeRegistro}
+    		\Titem \refElem{DAEAdministradorDeRegistro}
+    	\end{Titemize}
+    }
+    % V 0.1 Ok.
+    \UCitem{Propósito}{%
+    	\begin{Titemize}
+    		\Titem Consultar el histórico de Ciclos escolares anteriores.
+    		\Titem Monitorear y gestionar lo relativo al ciclo escolar actual.
+    		\Titem Planear lo relativo a el ciclo escolar próximo.
+    	\end{Titemize}
+    }
+    % V 0.1 Ok.
+    \UCitem{Entradas}{%
+        \begin{Titemize}
+        	\Titem \refElem{tModalidad}.
+        	\Titem \refElem{CicloEscolar}.	
+        \end{Titemize}	
+    }
+    % V 0.1 Ok.
+    \UCitem{Origen}{%
+        \begin{Titemize}
+        	\Titem \ioObtener
+        	\Titem Se selecciona con el mouse.
+        \end{Titemize}
+    }
+    % V 0.1 Ok.
+    \UCitem{Salidas}{%
+    	\begin{Titemize}
+    		\Titem El nombre de las Modalidades registradas en el sistema (vea \refElem{tModalidad}).
+    		\Titem El nombre de los Ciclos escolares disponibles para selección (vea \refElem{CicloEscolar.clave}).
+    	\end{Titemize}	
+    }
+    % V 0.1 Ok.
+    \UCitem{Destino}{Pantalla.}
+    % V 0.1 Ok.
+    \UCitem{Precondiciones}{%
+    	\begin{Titemize}
+    		\Titem \textbf{Sistematizada:} Que exista por lo menos un ciclo escolar.
+    		\Titem \textbf{Sistematizada:} Que exista por lo menos una Modalidad.
+    	\end{Titemize}
+    }
+    % V 0.1 Ok.
+    \UCitem{Postcondiciones}{%
+    	\begin{Titemize}
+    		\Titem La modalidad y Ciclo escolar seleccionados determinarán toda la información y operaciones para los demás casos de uso de este módulo.
+    	\end{Titemize}
+    }
+    % V 0.1 Ok.
+    \UCitem{Reglas de Negocio}{%
+    	\begin{Titemize}
+    		\Titem \refIdElem{BR-IN-N005}
+    	\end{Titemize}
+    }
+    % V 0.1 Ok.
+    \UCitem{Errores}{%
+    	\begin{Titemize}
+    		\Titem \UCerr{Uno}{Cuando no se encuentran  \textbf{Ciclos escolares} o {\bf Modalidades} registrados,}{ el sistema muestra el mensaje \refIdElem{MSG3} para Modalidades y Ciclos escolares en la pantalla \refIdElem{IN-DAE-UI1.2} y termina el caso de uso.}
+    	\end{Titemize}				
+    }
+    % V 0.1 Ok.
+    \UCitem{Viene de}{\refIdElem{CU-Login} }
+    % V 0.1 Ok.
+    \UCitem{Disparadores}{%
+    	\begin{Titemize}
+    		\Titem Requiere consultar el histórico de Ciclos escolares anteriores.
+    		\Titem Requiere monitorear y gestionar lo relativo al ciclo escolar actual.
+    		\Titem Requiere planear lo relativo a el ciclo escolar próximo.
+    	\end{Titemize}
+    } 
+    % V 0.1 Ok.
+    \UCitem{Condiciones de Término}{%
+    	Se muestra en la pantalla \refIdElem{IN-DAE-UI2} con el ciclo escolar y la modalidad seleccionados.}
+    % V 0.1 Ok.
+    \UCitem{Efectos Colaterales}{Ninguno}
+    % V 0.1 Ok.
+    \UCitem{Referencia Documental}{}
+    % V 0.1 Ok.
+    \UCitem{Auditable}{No}
+    % V 0.1 Ok.
+    \UCitem{Datos sensibles}{Ninguna}
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}	
+
+	% V 0.1 Ok.
+    \UCpaso[\UCactor] Da clic en la opción \textbf{Selección de Ciclo Escolar y Modalidad} del menú  \refElem{IN-CMP-MN1}.
+    % V 0.1 Ok.
+    \UCpaso Obtiene las Modalidades registradas.\refErr{Uno}
+    % V 0.1 Ok.
+    \UCpaso Obtiene los últimos 5 ciclos escolares anteriores al actual, el ciclo actual y 2 ciclos escolares posteriores con base a la regla de negocio \refIdElem{BR-IN-N005}.
+    % V 0.1 Ok.    
+    \UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI1.2} con la información obtenida.
+    % V 0.1 Ok.
+    \UCpaso [\UCactor] Selecciona un ciclo escolar.
+    \UCpaso [\UCactor] Selecciona una modalidad.
+    % V 0.1 Ok.
+    \UCpaso [\UCactor] \label{DAE-IN-CU1:acp} Presiona el botón \IUbutton{Aceptar}. 
+    \UCpaso Establece en sesión el {\bf Ciclo Escolar Seleccionado} y la {\bf Modalidad seleccionada} con los valores seleccionados.
+    \UCpaso Habilita el menú \refElem{IN-DAE-MN1}.
+    
+\end{UCtrayectoria}
+
+%%Trayectoria Alternativas
+%%----------------- A
+%\begin{UCtrayectoriaA}[Termina el caso de uso]{A}{El actor requiere cancelar la operación.}
+%\UCpaso Presiona el botón \IUbutton{Cancelar}.
+%\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI1}.
+%\end{UCtrayectoriaA}
+
+\subsection{Puntos de extensión}
+
+\UCExtensionPoint{Gestionar Calendario Escolar}{El actor requiere Gestionar Calendario Escolar}{ Paso \ref{DAE-IN-CU1:acp} de la Trayectoria Principal}{\refIdElem{IN-DAE-CU2}}
+
+

@@ -1,0 +1,199 @@
+\begin{TipoDeDato}{tdTipoDeCarga}{Tipo de Carga}{Es un catálogo en el que se almacena la clasificación a la que una carga de aspirantes pertenece y de esta forma especificar si esta tarea se lleva a cabo de forma automática o manual.}
+	
+	\begin{tdAtributos}
+			
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es una palabra o un conjunto de palabras que identifican a la característica que define la pertenencia de una carga a un conjunto de cargas de acuerdo a si la activación es por medio de un Recurso Humano de la D.A.E. o si el Calmécac realiza esta operación automáticamente de acuerdo a una definición previa del comportamiento.}
+			
+			\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito detallar las características que definen la pertenencia de una a carga a una agrupación.}
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+
+	A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado los cuales fueron obtenidos de acuerdo a la minuta \textbf{2018012- }\cdtEmpty
+		\begin{longtable}{|p{0.3\textwidth}|p{0.35\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{c}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre & \bf\color{white}Descripción\\
+	 			\hline
+	 			Manual & Este tipo de carga debe ser realizada por un Recurso Humano adscrito a la D.A.E. y que pertenezca al Departamento de Registro y Supervisión Escolar.\\
+	 			\hline
+	 			Automática & Este tipo de carga se realiza automáticamente, de acuerdo a la definición hecha por un Recurso Humando adscrito a la D.A.E. y que pertenezca al Departamento de Registro y Supervisión Escolar.\\
+	 			\hline
+		\end{longtable}
+
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdEstadoDeCargaDelAlumno}{Estado de Carga del Alumno}{Es un catálogo en el que se almacenan las posibles condiciones en las que se encuentra cargada la información de un aspirante en el sistema y tiene como propósito indicarle al personal del Departamento de Registro y Supervisión Escolar de la D.A.E. que se requiere realizar una corrección o que una carga ha sido efectuada exitosamente.}
+	\begin{tdAtributos}
+		
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una condición que permite saber si la información de un Aspirante ha sido cargada al sistema correctamente y de esta forma proporcionar un mecanismo que permita al personal del Departamento de Registro y Supervisión Escolar realizar las correcciones correspondientes.}
+	
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	
+	A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado. \cdtEmpty
+		\begin{longtable}{|p{0.45\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre \\
+	 			\hline
+	 				Por confirmar \\
+	 				\hline
+	 				Confirmado\\
+	 				\hline
+	 				Inscrito\\
+	 				\hline
+	 				Con errores\\
+	 				\hline
+	 				Con advertencias\\
+	 				\hline
+	 				Rechazado\\
+	 			\hline
+		\end{longtable}
+
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdEstadoDeDocumentacion}{Estado de Documentación}{Es un catálogo en el que se almacenan las posibles condiciones en las que se encuentra la documentación proporcionada por un Aspirante. Este estado tiene como propósito indicar si esta documentación cumple con lo especificado en la convocatoria correspondiente o indicar cuando requiere ser corregida. Esto también determina si el proceso de inscripción de un Aspirante fue concluido exitosamente o no.}
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una de las posibles condiciones en la que se encuentra la documentación proporcionada por un Aspirante determinando así si el proceso de inscripción concluyo exitosamente o no. }
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	 A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado. \cdtEmpty
+		\begin{longtable}{|p{0.45\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre \\
+	 			\hline
+	 				 Completa \\
+	 				 \hline
+	 				 Incompleta \\
+	 			\hline
+		\end{longtable}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdEstadoDelAlumno}{Estado del Alumno}{Es un catálogo que almacena las posibles condiciones que un Alumno presenta en un programa académico del Instituto en el que ha sido asignado.}
+
+	\begin{tdAtributos}
+	
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es una palabra o conjunto de palabras que tienen como propósito identificar a una condición de un Alumno dentro de un programa académico del Instituto.}
+	
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado. \cdtEmpty
+		\begin{longtable}{|p{0.45\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre \\
+	 			\hline
+	 			Regular \\
+	 			\hline
+	 			Irregular\\
+	 			\hline
+		\end{longtable}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdOrigenDeAlumno}{Origen de Alumno}{Es un catálogo en el que se encuentran las clasificaciones que definen a un conjunto de Aspirantes indicando si:
+	\begin{Citemize}
+		\item Los aspirantes han cursado un programa académico del Instituto del nivel medio superior  y van a ingresar a un programa académico de nivel superior.
+		\item Los aspirantes han cursado un programa académico que no pertenece al Instituto.
+		\item Los aspirantes tienen avance en algún programa académico del Instituto o externo y que aguardan la validación de estos estudios para ingresar a un programa académico.
+	\end{Citemize}}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es un conjunto de palabras que identifican a un conjunto de aspirantes de acuerdo a su procedencia.}
+		
+		\tdAttr{descripcion}{Descripción}{tdfrase}{Es un conjunto de palabras que tienen como propósito presentar un resumen que indique si un Aspirante ha cursado algún programa académico del Instituto previo o no.}
+	
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+
+	 A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado. \cdtEmpty
+		\begin{longtable}{|p{0.30\textwidth}|p{0.45\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{c}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre & \bf\color{white}Descripción\\
+	 			\hline
+	 			Nuevo ingreso propio &  El aspirante ha cursado un programa académico del Instituto del nivel medio superior y va a ingresar a un programa académico de nivel superior. \\
+	 			\hline
+	 			Nuevo ingreso externo &  El aspirante que ha cursado un programa académico que no pertenece al Instituto.\\
+	 			\hline
+	 			Con avances U.T.C. & El aspirante tiene avance en algún programa académico del Instituto o externo y que aguarda la validación de estos estudios para ingresar a un programa académico.\\
+	 			\hline
+		\end{longtable}
+\end{TipoDeDato}
+
+
+\begin{TipoDeDato}{tdDocumento}{Documento}{Es un catálogo en el que se almacenan las pruebas materiales que contiene información acerca de un hecho académico o laboral de un Aspirante y que es solicitado en una convocatoria para concluir su proceso de inscripción.}
+
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es una palabra o un conjunto de palabras que tienen como propósito identificar a uno de los documentos solicitados por una convocatoria y proporcionados por un Aspirante que fue asignado a un plan de estudio.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado. \cdtEmpty
+		\begin{longtable}{|p{0.30\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre\\
+	 			\hline
+	 			Credencial de Elector \\
+	 			\hline
+	 			Acta de Nacimiento\\
+	 			\hline
+				Certificado de bachillerato\\
+				\hline
+				Certificado de secundaria\\
+				\hline
+				C.U.R.P.\\
+				\hline
+				Hoja de Asignación\\
+	 			\hline
+		\end{longtable}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdEstadoDeDevolucionDeDocumento}{Estado de Devolución de Documento}{Es un catálogo en el que se almacenan las condiciones en las que un documento entregado por un aspirante se encuentra dentro de su proceso de inscripción y tiene como propósito ser un mecanismo que permita conocer si el documento ha sido presentado satisfactoriamente o el aspirante requiere presentar una corrección.}
+
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es una palabra o un conjunto de palabras que tienen como propósito identificar a una de las posibles condiciones que un documento entregado por un aspirante se encuentra y determinar así si el documento presentado cumple con los requisitos señalados en la convocatoria correspondiente o requiere de una corrección.}
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	
+	A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado. \cdtEmpty
+		\begin{longtable}{|p{0.30\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\bf \color{white} Valores Iniciales\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre\\
+	 			\hline
+	 				\TODO Pendiente por ver con D.A.E.\\
+	 			\hline
+		\end{longtable}
+	
+\end{TipoDeDato}

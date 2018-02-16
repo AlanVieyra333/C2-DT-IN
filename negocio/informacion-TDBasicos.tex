@@ -1,0 +1,249 @@
+\begin{TipoDeDato}{tdentero}{Entero}{Cualquier elemento del conjunto formado por los números naturales, sus opuestos (versiones negativas de los naturales) y el cero. Estos números pueden ser\{0,1,2,3,4,5,6,7,8,9\} y todos los que se forman a partir de ellos.}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdflotante}{Flotante}{Es cualquier elemento del conjunto formado por los números reales, sus opuestos (versiones negativas de los reales) y el 0. Tiene como propósito representar valores fraccionales de alta precisión.}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdbooleano}{Booleano}{Es un \refElem{tTipoDato} lógico que representa lógica binaria, o que admite solo dos valores los cuales son:
+		\begin{Citemize}
+			\item \textbf{Verdadero} generalmente representado como T o como un uno(1).
+			\item \textbf{Falso} Generalmente representado como F o como un cero(0).
+		\end{Citemize}}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdpalabra}{Palabra}{Es un dato que se compone por una cadena de caracteres alfanuméricos, aceptando tanto mayúsculas, minúsculas del alfabeto y todos los dígitos que se pueden formar con los números 0,1,2,3,4,5,6,7,8 y 9 así como caracteres especiales como el ., @ , etc.}
+	\begin{Citemize}
+		\item \textbf{Restricciones}: La cadena no puede tener espacios.
+		\item \textbf{Longitud}: Su longitud es de 0 a 20 caracteres.
+	\end{Citemize}	
+\end{TipoDeDato}
+	
+\begin{TipoDeDato}{tdfrase}{Frase}{Es un dato que se compone por varias cadenas, o palabras separadas por espacios o signos de puntuación.\\}
+		\textbf{Longitud}: Su longitud es de 20 a 200 caracteres
+\end{TipoDeDato}
+	
+	
+\begin{TipoDeDato}{tdparrafo}{Párrafo}{Es un dato que se compone por varias frases, separadas por espacios o signos de puntuación.\\}
+		 \textbf{Longitud}: Su longitud es de 200 a 1000 caracteres.
+\end{TipoDeDato}
+		
+\begin{TipoDeDato}{tdtexto}{Texto}{Es un dato que se compone por varios párrafos. Este tipo de dato se utiliza con el fin de transmitir un mensaje complejo.\\}
+		\textbf{Longitud}: Su longitud es de 1000 a 80000 caracteres.
+
+\end{TipoDeDato}
+		
+\begin{TipoDeDato}{tdfecha}{Fecha}{Es un tipo de dato que se compone de 3 atributos  en el que se realiza la especificación de día, mes y año de una fecha particular de un año . }
+
+	\textbf{Formatos}: \cdtEmpty
+		\begin{Citemize}
+			\item Fecha Corta: Es la descripción de una fecha y se presenta de la siguientes formas:
+				\begin{itemize}
+					\item \textit{12-12-17}
+					\item \textit{12/12/17}
+				\end{itemize} 
+			Ambas formas son correctas. En el primer campo se establece el día, en el segundo el mes y en el último el año. Para el ejemplo propuesto entonces la fecha corta indicaría el día 12 del mes de diciembre del año 2017.
+			
+			\item Fecha Larga: Es la descripción de una fecha y se presenta de la siguiente forma:
+				\textit{12 de Diciembre del 2017}.
+		\end{Citemize}
+\end{TipoDeDato}
+
+	\begin{TipoDeDato}{tdhora}{Hora}{Es un tipo de dato que se compone de 2 atributos  en el que se realiza la especificación de hora y minutos separados por dos puntos. Este tipo de dato se utiliza para la representación de un momento específico del día.}
+
+		 \textbf{Formatos}:\cdtEmpty
+		\begin{Citemize}
+		
+			\item Formato 24 hrs : Es la descripción de una hora, la cual se presenta de la siguiente forma: \textit{13:30hrs}. Para el ejemplo propuesto la hora indicaría las 13 horas y media.
+				\begin{itemize}
+					\item \textbf{Restricciones:} En los campos que sea requerido este formato, se debe validar que el número que corresponde a los minutos no sobrepase el valor \textit{59} y que el número que corresponde a las horas no sobre pase el valor de \textit{24}
+				\end{itemize}
+			
+			\item Formato p. m. /a. m. : Es la descripción de una hora, la cual se presenta de la siguiente forma: \textit{1:30 p.m.}. Para el ejemplo propuesto la hora indicaría la 1 y media de la tarde.Esto con base en el sistema de 12 horas que específica :
+				\begin{itemize}
+					\item \textbf{a. m. } Significa \textit{ante meridiem} o ``Antes del mediodía''. 
+					\item \textbf{p. m. } Significa \textit{post meridiem} o ``Después del mediodía''.
+				\end{itemize}
+		\end{Citemize}
+\end{TipoDeDato}
+
+		\begin{TipoDeDato}{tdarchivo}{Archivo}{Este tipo de dato permite el almacenamiento de documentos en en el sistema.}
+		\textbf{Formatos}: El sistema puede soportar los siguientes formatos de archivo:
+				\begin{Citemize}
+					\item \textbf{JPEG}(y derivados: JPG,JFIF,JPX,JP2): Formato para el almacenamiento de imágenes.
+					\item \textbf{PDF}: Es un formato que provee de imágenes, texto o imagenes y texto.
+					\item \textbf{PNG}: Formato para el almacenamiento de imágenes.
+				\end{Citemize}
+\end{TipoDeDato}
+			
+%Catálogos Básicos
+	 
+\begin{TipoDeDato}{tdGradoAcademico}{Grado Académico}{Es un catálogo que tiene como utilidad almacenar todas las posibles distinciones académicas que profesores y alumnos adquieren a lo largo de su trayectoria académica dentro o fuera del Instituto.}
+		 \begin{tdAtributos}
+		 	\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una distinción académica otorgada por una Institución Educativa(Nacional o Internacional).}
+	 		\tdAttr{abreviatura}{Abreviatura}{tdpalabra}{Es el símbolo o conjunto de símbolos que tienen como propósito representar el nombre de una distinción académica por medio de una clave.}
+		 \end{tdAtributos}
+		 
+	 \subsection{Valores Iniciales}
+	 	 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.\cdtEmpty
+	 		\begin{longtable}{| p{0.3\textwidth}| p{0.3\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Grado & \bf \color{white} Abreviatura \\
+	 			\hline
+	 			Licenciatura & Lic.\\
+	 			\hline
+	 			Maestría & M. \\
+	 			\hline
+	 			Doctorado & Dr. \\
+	 			\hline
+	 		\end{longtable}
+	 \end{TipoDeDato}
+
+	\begin{TipoDeDato}{tdDia}{Día}{Es un catálogo en el que se almacena información de los 7 días de la semana de acuerdo al calendario gregoriano. Este catálogo permite la selección de un conjunto de días para la ejecución de una o varias operaciones del Instituto dentro del sistema.}
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdpalabra}{Es la palabra que identifica a uno de los días de la semana.}
+		\tdAttr{abreviatura}{Abreviatura}{tdpalabra}{Es el símbolo o conjunto de símbolos que tienen como propósito representar el nombre de un día de la semana por medio de una clave.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.\cdtEmpty
+	 		\begin{longtable}{| p{0.3\textwidth}| p{0.3\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white}Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Abreviatura \\
+	 			\endhead
+	 			\hline
+	 			Lunes & L\\
+	 			\hline
+	 			Martes & M \\
+	 			\hline
+	 			Miércoles & Mi \\
+	 			\hline
+	 			Jueves & J\\ 
+				\hline
+				Viernes & V\\
+				\hline
+				Sábado & S\\
+				\hline
+				Domingo & D\\
+				\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+	\begin{TipoDeDato}{tdSexo}{Sexo}{Es un catálogo que tiene como utilidad almacenar información de las condiciones orgánicas con la que se define la sexualidad de una persona de acuerdo a su acta de nacimiento o al documento legal que lo soporte.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdpalabra}{Es la palabra que representa a una condición orgánica de una persona la cual se encuentra definida en su acta de nacimiento o en otro documento legal.}
+				
+		\tdAttr{abreviatura}{Abreviatura}{tdpalabra}{Es el símbolo o conjunto de símbolos que  por medio de una clave tiene como propósito representar el nombre de una condición orgánica que tienen varias personas.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+		 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.\cdtEmpty
+	 		\begin{longtable}{| p{0.3\textwidth}| p{0.3\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Abreviatura \\
+	 			\hline
+	 			\multicolumn{2}{|c|}{\bf \color{colorPrincipal}Propuesta}\\
+	 			\hline
+	 			Masculino & M\\
+	 			\hline
+	 			Femenino & F \\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+
+	\begin{TipoDeDato}{tdTurno}{Turno}{Es un catálogo que tiene como utilidad almacenar información acerca de los distintos segmentos de horas continúas de un día  en que se realizan actividades administrativas o académicas en el Instituto y en sus Unidades de Adscripción.}
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o conjunto de palabras que  representan a un grupo continúo de horas de un día.}
+			
+		\tdAttr{abreviatura}{Abreviatura}{tdfrase}{Es el símbolo o conjunto de símbolos que  por medio de una clave tiene como propósito representar a un grupo continúo de horas de un día.}
+	\end{tdAtributos}
+	
+	
+	\subsection{Valores Iniciales}
+	 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente.\cdtEmpty
+		
+		\begin{longtable}{| p{0.3\textwidth}| p{0.3\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Abreviatura \\
+	 			\hline
+	 			\multicolumn{2}{|c|}{\bf \color{colorPrincipal}Propuesta}\\
+	 			\hline
+	 			Turno Matutino & TM\\
+	 			\hline
+	 			Turno Mixto & TMi \\
+	 			\hline
+	 			Turno Vespertino & TV \\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+	\begin{TipoDeDato}{tdTipoDeContacto}{Tipo de Contacto}{Es un catálogo que tiene como utilidad almacenar información acerca de los los distintos mecanismos que pueden ser utilizados por una persona o entidad para comunicarse con otra.}
+	
+	\begin{tdAtributos}
+	\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o conjunto de palabras que identifican a uno de los mecanismos que permiten la comunicación entre personas y entidades dentro o fuera de el sistema.}
+			
+	\tdAttr{abreviatura}{Abreviatura}{tdfrase}{Es el símbolo o conjunto de símbolos que  por medio de una clave tiene como propósito representar al mecanismo que permite la comunicación entre personas y entidades dentro o fuera del sistema.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+		En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado\footnote{ver \refElem{tPoblar}} inicialmente.\cdtEmpty
+		
+		\begin{longtable}{| p{0.3\textwidth}| p{0.13\textwidth}| p{0.4\textwidth} |}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{3}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white} Abreviatura & \bf\color{white} Expresión Regular\\
+	 			\hline
+	 			\multicolumn{3}{|c|}{\bf \color{colorPrincipal}Propuesta}\\
+	 			\hline
+	 			Correo Electrónico & Email & $[a-z0-9-]+(.[a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]\{2,4\})$\\
+	 			\hline
+	 			Correo Electrónico Institucional & EmailIPN & \begin{Titemize}
+	 					\Titem Para el correo Institucional de un alumno:
+	 						$[a-z0-9-]+(.[a-z0-9-]+)*@alumno.ipn.mx$
+						\Titem Para el correo Institucional de un egresado:
+							$[a-z0-9-]+(.[a-z0-9-]+)*@egresado.ipn.mx$
+						\Titem Para el correo Institucional de un recurso humano:
+							$[a-z0-9-]+(.[a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*.ipn.mx$
+	 			\end{Titemize} \\
+	 			\hline
+	 			Teléfono de Domicilio & Tel. Dom. & $\backslash +?\backslash d\{1,3\}?[- .]?(?(?:\backslash d\{2,3\}))?[- .]?\backslash d\backslash d\textbackslash d[- .]?\backslash d\backslash d\backslash d\backslash d$  \\
+	 			\hline
+	 			Teléfono Celular & Tel. Cel. & $\backslash +?\backslash d\{1,3\}?[- .]?(?(?:\backslash d\{2,3\}))?[- .]?\backslash d\backslash d\textbackslash d[- .]?\backslash d\backslash d\backslash d\backslash d$   \\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}
+	
+	\begin{TipoDeDato}{tdPais}{País}{Es un catálogo que tiene como propósito brindar el mecanismo que indique la nacionalidad de una persona o, el país del cual una persona obtuvo sus grados académicos.}
+		
+		\begin{tdAtributos}
+			\tdAttr{nombre}{Nombre}{tdfrase}{Palabra o conjunto de palabras que identifican a un país.}
+			\tdAttr{gentilicio}{Gentilicio}{tdfrase}{Palabra o conjunto de palabras que identifican la relación de una persona con un país.}
+			\tdAttr{abreviatura}{Abreviatura}{tdpalabra}{Es el símbolo o conjunto de símbolos que  por medio de una clave se representa el nombre de un país. Por ejemplo:
+				\begin{Citemize}
+					\item Estados Unidos de Norteamérica : U.S.A.
+					\item México: MX
+				\end{Citemize}}
+		\end{tdAtributos}
+		
+		\subsection{Valores Iniciales}
+		
+		Si se desea conocer los países que el \refElem{Calmecac} utilizará puede consultar el siguiente vínculo \href{http://www.sat.gob.mx/terceros_autorizados/receptor_doctos_electronicos/Documents/catalogos/Cat_Paises.pdf}{Catálogo de Países} que el S.A.T. genera  para la emisión y recepción de documentos digitales.
+	\end{TipoDeDato}
+	
+%	%Estos tipos de datos son utilizados en el alumno

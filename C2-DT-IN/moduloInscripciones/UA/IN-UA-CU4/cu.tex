@@ -1,0 +1,99 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-UA-CU4}{Gestionar entrega de documentos}{
+		Al realizar la inscripción de los aspirantes a nuevo ingreso solo queda esperar a que termine su proceso de admisión para: ser alumnos reconocidos del IPN o terminar en proceso de cancelación en caso de no haber cumplido con algún punto de la convocatoria.\\
+		En el primer caso, los alumnos pasan a estado de ``aceptado'' yse le hace entrega de: un documento que avala su ingreso al instituto, se le comunica su número de boleta y se le entrega su boleta, así como los documentos oficiales que pudo haber entregado durante su proceso de admisión.
+		En el segundo caso, el alumno es marcado como ``en proceso de cancelación''. Estos alumnos no están relacionados con este caso de uso.
+	}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Ulises Vélez Saldaña}
+	\UCccitem{Supervisó}{}
+	\UCccitem{Operación}{Consulta}
+	\UCccitem{Prioridad}{Baja}
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Media}
+	\UCccitem{Madurez}{Media}
+	\UCccitem{Estatus}{Edición}
+	\UCccitem{Dificultades}{
+		\begin{Titemize}
+			\Titem No.
+		\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{09 de Febrero del 2018}
+%	\UCccsection{Revisión Versión 0.1}
+%	\UCccitem{Fecha}{}
+%	\UCccitem{Evaluador}{}
+%	\UCccitem{Resultado}{}
+%	\UCccitem{Observaciones}{}
+	\UCsection{Atributos}
+	\UCitem{Actores}{
+		\begin{Titemize}
+			\Titem \refElem{UAJefeDeControlEscolar}
+			%\Titem \refElem{}
+		\end{Titemize}
+	}
+	\UCitem{Propósito}{Llevar un registro de la entrega de documentos de los alumnos de nuevo ingreso.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Origen}{No aplica}
+	\UCitem{Salidas}{
+		\begin{Titemize}
+			\Titem \refElem{ProgramaAcademico.nombre} de los Programas académicos de la Unidad Académica.
+			\Titem \refElem{Alumno.boleta}, \refElem{Alumno.CURP}, \refElem{Alumno.nombre}, \refElem{Alumno.primerApellido}, \refElem{Alumno.segundoApellido}, \refElem{Alumno.tipo}, \refElem{AlumnoAsignado.estadoDeDocumentacion}.
+		\end{Titemize}
+	}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{
+		\begin{Titemize}
+			\Titem Que la Unidad Académica tenga asociada al menos un Programa académico vigente o en transición en el ciclo escolar y modalidad seleccionados.
+		\end{Titemize}
+	}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Reglas de Negocio}{Ninguna}
+	\UCitem{Errores}{
+		\begin{Titemize}
+			\Titem \UCerr{1}{Cuando la Unidad Académica no tiene Programas Académicos vigentes o en transición en el Ciclo Escolar Actual}{se muestra el mensaje \refIdElem{MSGX} y termina la ejecución del Caso de Uso regresando a la pantalla principal \refIdElem{IN-IU-CU1}}
+		\end{Titemize}
+	}
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU1}}
+	\UCitem{Disparador}{
+		\begin{Titemize}
+			\Titem Un alumno pregunta por su boleta o la devolución de sus documentos.
+			\Titem Se han recibido documentos y credenciales por parte de la DAE.
+		\end{Titemize}
+	}
+	\UCitem{Condiciones de Término}{Se visualiza la lista de alumnos a los que ya se les ha registrado su número de boleta.}
+	\UCitem{Efectos Colaterales}{no.}
+	\UCitem{Referencia Documental}{Minuta de reunión con control escolar.}
+	\UCitem{Auditable}{no.}
+	\UCitem{Datos sensibles}{La consulta de los datos personales del alumno: Nombre completo y CURP. Este caso de uso habilita a los actores el uso de la CURP y nombre del alumno para su búsqueda e identificación para poder realizar su trabajo que es entregar sus documentos originales.}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita visualizar los alumnos con boleta asignada dando clic en la opción \textbf{Entrega de documentos} de menú \refElem{IN-DAE-MN1}.
+	\UCpaso Obtiene los nombres de los Programas académicos de la Unidad Académica que se encuentran en estado de ``vigente'' o ``en transición''.\refErr{1}
+	\UCpaso Selecciona por defecto el primer Programa Académico obtenido.
+	\UCpaso Obtiene boleta, CURP, nombre completo, tipo de alumno y estado de documentación de todos los alumnos asignados a la Unidad Académica y Programa Académico seleccionados en el Ciclo Escolar seleccionado y cuyo estado es ``aceptado''.
+	\UCpaso Muestra los datos obtenidos en la pantalla \refIdElem{IN-DAE-UI2}.\refTray{A}
+	\UCpaso Habilita el ícono {\IUEstadoEdit} a los alumnos cuyo estado de documentación es distinto a ``Entregado satisfactorio''.
+	\label{IN-UA-CU4:muestra}
+	\UCpaso[\UCactor] Gestiona la entrega de documentos mediante los íconos {\IUEstadoEdit} y {\IUVer}.
+\end{UCtrayectoria}
+
+%Trayectorias Alternativas
+
+\begin{UCtrayectoriaA}[El caos de uso continúa en el paso \ref{IN-UA-CU4:muestra}]{A}{No se encuentran Alumnos con las características indicadas}
+	\UCpaso la pantalla \refIdElem{IN-DAE-UI2} con el mensaje \refIdElem{MSG3}.
+\end{UCtrayectoriaA}
+
+\subsection{Puntos de extensión}
+\UCExtensionPoint{Registrar entrega de documentos}
+{El actor desea registrar la entrega de documentos de un alumno}
+{En el paso \ref{IN-UA-CU4:muestra} de la trayectoria principal}
+{\refIdElem{IN-UA-CU4.1}}
+
+\UCExtensionPoint{Consultar el estado de entrega de documentos}
+{El actor desea consultar la entrega de documentos de un alumno}
+{En el paso \ref{IN-UA-CU4:muestra} de la trayectoria principal}
+{\refIdElem{IN-UA-CU4.2}}
+

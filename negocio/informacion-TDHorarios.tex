@@ -1,0 +1,121 @@
+\begin{TipoDeDato}{tdEstadoDeEstructuraEducativa}{Estado de Estructura Educativa}{Es un catálogo en el que se almacenan cada una de las posibles condiciones en las que la Estructura Educativa de una Unidad Acad\'emica, o sus elementos conocidos como segmentos se encuentran, definiendo así el comportamiento y funcionalidades posibles.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifica a una condición de la Estructura Educativa o de alguno de sus segmentos.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	
+	 A continuación se presenta una tabla que contiene los nombres de los posibles estados en los que una una Estructura Educativa se puede encontrar en el sistema, para conocer la descripción correspondiente ver la máquina de estados \refElem{sec:SM-EE}.\cdtEmpty
+	\begin{longtable}{| p{0.5\textwidth}|}
+	 			\rowcolor{colorPrincipal}
+	 			\bf \color{white} Nombre del Estado\\
+	 			\hline
+	 				Creada \\
+	 				\hline
+	 				Revisión\\
+	 				\hline
+	 				Edición \\
+	 				\hline
+	 				Aprobada\\
+	 				\hline
+	 				Cerrada\\
+	 			\hline
+	 \end{longtable}
+	
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdActividadComplementaria}{Actividad Complementaria}{Es un catálogo en el que se almacenan todas aquellas actividades que un Profesor del Instituto puede realizar con el fin de cubrir ciertas horas de acuerdo a su categoría.}
+	
+	\begin{tdAtributos}
+			\tdAttr{actividad}{Actividad}{tdfrase}{Es el conjunto de palabras que identifican a una de las actividades que un profesor puede realizar durante un período de acuerdo a su categoría y si es que tiene horas frente a grupo que no se encuentren asignadas.}
+			
+			\tdAttr{clave}{Clave}{tdentero}{Es un número que tiene como propósito representar a una actividad complementaria.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+	
+	En la siguiente tabla se muestran aquellos que fueron obtenidos del \textbf{Artículo 14avo.} del \textbf{Reglamento de las condiciones interiores de trabajo del Personal Académico del Instituto Politécnico Nacional} y de acuerdo a la minuta \textbf{20171012-13 M EE Evaluacion de propuesta DES-DEMS}. 
+	
+	\begin{longtable}{|p{0.45\textwidth}|p{0.3\textwidth}|}
+	\rowcolor{colorPrincipal}
+	\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	\hline
+	\rowcolor{colorSecundario}
+	\bf \color{white} Actividad & \bf\color{white} Clave \\
+	\hline
+	Revisión, Actualización y Elaboración de Planes y Programas de Estudio & \TODO Se requiere a DGyCE\\
+	\hline
+	Elaboración de Apuntes, Notas o Textos & \\
+	\hline
+	Asesorías & \\
+	\hline
+	Revisión de Tesis & \\
+	\hline
+	Revisión de Prácticas Profesionales & \\
+	\hline
+	Coordinación de Actividades de Servicio Social & \\
+	\hline
+	Asistencia a Reuniones de Academia y de Departamentos & \\
+	\hline
+	Impartición de Cursos,  Seminarios, Conferencias y Foros Académicos & \\
+	\hline
+	Supervisión a la Enseñanza & \\
+	\hline
+	\end{longtable}
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdTipoDeAsignacion}{Tipo de Asignación}{Es un catálogo en el que se almacenan la clasificación de los distintos grados de responsabilidad que tiene un profesor con una Unidad de Aprendizaje en un  grupo.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o conjunto de palabras que identifican el grado de responsabilidad de un profesor con una Unidad de Aprendizaje en un grupo.}
+		
+		\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito exponer las características que definen el grado de responsabilidad de un profesor con una Unidad de Aprendizaje en un grupo.}
+	
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+	
+	En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente de acuerdo a la minuta \textbf{20171012-13 M EE Evaluacion de propuesta DES-DEMS}.\cdtEmpty
+	
+		\begin{longtable}{| p{0.15\textwidth} | p{0.4\textwidth} |}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white}Descripción \\
+	 			\hline
+	 			Titular & Es el grado de responsabilidad más alto de un profesor con un grupo. El profesor define las actividades que se llevarán a cabo y cómo es que se realizarán. \\
+	 			\hline
+	 			Adjunto &  Es el grado que establece que un profesor apoyará en lo que se requiera al Titular en la exposición de su clase. Este papel se encuentra sólo establecido para el nivel medio superior.\\
+	 			\hline
+	 		\end{longtable}
+
+\end{TipoDeDato}
+
+\begin{TipoDeDato}{tdTipoDeExposicion}{Tipo de Exposición}{Es un catálogo en el que se almacenan la clasificación de las distintas formas en las que se imparte una clase de acuerdo a la definición del contenido de una Unidad de Aprendizaje. Se utiliza para hacer la separación correspondiente entre horas teóricas y horas prácticas que deben cubrirse.}
+	
+	\begin{tdAtributos}
+		\tdAttr{nombre}{Nombre}{tdfrase}{Es la palabra o el conjunto de palabras que identifican a una de las formas en que los contenidos de una Unidad de Aprendizaje se expondrán.}
+		\tdAttr{descripcion}{Descripción}{tdfrase}{Es el conjunto de palabras que tienen como propósito exponer las características que hacen que los contenidos de una Unidad de Aprendizaje se expongan de cierta forma.}
+	\end{tdAtributos}
+	
+	\subsection{Valores Iniciales}
+
+	 En la siguiente tabla se muestran aquellos valores con los cuales el catálogo será poblado inicialmente de acuerdo a la minuta \textbf{20171012-13 M EE Evaluacion de propuesta DES-DEMS}.\cdtEmpty
+		
+		\begin{longtable}{| p{0.25\textwidth} | p{0.4\textwidth} |}
+	 			\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{|c|}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf \color{white} Nombre & \bf \color{white}Descripción \\
+	 			\hline
+	 			Teórica & Indica que el contenido de la unidad de aprendizaje será expuesto en un aula en el que la práctica no se pueda realizar. \\
+	 			\hline
+	 			Práctica &  Indica que el contenido de la unidad de aprendizaje será expuesto por medio de que el alumno realice actividades que fortalezcan su entendimiento.\\
+	 			\hline
+	 			Otros Ambientes &  Indica que el contenido de la unidad de aprendizaje requiere ser adquirido por otro medio. Este tipo de exposición sólo se se encuentra disponible para Unidades de Aprendizaje de nivel Medio Superior. \\
+	 			\hline
+	 		\end{longtable}
+	\end{TipoDeDato}

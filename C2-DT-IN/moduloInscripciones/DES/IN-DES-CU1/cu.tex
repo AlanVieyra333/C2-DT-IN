@@ -1,0 +1,163 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DES-CU1}{Gestionar oferta de ciclo escolar}{
+	% V 0.1 Ok.
+	Permite realizar las acciones requeridas para controlar la oferta educativa propuesta para un \refElem{tCicloEscolar} por \refElem{tProgramaAcademico} en las \textbf{Unidades Académicas}\footnote{\refElem{tUnidadAcademica}} donde éste se imparta.\\
+
+	Se podrá filtrar los Programas Académicos por Unidad Académica, donde la oferta registrada previamente podrá ser visualizada por Programa Académico, \refElem{tAreaDeConocimiento} y Unidad Académica seleccionada.
+}
+	\UCccitem{Versión}{1.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Administración}
+	\UCccitem{Prioridad}{Alta} 
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Baja} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Edición}
+	\UCccitem{Dificultades}{}
+	\UCccitem{Fecha del último estatus}{30 de enero del 2018}
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{5 de Diciembre del 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Aprobada}
+	\UCccitem{Observaciones}{Ninguna}
+	\UCsection{Atributos}
+	% V 0.1 Ok.
+	\UCitem{Actor}{%
+		\begin{Titemize}
+			\Titem \refElem{DESEncargadoDeOfertaEducativa}
+		\end{Titemize}
+	} 
+	% V 0.1 Ok.
+	\UCitem{Propósito}{Brindar una herramienta que permita controlar la oferta educativa que será dada en un ciclo escolar programado para obtener la planificación del número de aspirantes que serán aceptados en dicho ciclo.}
+	% V 0.1 Ok.
+	\UCitem{Entradas}{%
+		\begin{Titemize}
+			\Titem \refElem{tUnidadAcademica}
+			\Titem \refElem{tAreaDeConocimiento}
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Origen}{%
+		\begin{Titemize}
+			\Titem \ioSeleccionar
+			\Titem \ioObtener
+		\end{Titemize}
+	}
+	\UCitem{Salidas}{%
+	% V 0.1 Ok.
+		\begin{Titemize}
+			\Titem {\bf Oferta Educativa Total} del ciclo escolar y nivel educativo seleccionado.
+			\Titem El \refElem{UnidadAcademica.nombre} de las Unidades Académicas del nivel Superior.
+			\Titem Los nombres de los Programas Académicos de las Unidades Académicas (ver \refElem{ProgramaAcademico.nombre}).
+			\Titem La cantidad de \refElem{PlanDeEstudiosEnPrograma.estudiantesEsperados} de cada \refElem{tProgramaAcademico}.
+			\Titem {\bf Oferta Educativa Total de Unidad Académica}.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado un \textbf{Ciclo Escolar} y \textbf{Modalidad}.
+			\Titem \textbf{Sistematizada:} Que exista al menos una \textbf{Área de conocimiento} registrada en el sistema.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Ninguna} 
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{\begin{Titemize}
+			\Titem \refIdElem{BR-IN-N006}
+			\Titem \refIdElem{BR-IN-N007}
+		\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Errores}{
+		\begin{Titemize}
+			\Titem \UCerr{Uno}{Cuando no existe al menos una \textbf{Área de conocimiento} registrada,}{se muestra el mensaje \refIdElem{MSG3} y termina el caso de uso.}
+		\end{Titemize} 
+	}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{Primario}
+	% V 0.1 Ok.
+	\UCitem{Disparador}{La Comisión especial ha acordado el numero de lugares a ofertar en el Instituto.}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se muestra la oferta educativa por programa académico de la unidad académica seleccionada.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{Ninguno.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 Ok.
+	\UCitem{Auditable}{No aplica}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No aplica}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+
+	\UCpaso [\UCactor] Solicita gestionar la oferta educativa dando clic en la opción \textbf{Oferta Educativa} del menú \refIdElem{IN-DES-MN1}.
+	
+	\UCpaso Obtiene las \textbf{Unidades Educativas} del nivel Medio Superior.
+	
+	\UCpaso Obtiene las \refElem{tAreaDeConocimiento} registradas en el sistema. \refErr{Uno}.
+	
+	\UCpaso Obtiene la oferta educativa registrada para el primer y segundo periodo de las Unidades Académicas con base en la regla de negocio \refIdElem{BR-IN-N006}.
+	
+	\UCpaso Calcula la \textbf{Oferta Educativa Total} con base en la regla de negocio \refIdElem{BR-IN-N007}.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-DES-IU1} con la información obtenida
+
+	\UCpaso [\UCactor] \label{IN-DES-CU1:Gestionar} Gestiona la oferta educativa con los botones \IUbutton{Registrar Oferta Educativa}, \IUEditar, \IUArchivo y \IUbutton{Expandir}. \refTray{A}
+\end{UCtrayectoria}
+
+\subsubsection{Comportamiento de acciones}
+
+La tabla \ref{TablaComportamiento-IN-DES-CU1} muestra el comportamiento que se tendrá en los íconos de la pantalla \refIdElem{IN-DES-IU1}. Los cuales son mostrados dependiendo del estado en el que se encuentre la oferta educativa.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Estado & \IUbutton{Registrar Oferta Educativa} & \IUEditar \\
+			\hline \hline
+			Registrado & Ocultar & Mostrar \\ \hline
+			No registrado & Mostrar & Ocultar \\ \hline
+			No ofertada & Ocultar & Mostrar \\ \hline
+		\end{tabular}
+		\caption{Comportamiento de acciones para gestionar la oferta educativa.}
+		\label{TablaComportamiento-IN-DES-CU1}
+	\end{center}
+\end{table}
+
+%----------------- Trayectoria A ----------------- 
+\begin{UCtrayectoriaA}[Fin de la trayectoria]{A}{El actor expande una sección de una Unidad Académica}
+	\UCpaso [\UCactor] Solicita ver el detalle de la Oferta de una unidad académica haciendo clic el ícono de expandir de la unidad correspondiente.
+	\UCpaso Obtiene los nombres de los programas académicos que tienen un Plan de estudios vigente de la Modalidad seleccionada de la Unidad Académica.
+	\UCpaso Obtiene el número de lugares ofertados para cada programa académico encontrado.
+	\UCpaso Obtiene las Áreas de Conocimiento a las que pertenece la Unidad seleccionada.
+	\UCpaso Muestra la información obtenida cómo se muestra en la pantalla \refIdElem{IN-DES-IU1} con la opción ``Todas'' por defecto en ``Áreas de Conocimeinto'' y colocando un ``-- --'' cuando el número de lugares ofertados no está definido.\refTray{B}
+	\UCpaso[] Continúa en el paso \ref{IN-DES-CU1:Gestionar}.
+\end{UCtrayectoriaA}
+
+%----------------- Trayectoria B ----------------- 
+\begin{UCtrayectoriaA}[Fin de la trayectoria]{B}{El actor desea ver los lugares de una ``Área de Conocimiento'' de la Unidad Académica expandida en la pantalla}
+	\UCpaso [\UCactor] Selecciona una ``Área de Conocimiento''.
+	\UCpaso Obtiene los nombres de los programas académicos que tienen un Plan de estudios vigente de la Modalidad y ``Área de Conocimiento'' seleccionada de la Unidad Académica.
+	\UCpaso Obtiene el número de lugares ofertados para cada programa académico encontrado.
+	\UCpaso Actualiza la información obtenida cómo se muestra en la pantalla \refIdElem{IN-DES-IU1} colocando un ``-- --'' cuando el número de lugares ofertados no está definido.
+	\UCpaso[] Continúa en el paso \ref{IN-DES-CU1:Gestionar}.
+\end{UCtrayectoriaA}
+
+\subsection{Puntos de extensión}	 
+
+\UCExtensionPoint{Registrar oferta educativa}
+{El \refElem{DESEncargadoDeOfertaEducativa} requiere registrar la oferta educativa de una Unidad Académica}
+{Paso \ref{IN-DES-CU1:Gestionar} de la trayectoria principal}
+{\refIdElem{IN-DES-CU1.1}}
+
+\UCExtensionPoint{Editar oferta educativa}
+{El \refElem{DESEncargadoDeOfertaEducativa} requiere editar la oferta educativa de una Unidad Académica}
+{Paso \ref{IN-DES-CU1:Gestionar} de la trayectoria principal}
+{\refIdElem{IN-DES-CU1.2}}

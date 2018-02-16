@@ -1,0 +1,162 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-UA-CU3.1}{Gestionar asignación de grupos}{
+	% V 0.1 Ok.
+	Permite visualizar los aspirantes de nuevo ingreso que fueron asignados a los Programas Académicos de la Unidad Académica, el actor podrá visualizar la información de los aspirantes además de inscribirlos a los grupos competentes.
+	}
+	\UCccitem{Versión}{0.2}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Gestión}
+	\UCccitem{Prioridad}{Alta}
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Media}
+	\UCccitem{Madurez}{Alta}
+	\UCccitem{Estatus}{Revisado}
+	\UCccitem{Dificultades}{
+		%			\begin{Titemize}
+		%				\Titem \TODO
+		%			\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{09 de Febrero del 2018}
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{12 de Febrero 2018}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Por corregir}
+	\UCccitem{Observaciones}{Aplicar los cambios marcados en los TODO's}
+	\UCccsection{Revisión Versión 0.2}
+	\UCccitem{Fecha}{14 de Febrero 2018}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Aprobado}
+	\UCccitem{Observaciones}{Ninguna}
+	
+	\UCsection{Atributos}
+	% V 0.1 Ok.
+	\UCitem{Actores}{\refElem{UAJefeDeGestionEscolar}}
+	% V 0.1 Ok.
+	\UCitem{Propósito}{Brindar una herramienta para inscribir los aspirantes a las Unidades de Aprendizaje correspondientes.}
+	% V 0.2 Ok.
+	\UCitem{Entradas}{%
+		\begin{Titemize}
+			\Titem El periodo escolar del cual se requiere inscribir aspirantes.\footnote{Ver\refElem{PeriodoEscolar.clave}}
+			\Titem El \textbf{proceso} del cual se requiere inscribir aspirantes.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Origen}{\ioSeleccionar}
+	% V 0.1 TODO: Referenciar regla de negocio para Programa Académico Ofertado.
+	% Actualizar con respecto al nuevo modelo de información.
+	% V 0.2 Ok.
+	\UCitem{Salidas}{%
+		\begin{Titemize}		
+			\Titem Ciclo escolar y modalidad seleccionados en el caso de uso \refIdElem{IN-UA-CU1}.
+			\Titem El \refElem{ProgramaAcademico.nombre} de los programas académicos vigentes ofertados en el ciclo escolar seleccionado en el caso de uso \refIdElem{IN-UA-CU1}.
+			\Titem El \refElem{PlandeEstudio.nombre} del Plan de estudio con estado \textbf{vigente} del Programa Académico seleccionado.
+			\Titem El número de \textbf{aspirantes inscritos} en el Programa Académico.
+			\Titem El número de \textbf{aspirantes inscritos} en el Programa Académico.		
+			\Titem El número de \textbf{aspirantes no inscritos} en el Programa Académico.	
+			\Titem El número de \textbf{alumnos inscritos} en el Programa Académico.	
+			\Titem El número de \textbf{alumnos no inscritos} en el Programa Académico.
+			\Titem Tabla que muestra \textbf{Preboleta/boleta}, \textbf{CURP}, \textbf{Nombre y apellidos}, \textbf{genero} y \textbf{domicilio} del alumno, tipo de alumno, el proceso del cual se obtuvo la información del alumno y estatus en el que se encuentra.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 TODO: Agregar que haya al menos un programa Académico Ofertado por la Unidad Académcia.
+	% V 0.2 Ok.
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}	
+			\Titem Que se haya seleccionado un \textbf{Ciclo Escolar}.
+			\Titem Que se haya seleccionado una \textbf{Modalidad}.
+			\Titem Que exista al menos un \textbf{Periodo Escolar} registrado en el sistema.
+			\Titem Que exista al menos un Programa Académico ofertado para la Unidad Académica en el Ciclo Escolar seleccionado con su Plan de Estudios vigente.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Ninguna}
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{%
+		\begin{Titemize}
+			\Titem \refIdElem{BR-IN-N010}	
+			\Titem \refIdElem{BR-IN-N011}
+			\Titem \refIdElem{BR-IN-N012}
+			\Titem \refIdElem{BR-IN-N013}
+			\Titem \refIdElem{BR-IN-N014}
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Errores}{%
+		\begin{Titemize}
+			\Titem \UCerr{Uno}{Cuando no existe  al menos un \textbf{Periodo Escolar} registrado en el sistema,}{se muestra el mensaje \refIdElem{MSG16} indicando que no es posible visualizar el proceso de inscripción pues es necesario que exista al menos un periodo escolar registrado y termina el caso de uso.}
+			\Titem \UCerr{Dos}{Cuando no existe al menos un \textbf{Programa Académico} vigente con oferta educativa registrada en la Unidad Académica,}{se muestra el mensaje \refIdElem{MSG16} indicando que no es posible visualizar el proceso de inscripción pues es necesario que exista al menos un programa académico vigente con oferta educativa registrada  y termina el caso de uso.}	
+		\end{Titemize}
+	}
+	% V 0.1 TOCHK: ?`IN-UA-CU3?
+	% V 0.2 Ok.
+	\UCitem{Viene de}{IN-UA-CU3}
+	% V 0.1 TODO: Agregar realizar inscripcion de alumnos.-
+	% V 0.2 Ok.
+	\UCitem{Disparador}{El actor requiere realizar la inscripción de los alumnos.}
+	% V 0.2 Ok.
+	\UCitem{Condiciones de Término}{Se muestra la información de este caso de uso.}
+	% V 0.2 Ok.
+	\UCitem{Efectos Colaterales}{Ninguno}
+	% V 0.2 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.2 Ok.
+	\UCitem{Auditable}{No}
+	% V 0.2 Ok.
+	\UCitem{Datos sensibles}{Los datos personales del alumno (Nombre completo, CURP y domicilio) se utilizan con fines de validación de la operación, para realizar la inscripción del alumno y para asignar grupo.}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+	% V 0.2 Ok.
+	\UCpaso[\UCactor] Solicita gestionar la asignación de grupos dando clic en el icono \IUVer{} del Programa Académico del cual requiere gestionar los grupos.
+	% V 0.2 Ok.
+	\UCpaso Obtiene los \textbf{Periodos Escolares} registrado asociados al Ciclo Escolar seleccionado en el sistema asociado al Ciclo. \refErr{Uno}
+	% V 0.2 Ok.
+	\UCpaso Obtiene en Plan de estudios vigente del programa académico  seleccionado. \refErr{Dos}
+	% V 0.2 Ok.
+	\UCpaso Obtiene el nombre del programa académico, plan de estudio y modalidad del programa académico seleccionado.
+	% V 0.2 Ok.
+	\UCpaso Calcula el número total de \textbf{aspirantes sin inscribir} con base en la regla de negocio \refIdElem{BR-IN-N010}.		
+	% V 0.2 Ok.
+	\UCpaso Calcula el número total de \textbf{aspirantes inscritos} con base en la regla de negocio \refIdElem{BR-IN-N011}.		
+	% V 0.2 Ok.
+	\UCpaso Calcula el número total de \textbf{alumnos sin inscribir} con base en la regla de negocio \refIdElem{BR-IN-N012}.		
+	% V 0.2 Ok.
+	\UCpaso Calcula el número total de \textbf{alumnos inscritos} con base en la regla de negocio \refIdElem{BR-IN-N013}.
+	% V 0.2 Ok.
+	\UCpaso Calcula el número total de \textbf{alumnos con cancelación} con base en la regla de negocio \refIdElem{BR-IN-N014}.
+	% V 0.2 Ok.
+	\UCpaso Obtiene la boleta o preboleta, CURP, nombre completo, genero y domicilio de los alumnos no inscritos asociados al plan de estudios y programa académico seleccionados del ciclo escolar, periodo escolar y modalidad seleccionados.
+	% V 0.2 Ok.
+	\UCpaso Obtiene el tipo, proceso y estados de los alumnos asociados al programa académico seleccionado del ciclo escolar, periodo escolar y modalidad seleccionados.
+	% V 0.2 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-UA-IU3} con la información obtenida con el periodo escolar con la opción del primer periodo escolar seleccionado por default y como proceso \textbf{Todos} seleccionado por default.
+	% V 0.2 Ok.
+	\UCpaso[\UCactor] \label{IN-UA-CU3.1:Consulta} Visualiza el proceso de inscripción.
+\end{UCtrayectoria}
+
+\subsection{Puntos de extensión}
+
+\UCExtensionPoint{Inscribir alumnos por grupo}
+{El actor desea realizar la inscripción de alumnos por un bloque.}
+{En el paso \ref{IN-UA-CU3.1:Consulta} de la trayectoria principal}
+{\refIdElem{IN-UA-CU3.1.1}}
+
+\UCExtensionPoint{Inscribir alumnos por alumno}
+{El actor desea realizar la inscripción de un alumno}
+{En el paso \ref{IN-UA-CU3.1:Consulta} de la trayectoria principal}
+{\refIdElem{IN-UA-CU3.1.2}}
+
+\UCExtensionPoint{Inscribir alumnos por asignación automática}
+{El actor desea realizar la asignación automática de los alumnos}
+{En el paso \ref{IN-UA-CU3.1:Consulta} de la trayectoria principal}
+{\refIdElem{IN-UA-CU3.1.3}}
+
+\UCExtensionPoint{Visualizar alumno}
+{El actor desea visualizar la información de un alumno}
+{En el paso \ref{IN-UA-CU3.1:Consulta} de la trayectoria principal}
+{\refIdElem{IN-UA-CU5.1}}

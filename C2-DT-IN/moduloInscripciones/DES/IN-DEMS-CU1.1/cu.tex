@@ -1,0 +1,124 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DEMS-CU1.1}{Registrar Oferta Educativa}{
+	% V 0.1 Ok.
+	La oferta educativa registrada servirá para establecer los cupos a ofrecer a los aspirantes para un ciclo escolar y modalidad seleccionados.\\
+}
+	\UCccitem{Versión}{0.1}
+	
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Registro}
+	\UCccitem{Prioridad}{Alta} 
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Baja} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Revisado}
+	\UCccitem{Dificultades}{¿Cual es el rango de oferta educativa? Falta regla y mensaje}
+	\UCccitem{Fecha del último estatus}{5 de diciembre de 2017}
+	
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{5 de diciembre de 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{aprobado}
+	\UCccitem{Observaciones}{Ninguna}
+
+	\UCsection{Atributos}
+	% V 0.1 Ok.
+	\UCitem{Actor}{%
+	\begin{Titemize}
+		\Titem \refElem{DESEncargadoDeOfertaEducativa}
+	\end{Titemize}
+} 
+	% V 0.1 Ok.
+	\UCitem{Propósito}{Saber el número estudiantes esperados por Programa Académico ofertado, Modalidad y unidad Académica en cada Ciclo Escolar para facilitar el monitoreo del proceso de Inscripciones.}
+	% V 0.1 Ok.
+	\UCitem{Entradas}{\begin{Titemize}
+		\Titem Cantidad de \refElem{tOfertaEducativa} para cada periodo del ciclo escolar seleccionado.
+	\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Origen}{\begin{Titemize}
+			\Titem \ioSeleccionar
+	\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem La \refElem{UnidadAcademica.siglas} de la Unidad Académica.
+			\Titem \refIdElem{MSG1}
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}
+			
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado un \textbf{Ciclo Escolar} y \textbf{Modalidad}.
+		
+		\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Se registrará la oferta educativa de los Programas Académicos de la Unidad Académica seleccionada.} 
+	% V 0.1 Ok.
+	\UCitem{Reglas de Negocio}{%
+		\begin{Titemize}
+			\Titem \refIdElem{BR-S002}
+		\end{Titemize} 
+	}
+	% V 0.1 Ok.
+	\UCitem{Errores}{%
+		\begin{Titemize}
+			
+			\Titem \UCerr{Uno}{Cuando los campos ingresados no cumplen con el tipo de dato solicitado,}{se muestra el mensaje \refIdElem{MSG7} y continua en el paso \ref{IN-DEMS-CU1.1:Registrar} de la trayectoria principal.}
+						
+			\Titem \UCerr{Dos}{Cuando la operación no se pudo llevar a cabo,}{se muestra el mensaje \refIdElem{MSG2} y continua en el paso \ref{IN-DEMS-CU1.1:Registrar} de la trayectoria principal.}
+			
+		\end{Titemize} 
+	}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{\refIdElem{IN-DEMS-CU1}}
+	% V 0.1 Ok.
+	\UCitem{Disparador}{%
+		\begin{Titemize}
+			\Titem Se determino el número de lugares a ofertar para la Unidad Académica.
+		\end{Titemize} 
+	}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se registra la oferta educativa a la Unidad Académica seleccionada.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{Los números de oferta educativa serán actualizados.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 Ok.
+	\UCitem{Auditable}{Si, se guarda el nombre del actor, la fecha y hora de registro y la información registrada.}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{Ninguno identificado.}
+	
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+
+	\UCpaso [\UCactor] Solicita registrar la oferta educativa de una Unidad Académica dando clic en el icono \IUArchivo de la pantalla \refIdElem{IN-DEMS-IU1}.
+
+	\UCpaso Muestra la pantalla \refIdElem{IN-DES-IU1.1} con la información obtenida.
+
+	\UCpaso [\UCactor] Ingresa las cantidades de Oferta Educativa de los periodos escolares a ofertar para el ciclo escolar seleccionado.
+
+	\UCpaso [\UCactor] \label{IN-DEMS-CU1.1:Registrar} Solicita registrar la oferta educativa presionando el botón \IUbutton{Aceptar}. \refTray{A}
+
+	\UCpaso Verifica que los datos ingresados cumplan con el tipo de definido en el diccionario de datos con base en la regla de negocio \refIdElem{BR-S002}. \refErr{Uno}
+
+	\UCpaso Registra la Oferta Educativa de los Programas Académicos a ofertar registrados. \refErr{Dos}.
+
+	\UCpaso Muestra el mensaje \refIdElem{MSG1} en la pantalla \refIdElem{IN-DEMS-IU1} indicando que el registro de la Oferta Educativa se realizo de manera exitosa.
+\end{UCtrayectoria}
+
+%Trayectoria Alternativas
+
+%----------------- Trayectoria A ----------------- 
+\begin{UCtrayectoriaA}[Fin de la trayectoria]{A}{Cuando el actor no desea llevar a cabo la operación.}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita cancelar la operación presionando el botón \IUbutton{Cancelar}.
+	% V 0.1 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DEMS-IU1}.
+\end{UCtrayectoriaA}

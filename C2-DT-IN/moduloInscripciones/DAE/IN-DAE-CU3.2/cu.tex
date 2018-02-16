@@ -1,0 +1,155 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DAE-CU3.2}{Modificar configuración de proceso de inscripción}{
+
+	Permite al \refElem{DAEJefeDeRegistro} modificar una configuración de procesos que ofrece el módulo de inscripciones. \\
+
+	La ejecución de los procesos es necesaria para realizar las validaciones que se requieren sobre la información de los aspirantes y de esta manera evitar posibles complicaciones en el traslado de información ofrecida por el proceso.
+	}
+	\UCccitem{Versión}{0.2}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Eduardo Espino Maldonado / Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Modificar}
+	\UCccitem{Prioridad}{Alta}
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Media}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Por corregir}
+	\UCccitem{Dificultades}{}
+	\UCccitem{Fecha del último estatus}{14 de Diciembre de 2017}
+	
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{14 de Diciembre del 2017}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Aplicar correcciones}
+	\UCccitem{Observaciones}{}
+	
+	\UCsection{Atributos}
+
+	\UCitem{Actor}{\begin{Titemize}
+		\Titem \refElem{DAEJefeDeRegistro} 
+		\Titem \refElem{DAEAdministradorDeRegistro}
+\end{Titemize}}
+
+	\UCitem{Propósito}{Actualizar de manera eficiente la información de los estudiantes de nuevo ingreso en el Calmécac.}
+
+	\UCitem{Entradas}{%
+		\begin{Titemize}
+			\Titem El \refElem{Programa.nombre} del proceso de inscripción 
+			\Titem La \refElem{Programa.frecuenciaDeEjecucion} del proceso de inscripción
+			\Titem El tipo de ejecución que tendrá el proceso \footnote{Ver \refElem{ParteFecha.nombre}}
+			\Titem La \refElem{Programa.fechaInicio} del proceso
+			\Titem La \refElem{Programa.fechaTermino} del proceso
+		\end{Titemize}
+	}
+
+	\UCitem{Origen}{%
+		\begin{Titemize}
+			\Titem \ioSeleccionar
+			\Titem \ioEscribir
+		\end{Titemize}
+	}
+
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem El \refElem{Programa.nombre} del proceso de inscripción 
+			\Titem La \refElem{Programa.frecuenciaDeEjecucion} del proceso de inscripción
+			\Titem El tipo de ejecución que tendrá el proceso \footnote{Ver \refElem{ParteFecha.nombre}}
+			\Titem La \refElem{Programa.fechaInicio} del proceso
+			\Titem La \refElem{Programa.fechaTermino} del proceso
+			\Titem \refIdElem{MSG1}.
+		\end{Titemize}
+	}
+
+	\UCitem{Destino}{Pantalla}
+
+	\UCitem{Precondiciones}{\textbf{Manual:} Se hayan establecido los periodos de ejecución de importación de información de los aspirantes.}
+
+	\UCitem{Postcondiciones}{Se creará el proceso registrado.}
+
+	\UCitem{Reglas de Negocio}{%
+		\begin{Titemize}
+			\Titem \refIdElem{BR-S001}
+			\Titem \refIdElem{BR-S002}
+			\Titem \refIdElem{BR-IN-N020}
+		\end{Titemize}
+	}
+
+	\UCitem{Errores}{%
+		\begin{Titemize}
+			
+			\Titem \UCerr{Uno}{Cuando los campos marcados como obligatorios no fueron ingresados,}{se muestra el mensaje \refIdElem{MSG6} y regresa al paso \ref{IN-DAE-CU3.2:Ingresa} de la trayectoria principal.}
+			
+			\Titem \UCerr{Dos}{Cuando los campos ingresados no cumplen con el tipo de dato solicitado,}{se muestra el mensaje \refIdElem{MSG7} y regresa al paso \ref{IN-DAE-CU3.2:Ingresa} de la trayectoria principal.}
+			
+			\Titem \UCerr{Tres}{Cuando la fecha de inicio de ejecución es menor al día corriente,}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU3.2:Ingresa} de la trayectoria principal.}	
+			
+			\Titem \UCerr{Cuatro}{Cuando la fecha inicial es posterior a la fecha de término,}{se muestra el mensaje \refIdElem{MSG18} y regresa al paso \ref{IN-DAE-CU3.2:Ingresa} de la trayectoria principal.}
+			
+			\Titem \UCerr{Cinco}{Cuando la operación no se pudo llevar a cabo,}{se muestra el mensaje \refIdElem{MSG2} y regresa al paso \ref{IN-DAE-CU3.2:Aceptar} de la trayectoria principal.}
+			
+		\end{Titemize}
+	}
+
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU3}}
+
+	\UCitem{Disparadores}{\begin{Titemize}
+	
+	\Titem Hay aspirantes aceptados
+	\Titem Ha concluido algún proceso de ingreso
+	\Titem Se han recibido alumnos de movilidad
+	\Titem Se ha actualizado información por validación de documentos
+	\Titem Hay alumnos a los que se les ha aceptado su cambio de carrera
+
+	\end{Titemize}}
+
+	\UCitem{Condiciones de Término}{Se despliega una tabla donde se visualiza el nombre de la nueva configuración, así como su frecuencia y periodicidad de ejecución.}
+
+	\UCitem{Efectos Colaterales}{El proceso será ejecutado en el periodo y frecuencia registrada.}
+
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+
+	\UCitem{Auditable}{Si, se debe registrar en la bitácora del sistema: el usuario y hora que realizó la operación, el caso de uso, y los valores modificados.}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No se identifico}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+
+	\UCpaso [\UCactor] Solicita modificar un proceso dando clic en el icono \IUEditar en la pantalla \refIdElem{IN-DAE-IU3}.
+	
+	\UCpaso Obtiene el nombre, frecuencia de ejecución, tipo de frecuencia de ejecución, fecha de inicio y fecha de término del proceso de inscripción seleccionado.
+
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU3.2} con la información obtenida.
+
+	\UCpaso [\UCactor] \label{IN-DAE-CU3.2:Ingresa} Ingresa los datos solicitados.
+
+	\UCpaso  [\UCactor] \label{IN-DAE-CU3.2:Aceptar} Solicita registrar la nueva configuración presionando el botón \IUbutton{\IUEditar Registrar}. \refTray{A} 
+
+	\UCpaso Verifica que los datos marcados como obligatorios hayan sido ingresados con base en la regla de negocio \refIdElem{BR-S001}. \refErr{Uno}
+
+	\UCpaso Verifica que los datos ingresados cumplan con el tipo de dato definido en el diccionario de datos con base en la regla de negocio \refIdElem{BR-S002}. \refErr{Dos} 
+
+	\UCpaso Verifica que la fecha ingresada sea posterior al día corriente con base en la regla de negocio \refIdElem{BR-IN-N020}. \refErr{Tres} 
+
+	\UCpaso Verifica que la fecha inicial registrada sea menor que la fecha final registrada con base en la regla de negocio \refIdElem{BR-IN-N020}. \refErr{Cuatro}
+
+	\UCpaso Persiste la nueva configuración de proceso para las Unidades Académicas seleccionadas. \refErr{Cinco}
+
+	\UCpaso Muestra el mensaje \refIdElem{MSG1} en la pantalla \refIdElem{IN-DAE-IU3} indicando que la nueva configuración de proceso fue registrada exitosamente.
+\end{UCtrayectoria}
+
+%----------------- Trayectoria A ----------------- 
+\begin{UCtrayectoriaA}[Fin del caso de uso]{A}{El actor desea cancelar la operación.}
+
+	\UCpaso [\UCactor] Solicita cancelar la operación presionando el botón \IUbutton{Cancelar}.
+
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU3}.
+
+\end{UCtrayectoriaA}
+
+
+
+

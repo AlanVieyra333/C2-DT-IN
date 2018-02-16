@@ -1,0 +1,439 @@
+\begin{UseCase}{IN-DAE-PR1}{Cargar Aspirantes al CALMÉCAC}{
+		
+		Permite cargar la información de los estudiantes de nuevo ingreso a Calmécac para poder tener su registro del Instituto. \\
+		
+		Esta operación será llevada a cabo una vez que la \refElem{Proceso.fechaDeInicio} del \refElem{Proceso} se presente, y será ejecutada con base en la \refElem{Proceso.frecuenciaDeEjecucion} programada.\\
+		
+		Con base en los datos obtenidos en el layout del proceso de inscripción registrado se realizará el mapeo de los datos a la base de datos del Calmécac para obtener el registro de los estudiantes.
+		
+	}
+	
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Negocio}
+	\UCccitem{Prioridad}{Alta} 
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Media} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Edición}
+	\UCccitem{Dificultades}{
+		\begin{Titemize}
+			\Titem \TODO Checar la conversión de catálogos \ref{Layout.C17ICVEESC}
+			\Titem \TODO Necesitamos el periodo escolar \ref{Layout.C25ICICLOESCOLAR}
+		\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{23 de enero de 2018}
+	%------------------------------------------------------
+	%	\UCccsection{Revisión Versión}
+	%	\UCccitem{Fecha}{}
+	%	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	%	\UCccitem{Resultado}{}
+	%	\UCccitem{Observaciones}{}
+	%------------------------------------------------------
+	\UCsection{Atributos}
+	
+	\UCitem{Actor}{Tiempo} 
+	
+	\UCitem{Propósito}{Importar y actualizar la información de los estudiantes de nuevo ingreso al Calmécac para que puedan iniciar su trayectoria estudiantil dentro del Instituto.}
+	
+	\UCitem{Entradas}{Layout de importación.}
+	
+	\UCitem{Origen}{Proceso de inscripción.}
+	
+	\UCitem{Salidas}{Ninguna
+		%		\begin{Titemize}
+		%
+		%			\Titem 
+		%
+		%		\end{Titemize}
+	}
+	
+	\UCitem{Destino}{Calmécac}
+	
+	\UCitem{Precondiciones}{\textbf{Sistematizada:} Que se tenga un \refElem{Programa} registrado en el sistema.}
+	
+	\UCitem{Postcondiciones}{La información de los alumnos será actualizada o registrada dependiendo de la información del alumno en el Calmécac.} 
+	
+	\UCitem{Reglas de Negocio}{Ninguna.}	
+	
+	\UCitem{Errores}{\begin{Titemize}
+		
+		\Titem \UCerr{Uno}{Cuando la \textbf{Layout.C01ICVE$\_$ENTFED} o la \textbf{Layout.C01$\_$DESCENFED} no existe,}{se detiene el proceso de inscripción y se realiza un rollback de la información obtenida.}
+		
+		\Titem \UCerr{Dos}{Cuando la \textbf{Layout.C02ICVE$\_$DELEG} o la \textbf{Layout.C02$\_$DESCDELEG} no existe,}{se detiene el proceso de inscripción y se realiza un rollback de la información obtenida.}
+		
+		\Titem \UCerr{Tres}{Cuando el \textbf{Layout.T01$\_$GENERO} no existe,}{se detiene el proceso de inscripción y se realiza un rollback de la información obtenida.}
+		
+		\Titem \UCerr{Cuatro}{Cuando la \textbf{Layout.C06$\_$PAIS} o la \textbf{Layout.LUGAR$\_$NAC} no existe,}{se detiene el proceso de inscripción y se realiza un rollback de la información obtenida.}
+		
+		\Titem \UCerr{Cinco}{Cuando la \textbf{Calmecac.UnidadAcademica.ID} de la Unidad Académica que para el \textbf{Layout.C25ICICLOESCOLAR} se imparte en el \textbf{Calmecac.PeriodoEscolar.ID} en el \textbf{Calmecac.PlandeEstudio.ID - Calmecac.ProgramaAcademico.ID} del \textbf{Layout.C05ICVE$\_$CARRERA} no existe,}{se detiene el proceso de inscripción y se realiza un rollback de la información obtenida.}
+				
+		\Titem \UCerr{Seis}{Cuando los campos \textbf{Layout.C17ICVE$\_$ESC}, \textbf{Layout.C17$\_$NOM$\_$CORTO} y \textbf{Layout.C17$\_$NOM$\_$LARGO} no existen,}{se detiene el proceso de inscripción y se realiza un rollback de la información obtenida.}
+				
+		\Titem \UCerr{Siete}{Cuando los campos \textbf{Layout.C05ICVE$\_$CARRERA}, \textbf{Layout.C05$\_$DESCCARRERA} no existen,}{se detiene el proceso de inscripción y se realiza un rollback de la información obtenida.}
+	
+	\end{Titemize}}
+
+	\UCitem{Viene de}{Primario}
+	
+	\UCitem{Disparador}{La fecha del proceso de inscripción se presenta.}
+	
+	\UCitem{Condiciones de Término}{La información de los estudiantes de nuevo ingreso se actualizo.}
+	
+	\UCitem{Efectos Colaterales}{La información del alumno podrá ser consultada en los módulos de asignación.}
+	
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	
+	\UCitem{Auditable}{Si, los errores generados.}
+	
+	\UCitem{Datos sensibles}{Layout.T01$\_$CURP, Layout.T01$\_$EMAIL, Layout.T01$\_$CALLEYNUM, Layout.T01$\_$COLONIA, Layout.T01$\_$CP, Layout.T01$\_$CURP}
+	
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+
+\begin{enumerate}
+	
+	\item $\forall$ \textbf{Layout.registro}
+	
+	\item Busca un registro con el sistema con el \textbf{Layout.CURP}.
+	
+	\item Si el \textbf{Layout.CURP} fue encontrado se realiza la actualización de datos.
+	
+		\begin{enumerate}
+			
+		\item Verifica que la dirección del estudiante sea diferente:
+		
+			\begin{enumerate}
+	
+			\item Asocia el \textbf{Calmecac.Municipio.ID} a \textbf{Calmecac.DirecciondeAlumno.ID}.
+			
+			\item \textbf{Layout.T01$\_$CP} $\neq$ \textbf{Calmecac.DirecciondeAlumno.CP}.
+			
+			\item \textbf{Layout.T01$\_$COLONIA} $\neq$ \textbf{Calmecac.DirecciondeAlumno.Colonia}.
+			
+			\item \textbf{Layout.T01$\_$CALLEYNUM} $\neq$ \textbf{Calmecac.DirecciondeAlumno.Calle}.
+			
+			\end{enumerate}
+		
+		\item Si la dirección del estudiante no es diferente, continua la operación.
+		
+		\item Si la dirección del estudiante es diferente.
+		
+			\begin{enumerate}
+				
+			\item Asocia el \textbf{Calmecac.Municipio.ID} a \textbf{Calmecac.DirecciondeAlumno.ID}.
+			
+			\item Actualiza \textbf{Layout.T01$\_$CP} a \textbf{Calmecac.DirecciondeAlumno.CP}.
+			
+			\item Actualiza \textbf{Layout.T01$\_$COLONIA} a \textbf{Calmecac.DirecciondeAlumno.Colonia}.
+			
+			\item Actualiza \textbf{Layout.T01$\_$CALLEYNUM} a \textbf{Calmecac.DirecciondeAlumno.Calle}.
+			
+			\end{enumerate}
+		
+		\item Verifica que el \textbf{Layout.T01$\_$EMAIL} del estudiante no este registrado en sus \textbf{Calmecac.DatodecontactodeAlumno} de tipo \textbf{Correo electrónico}.
+
+		\item Si el \textbf{Layout.T01$\_$EMAIL} existe, continua la operación.
+		
+		\item Si el \textbf{Layout.T01$\_$EMAIL} no existe.
+		
+			\begin{enumerate}
+			
+			\item Importa \textbf{Layout.T01$\_$EMAIL} a \textbf{Calmecac.DatodecontactodeAlumno.Dato}.
+			
+			\item Asigna \textbf{Correo electrónico} como \textbf{Calmecac.TipoContacto.Nombre}.
+			
+			\end{enumerate}
+
+		\item Verifica que el \textbf{Layout.T01$\_$TEL} del estudiante no este registrado en sus \textbf{Calmecac.DatodecontactodeAlumno} de tipo \textbf{Teléfono}.
+		
+		\item Si el \textbf{Layout.T01$\_$TEL} existe, continua la operación.
+		
+		\item Si el \textbf{Layout.T01$\_$TEL} no existe.
+		
+			\begin{enumerate}
+				
+			\item Importa \textbf{Layout.T01$\_$TEL} a \textbf{Calmecac.DatodecontactodeAlumno.Dato}.
+			
+			\item Asigna \textbf{Teléfono} como \textbf{Calmecac.TipoContacto.Nombre}.
+			
+			\end{enumerate}
+			
+		\end{enumerate}
+	
+	\item Si el \textbf{Layout.CURP} no fue encontrado se realiza la importación de datos.
+	
+		\begin{enumerate}
+	
+		\item Crea la entidad \textbf{Alumno}.
+		
+			\begin{enumerate}
+		
+			\item Importa \textbf{Layout.T01$\_$NOMBRE} a \textbf{Calmecac.Alumno.Nombre}.
+			
+			\item Importa \textbf{Layout.T01$\_$APE$\_$PAT} a \textbf{Calmecac.Alumno.PrimerApellido}.
+			
+			\item Importa \textbf{Layout.T01$\_$APE$\_$MAT} a \textbf{Calmecac.Alumno.SegundoApellido}.
+			
+			\item Importa \textbf{Layout.T01$\_$CURP} a \textbf{Calmecac.Alumno.CURP}.
+			
+			\item Importa \textbf{Layout.T01$\_$FECHA$\_$NAC} a \textbf{Calmecac.Alumno.FechaNacimiento}.
+			
+			\item Importa \textbf{Layout.T02$\_$FOTO} a \textbf{Calmecac.Alumno.Fotografía}.
+		
+			\end{enumerate}
+		
+		\item Verifica que la \textbf{Layout.C01ICVE$\_$ENTFED} exista en \textbf{Calmecac.Entidad.ID} y \textbf{Layout.C01$\_$DESCENFED} en \textbf{Calmecac.Entidad.NombredelaEntidad}. \refErr{Uno}
+		
+		\item Verifica que la \textbf{Layout.C02ICVE$\_$DELEG} exista en \textbf{Calmecac.Municipio.ID} y \textbf{Layout.C02$\_$DESCDELEG} en \textbf{Calmecac.Municipio.NombredeMunicipio}. \refErr{Dos}
+		
+		\item Asocia el \textbf{Calmecac.Entidad.ID} al \textbf{Calmecac.Municipio.ID}.
+		
+		\item Crea la entidad \textbf{Dirección de Alumno}.
+		
+			\begin{enumerate}
+				
+			\item Asocia el \textbf{Calmecac.Municipio.ID} a \textbf{Calmecac.DirecciondeAlumno.ID}.
+		
+			\item Importa \textbf{Layout.T01$\_$CP} a \textbf{Calmecac.DirecciondeAlumno.CP}.
+			
+			\item Importa \textbf{Layout.T01$\_$COLONIA} a \textbf{Calmecac.DirecciondeAlumno.Colonia}.
+			
+			\item Importa \textbf{Layout.T01$\_$CALLE} a \textbf{Calmecac.DirecciondeAlumno.Calle}. %TODO AQUI ERA CALLEYNUM
+			
+			\item Importa \textbf{Layout.T01$\_$NUM} a \textbf{Calmecac.DirecciondeAlumno.NumeroExterior}.
+			
+			\end{enumerate}
+		
+		\item Crea la entidad \textbf{Dato de contacto del alumno}.
+		
+			\begin{enumerate}
+		
+			\item Importa \textbf{Layout.T01$\_$EMAIL} a \textbf{Calmecac.DatodecontactodeAlumno.Dato}.
+			
+			\item Asigna \textbf{Correo electrónico} como \textbf{Calmecac.TipoContacto.Nombre}.
+			
+			\item Importa \textbf{Layout.T01$\_$TEL} a \textbf{Calmecac.DatodecontactodeAlumno.Dato}.
+			
+			\item Asigna \textbf{Teléfono} como \textbf{Calmecac.TipoContacto.Nombre}.
+			
+			\end{enumerate}
+		
+		\item Verifica que \textbf{Layout.T01$\_$GENERO} exista en \textbf{Calmecac.Sexo.Nombre}. \refErr{Tres}
+		
+		\item Crea la entidad \textbf{Sexo}
+		
+			\begin{enumerate}
+		
+			\item Importa \textbf{Layout.T01$\_$GENERO} a \textbf{Calmecac.Sexo.Nombre}.
+		
+			\end{enumerate}
+	
+		\item Verifica que el \textbf{Layout.C06$\_$PAIS} exista en \textbf{Calmecac.País.Gentilicio} y \textbf{Layout.LUGAR$\_$NAC} en \textbf{Calmecac.País.Nombre}. \refErr{Cuatro}
+	
+		\item Crea la entidad \textbf{Pais}
+		
+			\begin{enumerate}
+			
+			\item Importa \textbf{Layout.C06$\_$PAIS} a \textbf{Calmecac.País.Gentilicio}.
+		
+			\item Importa \textbf{Layout.LUGAR$\_$NAC} a \textbf{Calmecac.País.Nombre}.
+			
+			\end{enumerate}
+		
+		\item Crea la entidad \textbf{Alumno en Escuela}
+		
+			\begin{enumerate}
+		
+			\item Verifica que exista información en el campo \textbf{Layout.ESC$\_$PROC}
+		
+			\item Si existe
+			
+				\begin{enumerate}
+		
+				\item Importa \textbf{Layout.T01$\_$PROMGEN} a \textbf{Calmecac.AlumnoenEscuela.Promedio}.
+				
+				\item Crea la entidad \textbf{Escuela}
+		
+					\begin{itemize}
+		
+					\item Importa \textbf{Layout.ESC$\_$PROC} a \textbf{Calmecac.Escuela.Nombre}.
+					
+					\item Asigna el nivel \textbf{Secundaria} a la escuela
+					
+					\end{itemize}
+				
+				\end{enumerate}
+			
+			\end{enumerate}
+		
+		\item Si no existe
+		
+			\begin{enumerate}
+		
+			\item Importa \textbf{Layout.T01$\_$PROMGEN} a \textbf{Calmecac.AlumnoenEscuela.Promedio}.
+			
+			\item Crea la entidad \textbf{Escuela}
+			
+				\begin{enumerate}
+				
+				\item Importa \textbf{Layout.C10ICVE$\_$BACH} a \textbf{Calmecac.Escuela.ID}.
+				
+				\item Importa \textbf{Layout.C10$\_$DESCBACH} a \textbf{Calmecac.Escuela.Abreviatura}.
+				
+				\item Asigna el nivel \textbf{Secundaria} a la escuela
+				
+				\item Crea la entidad \textbf{Entidad}
+				
+					\begin{itemize}
+		
+					\item Importa \textbf{Layout.CVE$\_$ENTBACH} a \textbf{Calmecac.Entidad.ID}.
+					
+					\item Importa \textbf{Layout.DESCENFBACH} a \textbf{Calmecac.Entidad.NombredelaEntidad}.
+					
+					\end{itemize}
+				
+				\end{enumerate}	
+
+			\end{enumerate}
+		
+		\item Crea la entidad \textbf{Alumno Asignado}
+		
+			\begin{enumerate}
+				
+			\item Importa \textbf{Layout.T01IFOLIO} a \textbf{Calmecac.AlumnoAsignado.Folio}.
+			
+			\item Importa \textbf{Layout.C25ICVEPROCESO} a \textbf{Calmecac.AlumnoAsignado.ClaveEnElProceso}.
+			
+			\item \label{IN-DAE-PR1:preboleta} Importa \textbf{Layout.PR} a \textbf{Calmecac.AlumnoAsignado.Preboleta}.
+			
+			\item \label{IN-DAE-PR1:boleta} Importa \textbf{Layout.T11$\_$BOLETA} a \textbf{Calmecac.AlumnoAsignado.Boleta}.
+			
+			\item Actualiza al día actual la \textbf{Calmecac.AlumnoAsignado.FechaDeUltimaCarga}
+				
+			\end{enumerate}
+		
+		\item Crea la entidad \textbf{Estado de Carga del Alumno}
+		
+			\begin{enumerate}
+			
+			\item Importa \textbf{Layout.C11$\_$DESCRIPCION} a \textbf{Calmecac.EstadodeCargadeAlumno.Nombre}.% \TODO ¿También se hace la verificación?
+			
+			\end{enumerate}
+		
+		\item Obtiene el \textbf{Calmecac.UnidadAcademica.ID} de la Unidad Académica que para el \textbf{Layout.C25ICICLOESCOLAR} se imparte en el \textbf{Calmecac.PeriodoEscolar.ID} en el \textbf{Calmecac.PlandeEstudio.ID - Calmecac.ProgramaAcademico.ID} del \textbf{Layout.C05ICVE$\_$CARRERA}. \refErr{Cinco}
+		
+		\item Verifica que sean iguales los campos \textbf{Layout.C17ICVE$\_$ESC} a \textbf{Calmecac.UnidadAcademica.ID}, \textbf{Layout.C17$\_$NOM$\_$CORTO} a \textbf{Calmecac.UnidadAcadémica.Acrónimo} y  \textbf{Layout.C17$\_$NOM$\_$LARGO} a \textbf{Calmecac.UnidadAcadémica.Nombre}. \refErr{Seis}
+		
+		\item Verifica que sean iguales los campos \textbf{Layout.C05ICVE$\_$CARRERA} a \textbf{Calmecac.ProgramaAcadémico.ID} y \textbf{Layout.C05$\_$DESCCARRERA} a \textbf{Calmecac.ProgramaAcadémico.Nombre}. \refErr{Siete}
+		
+		\item Importa \textbf{Layout.C17ICVE$\_$ESC} a \textbf{Calmecac.UnidadAcademica.ID}. 
+		
+		\item Importa \textbf{Layout.C17$\_$NOM$\_$CORTO} a \textbf{Calmecac.UnidadAcadémica.Acrónimo}.
+		
+		\item Importa \textbf{Layout.C17$\_$NOM$\_$LARGO} a \textbf{Calmecac.UnidadAcadémica.Nombre}.
+		
+		\item Importa \textbf{Layout.C05ICVE$\_$CARRERA} a \textbf{Calmecac.ProgramaAcadémico.ID}.
+		
+		\item Importa \textbf{Layout.C05$\_$DESCCARRERA} a \textbf{Calmecac.ProgramaAcadémico.Nombre}.
+		
+		\item Importa \textbf{Layout.C25IPERIODOESCOLAR} a \textbf{Calmecac.PeriodoEscolar.Clave}. 
+%		\item Importa \textbf{Layout.C25ICICLOESCOLAR} a \textbf{Calmecac.CicloEscolar.Clave}. 
+		%TODO Necesitamos el periodo escolar
+
+	\end{enumerate}
+
+\end{enumerate}
+
+% Trayectorias Alternas
+
+%\begin{UCtrayectoriaA}{A}{El actor cuenta con una preboleta.}
+%	
+%	\UCpaso Continua en el paso \ref{IN-DAE-PR1:preboleta}.
+%	
+%\end{UCtrayectoriaA}
+%
+%\begin{UCtrayectoriaA}{B}{El actor no cuenta con una preboleta.}
+%	
+%	\UCpaso Continua en el paso \ref{IN-DAE-PR1:boleta}.
+%	
+%\end{UCtrayectoriaA}
+
+
+%\UCpaso Importa \textbf{Layout.C25ICVEPROCESO} a \textbf{Calmecac.AlumnoAsignado.ClaveEnElProceso}.
+%
+%\UCpaso Importa \textbf{Layout.C25ICICLOESCOLAR} a \textbf{Calmecac.CicloEscolar.Clave}. \TODO Necesitamos el periodo escolar
+%
+%\UCpaso Importa \textbf{Layout.T01IFOLIO} a \textbf{Calmecac.AlumnoAsignado.Folio}.
+%
+%\UCpaso Importa \textbf{Layout.PR} a \textbf{Calmecac.AlumnoAsignado.Preboleta}.
+%
+%\UCpaso Importa \textbf{Layout.T11$\_$BOLETA} a \textbf{Calmecac.AlumnoAsignado.Boleta}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$BOLETA} a \textbf{Calmecac.AlumnoAsignado.Boleta}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$APE$\_$PAT} a \textbf{Calmecac.Alumno.PrimerApellido}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$APE$\_$MAT} a \textbf{Calmecac.Alumno.SegundoApellido}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$NOMBRE} a \textbf{Calmecac.Alumno.Nombre}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$GENERO} a \textbf{Calmecac.Sexo.Nombre}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$CURP} a \textbf{Calmecac.Alumno.CURP}.
+%
+%\UCpaso Importa \textbf{Layout.NIP} a \textbf{Calmecac.}.\TODO Falta ver este dato como se va a manejar
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$EMAIL} a \textbf{Calmecac.DatodecontactodeAlumno.Dato}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$CALLEYNUM} a \textbf{Calmecac.}. \TODO ¿Como se va a separar?
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$COLONIA} a \textbf{Calmecac.DirecciondeAlumno.Colonia}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$CP} a \textbf{Calmecac.DirecciondeAlumno.CP}.
+%
+%\UCpaso Importa \textbf{Layout.C02ICVE$\_$DELEG} a \textbf{Calmecac.Municipio.ID}.
+%
+%\UCpaso Importa \textbf{Layout.C02$\_$DESCDELEG} a \textbf{Calmecac.Municipio.NombredeMunicipio}.
+%
+%\UCpaso Importa \textbf{Layout.C01ICVE$\_$ENTFED} a \textbf{Calmecac.Entidad.ID}.
+%
+%\UCpaso Importa \textbf{Layout.C01$\_$DESCENFED} a \textbf{Calmecac.Entidad.NombredelaEntidad}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$TEL} a \textbf{Calmecac.DatodecontactodeAlumno.Dato}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$FECHA$\_$NAC} a \textbf{Calmecac.Alumno.FechaNacimiento}.
+%
+%\UCpaso Importa \textbf{Layout.LUGAR$\_$NAC} a \textbf{Calmecac.Entidad.NombredelaEntidad}.
+%
+%\UCpaso Importa \textbf{Layout.C06$\_$PAIS} a \textbf{Calmecac.País.Gentilicio}.
+%
+%\UCpaso Importa \textbf{Layout.C10ICVE$\_$BACH} a \textbf{Calmecac.Escuela.ID}.
+%
+%\UCpaso Importa \textbf{Layout.C10$\_$DESCBACH} a \textbf{Calmecac.Escuela.Abreviatura}.
+%
+%\UCpaso Importa \textbf{Layout.T01$\_$PROMGEN} a \textbf{Calmecac.AlumnoenEscuela.Promedio}.
+%
+%\UCpaso Importa \textbf{Layout.CVE$\_$ENTBACH} a \textbf{Calmecac.Entidad.ID}.
+%
+%\UCpaso Importa \textbf{Layout.DESCENFBACH} a \textbf{Calmecac.Entidad.NombredelaEntidad}.
+%
+%\UCpaso Importa \textbf{Layout.C17ICVE$\_$ESC} a \textbf{Calmecac.UnidadAcademica.ID}. \TODO Checar la conversión de catálogos
+%
+%\UCpaso Importa \textbf{Layout.C17$\_$NOM$\_$CORTO} a \textbf{Calmecac.UnidadAcadémica.Acrónimo}.
+%
+%\UCpaso Importa \textbf{Layout.C17$\_$NOM$\_$LARGO} a \textbf{Calmecac.UnidadAcadémica.Nombre}.
+%
+%\UCpaso Importa \textbf{Layout.C05ICVE$\_$CARRERA} a \textbf{Calmecac.PeriodoenUnidadAcadémica.ID} - \textbf{Calmecac.PlandeEstudioenPeriododeUnidadAcadémica.ID} - \textbf{Calmecac.AlumnoSsignado.ID}.
+%
+%\UCpaso Importa \textbf{Layout.C05$\_$DESCCARRERA} a \textbf{Calmecac.ProgramaAcadémico.Nombre}.
+%
+%\UCpaso Importa \textbf{Layout.ESC$\_$PROC} a \textbf{Calmecac.Escuela.Nombre}.
+%
+%\UCpaso Importa \textbf{Layout.C11$\_$DESCRIPCION} a \textbf{Calmecac.EstadodeCargadeAlumno.Nombre}.
+%
+%\UCpaso Importa \textbf{Layout.T02$\_$FOTO} a \textbf{Calmecac.Alumno.Fotografía}.

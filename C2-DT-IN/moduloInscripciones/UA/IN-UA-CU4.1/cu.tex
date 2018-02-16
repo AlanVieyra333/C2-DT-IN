@@ -1,0 +1,133 @@
+% !TEX root = ../../../integrado.tex
+
+\begin{UseCase}{IN-UA-CU4.1}{Registrar entrega de documentos}{
+		En este caso de uso el actor selecciona un alumno con boleta para hacerle entrega de sus documentos y registrar el resultado de dicha entrega. Completando así el proceso de inscripción.
+	}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Ulises Vélez Saldaña}
+	\UCccitem{Supervisó}{}
+	\UCccitem{Operación}{}
+	\UCccitem{Prioridad}{Baja}
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Baja}
+	\UCccitem{Madurez}{Media}
+	\UCccitem{Estatus}{Revisado}
+	\UCccitem{Dificultades}{No.
+%		\begin{Titemize}
+%			\Titem \TODO
+%		\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{06 de Febrero del 2018}
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{}
+	\UCccitem{Evaluador}{}
+	\UCccitem{Resultado}{}
+	\UCccitem{Observaciones}{}
+	\UCsection{Atributos}
+	\UCitem{Actores}{%
+		\begin{Titemize}
+			\Titem \refElem{UAJefeDeControlEscolar}
+		\end{Titemize}
+	}
+	\UCitem{Propósito}{Llevar el control de la entrega de documentos originales a los alumnos de nuevo ingreso.}
+	\UCitem{Entradas}{%
+		\begin{Titemize}
+			\Titem \refElem{EstadoDeDevolucion} de documentos de un Alumno.
+			\Titem \refElem{DocumentoDeAsignacion} entregado al Alumno.
+		\end{Titemize}
+	}
+	\UCitem{Origen}{Se introducen desde el teclado}
+	\UCitem{Salidas}{
+		\begin{Titemize}
+			\Titem \refElem{Alumno.nombre} del alumno seleccionado
+			\Titem \refElem{Alumno.primerApellido} del alumno seleccionado
+			\Titem \refElem{Alumno.segundoApellido} del alumno seleccionado
+			\Titem \refElem{Alumno.CURP} del alumno seleccionado
+			\Titem \refElem{Alumno.fechaDeNacimiento} del alumno seleccionado
+			\Titem \refElem{Alumno.lugarDeNacmiento} del alumno seleccionado
+			\Titem \refElem{Alumno.fotografia} del alumno seleccionado
+			\Titem \refElem{Domicilio} del alumno seleccionado
+			\Titem Información del \refElem{AlumnoAsignado}
+			\Titem Detalle de las Unidades de Aprendizaje Inscritas (ver \refElem{UnidadDeAprendizaje}) del alumno seleccionado
+			\Titem \refElem{TipoDeDocumento} registrados en el sistema.
+		\end{Titemize}
+	}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}
+			\Titem Que exista al menos un alumno asociado a la Unidad Académica cuyo estado de entrega de documentos sea diferente de ``Satisfactoria''.
+			\Titem Que exista al menos un Tipo de Documento registrado.
+		\end{Titemize}
+	}
+	\UCitem{Postcondiciones}{%
+		\begin{Titemize}
+			\Titem Se cambia el estado de entrega de documentos.
+			\Titem Se registran los documentos entregados.
+			\Titem Se registra una justificación (en caso de que el estado final sea diferente a ``Satisfactoria''.
+		\end{Titemize}
+	}
+	\UCitem{Reglas de Negocio}{%
+		\begin{Titemize}
+			\Titem 
+		\end{Titemize}
+	}
+	\UCitem{Errores}{%
+		\begin{Titemize}
+			\Titem \UCerr{Uno}{Cuando no existe al menos un Alumno con Estado De Devolución distinto a satisfactorio}{se muestra el mensaje \refIdElem{MSGX} y regresa al caso de uso anterior tras confirmar el mensaje por el usuario}
+		\end{Titemize}
+	}
+	\UCitem{Viene de}{\refIdElem{IN-UA-CU4}}
+	\UCitem{Disparador}{%
+		\begin{Titemize}
+			\Titem Se han recibido documentos por parte de la DAE para entrega a los alumnos.
+			\Titem Los alumnos se presentan en la ventanilla para recepción de sus documentos.
+		\end{Titemize}
+	}
+	\UCitem{Condiciones de Término}{Se registra el estado de la entrega de documentos.}
+	\UCitem{Efectos Colaterales}{Ninguno}
+	\UCitem{Referencia Documental}{Proceso fortalecido}
+	\UCitem{Auditable}{no}
+	\UCitem{Datos sensibles}{Los datos personales de los alumnos, los cuales se deben utilizar solamente para la entrega de documentos.}
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita el registro de la entrega de documentos mediante el ícono \IUEstadoEdit{} del alumno en cuestión.
+	\UCpaso Obtiene los datos del Alumno seleccionado.
+	\UCpaso Obtiene los datos del Domicilio del Alumno seleccionado.
+	\UCpaso Obtiene los datos de Asignación (ver \refElem{AlumnoAsignado}, \refElem{detalleAsignacion} y \refElem{DocumentoDeAsignacion}).
+	\UCpaso Muestra la información obtenida mediante la pantalla \refElem{IN-DAE-UA4-1}.
+	\UCpaso[\UCactor] Selecciona los documentos de los que está haciendo entrega.
+	\UCpaso[\UCactor] Selecciona el resultado de la entrega.\refTray{A}
+	\UCpaso[\UCactor] Introduce la \refElem{DetalleDeAsignacion.Justificacion}.
+	\UCpaso[\UCactor] Presiona el botón ``Registrar entrega''.
+	\UCpaso Verifica que los datos obligatorios hayan sido proporcionados correctamente.
+	\UCpaso Verifica que haya una justificación de al menos tres palabras.
+	\UCpaso \label{paso:CU4-1Registra}Registra el estado de la entrega de la documentación.
+	\UCpaso Actualiza la lista de Alumnos de la pantalla de \refElem{IN-UA-CU4}
+\end{UCtrayectoria}
+
+%Trayectorias Alternativas
+
+\begin{UCtrayectoriaA}[Continua en el paso \ref{paso:CU4-1Registra}]{A}{Se realiza una entrega con observaciones.}
+	\UCpaso[\UCactor] Selecciona la opción de ``Entregados con observaciones''
+	\UCpaso Activa la edición del campo titulado ``Observaciones''.
+\end{UCtrayectoriaA}
+
+%\subsection{Puntos de extensión}
+%\UCExtensionPoint{Registrar periodo de E.T.S.}
+%{El actor desea registrar un nuevo periodo de E.T.S.}
+%{En el paso \ref{IN-DAE-CU4:gestionar} de la trayectoria principal}
+%{\refIdElem{IN-DAE-CU4.1}}
+%
+%\UCExtensionPoint{Editar periodo de E.T.S.}
+%{El actor desea editar un periodo de E.T.S.}
+%{En el paso \ref{IN-DAE-CU4:gestionar} de la trayectoria principal}
+%{\refIdElem{IN-DAE-CU4.2}}
+%
+%\UCExtensionPoint{Eliminar periodo de E.T.S.}
+%{El actor desea eliminar un periodo de E.T.S.}
+%{En el paso \ref{IN-DAE-CU4:gestionar} de la trayectoria principal}
+%{\refIdElem{IN-DAE-CU4.3}}

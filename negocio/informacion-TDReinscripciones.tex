@@ -1,0 +1,30 @@
+\begin{TipoDeDato}{tdTipoDeReinscripcion}{Tipo de Reinscripción}{Es un catálogo en el que se almacena la clasificación a la que una carga de aspirantes pertenece y de esta forma especificar si esta tarea se lleva a cabo de forma automática o manual.}
+	
+	\begin{tdAtributos}
+			
+			\tdAttr{nombre}{Nombre}{tdfrase}{Es una palabra o un conjunto de palabras que identifican al Tipo de Reinscripción.}
+			
+	\end{tdAtributos}
+
+	\subsection{Valores Iniciales}
+
+	A continuación se presenta una tabla en la que se muestran los valores iniciales con los que el catálogo será poblado:% los cuales fueron obtenidos de acuerdo a la minuta \textbf{2018012- }
+	\cdtEmpty
+		\begin{longtable}{|p{0.3\textwidth}|p{0.35\textwidth}|}
+				\hline
+				\rowcolor{colorPrincipal}
+	 			\multicolumn{2}{c}{\bf \color{white} Valores Iniciales}\\
+	 			\hline
+	 			\rowcolor{colorSecundario}
+	 			\bf\color{white}Nombre & \bf\color{white}Descripción\\
+	 			\hline
+	 			Rígida & Este tipo de carga de reinscripción permite solo al \refElem{AlumnoAsignado} confirmar su cita de reinscripción.\\
+	 			\hline
+	 			Semi-rígida & Este tipo de reinscripción le permite al \refElem{AlumnoAsignado} escoger en que grupo desea inscribirse, sin embargo, este debe inscribir todas las Unidades de Aprendizaje pertenecientes al grupo en el turno correspondiente.\\
+	 			\hline
+	 			Flexible & Este tipo de reinscripción le permite al \refElem{AlumnoAsignado} inscribir Unidades de Aprendizaje de forma indistinta por grupo y turno.\\
+	 			\hline
+	 			Semi-flexible & Este tipo de reinscripción le permite al \refElem{AlumnoAsignado} inscribir Unidades de Aprendizaje de forma de cualquier grupo que corresponda a su turno.\\
+		\end{longtable}
+
+\end{TipoDeDato}

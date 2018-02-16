@@ -1,0 +1,9 @@
+id,name
+Alumno.CURP,CURP
+IN-UA-CU1,Selecci\IeC {\'o}n de ciclo escolar y modalidad
+IN-UA-CU3,Visualizar proceso de inscripci\IeC {\'o}n
+IN-UA-CU3.1,Gestionar asignaci\IeC {\'o}n de grupos
+IN-UA-CU3.1.1,Inscribir alumnos por grupo
+IN-UA-CU3.1.2,Inscribir alumnos por alumno
+IN-UA-CU4,Gestionar entrega de documentos
+IN-UA-CU4.1,Registrar entrega de documentos

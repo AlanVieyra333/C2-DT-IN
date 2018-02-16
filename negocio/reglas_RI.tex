@@ -1,0 +1,1089 @@
+\subsection{Reglas de Negocio de Reinscripciones}
+
+%======================================================================
+\begin{BusinessRule}{BR-RI-N001}{Cálculo de alumnos a los que se les debe generar una cita de reinscripción en una Unidad Académica}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los alumnos que necesitan que se les genere una cita de reinscripción en una Unidad Académica para un determinado periodo escolar son aquellos alumnos que estuvieron inscritos en la Unidad Académica en el periodo escolar inmediato anterior exceptuando a aquellos alumnos que:
+		\begin{itemize}
+			\item Concluyeron su Plan de Estudio en el periodo escolar inmediato anterior.
+			\item Se le dio una baja de cualquier tipo en el perido escolar inmediato anterior
+			\item Se les autorizó un cambio de carrera a otra Unidad Académica en el periodo escolar inmediato anterior.
+			\item No siguen activos en el sistema
+		\end{itemize}
+	
+	A estos alumnos se le suman aquellos no estuvieron inscritos en la Unidad Académica en el periodo escolar inmediato anterior pero:
+		\begin{itemize}
+			\item Tienen un dictamen favorable que les autoriza reinscribirse al periodo escolar en un Programa Académico ofertado en la Unidad Académica.
+			\item Estuvieron inscritos en la Unidad Académica en algún periodo escolar previo y tienen baja con permiso que concluye en el periodo escolar.
+			\item Estuvieron inscritos en la Unidad Académica en algún periodo escolar previo y concluyeron su movilidad.
+			\item Se les autorizó un cambio de carrera a un Programa Académico ofertado en la Unidad Académica.
+		\end{itemize}
+%	\BRItem[Sentencia] \cdtEmpty\\
+%		Sean: \\
+%			 $ UA $ la Unidad Académica\\
+%			 $ P $ el periodo escolar\\
+%			 $ P_{previo}$ el periodo escolar inmediato anterior\\
+%			 $a$ un alumno.
+%
+%				Considerando los siguientes conjuntos: \\	
+%		$ Inscritos\_anterior = $ \{ a $|$ a estuvo inscrito en la UA en $P_{previo} $ \}\\
+%		$ Concluyeron = $ \{ $a$ $|$ a estuvo inscrito en la UA en $P_{previo}$  $\land$  $a$ concluyó su Plan de Estudio en $P_{previo}$ \}\\
+%		$ Bajas = $ \{ $a$ $|$ a estuvo inscrito en la UA en $P_{previo}$  $\land$  $a$ tienen una baja de cualquier tipo en el $P_{previo}$ \}\\
+%		$ Cambio_carrera = $ \{ $a$ $|$ a estuvo inscrito en la UA en $P_{previo}$  $\land$  $a$ tiene autorizado un cambio de carrera a otra Unidad Académica en el $P_{previo}$ \}\\
+%		$No_activos = $ \{ $a$ $|$ a estuvo inscrito en la UA en $P_{previo}$  $\land$  $a$ no se encuentra activo en el sistema \}\\
+%		$No_activos = $ \{ $a$ $|$ a estuvo inscrito en la UA en $P_{previo}$  $\land$  $a$ no se encuentra activo en el sistema \}\\		
+			
+	\BRItem[Motivación] Identificar a todos los alumnos a los cuales se les tiene que generar una cita de reinscripción para un periodo escolar con el fin de programar los bloque de citas de reinscripción necesarios.
+
+\end{BusinessRule}
+
+
+
+%======================================================================,
+% \begin{BusinessRule}{BR-RI-N002}{Alumnos que cumplen con los criterios de situación escolar para un bloque de citas}
+% 	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+% 	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+% 	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+% 	\BRItem[Versión] 1.0.
+% 	\BRItem[Estado] Propuesta.
+% 	\BRItem[Propuesta por] Ángeles
+% 	\BRItem[Revisada por] Pendiente.
+% 	\BRItem[Aprobada por] Pendiente.
+% 	\BRItem[Descripción] El conjunto de alumnos que cumplen con los criterios de situación escolar para un bloque de citas se calcula con los siguientes puntos:
+% 		\begin{enumerate}
+% 			\item Si se seleccionó la opción {\it Con Dictamen}, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que tienen un dictamen favorable vigente para el periodo escolar de reinscripciones.
+% 			\item \label{BR-RI-N002:SinDictamenRegulares}Si se seleccionó la opción {\it Sin Dictamen} y la opción {\it Regulares}, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+% 				\begin{itemize}
+% 					\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+% 					\item Tienen situación escolar regular.
+% 				\end{itemize}
+% 			\item \label{BR-RI-N002:SinDictamenIrregulares1}Si se seleccionó la opción {\it Sin Dictamen}, la opción {\it Irregulares} y el número de unidades de aprendizaje desfasadas permitidas es cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+% 				\begin{itemize}
+% 					\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+% 					\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+% 					\item Tienen cero unidades de aprendizaje desfasadas.
+% 				\end{itemize}
+% 			\item \label{BR-RI-N002:SinDictamenIrregulares2}Si se seleccionó la opción {\it Sin Dictamen}, la opción {\it Irregulares} y el número de unidades de aprendizaje desfasadas permitidas es distinto de cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+% 				\begin{itemize}
+% 					\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+% 					\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+% 					\item Tienen a lo más el número de unidades de aprendizaje desfasadas que indica el bloque y
+% 					\item Su unidad de aprendizaje más desfasada está desfasada por a lo más alguno de los que indica el bloque.
+% 				\end{itemize}
+% 			\item Si se seleccionó la opción {\it Sin Dictamen} y las opciones {\it Regulares} e {\it Irregulares}, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:SinDictamenRegulares}, \ref{BR-RI-N002:SinDictamenIrregulares1} y \ref{BR-RI-N002:SinDictamenIrregulares2}.
+			
+% 		\end{enumerate}
+	
+% 	\BRItem[Sentencia] \cdtEmpty
+	
+% 	\begin{itemize}
+% 		\item $(bloque.conDictamen=true )\rightarrow $\\
+% 		$alumnosEnBloque=\{ a | a.conDictamen=true \land a.dictamen.favorable=true \land a.dictamen.periodoValido=periodoReinscripciones \}$
+
+% 		\item $(bloque.sinDictamen=true \land bloque.alumnos=Regulares)\rightarrow$\\
+% 		$alumnosEnBloque=\{a | a.conDcitamen=false \land a.estado=Regular \}$
+
+% 		\item $(bloque.sinDictamen=true \land bloque.alumnos=Irregulares \land bloque.unidadesDesfasadas=0)\rightarrow$\\
+% 		$alumnosEnBloque=\{a | a.conDictamen=false \land a.unidadesAdeudadas$ cumple con la relación de $bloque.operadorUnidades$ con $bloque.unidadesAdeudadas \land a.unidadesDesfasadas=0\}$
+		
+% 		\item $(bloque.sinDictamen=true \land bloque.alumnos=Irregulares \land bloque.unidadesDesfasadas\neq0)\rightarrow$\\
+% 		$alumnosEnBloque=\{a | a.conDictamen=false \land a.unidadesAdeudadas$ cumple con la relación de $bloque.operadorUnidades$ con $bloque.unidadesAdeudadas \land a.unidadesDesfasadas=bloque.unidadesDesfasadas \land max(a.unidadesDesfasadas.desfasamiento) \in bloque.desfasadasPor\}$
+		
+% 	\end{itemize}
+			
+% %	\BRItem[Descripción] Para que un alumno se asocie a un bloque de citas de reinscripción debe de estar inscrito en un plan de estudio asociado al programa académico que indica el bloque de citas, tener un promedio dentro del rango indicado en el bloque de citas y cumplir con cualquiera de las siguientes condiciones:
+% %		\begin{itemize}
+% %			\item Tener la situación escolar que indica el bloque de citas ó
+% %			\item Estar dentro de los {\it Casos especiales} que indica el bloque.
+% %		\end{itemize}
+% %	
+% %	Para que un alumn
+% %	\BRItem[Sentencia] \cdtEmpty
+% %		\begin{lstlisting}[language=Java]
+% %			BloqueCitas bloque; 
+% %			Alumno alumno;
+% %			
+% %			if( 
+% %				( alumno.programaAcademico == bloque.programaAcademico 
+% %					&& bloque.verificarPromedio(alumno.promedio) )
+% %					 &&
+% %				(	bloque.verificarSituacionEscolar(alumno.situacionEscolar) 
+% %					|| (bloque.verificarCasosEspeciales(alumnos) ) 
+% %			   )
+% %				{	
+% %					bloque.asociarAlumno(alumno);
+% %				}	
+% %		\end{lstlisting} 
+	
+	
+% 	\BRItem[Motivación] Establecer la forma en que se verificará si un alumno cumple con los criterios de selección de situación escolar para que pueda asociarse con un bloque de citas de reinscripción.
+% 	\BRItem[Ejemplo] Sea un bloque de citas con los siguientes criterios de selección de situación escolar:
+		
+% 			\begin{itemize}
+% 				\item Alumnos: Regulares, Irregulares
+% 				\item Unidades de aprendizaje adeudadas: $>$ 1
+% 				\item Unidades de aprendizaje adeudadas: $\geq$ 0
+% 				\item Desfasadas por: Primera vez, Segunda vez
+% 				\item Dictamen: Sin dictamen
+% 			\end{itemize}
+		
+% 		Los siguientes alumnos {\bf serían parte} del bloque:
+% 			\begin{itemize}
+% 				\item Un alumno Regular con promedio de 8 que no tiene dictamen.
+% 				\item Un alumno Irregular que tiene tres unidades de aprendizaje adeudadas, no tiene unidades de aprendizaje desfasadas , promedio de 7.1 y no tiene dictamen.
+% 				\item Un alumno Irregular que tiene dos unidades de aprendizaje adeudadas, una unidad de aprendizaje desfasada por primera vez, promedio de 8 y no tiene dictamen.
+% 			\end{itemize}
+		
+% 		Los siguientes alumnos {\bf no serían parte} del bloque:
+% 			\begin{itemize}
+% 				\item Un alumno Regular con promedio de 7.
+% 				\item Un alumno Irregular con promedio de 6.5
+% 				\item Un alumno Regular que tiene al menos un Dictamen.
+% 			\end{itemize}
+	
+% \end{BusinessRule}
+
+%=========================REGLA N002=============================================,
+
+%%Propuesta: Elioth, Guadalupe 2 febrero de 2018
+\begin{BusinessRule}{BR-RI-N002}{Alumnos que cumplen con los criterios de selección de situación escolar para un bloque de citas}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles y Elioth
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un alumno cumple con los criterios de selección de situación escolar para un bloque de citas si cumple con los siguientes puntos:
+	\begin{itemize}
+		\item Está asociado al Programa Académico indicado en el bloque.
+		\item Cumple con alguna de las siguientes situaciones:
+		\begin{itemize}
+			\item Es alumno regular, si el bloque incluye a alumnos Regulares o
+			\item Es alumno irregular, si el bloque incluye a alumnos Irregulares
+		\end{itemize}
+	 	\item Cumple con alguna de las siguientes situaciones:
+	 	\begin{itemize}
+	 		\item Tiene un dictamen vigente, si el bloque incluye a alumnos con Dictamen o
+	 		\item No tiene un dictamen vigente, si el bloque incluye a alumnos sin Dictamen
+	 	\end{itemize}
+ 		\item Su periodo escolar de ingreso es el indicado en el bloque, si es que el bloque indica un periodo escolar de ingreso.
+ 		\item Su promedio está dentro del rango indicado en el bloque
+ 		\item El número de unidades de aprendizaje que adeuda está dentro del rango indicado en el bloque.
+ 		\item El número de unidades de aprendizaje que tiene desfasadas está dentro del rango indicado en el bloque, si es que se introdujo un rango.
+ 		\item El número de periodos de desfase de su unidad de aprendizaje más desfasada está dentro del rango indicado en el bloque, si es que se introdujo un rango.
+	\end{itemize}
+	
+	
+	
+%		\begin{enumerate}
+%			%%Con dictamen y regular, Programa Académico
+%			\item \label{BR-RI-N002:ConDictamenRegulares} Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Regulares}, la opción  {\it Programa Académico} y fue definido el  rango del promedio, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%				\begin{itemize}
+%					\item Pertenecen al programa Académico indicado en el bloque y
+%					\item Pertenecen al rango de promedio indicando en el bloque y
+%					\item Tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%					\item Tienen situación escolar regular.
+%					 
+%					
+%				\end{itemize}	
+%			
+%			%%Con dictamen y regular, Programa Académico periodo de ingreso
+%			\item \label{BR-RI-N002:ConDictamenRegularesPeriodoIngreso} Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Regulares}, la opción  {\it Programa Académico}, el periodo escolar de ingreso especificado es distinto de cero, fue definido el  rango del promedio y el periodo escolar de ingreso especificado es distinto de cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%			\begin{itemize}
+%				\item Pertenecen al programa Académico indicado en el bloque y
+%				\item Pertenecen al rango de promedio indicando en el bloque y
+%				\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%				\item Tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%				\item Tienen situación escolar regular.				
+%			\end{itemize}	
+%			
+%			%%Con dictamen, irregulares sin desfases, Programa Académico
+%			\item \label{BR-RI-N002:ConDictamenIrregulares1} Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, fue definido el  rango del promedio y el número de unidades de aprendizaje desfasadas permitidas es cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%				\begin{itemize}
+%					\item Pertenecen al programa Académico indicado en el bloque y
+%					\item Pertenecen al rango de promedio indicando en el bloque y
+%					\item Tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%					\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%					\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%					\item Tienen cero unidades de aprendizaje desfasadas.
+%				\end{itemize}
+%			%%Con dictamen, irregulares sin desfases, Programa Académico, Periodo de ingreso
+%			\item \label{BR-RI-N002:ConDictamenIrregularesPeriodoIngreso1} Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, el periodo escolar de ingreso especificado es distinto de cero, fue definido el  rango del promedio y el número de unidades de aprendizaje desfasadas permitidas es cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%			\begin{itemize}
+%				\item Pertenecen al programa Académico indicado en el bloque y
+%				\item Pertenecen al rango de promedio indicando en el bloque y
+%				\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%				\item Tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%				\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%				\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%				\item Tienen cero unidades de aprendizaje desfasadas.
+%			\end{itemize}
+%			
+%			%%Con dictamen, irregulares y con desfases, Programa Académico
+%			\item \label{BR-RI-N002:ConDictamenIrregulares2}Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, el número de unidades de aprendizaje desfasadas permitidas es distinto de cero, fue definido el  rango del promedio y el número de periodo de desfase es distinto de cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%			\begin{itemize}
+%				\item Pertenecen al programa Académico indicado en el bloque y
+%				\item Pertenecen al rango de promedio indicando en el bloque y
+%				\item Tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%				\item Tienen a lo más el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%				\item Tienen a lo menos el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%				\item Tiene a lo menos el número de unidades de aprendizaje desfasadas que indica el bloque y
+%				\item Tienen a lo más el número de unidades de aprendizaje desfasadas que indica el bloque y
+%				\item Tiene a lo más el periodo de desfase que indica el bloque y 
+%				\item Tiene a lo menos el periodo de desfase que indica el bloque.
+%				%Su unidad de aprendizaje más desfasada está desfasada por a lo más alguno de los que indica el bloque.
+%			\end{itemize}
+%				%%Con dictamen, irregulares y con desfases, Programa Académico, Periodo de ingreso
+%			\item \label{BR-RI-N002:ConDictamenIrregularesPeriodoIngreso2}Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, el periodo escolar de ingreso especificado es distinto de cero, el número de unidades de aprendizaje desfasadas permitidas es distinto de cero, fue definido el rango del promedio y el número de periodo de desfase es distinto de cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%			\begin{itemize}
+%				\item Pertenecen al programa Académico indicado en el bloque y
+%				\item Pertenecen al rango de promedio indicando en el bloque y
+%				\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%				\item Tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%				\item Tienen a lo más el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%				\item Tienen a lo menos el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%				\item Tiene a lo menos el número de unidades de aprendizaje desfasadas que indica el bloque y
+%				\item Tienen a lo más el número de unidades de aprendizaje desfasadas que indica el bloque y
+%				\item Tiene a lo más el periodo de desfase que indica el bloque y 
+%				\item Tiene a lo menos el periodo de desfase que indica el bloque.
+%				%Su unidad de aprendizaje más desfasada está desfasada por a lo más alguno de los que indica el bloque.
+%			\end{itemize}		
+%		
+%			%%Con dictamen regulares e irregulares y programa académico
+%			\item Si se seleccionó la opción {\it Con Dictamen} y las opciones {\it Regulares} e {\it Irregulares}, la opción {\it Programa Académico}, el periodo escolar de ingreso especificado es distinto de cero y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConDictamenRegularesPeriodoIngreso} y \ref{BR-RI-N002:ConDictamenIrregularesPeriodoIngreso1} y \ref{BR-RI-N002:ConDictamenIrregularesPeriodoIngreso2}.
+%			
+%			%%Con dictamen regulares e irregulares, programa académico y periodo de ingreso
+%			\item Si se seleccionó la opción {\it Con Dictamen} y las opciones {\it Regulares} e {\it Irregulares}, la opción  {\it Programa Académico}, el periodo escolar de ingreso especificado es distinto de cero y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConDictamenRegulares} y \ref{BR-RI-N002:ConDictamenIrregulares1} y \ref{BR-RI-N002:ConDictamenIrregulares2}.
+%			
+%			%%Sin dictamen y regulares y programa académico
+%			\item \label{BR-RI-N002:SinDictamenRegulares}Si se seleccionó la opción {\it Sin Dictamen}, la opción {\it Regulares}, la opción  {\it Programa Académico}, fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%				\begin{itemize}
+%					\item Pertenecen al programa Académico indicado en el bloque y
+%					\item Pertenecen al rango de promedio indicando en el bloque y
+%					\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%					\item Tienen situación escolar regular.
+%				\end{itemize}
+%			%%Sin dictamen y regulares y programa académico periodo de ingreso
+%			\item \label{BR-RI-N002:SinDictamenRegularesPeriodoIngreso}Si se seleccionó la opción {\it Sin Dictamen},  la opción {\it Regulares}, la opción  {\it Programa Académico}, periodo escolar de ingreso especificado es distinto de cero y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%			\begin{itemize}
+%				\item Pertenecen al programa Académico indicado en el bloque y
+%				\item Pertenecen al rango de promedio indicando en el bloque y
+%				\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%				\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%				\item Tienen situación escolar regular.
+%			\end{itemize}
+%			%%Sin dictamen, irregulares sin desfases y programa académico
+%			\item \label{BR-RI-N002:SinDictamenIrregulares1}Si se seleccionó la opción {\it Sin Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, fue definido el rango del promedio y el número de unidades de aprendizaje desfasadas permitidas es cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%				\begin{itemize}
+%					\item Pertenecen al programa Académico indicado en el bloque y
+%					\item Pertenecen al rango de promedio indicando en el bloque y
+%					\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%					\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%					\item Tienen cero unidades de aprendizaje desfasadas.
+%				\end{itemize}
+%			%%Sin dictamen, irregulares sin desfases y programa académico Periodo Ingreso
+%			\item \label{BR-RI-N002:SinDictamenIrregularesPeriodoIngreso}Si se seleccionó la opción {\it Sin Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, periodo escolar de ingreso especificado es distinto de cero, fue definido el rango del promedio, y el número de unidades de aprendizaje desfasadas permitidas es cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%			\begin{itemize}
+%				\item Pertenecen al programa Académico indicado en el bloque y
+%				\item Pertenecen al rango de promedio indicando en el bloque y
+%				\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%				\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%				\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%				\item Tienen cero unidades de aprendizaje desfasadas.
+%			\end{itemize}
+%			
+%			%%Sin dictamen, irregulares y con desfases
+%			\item \label{BR-RI-N002:SinDictamenIrregulares2}Si se seleccionó la opción {\it Sin Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, fue definido el rango del promedio y el número de unidades de aprendizaje desfasadas permitidas es distinto de cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%				\begin{itemize}
+%					\item Pertenecen al programa Académico indicado en el bloque y
+%					\item Pertenecen al rango de promedio indicando en el bloque y
+%					\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%					\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%					\item Tiene a lo menos el número de unidades de aprendizaje desfasadas que indica el bloque y
+%					\item Tienen a lo más el número de unidades de aprendizaje desfasadas que indica el bloque y
+%					\item Tiene a lo más el periodo de desfase que indica el bloque y 
+%					\item Tiene a lo menos el periodo de desfase que indica el bloque.
+%					% Su unidad de aprendizaje más desfasada está desfasada por a lo más alguno de los que indica el bloque.
+%				\end{itemize}
+%			%%Sin dictamen, irregulares y con desfases, Periodo ingreso
+%			\item \label{BR-RI-N002:SinDictamenIrregularesPeriodoIngreso2}Si se seleccionó la opción {\it Sin Dictamen}, la opción {\it Irregulares}, la opción  {\it Programa Académico}, periodo escolar de ingreso especificado es distinto de cero, fue definido el rango del promedio y el número de unidades de aprendizaje desfasadas permitidas es distinto de cero, el conjunto de alumnos que cumplen con los criterios de situación escolar son los alumnos que:
+%			\begin{itemize}
+%				\item Pertenecen al programa Académico indicado en el bloque y
+%				\item Pertenecen al rango de promedio indicando en el bloque y
+%				\item Tiene el periodo escolar de ingreso indicado en el bloque y
+%				\item No tienen un dictamen favorable vigente para el periodo escolar de reinscripciones y
+%				\item Tienen el número de unidades de aprendizaje adeudadas con la relación indicada en el bloque y
+%				\item Tiene a lo menos el número de unidades de aprendizaje desfasadas que indica el bloque y
+%				\item Tienen a lo más el número de unidades de aprendizaje desfasadas que indica el bloque y
+%				\item Tiene a lo más el periodo de desfase que indica el bloque y 
+%				\item Tiene a lo menos el periodo de desfase que indica el bloque.
+%				% Su unidad de aprendizaje más desfasada está desfasada por a lo más alguno de los que indica el bloque.
+%			\end{itemize}
+%			
+%			%%Sin dictamen, regulares y irregulares
+%			\item Si se seleccionó la opción {\it Sin Dictamen}, las opciones {\it Regulares} e {\it Irregulares}, la opción  {\it Programa Académico} y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:SinDictamenRegulares}, \ref{BR-RI-N002:SinDictamenIrregulares1} y \ref{BR-RI-N002:SinDictamenIrregulares2}.
+%			
+%			%%Sin dictamen, regulares y irregulares, periodo de ingreso
+%			\item Si se seleccionó la opción {\it Sin Dictamen}, las opciones {\it Regulares} e {\it Irregulares}, la opción  {\it Programa Académico}, periodo escolar de ingreso especificado es distinto de cero y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:SinDictamenRegularesPeriodoIngreso}, \ref{BR-RI-N002:SinDictamenIrregularesPeriodoIngreso} y \ref{BR-RI-N002:SinDictamenIrregularesPeriodoIngreso2}.
+%
+%			%%Con y sin dictamen regulares
+%			\item \label{BR-RI-N002:ConSinDictamenRegulares}Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Sin Dictamen} y la opción {\it Regulares}, la opción  {\it Programa Académico} y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConDictamenRegulares} y \ref{BR-RI-N002:SinDictamenRegulares}.
+%			
+%			%%Con y sin dictamen regulares Periodo Ingreso
+%			\item \label{BR-RI-N002:ConSinDictamenRegularesPeriodoIngreso}Si se seleccionó la opción {\it Con Dictamen}, la opción {\it Sin Dictamen} y la opción {\it Regulares}, la opción  {\it Programa Académico}, periodo escolar de ingreso especificado es distinto de cero y fue definido el rango del promedio el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConDictamenRegularesPeriodoIngreso} y \ref{BR-RI-N002:SinDictamenRegularesPeriodoIngreso}.
+%
+%			%%Con y sin dictamen irregulares
+%			\item \label{BR-RI-N002:ConSinDictamenIrregulares}Si se seleccionó la opción {\it Con Dictamen}, la opción  {\it Programa Académico}, la opción {\it Sin Dictamen}, la opción {\it Irregulares} y fue definido el rango del promedio el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConDictamenIrregulares1}, \ref{BR-RI-N002:ConDictamenIrregulares2}, \ref{BR-RI-N002:SinDictamenIrregulares1} y \ref{BR-RI-N002:SinDictamenIrregulares2}.
+%			
+%			%%Con y sin dictamen irregulares, periodo de ingreso Periodo Ingreso 
+%			\item \label{BR-RI-N002:ConSinDictamenIrregularesPeriodoIngreso}Si se seleccionó la opción {\it Con Dictamen}, la opción  {\it Programa Académico}, la opción {\it Sin Dictamen}, la opción {\it Irregulares}, periodo escolar de ingreso especificado es distinto de cero y fue definido el rango del promedio el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConDictamenIrregularesPeriodoIngreso1}, \ref{BR-RI-N002:ConDictamenIrregularesPeriodoIngreso2}, \ref{BR-RI-N002:SinDictamenIrregularesPeriodoIngreso} y \ref{BR-RI-N002:SinDictamenIrregularesPeriodoIngreso2}.
+%
+%			%Con y sin dictamen regulares y irregulares
+%			\item Si se seleccionó la opción {\it Con Dictamen}, la opción  {\it Programa Académico}, la opción {\it Sin Dictamen}, las opciones {\it Regulares} e {\it Irregulares} y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConSinDictamenRegulares} y \ref{BR-RI-N002:ConSinDictamenIrregulares}.
+%			
+%			%Con y sin dictamen regulares y irregulares Periodo Ingreso
+%			\item Si se seleccionó la opción {\it Con Dictamen}, la opción  {\it Programa Académico}, la opción {\it Sin Dictamen}, las opciones {\it Regulares} e {\it Irregulares}, periodo escolar de ingreso especificado es distinto de cero y fue definido el rango del promedio, el conjunto de alumnos que cumplen con los criterios de selección de situación escolar se calculan como una unión de lo establecido en los puntos \ref{BR-RI-N002:ConSinDictamenRegularesPeriodoIngreso} y \ref{BR-RI-N002:ConSinDictamenIrregularesPeriodoIngreso}.
+%			
+%			
+%		\end{enumerate}
+	
+%	\BRItem[Sentencia] \cdtEmpty
+%	Dado que $a$ es alumno.
+%	\begin{itemize}
+%		%\land es \and
+%		%%Con dictamen regulares y programa académico.		
+%		\item  $(bloque.conDictamen=true \land bloque.alumnos=Regulares \land bloque.programaAcademico=programaAcademico.seleccionado  )\rightarrow $\\
+%		$alumnosEnBloque=\{ a | a.conDictamen=true \land a.dictamen.favorable=true \land$ \\ $ \land a.programaAcademico \in \{programaAcademico.seleccionado\} \land a.dictamen.periodoValido=periodoReinscripciones \land a.estado=Regular \land a.promedio \in \{ bloque.promedio.seleccionado\} \}$
+%		
+%		%%Con dictamen regulares y programa académico, periodo de ingreso.		
+%		\item  $(bloque.conDictamen=true \land bloque.alumnos=Regulares \land  bloque.programaAcademico=programaAcademico.seleccionado )\rightarrow $\\
+%		$ a.programaAcademico \in \{programaAcademico.seleccionado\} \land
+%		alumnosEnBloque=\{ a | a.conDictamen=true \land a.dictamen.favorable=true \land$ \\ $a.dictamen.periodoValido=periodoReinscripciones \land a.estado=Regular \and a.periodoEscolarIngreso \in \{ periodoEscolarIngreso.seleccionado \} \land a.promedio \in \{ bloque.promedio.seleccionado\} \} $ 
+%
+%		%%Con dictamen irregulares sin desfasadas y programa académico
+%		\item $(bloque.conDictamen=true \land bloque.alumnos=Irregulares \land$\\$ bloque.unidadesDesfasadas=0 \land bloque.programaAcademico=programaAcademico.seleccionado)\rightarrow$\\
+%		$ a.programaAcademico \in \{programaAcademico.seleccionado\} \land
+%		alumnosEnBloque=\{a | a.conDictamen=true \land a.dictamen.favorable=true \land$\\$ a.dictamen.periodoValido=periodoReinscripciones \land a.unidadesAdeudadas$ cumple con la relación de $bloque.operadorUnidades$ con $bloque.unidadesAdeudadas \land $\\$ a.unidadesDesfasadas=0 \land a.promedio \in \{ bloque.promedio.seleccionado\} \}$
+%		
+%		----%%Con dictamen irregulares sin desfasadas y programa académico, periodo ingreso
+%		\item $(bloque.conDictamen=true \land bloque.alumnos=Irregulares \land$\\$ bloque.unidadesDesfasadas=0 \land bloque.programaAcademico=programaAcademico.seleccionado)\rightarrow$\\
+%		$ alumnosEnBloque=\{a | a.conDictamen=true \land a.programaAcademico \in \{programaAcademico.seleccionado\} \land a.dictamen.favorable=true \land$\\$ a.dictamen.periodoValido=periodoReinscripciones \land a.unidadesAdeudadas$ cumple con la relación de $bloque.operadorUnidades$ con $bloque.unidadesAdeudadas \land $\\$ a.unidadesDesfasadas=0 \land a.promedio \in \{ bloque.promedio.seleccionado\} \and a.periodoEscolarIngreso \in \{ periodoEscolarIngreso.seleccionado \} \}$
+%
+%		%%Con dictamen irregulares con desfasadas
+%		\item $(bloque.conDictamen=true \land bloque.alumnos=Irregulares \land$\\$ bloque.unidadesDesfasadas\neq0 \land bloque.programaAcademico=programaAcademico.seleccionado)\rightarrow$\\ $alumnosEnBloque=\{a | a.conDictamen=true \land a.dictamen.favorable=true \land$\\$ a.dictamen.periodoValido=periodoReinscripciones \land a.unidadesAdeudadas$ cumple con la relación de $bloque.operadorUnidades$ con $bloque.unidadesAdeudadas \land $\\$ a.unidadesDesfasadas \neq0\}$
+%
+%		%%Sin dictamen regulares
+%		\item $(bloque.sinDictamen=true \land bloque.alumnos=Regularesv\land bloque.programaAcademico=programaAcademico.seleccionado)\rightarrow $\\
+%		$alumnosEnBloque=\{ a | a.conDictamen=false \land a.estado=Regular\}$
+%
+%		%%Sin dictamen irregulares sin desfasadas
+%		\item $(bloque.sinDictamen=true \land bloque.alumnos=Irregulares \land$\\$ bloque.unidadesDesfasadas=0 \land bloque.programaAcademico=programaAcademico.seleccionado)\rightarrow$\\
+%		$alumnosEnBloque=\{a | a.conDictamen=false \land a.unidadesAdeudadas$ cumple con la relación de $bloque.operadorUnidades$ con $bloque.unidadesAdeudadas \land $\\$ a.unidadesDesfasadas=0\}$
+%
+%		%%Sin dictamen irregulares con desfasadas
+%		\item $(bloque.sinDictamen=true \land bloque.alumnos=Irregulares \land$\\$ bloque.unidadesDesfasadas\neq0 \land bloque.programaAcademico=programaAcademico.seleccionado)\rightarrow$\\ $alumnosEnBloque=\{a | a.conDictamen=false \land a.unidadesAdeudadas$ cumple con la relación de $bloque.operadorUnidades$ con $bloque.unidadesAdeudadas \land$\\$ a.unidadesDesfasadas\neq0\}$
+%	\end{itemize}	
+	
+	\BRItem[Motivación] Establecer la forma en que se verificará si un alumno cumple con los criterios de selección de situación escolar para que pueda asociarse con un bloque de citas de reinscripción.
+	\BRItem[Ejemplo] Sea un bloque de citas con los siguientes criterios de selección de situación escolar y rango de promedio seleccionado fue mayor a 7 y menor o igual a 10:
+		%%Ejemplo cambiarlo a con dictamente y sin dictamen
+			\begin{itemize}
+				\item Alumnos: Regulares, Irregulares
+				\item Unidades de aprendizaje adeudadas: $>$ 1
+				\item Unidades de aprendizaje adeudadas: $\geq$ 0
+				\item Periodos de desfase: $\geq$ 1, 
+				\item Periodos de desfase: $\geq$ 0
+				\item Dictamen: Con Dictamen, Sin Dictamen
+			\end{itemize}
+		
+		Los siguientes alumnos {\bf serían parte} del bloque:
+			\begin{itemize}
+				\item Un alumno Regular con promedio de 8 que no tiene dictamen.
+				\item Un alumno Irregular que tiene tres unidades de aprendizaje adeudadas, no tiene unidades de aprendizaje desfasadas, promedio de 7.1 y no tiene dictamen.
+				\item Un alumno Irregular que tiene dos unidades de aprendizaje adeudadas, una unidad de aprendizaje desfasada con un periodo de desfase de 1, promedio de 8 y no tiene dictamen.
+				\item Un alumno regular con dictamen.
+			\end{itemize}
+		
+		Los siguientes alumnos {\bf no serían parte} del bloque:
+			\begin{itemize}
+				\item Un alumno Regular con promedio de 7.
+				\item Un alumno Irregular con promedio de 6.5
+			\end{itemize}
+	
+\end{BusinessRule}
+
+%======================================================================,
+
+\begin{BusinessRule}{BR-RI-N003}{Periodo para generar citas de reinscripción}
+	{\bcAutorization}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Cualquier operación relacionada con generar citas de reinscripción podrá llevarse a cabo sólo si la fecha actual es mayor que la fecha de fin de un periodo escolar y menor a la fecha de inicio del periodo escolar inmediato siguiente.
+	\BRItem[Sentencia] Sea $P_1$ un periodo escolar y $P_2$ el periodo escolar inmediato siguiente. Para poder generar citas de reinscripción se debe cumplir que:
+	$$ 	P_1.fechaFin \leq fechaActual \leq P_2.fechaInicio	$$
+	\BRItem[Motivación] Mantener un control sobre el periodo en el que se pueden generar citas de reinscripción, ya que usan parámetros que se ven afectados por varios factores durante el transcurso de periodo escolar. Estos factores son las evaluaciones, dictámenes, bajas, etc.
+	\BRItem[Ejemplo:] Si un periodo escolar concluyó el 20 de diciembre de 2017 y el siguiente periodo escolar comienza el 1 de febrero de 2018.
+	
+	Las siguientes fechas \textbf{son válidas} para generar citas de reinscripción:
+	\begin{itemize}
+		\item 21 de diciembre de 2017
+		\item 1 de enero de 2018
+		\item 25 de enero de 2018
+	\end{itemize}
+	Las siguientes fechas \textbf{no son válidas} para generar citas de reinscripción:
+	\begin{itemize}
+		\item 20 de diciembre de 2017
+		\item 1 de febrero de 2018
+		\item 25 de marzo de 2018
+	\end{itemize}
+	
+%	\BRItem[Referenciado por] \refIdElem{RI-GC-GE-CU2}
+\end{BusinessRule}
+
+%======================================================================,
+\begin{BusinessRule}{BR-RI-N004}{Manejo de los números de bloque}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El número de bloque asignado a los bloques de citas de reinscripción se manejará de la siguiente forma:
+	\begin{itemize}
+		\item Cuando se agregue un nuevo bloque de citas de reinscripción se le asignará un número de bloque igual al número de bloques de citas que existen en ese momento en la Unidad Académica para el periodo escolar, incrementado en uno.
+		\item Cuando se elimine un bloque de citas de reinscripción se disminuirá en uno el número de todos los bloques de citas que tienen una número de bloque mayor al bloque de citas eliminado.
+	\end{itemize}
+	
+	\BRItem[Sentencia] \cdtEmpty
+		\begin{itemize}
+			\item Cuando se agregue un nuevo bloque de citas: $bloque.numero = total_bloques + 1$
+			\item Cuando se elimine un bloque de citas de reinscripción: $$\forall (bloque.numero > bloqueEliminado.numero) \rightarrow bloque.numero = bloque.numero -1$$ 
+		\end{itemize}
+	\BRItem[Motivación] Definir la forma en que se asignarán los números de bloque a los bloques de citas de reinscripción considerando que es necesario que cada bloque tenga una prioridad para establecer el orden en que se programarán las citas de dicho bloque con respecto a los demás.
+	\BRItem[Ejemplo:] 
+		\begin{itemize}
+			\item Si no existen bloques de citas de reinscripción y se agrega uno nuevo, este bloque tendrá un número de bloque de 1.
+			\item Si existen tres bloques de citas de reinscripción y se agrega uno nuevo, este bloque tendrá un número de bloque de 4.
+			\item Si existen cuatro bloques de citas de reinscripción y se elimina el bloque con número 2, al bloque que tenía número 3 se le asignará el número 2 y al bloque que tenía número 4 se le asignará el número 3.
+		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{RI-GC-GE-CU2.1}, \refIdElem{RI-GC-GE-CU2.5}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-RI-N005}{Fecha válida de reprogramación de citas de reincripción}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La fecha para reprogramar las citas de reinscripción debe ser mayor a la fecha actual y menor o igual a la fecha mayor de las citas de reinscripciones generadas.
+	\BRItem[Sentencia] $ fechaMayor \geq fechaReprogramacion \ge fechaActual$ %nd $ fechaMayorReincripciones \ge fechaReprogramacion $
+	\BRItem[Motivación] Evitar que se reprogramen citas de reinscripción que tienen una fecha menor o igual  la fecha actual y afectar a los alumnos que estén llevando a cabo su reiscripción o estén a punto de comenzarla.
+%	\BRItem[Ejemplo positivo] Cumplen la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+%		\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+%		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{RI-GC-GE-CU2.0.1}
+\end{BusinessRule}
+
+
+%=====================================REGLA N006============================================
+\begin{BusinessRule}{BR-RI-N006}{Hora de comida dentro de horario definido}
+	{\bcCondition}% Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler  }   % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}   % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La hora de comida aplica para un día si comienza después de que comienze el día y termine antes de que termine el día.
+	
+	\BRItem[Sentencia] \cdtEmpty
+	Dada  $comida.horaInicio$ y  $comida.horaFin$, para que se considere como hora de comida dentro del horario definido para un $dia$ debe cumplir que:
+	$$comida.horaInicio \ge dia.horaInicio \land comida.horaFin \le dia.hora_final$$
+	
+	\BRItem[Motivación] Mantener el control sobre los días en los que se debe considerar el horario de comida para la generación de citas y evitar generar citas en este horario.
+	\BRItem[Ejemplo]
+	Sean 
+	\begin{itemize}
+		\item Hora inicio día 1= 10:00
+		\item Hora fin día 1= 14:00
+		\item Hora inicio día 2= 10:00
+		\item Hora fin día 2= 19:00
+		\item Hora inicio comida = 14:00
+		\item Hora fin comida = 15:00
+	\end{itemize}
+	Considerando que la hora de fin de comida es a las $15:00$ y la hora de fin del día 1 es a las $14:00$, entonces el horario de comida definido no aplica para el día ya que $15:00 \not \le 14:00$
+	
+	Considerando que la hora de inicio de comida es a las $14:00$, la hora de inicio del día 2 es a las $10:00$, la hora de fin de comida es a las $15:00$ y la hora de fin del día 2 es a las $19:00$. Entonces el horario de comida sí aplica para el día 2 ya que se cumple que $14:00 \ge 10:00$ y que $15:00 \le 17:00$.
+	
+%	\BRItem[Referenciado por] \refIdElem{RI-GC-GE-CU2.6.1}
+\end{BusinessRule}
+
+%=========================REGLA N007=============================================,
+
+\begin{BusinessRule}{BR-RI-N007}{Total de horas disponibles para generar citas de reinscripción}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El total de horas disponibles para generar las citas de reinscripción se obtiene al sumar la diferencia de horas entre la hora de fin menos la hora de inicio de cada día. En caso de que el horario de comida aplique para el día, se restan de ese día las horas definidas en el horario de comida.
+	\BRItem[Sentencia] Sea $D$ el conjunto de todos los días válidos para realizar reinscripción, $D_i$ representa a cada elemento contenido en este conjunto, $horaComida$ es un atributo con un valor verdadero o falso que indica si existe una hora de comida o no para el día y $comida$ el horario de comida definido para la generación de citas de reinscripción.
+	
+	\lstinputlisting[language=C, firstline=1, lastline=6]{negocio/regla.c}
+	
+	
+%	\begin{lstlisting}[language=C]
+%		totalHoras = 0
+%	\end{lstlisting} 
+%	
+	
+
+%	$totalHoras=0$\\
+%	$for$ $D_i$ $in$ $R$ $then$\\
+%		$if$ $D_i.horaComida=true$ $then$\\
+%			$if$ $D_i.horaFin > horaComidaFin$ $then$ \\
+%				$totalHoras=totalHoras+(D_i.horaFin - D_i.horaInicio - (horaComidaFin-horaComidaInicio))$\\
+%			$else$\\
+%				$totalHoras=totalHoras+(D_i.horaFin-D_i.horaInicio-(D_i.horaFin-horaComidaInicio))$\\
+%		$else$\\
+%			$totalHoras=totalHoras+(D_i.horaFin - D_i.horaInicio)$\\
+		
+	\BRItem[Motivación] Establecer la forma en que se obtendrá el total de horas disponibles para generar las citas de reinscripción.
+	\BRItem[Ejemplo]  Si las fechas de reinscripción definidas fueron
+	%%Ejemplo cambiarlo a con dictamente y sin dictamen
+	\begin{itemize}
+		\item 25, 26 y 27 de Enero de 2018.
+		\item Horario: 9:00 y 17:00.
+		\item Hora comida: 14:00-15:00.
+	\end{itemize}
+	
+	El total de horas disponibles para generar citas de reinscripción sería 21.
+	
+\end{BusinessRule}
+
+%=====================================REGLA N008============================================
+\begin{BusinessRule}{BR-RI-N008}{Número de citas posibles}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer} % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}  % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El número de citas de reinscripción posibles será el resultado de dividir el total de horas disponibles para la generación de citas entre la separación que debe existir entre las citas de reinscripción.
+	\BRItem[Sentencia] \cdtEmpty
+		$$ numeroCitas = \frac{horasTotales}{separacionEntreCitas} $$
+	
+%	Sea $numeroCitas$ el número de citas de reinscripción por bloque, $hTotal_Bloque$ el número total de horas del bloque y  	
+%	$tam_Bloque$ el tamaño del bloque.
+%	para el obtener el número e citas de reinscripción por bloque se toma en cuenta que:
+%	$$no_Citas = \frac{hTotal_Bloque}{tam_BLoque} $$
+	
+	\BRItem[Motivación] Definir el número de citas de reinscripción que se generarán dada la cantidad total de horas disponibles para generarlas y la separación que debe existir entre ellas.
+	\BRItem[Ejemplo]
+	Sean:
+	\begin{itemize}
+		\item Número total de horas = 21 horas.
+		\item Separación entre citas = 15 minutos = 0.25 horas
+	\end{itemize}
+	Entonces el número de citas de reinscripción por bloque será $= \frac{21 horas}{0.25 horas} = 84 citas$ 
+%	\BRItem[Referenciado por] \refIdElem{RI-GC-GE-CU2.8}
+\end{BusinessRule}
+
+%=====================================REGLA N009============================================
+\begin{BusinessRule}{BR-RI-N009}{Número de alumnos por cita}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}   % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El número de alumnos que se asignarán a cada cita se obtendrá mediante la división del total de alumnos asociados a un bloque entre el número de citas posibles. En caso de que la división dé como resultado un número decimal, el resultado se deberá redondear hacia arriba.
+	\BRItem[Sentencia] \cdtEmpty	
+	Sea $numeroAlumnosPorCita$ el número de alumnos que se asignarán a cada cita, $totalAlumnosBloque$ el total de alumnos asociados a un bloque, $nocitas$ el número de citas que tendrá el bloque. Entonces,
+	$$numeroAlumnosPorCita=\lceil (\frac{totalAlumnosBloque}{noCitas} ) \rceil $$
+	\BRItem[Motivación] Mantener el control del número de alumnos que se asignarán a cada cita, y qué realizar en caso de que el número de alumnos tengan como resultado un número decimal.
+	\BRItem[Ejemplo]
+	Sean 
+	\begin{itemize}
+		\item Total de alumnos asociados a un bloque = 2,000 alumnos.
+		\item Número de citas totales =  84 citas.
+	\end{itemize}
+	El número de alumnos que se asignarán a cada cita se obtiene de la siguiente forma:
+		$$\lceil (\frac{2,000}{84} ) \rceil = \lceil ( 23.80 ) \rceil = 24$$ 
+	Entonces se asignarán $24$ alumnos por cita.
+\end{BusinessRule}
+
+%=====================================REGLA N010============================================
+\begin{BusinessRule}{BR-RI-N010}{Algoritmo de generación de citas de reinscripción por bloques}
+	{\bcDerivation}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}    % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Para generar las citas de reinscripción por bloques se debe generar una lista ordenada que incluya a todos los alumnos que se encuentran asociados con al menos un bloque de citas de reinscripción y después se debe asignar a estos alumnos a las citas de reinscripción considerando los días que se definieron para generar las citas de reinscripción.
+
+%		\begin{enumerate}
+%			\item Obtener $numeroCitas$ como el número de citas que se pueden generar.
+%			\item Obtener los días definidos para generar citas de reinscripción.
+%			\item Obtener el menor de los días definidos para generar citas de reinscripción. Este día es el DíA en el que se comenzarán a generar las citas de reinscripción.
+%			\item Generar las citas de reinscripción con la separación entre citas especificada.
+%%			\item Genera las citas de reinscripción de la siguiente manera:
+%%				\begin{enumerate}
+%%					\item Comienza con la cita C = 1.
+%%					\item La cita C tendrá un fecha = DIA
+%%				\end{enumerate}
+%			\item Obtener el número de alumnos $alumnosPorCita$ que se deben asignar por cita.
+%			\item Comenzar por el bloque con número de bloque $N_B$ = 1.
+%			\item Obtener a todos los alumnos asociados con el bloque número $N_B$ que no tengan cita de reinscripción generada para el {\bf Periodo Escolar de Reinscripciones}.
+%			\item Ordenar a los alumnos obtenidos de acuerdo con su promedio general. En caso de que existan dos alumnos con el mismo promedio general, se usa el nivel de los alumnos como segundo criterio de ordenamiento.
+%			\item Asignar a los primeros $alumnosPorCita$ a la primer cita.
+%			\item Asignar a los siguientes $alumnosPorCita$ a la segunda cita.
+%			\item Repetir el paso anterior hasta que se terminen los alumnos del bloque.
+%		\end{enumerate}
+	
+	\BRItem[Sentencia] Los paso que se deben seguir para generar las citas de reinscripción se muestran en la Figura \ref{fig:DiagramaGenerarCitas} y son los siguientes:
+	\begin{enumerate}
+		\item Generar lista de alumnos asociados a un bloque. Ver Figura \ref{fig:DiagramaGenerarListaAlumnos}.
+		\begin{enumerate}
+			\item Ordenar alumnos por criterios de ordenamiento. Ver Figura \ref{fig:DiagramaOrdenAlumnos}.
+		\end{enumerate}
+		\item Asociar alumnos con cita de reinscripción. Ver Figura \ref{fig:DiagramaAsociarAlumnos}.
+		\begin{enumerate}
+			\item Incrementar cita. Ver Figura \ref{fig:DiagramaIncrementarCita}.
+		\end{enumerate}
+	\end{enumerate} 
+	
+	% Diagrama General
+	\IUfig[0.7]{../images/DiagramaCitas/DiagramaGeneralCitasReinscripcion.png}{fig:DiagramaGenerarCitas}{Diagrama general para generar citas de reinscripción por bloque.}
+	
+	% Generar lista alumnos
+	\IUfig[0.7]{../images/DiagramaCitas/GenerarListaAlumnos.png}{fig:DiagramaGenerarListaAlumnos}{Diagrama para generar la lista de alumnos asociados a un bloque.}
+	
+	%Ordenar alumnos por criterios de ordenamiento
+	\IUfig[0.7]{../images/DiagramaCitas/ordenarAlumnosCriterioOrdenamiento.png}{fig:DiagramaOrdenAlumnos}{Diagrama para ordenar alumnos por criterio de ordenamiento.}
+	
+	% Asociar citas
+	\IUfig[0.7]{../images/DiagramaCitas/AsociarAlumnos.png}{fig:DiagramaAsociarAlumnos}{Diagrama para asociar alumnos con cita de reinscripción.}
+	
+	% Incrementar cita
+	\IUfig[0.7]{../images/DiagramaCitas/IncrementarCita.png}{fig:DiagramaIncrementarCita}{Diagrama para incrementar la hora y el día de una cita de reinscripción.}
+	
+	\BRItem[Motivación] Establecer el algoritmo mediante el cual se generarán las citas de reinscripción por bloques de citas. 
+\end{BusinessRule}
+
+
+
+%=====================================REGLA N011============================================
+\begin{BusinessRule}{BR-RI-N011}{Tiempo mínimo entre hora de inicio y fin para citas de reinscripción}
+	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}    % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La diferencia entre la hora de fin y la hora de inicio para un día de citas de reinscripción debe ser al menos la separación entre citas de reinscripción especificada.
+	\BRItem[Sentencia] Sea $D$ el conjunto de todos los días definidos para generar citas de reinscripción, $D_i$ cada elemento contenido en este conjunto y $separacionEntreCitas$ la separación entre citas definida para generar citas de reinscripción. Se debe cumplir que:
+		$$ \forall D_i \rightarrow (D_i.horaFin - D_i.horaInicio) \geq separacionEntreCitas $$
+%	Se debe cumplir que para cada $D_i$ en $R$\\
+%	$if$ $D_i.horaComida=true$ $then$\\
+%	$((D_i.horaFin - D_i.horaInicio - (horaComidaFin-horaComidaInicio))\geq separacionEntreCitas \lor (D_i.horaFin-D_i.horaInicio-(D_i.horaFin-horaComidaInicio))\geq separacionEntreCitas)$\\
+%	$else$\\
+%	$D_i.horaFin-D_i.horaInicio \geq separacionEntreCitas$
+%	
+	\BRItem[Motivación] Definir un mínimo de duración que cada día debe cumplir para poder generar citas de reinscripción en el mismo.
+	\BRItem[Ejemplo] Si la hora de comida fue establecida entre 14:00 y 15:00, y la separación entre citas fue especificada como 15 minutos.\newline
+	Los siguientes horarios de hora de inicio y fin de un día serían válidos para la generación de citas:
+	\begin{itemize}
+		\item 09:00-17:00.
+		\item 10:00-16:00.
+		\item 8:00-8:15.
+	\end{itemize}
+	Los siguiente horarios de hora de inicio y fin de un día no serían válidos:
+	\begin{itemize}
+		\item 14:30-14:40.
+		\item 13:50-14:03.
+		\item 8:00-8:10.
+	\end{itemize}
+\end{BusinessRule}
+
+%=====================================REGLA N012============================================
+\begin{BusinessRule}{BR-RI-N012}{Hora de comida válida para un día}
+	{\bcCondition }    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler }    % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción]La hora de comida es válida para un día si:
+	\begin{itemize}
+		\item La diferencia entre la hora de inicio de comida y la hora de inicio del día es mayor o igual que la separación entre citas y 
+		\item la diferencia entre la hora de fin del día y la hora de fin de comida es mayor o igual que la separación entre citas.
+	\end{itemize}
+
+	O bien si:
+	\begin{itemize}
+		\item La hora de inicio de la comida es mayor o igual que la hora del fin del día o
+		\item La hora de fin de comida es menor o igual que la hora de inicio del día.
+	\end{itemize}
+	 %está fuera del horario definido o si la diferencia entre la hora de inicio del día y la hora de inicio de comida es mayor o igual que el tamaño de bloque y la diferencia entre la hora de fin de comida y la hora de fin del día es mayor o igual que el tamaño de bloque
+	\BRItem[Sentencia] \cdtEmpty
+	Sea $comida$ el horario de comida definido para la generación de citas de reinscripción, y $dia$ un día definido para generar citas de reinscripción
+
+	El horario de comida $comida$ es válido para un $dia$ si
+	 $$ ( (comida.horaInicio - dia.horaInicio) \geq separacionEntreCitas ) $$ $$\land  ( (dia.horaFin - comida.horaFin) \geq separacionEntreCitas) $$ 
+	 o bien si
+	 $$ comida.horaInicio \geq dia.horaFin \lor comida.Fin \leq dia.horaInicio$$
+	 
+	\BRItem[Motivación:] Verificar que el horario de comida definido sea válido para todos los días  y evitar inconsistencias al momento de generar las citas de reinscripción.
+	\BRItem[Ejemplo:]
+	Sean 
+	\begin{itemize}
+		\item Hora inicio día 1 = 10:00
+		\item Hora fin día 1 = 19:00
+		\item Hora inicio día 2 = 10:00
+		\item Hora fin día 2 = 14:00
+		\item Hora inicio comida = 15:00
+		\item Hora fin comida = 16:00
+		\item Separación entre citas = 15 minutos
+	\end{itemize}
+	Para el día 1, $15:00 horas - 10 horas = 5 horas$  $\rightarrow$ $5 horas > 15 minutos$ y $19:00 horas - 16:00 = 3 horas$ $\rightarrow$ $3 horas > 15 minutos$. Ya que en ambos casos se cumple la condición, el horario de comida definido es válido para el día.
+	
+	Para el día 2, $14:00 \leq 15:00$ pr lo tanto la hora de comida es válida para el día.
+	%\BRItem[Referenciado por] \refIdElem{RI-GC-GE-CU2.6.1}
+\end{BusinessRule}
+
+%=====================================REGLA N013============================================
+\begin{BusinessRule}{BR-RI-N013}{Distribución correcta de horas para citas de reinscripción por día}
+	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}    % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El número total de horas por día para generar citas de reinscripción dividido por la separación entre citas especificada debe resultar en un número entero. 
+	
+	Si el horario de comida aplica para el día, el número total de horas entre la hora de inicio del día y la hora de inicio de comida, así como entre la hora de fin de comida y la hora de fin del día, divididos por la separación entre citas especificada debe resultar en un número entero.
+	
+	\BRItem[Sentencia] Sea $D$ el conjunto de todos los días válidos para realizar reinscripción, $D_i$ representa a cada elemento contenido en este conjunto, $incluyeComida$ un atributo de cada día que indica si el día incluye horario de comida y $comida$ el horario de comida definido.
+	
+	Para que la distribución de horas sea correcta se debe cumplir que:
+	
+	$ (D_i.incluyeComida = true) \rightarrow $ \\
+	$$  \frac{comida.horaIncio - D_i.horaInicio}{separacionEntreCitas} \in \mathbb{N}  \land \frac{D_i.horaFin - comida.horaFin}{separacionEntreCitas} \in \mathbb{N}$$
+%	$$  \land \frac{D_i.horaFin - comida.horaFin}{separacionEntreCitas} \in \mathbb{N}  $$
+
+	$ (D_i.incluyeComida = false) \rightarrow $ \\
+	$$  \land \frac{D_i.horaFin - D_i.horaInicio}{separacionEntreCitas} \in \mathbb{N}  $$
+
+%	Considerando que $D_i.totalHoras$ se calcula de la siguiente manera:
+%	$$ (D_i.incluyeComida = true) \rightarrow D_i.totalHoras = (D_i.horaFin - D_i.horaInicio) - (comida.Fin - comida.Inicio) $$
+%
+%	$$ (D_i.incluyeComida= false) \rightarrow D_i.totalHoras = (D_i.horaFin - D_i.horaInicio) $$
+%	
+%	Para que se obtenga un aprovechamiento correcto de las horas definidas para generar citas de reinscripción se debe cumplir que:
+%	
+%	$$ \frac{D_i.totalHoras}{separacionEntreCitas} \in \mathbb{N} $$
+	
+	\BRItem[Motivación] Definir un mecanismo con el cual, se puedan aprovechar todas las horas posibles para la generación de citas y no queden espacios sin utilizar.
+	\BRItem[Ejemplo] Considerando las siguientes definiciones:
+	\begin{itemize}
+		\item Separación entre citas: 15 minutos.
+		\item Hora de inicio de comida: $14:00$
+		\item Hora de fin de comida: $15:00$
+	\end{itemize}
+	
+	Entonces los siguientes horarios definidos para los días son válidos:	
+	
+	\begin{itemize}
+		\item Hora de inicio del día 1: $9:00$
+		\item Hora de fin del día 1: $19:00$
+		\item Hora de inicio del día 2: $9:00$
+		\item Hora de fin del día 2: $10:00$
+	\end{itemize}
+	
+	Los siguientes horarios definidos para los días no son válidos:
+	\begin{itemize}
+		\item Hora de inicio del día 1: $9:50$
+		\item Hora de fin del día 1: $19:00$
+		\item Hora de inicio del día 2: $9:30$
+		\item Hora de fin del día 2: $10:10$
+	\end{itemize}
+\end{BusinessRule}
+
+
+%=====================================REGLA N014============================================
+\begin{BusinessRule}{BR-RI-N014}{Formato de archivo de hoja de cálculo para citas de reinscripción}
+	{\bcDerivation}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}    % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Establece el formato del archivo para exportar las citas de reinscripción a un archivo de hoja de cálculo, con extensión .xls. La cual es una extensión para archivos de hoja de cálculo. \\
+	
+	El archivo tendrá una fila por cada alumno con cita de reinscripción asociada y estará compuesto por las siguientes columnas:
+	\begin{description}
+		\item [Boleta:] Es la boleta del alumno.
+		\item [Nombre:] Es el nombre completo del alumno.
+		\item [Programa Académico:] Es el programa académico al que está inscrito el alumno.
+		\item [Plan de estudio:] Es el plan de estudio al que está inscrito el alumno.
+		\item [Promedio:] Es el promedio general del alumno.
+		\item [Unidades de aprendizaje adeudadas:] Es el número de unidades de aprendizaje adeudadas que tiene el alumno.
+		\item [Unidades de aprendizaje desfasadas:] Es el número de unidades de aprendizaje desfasadas que tiene el alumno.
+		\item [Desfasamiento máximo:] Es el número de desfasamiento máximo de las unidades de aprendizaje desfasadas que tiene el alumno. En caso de que el alumno no tenga unidades de aprendizaje desfasadas, se pone un guión (-).
+		\item [Dictamen:] Indica si el alumno tiene un dictamen vigente. Si el alumno tiene un dictamen vigente, se pone "Sí". Si el alumno no tiene un dictamen vigente, se pone "No".
+		\item [Regresa baja:] Indica si el alumno tiene una baja que concluye en el periodo escolar. Si el alumno tiene una baja se pone "Sí", en caso contrario se pone "No".
+		\item [Regresa movilidad:] Indica si el alumno regresa de movilidad en el periodo escolar. Si el alumno regresa de movilidad se pone "Sí", en caso contrario se pone "No".
+		\item [Bloque:] Indica la etiqueta del bloque a través del cuál se generó la cita de reinscripción. Si la cita de reinscripción se generó de forma individual se pone ``Individual''
+		\item [Cita de reinscripción:] Es la fecha y hora en la que está agendada la cita de reinscripción del alumno.
+		\item [Caducidad:] Es la fecha y hora de caducidad de la cita de reinscripción del alumno. 
+	\end{description}
+
+		
+%		\item Boleta.
+%		\item Nombre.
+%		\item Programa Académico.
+%		\item Plan de estudios.
+%		\item Promedio.
+%		\item Unidades de aprendizaje adeudadas.
+%		\item Unidades de aprendizaje desfasadas.
+%		\item Dictamen.
+%		\item Baja.
+%		\item Fecha de inicio de cita de reinscripción.
+%		\item Hora de inicio de cita de reinscripción.
+%		\item Caducidad de la cita de reinscripción.
+%	\end{itemize}	
+%	
+	\BRItem[Motivación] Definir que información será exportada al archivo de hoja de cálculo donde se dará el detalle de las citas de reinscripción generadas.
+\end{BusinessRule}
+
+%%%=========================REGLA N015=============================================
+\begin{BusinessRule}{BR-RI-N015}{Periodo escolar para reinscripciones}
+	{\bcCondition}   % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}   % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}   % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles y Guadalupe
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El periodo escolar para reinscripciones para una fecha dada es el periodo escolar actual para esa fecha. En caso de no existir un periodo escolar actual para esa fecha, el periodo escolar de reinscripciones es el periodo escolar inmediato siguiente.
+
+	\BRItem[Sentencia] Sea $P_{R}$ el periodo escolar de reinscripciones, $periodoActual$ el periodo escolar actual y $periodoSiguiente$ el periodo escolar siguiente.
+	
+	Si $ \exists periodoActual \rightarrow P_{R} = periodoActual$\\
+	Si $ \not \exists periodoActual \rightarrow P_{R} = periodoSiguiente$
+	
+%	Sea $P_1$ un periodo actual, y $P_2$ el periodo escolar inmediato siguiente. Para conocer el periodo actual para reinscripciones en una fecha se debe cumplir lo siguiente:
+%	$$ if (P_1.fechaInicio \leq fechaActual and fechaActual \geq P_1.fechaFin) then fechaActual  \Leftarrow P_1 $$
+%	En caso de no estar en un periodo actual se debe cumplir.
+%	$$if(fechaActual\succ P_1.fechaFin and fechaActual \prec P2.fechaInicio) then fechaActual \Leftarrow P_2 $$
+
+	\BRItem[Motivación] Mantener un control sobre el periodo escolar al que se reinscirben los alumnos dependiendo la fecha actual.
+	
+	\BRItem[Ejemplo:] Sean los siguientes periodos escolares:
+	
+	\begin{itemize}
+		\item 2017-2018/2 con fecha de inicio 1 de febrero de 2018 y fecha de fin 24 de junio de 2018.
+		\item 2018-2019/1 con fecha de inicio 4 de agosto de 2018 y fecha de fin 20 de diciembre de 2018.
+	\end{itemize}
+
+	Entonces:
+	\begin{itemize}
+		\item El periodo escolar de reinscripciones para la fecha 23 de enero de 2018 es el periodo escolar 2017-2018/2.
+		\item El periodo escolar de reinscripciones para la fecha 6 de marzo de 2018 es el periodo escolar 2017-2018/2.
+		\item El periodo escolar de reinscripciones para la fecha 6 de julio de 2018 es el periodo escolar 2018-2019/1.
+	\end{itemize}
+		
+	
+%	Si un periodo escolar conocido como 18/1 y comienza el 7 de agosto del 2017, concluye el 19 de diciembre de 2017 y el periodo siguiente conocido como 18/2 comienza el 1 de febrero del 2018 concluye el 26 de junio de 2018. siendo la fecha actual 10 de agosto de 2017 el periodo escolar que le corresponde es el 18/1, si la fecha es 16 de noviembre de 2017 el periodo escolar que le corresponde es el 18/1, si la fecha es 23 de enero de 2018 el periodo escolar que le corresponde es el inmediato siguiente, por lo tanto es el 18/2.
+%	%\BRItem[Referenciado por] %\refIdElem{RI-GC-GE-CU2}
+\end{BusinessRule}
+
+%%========================REGLA N016====================================
+\begin{BusinessRule}{BR-RI-N016}{Alumnos inscritos a un periodo escolar en una Unidad Académica}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los alumnos que están inscritos en una modalidad en una Unidad Académica para un periodo escolar son aquellos alumnos que están asociados con un plan de estudio de la modalidad asociado a un Programa Académico que se imparta en la Unidad Académica y tienen asociada al menos una Unidad de Aprendizaje con dicho periodo escolar, o bien, están realizando movilidad en el periodo escolar.
+	\BRItem[Sentencia] Un alumno está inscrito en un periodo escolar si
+	\begin{itemize}
+		\item $alumno.planEstudio.programaAcademico$ se imparte en $unidadAcademica \land$\\$ alumno.planEstudio.modalidad = modalidad$ y  
+		\item $\exists unidadAprendizaje \in alumno.unidadesAprendizaje$ tal que $ unidadAprendizaje.periodo = periodoEscolar \lor$  $(alumno.estado=movilidad \land alumno.movilidad.periodo = periodoEscolar)$
+	\end{itemize}
+	
+	\BRItem[Motivación] Identificar a los alumnos que se encuentran inscritos en una Unidad Académica para un periodo escolar dentro de una modalidad determinada.
+	\BRItem[Ejemplo] Dado el periodo escolar 2017-2018/2
+		Los siguientes alumnos se consideran inscritos:
+		\begin{itemize}
+			\item José López que tiene asociada la Unidad de Aprendizaje {\it Psicología Clínica} con el periodo escolar 2017-2018/2.
+			\item Alejandra Fuentes que tiene asociadas las Unidades de Aprendizaje {\it Química I} y {\it Química II} con el periodo escolar 2017-2018/2
+			\item Fernando Ortega que está cursando movilidad en el periodo escolar 2017-2018/2
+		\end{itemize}
+%	\referencedBy{BR-RI-N016}
+\end{BusinessRule}
+
+%%=======================REGLA N017=====================================
+\begin{BusinessRule}{BR-RI-N017}{Tiempo máximo sin ejecutar los procesos de actualización del estado del alumno}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Para realizar la configuración de los bloques de citas de reinscripción, los procesos de actualización del estado de los alumnos se deben de haber ejecutado a lo más un día antes de la fecha actual.
+	\BRItem[Sentencia] $fechaActual - fechaUltimaActualizacion \leq 1 $ día
+	\BRItem[Motivación] Promover que cualquier operación relacionada con la configuración de los bloques de citas de reinscripción se lleve a cabo considerando el estado más reciente de los alumnos.
+	\BRItem[Ejemplo:] Si la fecha de última ejecución de los procesos de actualización del estado del alumno es el 30 junio de 2017.\\
+	Las siguientes fechas son válidas para realizar la configuración de los bloques de citas de reinscripción:
+		\begin{itemize}
+			\item 30 de junio de 2017
+			\item 31 de junio de 2017
+		\end{itemize}
+	
+	Las siguientes fechas no son válidas para realizar la configuración de los bloques de citas de reinscripión:
+	\begin{itemize}
+		\item 3 de julio de 2017
+		\item 5 de agosto de 2017
+	\end{itemize}
+	
+%	\BRItem[Referenciado por] 
+	%\referencedBy{BR-RI-N017}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-RI-N018}{Alumnos que cumplen con criterios de selección de situación especial para un bloque de citas}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los alumnos que cumplen con los criterios de selección de situación especial son los siguientes:
+		\begin{itemize}
+			\item {\it Alumnos a punto de desfasarse:} Son los alumnos que no tienen ninguna unidad de aprendizaje desfasada pero tienen al menos una unidad de aprendizaje adeudada que se cursó por primera vez dos periodos escolares previos al actual.
+			\item {\it Alumnos de cambio de carrera:} Son los alumnos a quiénes se les autorizó un cambio de carrera que implica cambio de unidad académica en el periodo escolar inmediato anterior.
+			\item {\it Alumnos que regresan de baja temporal:} Son los alumnos que tienen un baja con permiso que concluye en el periodo escolar.
+			\item {\it Alumnos que regresan de movilidad:} Son los alumnos que estuvieron de movilidad en el periodo escolar inmediato anterior.
+		\end{itemize}
+	
+	Para determinar el conjunto de alumnos que se asocian al bloque se hace la unión considerando las opciones que se seleccionaron en el bloque:
+		\begin{enumerate}
+				\item Se comienza con un conjunto vacío.
+				\item Si se seleccionó la opción {\it Alumnos a punto de desfasarse}, se agregan los alumnos que tienen está situación especial.
+				\item Si se seleccionó la opción {\it Alumnos de cambio de carrera}, se agregan los alumnos que tienen está situación especial.				
+				\item Si se seleccionó la opción {\it Alumnos que regresan de baja}, se agregan los alumnos que tienen está situación especial.				
+				\item Si se seleccionó la opción {\it Alumnos que regresan de movilidad}, se agregan los alumnos que tienen está situación especial.			
+		\end{enumerate}
+	
+	\BRItem[Sentencia] \cdtEmpty
+	$alumnosEnBloque=\emptyset$
+	\begin{enumerate}
+		\item $(bloque.alumnosAPuntoDeDesfasarse=true)\rightarrow alumnosEnBloque$   $\cup$   $alumnosAPuntoDeDesfasarse$
+		\item $(bloque.alumnosCambioCarrera=true)\rightarrow alumnosEnBloque$   $\cup$   $alumnosCambioCarrera$
+		\item $(bloque.alumnosRegresanBaja=true)\rightarrow alumnosEnBloque$   $\cup$   $alumnosRegresanBaja$
+		\item $(bloque.alumnosRegresanMovilidad=true)\rightarrow alumnosEnBloque$   $\cup$   $alumnosRegresanMovilidad$
+	\end{enumerate}
+	
+	\BRItem[Motivación] Identificar a los alumnos que cumplen con los criterios de selección de situación especial de un bloque de citas para asociarlos con el bloque y generales su cita de reinscripción.
+	\BRItem[Ejemplo] Dado un bloque con los siguientes criterios de selección de situación especial:
+		\begin{itemize}
+			\item Alumnos que regresan de movilidad
+			\item Alumnos que regresan de baja
+		\end{itemize}
+	
+	Los siguientes alumnos son parte del bloque:
+	\begin{itemize}
+		\item Un alumno que cursó su movilidad en el periodo escolar inmediato anterior.
+		\item Un alumno que tiene una baja con permiso que concluye en el periodo escolar.
+	\end{itemize}
+
+	Los siguientes alumnos no son
+	
+	%	\BRItem[Ejemplo positivo] Cumplen la regla:
+	%		\begin{itemize}
+	%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla se cumple}
+	%		\end{itemize}
+	%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+	%		\begin{itemize}
+	%			\item \TODO{Redacte preferentemente 3 ejemplos en los que la regla NO se cumple}
+	%		\end{itemize}
+%	\BRItem[Referenciado por] \refIdElem{RI-GC-GE-CU2.3}
+\end{BusinessRule}
+
+%%%=========================REGLA N005=============================================
+%
+%\begin{BusinessRule}{BR-N005}{Cálculo de la situación escolar del alumno} 
+%	{\bcAutorization}
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 0.1 
+%	\BRItem[Estado] En revisión.
+%	\BRItem[Propuesta por] Robles Ruiz Carlos 
+%	\BRItem[Revisada por] Nayeli Vega.
+%	\BRItem[Aprobada por] Pendiente.
+%		\label{ch:reglas-CalculoSituacion} 
+%	\BRItem[Descripción] La situación escolar de un alumno se debe calcular con base en su trayectoria escolar. Dependiendo de la situación escolar, su calidad de alumno dentro del Instituto Politécnico Nacional puede ser afectada. A continuación se describen las distintas situaciones escolares que se pueden a presentar
+%	\BRItem[Sentencia] $\forall Alumno \in IPN \Rightarrow Alumno.situacionEscolar= (regular \oplus irregular(Adeudada  \lor Desfasada )) \lor ConBaja \lor SinTiempo$ 
+%	Las causas que originan la situación escolar del alumno son:
+%		\begin{itemize}
+%		\item \textbf{Alumno regular}: Cuando en el periodo escolar actual el alumno tiene todas las unidades de aprendizaje acreditadas cursadas hasta el momento sin acabar su plan de estudios.
+%		\item \textbf{Alumno irregular}: Cuando en el periodo escolar actual el alumno tiene unidades de aprendizaje sin acreditar, dentro de este estado puede presentar los siguientes sub estados.
+%		\begin{enumerate}
+%		\item \textbf{Alumno con unidades de aprendizaje adeudadas}: Cuando en el periodo escolar actual el alumno tiene unidades de aprendizaje sin acreditar y de las cuales no han pasado 3 periodos escolares a partir del curse.
+%		\item \textbf{Alumno con unidades de aprendizaje desfasadas}: Cuando en el periodo escolar actual el alumno tiene unidades de aprendizaje sin acreditar por más de tres periodos escolares a partir del curse.
+
+

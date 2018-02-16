@@ -1,0 +1,110 @@
+% !TEX root = ../../../integrado.tex
+
+\begin{UseCase}{IN-DAE-CU4}{Gestionar E.T.S.}{
+		Permite realizar las acciones necesarias para manipular los periodos de E.T.S.'s (registro, aplicación y evaluación) correspondientes a una unidad académica durante un ciclo escolar y modalidad determinada.
+	}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Alan Fernando Rincón Vieyra}
+	\UCccitem{Supervisó}{Eduardo Espino Maldonado}
+	\UCccitem{Operación}{Gestionar}
+	\UCccitem{Prioridad}{Alta}
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Media}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Por revisar}
+	\UCccitem{Dificultades}{
+		\begin{Titemize}
+			\Titem Modelo de información de los periodos de E.T.S.
+			\Titem Especificar cómo se usará el tipo de E.T.S.
+			\Titem ¿Quienes son los actores?
+		\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{08 de Enero del 2018}
+	\UCccsection{Revisión Versión 0.1}
+	\UCccitem{Fecha}{}
+	\UCccitem{Evaluador}{}
+	\UCccitem{Resultado}{}
+	\UCccitem{Observaciones}{}
+	\UCsection{Atributos}
+	\UCitem{Actores}{
+		\begin{Titemize}
+			\Titem \refElem{DAEJefeDeRegistro}
+			\Titem \refElem{DAEAdministradorDeRegistro}
+		\end{Titemize}
+	}
+	\UCitem{Propósito}{Programar los periodos de registro, aplicación y evaluación de E.T.S.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Origen}{No aplica}
+	\UCitem{Salidas}{
+		\begin{Titemize}
+			\Titem La \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del periodo de E.T.S.
+			\Titem La \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del \refElem{Actividad.registroDeETS}.
+			\Titem La \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} de la \refElem{Actividad.aplicacionDeETS}.
+			\Titem La \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin} del \refElem{Actividad.registroDeEvaluacion}.
+		\end{Titemize}
+	}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un \refElem{CicloEscolar}, una \refElem{tModalidad} y una \refElem{tUnidadAcademica}.
+		\end{Titemize}
+	}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Reglas de Negocio}{Ninguna}
+	\UCitem{Errores}{
+		\begin{Titemize}
+			\Titem \UCerr{Uno}{Cuando no hay conexión con el sistema}{se muestra el mensaje \refIdElem{MSG2} y regresa al paso \ref{IN-DAE-CU4:solicitarGestionar} de la trayectoria principal.}
+		\end{Titemize}
+	}
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU2.5}}
+	\UCitem{Disparador}{
+		\begin{Titemize}
+			\Titem El actor requiere Consultar un periodo de E.T.S.
+			\Titem El actor requiere Registrar un periodo de E.T.S.
+			\Titem El actor requiere Modificar un periodo de E.T.S.
+			\Titem El actor requiere Eliminar un periodo de E.T.S.
+		\end{Titemize}
+	}
+	\UCitem{Condiciones de Término}{Se muestra la información correspondiente a cada periodo de E.T.S. registrado en el sistema.}
+	\UCitem{Efectos Colaterales}{Ninguno}
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	\UCitem{Auditable}{No}
+	\UCitem{Datos sensibles}{Ninguno}
+	
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+
+
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor]  \label{IN-DAE-CU4:solicitarGestionar}Solicita gestionar un periodo de E.T.S. presionando el botón \IUbutton{Gestionar ETS's} en la pantalla \refIdElem{IN-DAE-UI2.5}.
+	
+	\UCpaso Obtiene los periodos de E.T.S. \refErr{Uno}
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU4} con la información obtenida.
+	\UCpaso[\UCactor] \label{IN-DAE-CU4:gestionar}Gestiona un periodo de E.T.S. mediante los íconos {\IUAdd}, {\IUMenos} y {\IUCalendario}. \refTray{A}
+\end{UCtrayectoria}
+
+%Trayectorias Alternativas
+
+\begin{UCtrayectoriaA}[Fin del caso de uso.]{A}{El actor desea cancelar la operación.}
+	\UCpaso[\UCactor] Solicita cancelar la operación presionando el botón \IUbutton{Cancelar}.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.5}.
+\end{UCtrayectoriaA}
+
+\subsection{Puntos de extensión}
+\UCExtensionPoint{Registrar periodo de E.T.S.}
+{El actor desea registrar un nuevo periodo de E.T.S.}
+{En el paso \ref{IN-DAE-CU4:gestionar} de la trayectoria principal}
+{\refIdElem{IN-DAE-CU4.1}}
+
+\UCExtensionPoint{Editar periodo de E.T.S.}
+{El actor desea editar un periodo de E.T.S.}
+{En el paso \ref{IN-DAE-CU4:gestionar} de la trayectoria principal}
+{\refIdElem{IN-DAE-CU4.2}}
+
+\UCExtensionPoint{Eliminar periodo de E.T.S.}
+{El actor desea eliminar un periodo de E.T.S.}
+{En el paso \ref{IN-DAE-CU4:gestionar} de la trayectoria principal}
+{\refIdElem{IN-DAE-CU4.3}}

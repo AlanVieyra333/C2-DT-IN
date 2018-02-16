@@ -1,0 +1,117 @@
+\begin{UseCase}{IN-DAE-CU2.3}{Eliminar Calendario Académico}{		
+		
+		Permite eliminar un \refElem{CalendarioAcademico} con lo cual se quitará la asociación de las unidades académicas a las fechas establecidas en dicho calendario, las Unidades Académicas que se encontraban asociadas al Calendario Académico no podrán realizar las actividades relacionadas al Calendario Académico. 
+	}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Bruno Suárez Cruz }
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Eliminar}
+	\UCccitem{Prioridad}{Media}
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Alta}
+	\UCccitem{Madurez}{Baja}
+	\UCccitem{Estatus}{Revisado por análisis}
+	\UCccitem{Dificultades}{}
+	\UCccitem{Fecha del último estatus}{19 de Diciembre  de 2017}
+	%\UCccs{}
+	\UCccitem{Fecha}{}
+	\UCccitem{Evaluador}{}
+	\UCccitem{Resultado}{}
+	\UCccitem{Observaciones}{}
+	%	\UCsection{Atributos}{}
+	\UCitem{Actor}{%
+		\begin{Titemize}
+			\Titem \refElem{DAEJefeDeRegistro}
+			\Titem \refElem{DAEAdministradorDeRegistro}
+		\end{Titemize}
+	}
+	\UCitem{Propósito}{Eliminar un \textbf{Calendario Académico} con lo cual las Unidades Académicas que se encontraban asociadas al mismo, quedaran temporalmente sin calendario asignado con esto las Unidades Académicas no podan realizar sus actividades.}
+	\UCitem{Entradas}{Selección de la opción para notificar al \refElem{UAJefeDeControlEscolar} de cada unidad académica asociada al Calendario Académico.
+	}
+	\UCitem{Origen}{%
+		\begin{Titemize}
+			\Titem \ioObtener
+			\Titem  Se selecciona con el mouse.
+		\end{Titemize}
+	}	
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem 	Acrónimos de las Unidades Académicas (ver \refElem{UnidadAcademica.acronimo}).
+			\Titem  Muestra en la pantalla  el mensaje  \refIdElem{MSG136} y la redaccion \refIdElem{MSG133} cuando se elimina el Calendario Académico.
+		\end{Titemize}
+	}
+	\UCitem{Destino}{%
+		\begin{Titemize}
+			\Titem Correo Electrónico
+			\Titem Pantalla
+		\end{Titemize}	
+	}
+	\UCitem{Precondición}{%
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un Ciclo Escolar y una Modalidad en el caso de uso \refIdElem{IN-DAE-CU1}.
+			\Titem \textbf{Sistematizada:} Que haya al menos un Calendario Académico registrado.
+			\Titem \textbf{Sistematizada:} Que el Ciclo escolar no haya iniciado (ver \refIdElem{BR-IN-N004}).
+		\end{Titemize}	
+	}
+	\UCitem{Postcondiciones}{%
+		\begin{Titemize}
+			\Titem Se eliminará la asociación de  las unidades académicas y fechas establecidas al Calendario Académico definido previamente en el caso de uso \refIdElem{IN-DAE-UI2.1}.
+			\Titem Se enviarán notificaciones la los Jefes de Control escolar.
+		\end{Titemize}	
+	}
+	\UCitem{Reglas de Negocio}{%
+      Ninguna}
+	\UCitem{Errores}{Ninguno}
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU2}}
+	\UCitem{Disparadores}{ El actor requiere eliminar un calendario creado y de esta manera le eliminará la asociación de las Unidades Académicas a las fechas establecidas.
+	}
+	\UCitem{Condiciones de Término}{Se quitara la asociación de las Unidades Académicas de un Calendario Académico.}
+	\UCitem{Efectos colaterales}{Las Unidades Académicas no contaran con un calendario definido, por lo cual estas no podrán trabajar hasta que se les sea asignado un nuevo Calendario Académico.}
+	\UCitem{Referencia Documental}{}
+	\UCitem{Auditable}{Sí, se debe guardar: Fecha, usuario y actividad realizada. Indicando las escuelas a las que afecta dicho cambio.}
+	\UCitem{Datos sensibles}{Ninguno}
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	\UCpaso [\UCactor] Presiona el botón \IUbutton{Eliminar} de la pantalla \refIdElem{IN-DAE-UI2} del calendario operativo que se requiere eliminar.
+	\UCpaso Obtiene los acrónimos de las Unidades Académicas que estén asociados al Calendario Académico. 
+	\UCpaso Obtiene el Mensaje \refIdElem{MSG136} y la redaccion del correo \refIdElem{MSG133} para la eliminación de un Calendario Académico.
+	\UCpaso \label{IN-DAE-CU2.3:noti} Muestra la pantalla \refIdElem{IN-DAE-UI2.3} con la información obtenida.\refTray{A} 
+	\UCpaso [\UCactor] Selecciona la opción requerida para el envío de la notificación.
+	%\UCpaso [\UCactor] Modifica la redacción del correo a enviar.
+	\UCpaso [\UCactor] Presiona el botón \IUbutton{Aceptar}.\refTray{B} 
+	\UCpaso Elimina las asociaciones de las Unidades Académicas asociadas al calendario.
+	\UCpaso Elimina las Actividades que componen el calendario académico.
+	\UCpaso Elimina los calendarios especializados que se hayan registrado de las Unidades Académicas afectadas.
+   	\UCpaso Envía las notificaciones pertinentes al Jefe de control escolar, dependiendo de las modificaciones generadas en el Calendario Académico.
+    \UCpaso El sistema registra en la bitácora la hora, fecha y usuario con la descripción de la acción especificando, las Unidades Académicas afectadas.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2} o \refIdElem{IN-DAE-UI2a}.
+\end{UCtrayectoria}
+
+
+
+%-------------------------- Trayectoria Alternativa A --------------------------------- 
+
+\begin{UCtrayectoriaA}{A}{No se requiere enviar la notificación a los Jefes de Control Escolar }
+	
+ 	
+	\UCpaso [\UCactor] Quita la selección de envío de notificación.
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.3:noti} de la trayectoria principal.
+ 
+\end{UCtrayectoriaA}
+
+
+%-------------------------- Trayectoria Alternativa B --------------------------------- 
+
+\begin{UCtrayectoriaA}[Termina caso de uso]{B}{Se requiere Cancelar la operción}
+	
+	\UCpaso [\UCactor] 	Presiona el botón \IUbutton{Cancelar} de la pantalla \refIdElem{IN-DAE-UI2.3}.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2} o \refIdElem{IN-DAE-UI2a} 
+	
+\end{UCtrayectoriaA}
+

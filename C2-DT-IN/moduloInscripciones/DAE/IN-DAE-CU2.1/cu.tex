@@ -1,0 +1,336 @@
+\begin{UseCase}{IN-DAE-CU2.1}{Definir Calendario Escolar}{
+	% V 0.1 Ok.
+	Permite definir el \refElem{CalendarioAcademico} mediante el cual las Unidades Académicas indicadas llevarán acabo sus funciones en un ciclo escolar y modalidad.\\
+	
+	El registro de los Calendarios Académicos se regirá por las distintas modalidades educativas dentro del Instituto, las Unidades Académicas podrán ser asociadas solo a un \refElem{CalendarioAcademico} por cada ciclo y modalidad, mientras que un Calendario Escolar puede tener una o más Unidades Académicas asociadas.
+}
+    \UCccitem{Versión}{0.2}
+    \UCccsection{Datos para el control Interno}	
+    \UCccitem{Elaboró}{Bruno Suárez Cruz }
+    \UCccitem{Supervisó}{Ulises Vélez Saldaña}
+    \UCccitem{Operación}{Definir}
+    \UCccitem{Prioridad}{Media}
+    \UCccitem{Complejidad}{Baja}
+    \UCccitem{Volatilidad}{Alta}
+    \UCccitem{Madurez}{Baja}
+    \UCccitem{Estatus}{Revisado, por revisar con desarrollo.}
+    \UCccitem{Dificultades}{}
+    \UCccitem{Fecha del último estatus}{23 de Diciembre  de 2017}
+    \UCccsection{Revisión V 0.1}
+    \UCccitem{Fecha}{12 de Diciembre  de 2017}
+    \UCccitem{Evaluador}{Ulises Vélez Saldaña}
+    \UCccitem{Resultado}{Corregir}
+    \UCccitem{Observaciones}{Aplicar los cambios marcados cono TODO's.}
+
+    % V 0.1 DONE: Agregar los actores.
+    \UCitem{Actor}{%
+    	\begin{Titemize}
+    		\Titem \refElem{DAEJefeDeRegistro}
+    		\Titem \refElem{DAEAdministradorDeRegistro}
+    	\end{Titemize}
+    }
+    \UCitem{Propósito}{Definir el \textbf{Calendario Escolar} para las \refElem{tUnidadAcademica} seleccionadas para que de está manera puedan realizar las operaciones mediante las fechas establecidas.}
+    % V 0.1 Done: Referenciar con el modelo de datos a: 	
+    % - \refElem{UnidadesAcadémicas.acrinomo} de las unidades académicas a las que aplicará el nuevo Calendario.
+    % - Actividad.inicio y Actividad.fin de cada actividad definida en el calendario.
+    % - Indicar ``si o no'' se enviarán notificaciones a los Jefes de Control Escolar.
+    % V 0.2 Ok.
+    \UCitem{Entradas}{%
+    	\begin{Titemize}
+    		\Titem  \refElem{tUnidadAcademica} 
+    	\Titem Fecha de inicio y fin de cada actividad a definir del calendario (ver \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin}).
+    	\Titem Habilitar o deshabilitar la opción para notificar al  \refElem{UAJefeDeControlEscolar} de cada unidad académica asociada al Calendario Escolar.
+    	\end{Titemize}
+    }
+    % V 0.1 Ok.
+    \UCitem{Origen}{%
+    	\begin{Titemize}
+    		\Titem \ioObtener
+    		\Titem  Se selecciona con el mouse.
+    	\end{Titemize}
+    }	
+    % V 0.1 DONE: Definr:
+    % - UnidadesAcademicas.acronimo de las unidades académicas que no tienen Calendario definido.
+    % - Actividad.nombre de las actividades que aplican a la modalidad seleccionada.
+    % - Calendario (quitar)
+    \UCitem{Salidas}{
+    		\begin{Titemize}
+    	\Titem Acrónimos de las Unidades Académicas (ver \refElem{tUnidadAcademica}).
+    	\Titem \refElem{Actividad.nombre} definidas por omisión para cada Calendario Escolar.
+    	\Titem Fechas de inicio y fin registradas para cada actividad (ver \refElem{ActividadCalendario.fechaInicio} y \refElem{ActividadCalendario.fechaFin}).
+    	
+ 	\Titem Muestra el mensaje  \refIdElem{MSG125} cuando el periodo establecido para alguna actividad definida por omisión es demasiado corto.
+   	\Titem Muestra el mensaje  \refIdElem{MSG126} cuando el periodo establecido para alguna actividad definida por omisión es demasiado largo.
+   	\Titem Muestra en la pantalla  mensaje  \refIdElem{MSGX} "Sin registro agregado"  cuando no se cuenta con un registro de una actividad.
+   	
+    	
+    	\end{Titemize}			
+    }
+    % V 0.1 Ok.
+    \UCitem{Destino}{
+    	
+   	\begin{Titemize}
+    		\Titem Pantalla.
+    		\Titem Envía una notificación (Correo Electrónico) con el mensaje  \refIdElem{MSG131} al \refElem{UAJefeDeControlEscolar} de cada Unidad Académica cuando sea asociada a un Calendario Escolar.
+   	\end{Titemize}	
+    	}
+    % V 0.1 Ok.
+    \UCitem{Precondición}{
+    	\begin{Titemize}
+    		\Titem \textbf{Sistematizada:} Que se haya seleccionado previamente un Ciclo Escolar y una Modalidad.
+    		\Titem \textbf{Sistematizada:} Que haya al menos una unidad académica registrada sin Calendario Escolar.
+	    \end{Titemize}	
+    }
+    % V 0.1 Ok.
+    \UCitem{Postcondiciones}{    
+        \begin{Titemize}
+        	\Titem Se asociaran unidades académicas al Calendario Escolar definido.
+			\Titem Se enviarán notificaciones la los Jefes de Control escolar.
+        \end{Titemize}
+    }
+  %   V 0.1 DONE Agregar las reglas de negocio: BR-N028 y BR-N029
+    \UCitem{Reglas de Negocio}{
+
+\begin{Titemize}
+	\Titem \refIdElem{BR-IN-N001}
+	\Titem \refIdElem{BR-IN-N002}
+%	\Titem \refIdElem{BR-IN-N022}
+\end{Titemize}    
+
+}
+    % V 0.1 DONE: Agregar los errores faltantes (ver comentarios en la trayectoria principal.
+    \UCitem{Errores}{
+    	\begin{Titemize}
+    		\Titem \UCerr{Uno}{Cuando no se encuentran \textbf{Unidades Académicas},}{muestra el mensaje \refIdElem{MSG3} en la pantalla \refIdElem{IN-DAE-UI2.1UA} y termina el caso de uso.}
+    		
+    		\Titem \UCerr{Dos}{Cuando se ha establecido un periodo demasiado corto,}{ muestra el mensaje \refIdElem{MSG125} en la pantalla \refIdElem{IN-DAE-UI2.1DEF} y continuamos en el paso \ref{IN-DAE-CU2.1:sel} de la trayectoria principal.}
+    			
+    		\Titem \UCerr{Tres}{Cuando se ha establecido un periodo demasiado largo,}{ muestra el mensaje \refIdElem{MSG126} en la pantalla \refIdElem{IN-DAE-UI2.1DEF} y continuamos en el paso \ref{IN-DAE-CU2.1:sel} de la trayectoria principal.}
+    			
+%    		\Titem \UCerr{Cuatro}{Cuando se ha establecido un periodo para evaluaciones ordinarias fuera del periodo escolar  muestra el mensaje \refIdElem{MSG130} en la pantalla \refIdElem{IN-DAE-UI2.1} y continuamos en el paso \ref{IN-DAE-CU2.1:sel} de la trayectoria principal.}	
+    		
+    		\Titem \UCerr{Cuatro}{Cuando no se han llenado los campos obligatorios,}{ muestra el mensaje \refIdElem{MSG6} en la pantalla y continuamos en el paso \ref{IN-DAE-CU2.1:sel} o paso \ref{IN-DAE-CU2.1:pop} de la trayectoria principal.}	
+    		
+    		\Titem \UCerr{Cinco}{Cuando no se ha definido un calendario escolar para un periodo,}{ muestra el mensaje \refIdElem{MSG6} en la pantalla y continuamos en el paso \ref{IN-DAE-CU2.1:sel} o paso \ref{IN-DAE-CU2.1:pop} de la trayectoria principal.}
+    		
+
+    	\end{Titemize}
+    }
+    % V 0.1 Ok
+    \UCitem{Viene de}{\refIdElem{IN-DAE-CU2}}
+    % V 0.1 Ok.
+    \UCitem{Disparadores}{
+    	El actor requiere definir un \textbf{Calendario Escolar} para las unidades académicas seleccionadas. 
+    }
+    % V 0.1 Ok.
+    \UCitem{Condiciones de Término}{Asociación de las unidades académicas al cronograma definido.}
+    % V 0.1 Ok.
+    \UCitem{Referencia Documental}{}
+    % V 0.1 Ok.
+    \UCitem{Efectos colaterales}{Los jefes de Control Escolar de las unidades Académicas seleccionadas podrán operar inscripciones, reinscripciones y registros de calificaciones durante el periodo escolar.}
+    % V 0.1 Ok.
+    \UCitem{Auditable}{No}
+    % V 0.1 Ok.
+    \UCitem{Datos sensibles}{Ninguno}
+\end{UseCase}
+
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	% V 0.1 Ok.
+    \UCpaso [\UCactor] Presiona el botón \IUbutton{Definir Calendario} de la pantalla \refIdElem{IN-DAE-UI2} o de la pantalla \refIdElem{IN-DAE-UI2a} para definir un Calendario Escolar.
+    % V 0.1 Ok.     
+    \UCpaso Obtiene los acrónimos de las Unidades Académicas que no se encuentran asociadas a un Calendario Escolar definido para en el Ciclo Escolar y modalidad seleccionados. \refErr{Uno}.
+    
+     \UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.1UA} con la información obtenida.
+    % V 0.1 Ok.
+    \UCpaso [\UCactor] Ingresa el nombre pertinente para el Calendario Escolar. 
+    
+    \UCpaso [\UCactor]  Selecciona las unidades académicas que serán asociadas al Calendario Escolar. \refTray{A} \refTray{B} 
+    
+    \UCpaso [\UCactor] Presiona el botón \IUbutton{Guardar} de la pantalla. \refTray{C}
+    
+    \UCpaso Asocia el nombre y las Unidades Académicas seleccionas al calendario escolar para el ciclo y modalidad. 
+    \UCpaso Obtiene el número de periodos que estén asociados al ciclo escolar, los ordena de manera descendente. 
+    \UCpaso \label{IN-DAE-CU2.1:continuar} Muestra la pantalla \refIdElem{IN-DAE-UI2.1} con la información obtenida. 
+    
+    \UCpaso [\UCactor] Presiona el botón \IUbutton{Definir Periodo Escolar <<Periodo Escolar>>} \refTray{I}
+    
+    \UCpaso \label{IN-DAE-CU2.1:peri} Obtiene las actividades definidas por omisión para el \textbf{Calendario Escolar}.
+    
+    \UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.1DEF} con la información obtenida.
+    
+    \UCpaso [\UCactor] \label{IN-DAE-CU2.1:sel} Ingresa la fecha de inicio y fin para cada actividad definida por omisión. 
+    
+    \UCpaso Verifica si el periodo indicado en la actividad \textbf{Inicio y fin de semestre} cuenta con la duración recomendada con base en la regla de negocio \refIdElem{BR-IN-N001}. \refErr{Dos}\refErr{Tres}
+    
+     \UCpaso [\UCactor] \label{IN-DAE-CU2.1:actividad} Presiona el botón \IUbutton{Agregar un registro} de la actividad correspondiente que se requiere agregar.
+     
+    \UCpaso \label{IN-DAE-CU2.1:reg} Obtiene el tipo de actividad de la cual se requiere agregar un registro y muestra la pantalla emergente correspondiente dependiendo de los siguientes casos:\\
+        
+        \begin{Titemize}
+        	\Titem Día inhábil muestra la ventana emergente \refIdElem{IN-DAE-UI2.1a}
+        	\Titem Periodo Vacacional muestra la ventana emergente \refIdElem{IN-DAE-UI2.1b}
+        	\Titem Evaluación Ordinaria muestra la ventana emergente \refIdElem{IN-DAE-UI2.1c}
+        	\Titem Evaluación Extraordinaria muestra la ventana emergente \refIdElem{IN-DAE-UI2.1d}
+       		\Titem Evaluación ETS muestra la ventana emergente \refIdElem{IN-DAE-UI2.1e}
+       		\Titem Evaluación Saberes Previamente Adquiridos muestra la ventana emergente \refIdElem{IN-DAE-UI2.1f}
+        	
+        \end{Titemize}   
+    
+     \UCpaso [\UCactor] \label{IN-DAE-CU2.1:pop} Ingresa los campos solicitados.
+     \UCpaso [\UCactor] Presiona el botón \IUbutton{Aceptar} de la pantalla emergente.\refTray{D}
+     
+     \UCpaso Verifica que no falte información en los campos obligatorios. \refErr{Cuatro}
+     \UCpaso Obtienen los datos ingresados por el usuario y los asocia a la actividad que se esta registrando.
+     \UCpaso [\UCactor] \label{IN-DAE-CU2.1:noti} Presiona el botón \IUbutton{Guardar}. \refTray{E} \refTray{F} \refTray{G} \refTray{H} 
+     
+     \UCpaso Verifica que no falte información en los campos obligatorios. \refErr{Cuatro}
+    
+    \UCpaso Asocia los datos ingresados para las actividades definidas por el usuario al calendario escolar para el periodo escolar con el que se está trabajando. 
+ 
+    \UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.1} con la información obtenida. 
+    
+	\UCpaso \label{IN-DAE-CU2.1:cannoti} Verifica si los periodos asociados al ciclo escolar cuentan con un un calendario escolar definido, habilita el botón \IUbutton{Registrar Calendario Escolar}. \refTray{J}
+
+ 	\UCpaso [\UCactor] Presiona el botón \IUbutton{Registrar Calendario Escolar}. \refTray{I}
+
+	\UCpaso Obtiene el mensaje  \refIdElem{MSG131} para realizar la notificación a los jefes de control escolar de las unidades asociadas al calendario escolar. 
+	
+	
+	\UCpaso \label{IN-DAE-CU2.1:emergente} Muestra la pantalla emergente  \refIdElem{IN-DAE-UI2.1NOTI} con la información obtenida. \refTray{K}
+	
+	\UCpaso [\UCactor] Presiona el botón \IUbutton{Aceptar}.\refTray{L}
+	
+	\UCpaso Asocia las Unidades académicas con las actividades definidas en los periodos del calendario escolar. 
+		
+	\UCpaso Envía la notificación pertinente a los jefes de control escolar de la unidades académicas que se encuentren asociados al calendario escolar. 
+	
+	 \UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2} con los cronogramas actualizados.
+	
+
+\end{UCtrayectoria}
+
+
+
+%-------------------------- Trayectoria Alternativa A --------------------------------- Seleccionar Todo
+
+\begin{UCtrayectoriaA}{A}{Se requiere seleccionar todas las unidades académicas }
+
+\UCpaso [\UCactor] 	Presiona el botón \IUbutton{Seleccionar Todo} de la pantalla \refIdElem{IN-DAE-UI2.1UA}.
+
+\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:sel}  de la trayectoria principal.
+
+\end{UCtrayectoriaA}
+
+
+%%-------------------------- Trayectoria Alternativa B --------------------------------- 
+%
+\begin{UCtrayectoriaA}{B}{Se requiere quitar una Unidad académica}
+	
+	\UCpaso [\UCactor] 	Quita la selección del acrónimo de Unidad Académica.
+	
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:sel}  de la trayectoria principal.
+	
+\end{UCtrayectoriaA}
+
+%%-------------------------- Trayectoria Alternativa C --------------------------------- 
+%
+\begin{UCtrayectoriaA}{C}{Se Cancela la selección de Unidades Académicas}
+	
+	\UCpaso [\UCactor] Presiona el botón \IUbutton{Cancelar} de la pantalla \refIdElem{IN-DAE-UI2.1UA}.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.1} 
+	
+\end{UCtrayectoriaA}
+
+
+%%-------------------------- Trayectoria Alternativa D --------------------------------- 
+%
+\begin{UCtrayectoriaA}{D}{Se Cancela agregar un registro}
+	
+	\UCpaso [\UCactor] Presiona el botón \IUbutton{Cancelar} de la pantalla emergente.
+	
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI2.1DEF} 
+	
+\end{UCtrayectoriaA}
+
+%
+%-------------------------- Trayectoria Alternativa  E --------------------------------- 
+
+\begin{UCtrayectoriaA}{E}{Se requiere eliminar un registro}
+	
+	\UCpaso [\UCactor] 	Da clic en el icono \IURechazar de la pantalla  \refIdElem{IN-DAE-UI2.1DEF}.
+
+	\UCpaso Se elimina el registro seleccionado y se desasocia con el tipo de actividad.
+	
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:actividad}  de la trayectoria principal.
+	
+\end{UCtrayectoriaA}
+%
+
+%%-------------------------- Trayectoria Alternativa F———————————————— 
+
+\begin{UCtrayectoriaA}{F}{Se requiere agregar un nuevo registro }
+	
+	\UCpaso [\UCactor] Presiona el botón \IUbutton{Agregar un registro} de la actividad que se requiere registrar.
+	\UCpaso Obtiene el tipo de actividad de la cual se requiere agregar un registro.
+	
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:reg}  de la trayectoria principal. 
+	
+\end{UCtrayectoriaA}
+%%-------------------------- Trayectoria Alternativa G———————————————— 
+%	
+	\begin{UCtrayectoriaA}{G}{Se requiere modificar un registro }
+		
+		\UCpaso [\UCactor] Da clic en el icono \IURegistrar de la actividad que se requiere modificar.
+		
+		\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:reg}  de la trayectoria principal. 
+		
+\end{UCtrayectoriaA}
+%-------------------------- Trayectoria Alternativa H --------------------------------- 
+
+\begin{UCtrayectoriaA}[Termina caso de uso]{H}{Se requiere Cancelar la operación}
+	
+	\UCpaso [\UCactor] 	Presiona el botón \IUbutton{Cancelar} de la pantalla \refIdElem{IN-DAE-UI2.1DEF}.
+	
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:continuar}  de la trayectoria principal.
+\end{UCtrayectoriaA}
+
+%-------------------------- Trayectoria Alternativa I --------------------------------- 
+
+\begin{UCtrayectoriaA}[Termina caso de uso]{I}{Se requiere Suspender la operación}
+	
+	\UCpaso [\UCactor] 	Presiona el botón \IUbutton{Regresar} de la pantalla \refIdElem{IN-DAE-UI2.1}.
+	
+	\UCpaso Muestra la pantalla  \refIdElem{IN-DAE-UI2.1CON}
+\end{UCtrayectoriaA}
+
+%-------------------------- Trayectoria Alternativa J --------------------------------- 
+
+\begin{UCtrayectoriaA}{J}{Se requiere Definir Calendario Escolar para otro periodo}
+	
+	\UCpaso [\UCactor] 	Presiona el botón \IUbutton{Definir Periodo Escolar <<Periodo Escolar>>}  de la pantalla \refIdElem{IN-DAE-UI2.1}.
+	
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:peri}  de la trayectoria principal.
+\end{UCtrayectoriaA}
+
+%-------------------------- Trayectoria Alternativa K --------------------------------- 
+
+\begin{UCtrayectoriaA}{K}{No se requiere enviar notificación}
+	
+	\UCpaso [\UCactor] 	Quita la selección \IUCheck de la pantalla emergente  \refIdElem{IN-DAE-UI2.1NOTI}.
+	
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:emergente}  de la trayectoria principal.
+\end{UCtrayectoriaA}
+
+%-------------------------- Trayectoria Alternativa L --------------------------------- 
+
+\begin{UCtrayectoriaA}{L}{Se cancela la notificación }
+	
+	\UCpaso [\UCactor] Presiona el botón \IUbutton{Cancelar} de la pantalla emergente \refIdElem{IN-DAE-UI2.1NOTI}
+	
+	\UCpaso Sigue en el paso \ref{IN-DAE-CU2.1:cannoti}  de la trayectoria principal.
+\end{UCtrayectoriaA}
+

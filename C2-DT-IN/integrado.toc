@@ -1,0 +1,278 @@
+\select@language {spanish}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Intenci\IeC {\'o}n del documento}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Estructura del documento}{1}{section.1.2}
+\contentsline {chapter}{\numberline {2}Nomenclatura}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Modelado del negocio}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Modelado de estructura de datos}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Modelado de reglas de negocio}{4}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Modelado de casos de uso}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Identificadores de casos de uso}{6}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Atributos de casos de uso}{7}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Modelado de interfaces}{7}{section.2.3}
+\contentsline {section}{\numberline {2.4}Modelado de mensajes}{8}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Atributos de mensajes}{8}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Identificadores de mensajes}{8}{subsection.2.4.2}
+\contentsline {part}{I\hspace {1em}Modelado del negocio}{9}{part.1}
+\contentsline {chapter}{\numberline {3}Glosario}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}T\IeC {\'e}rminos t\IeC {\'e}cnicos}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}T\IeC {\'e}rminos del negocio}{12}{section.3.2}
+\contentsline {chapter}{\numberline {4}Modelo de Tipos de Datos}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Tipo de dato Entero}{19}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Descripci\IeC {\'o}n}{19}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Tipo de dato Flotante}{19}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Descripci\IeC {\'o}n}{19}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Tipo de dato Booleano}{20}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Descripci\IeC {\'o}n}{20}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Tipo de dato Palabra}{20}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Descripci\IeC {\'o}n}{20}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.5}Tipo de dato Frase}{20}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Descripci\IeC {\'o}n}{20}{subsection.4.5.1}
+\contentsline {section}{\numberline {4.6}Tipo de dato Texto}{20}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Descripci\IeC {\'o}n}{20}{subsection.4.6.1}
+\contentsline {section}{\numberline {4.7}Tipo de dato Fecha}{21}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Descripci\IeC {\'o}n}{21}{subsection.4.7.1}
+\contentsline {section}{\numberline {4.8}Tipo de dato Hora}{21}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}Descripci\IeC {\'o}n}{21}{subsection.4.8.1}
+\contentsline {section}{\numberline {4.9}Tipo de dato Archivo}{22}{section.4.9}
+\contentsline {subsection}{\numberline {4.9.1}Descripci\IeC {\'o}n}{22}{subsection.4.9.1}
+\contentsline {section}{\numberline {4.10}Tipo de dato Turno}{22}{section.4.10}
+\contentsline {subsection}{\numberline {4.10.1}Descripci\IeC {\'o}n}{22}{subsection.4.10.1}
+\contentsline {subsection}{\numberline {4.10.2}Valores Iniciales}{22}{subsection.4.10.2}
+\contentsline {section}{\numberline {4.11}Tipo de dato Nivel Acad\IeC {\'e}mico}{23}{section.4.11}
+\contentsline {subsection}{\numberline {4.11.1}Descripci\IeC {\'o}n}{23}{subsection.4.11.1}
+\contentsline {subsection}{\numberline {4.11.2}Valores Iniciales}{23}{subsection.4.11.2}
+\contentsline {section}{\numberline {4.12}Tipo de dato Tipo de Divisi\IeC {\'o}n}{23}{section.4.12}
+\contentsline {subsection}{\numberline {4.12.1}Descripci\IeC {\'o}n}{23}{subsection.4.12.1}
+\contentsline {subsection}{\numberline {4.12.2}Valores Iniciales}{24}{subsection.4.12.2}
+\contentsline {section}{\numberline {4.13}Tipo de dato Estado de Plan de Estudio}{24}{section.4.13}
+\contentsline {subsection}{\numberline {4.13.1}Descripci\IeC {\'o}n}{24}{subsection.4.13.1}
+\contentsline {subsection}{\numberline {4.13.2}Valores Iniciales}{24}{subsection.4.13.2}
+\contentsline {section}{\numberline {4.14}Tipo de dato Tipo de Ense\IeC {\~n}anza}{25}{section.4.14}
+\contentsline {subsection}{\numberline {4.14.1}Descripci\IeC {\'o}n}{25}{subsection.4.14.1}
+\contentsline {subsection}{\numberline {4.14.2}Valores Iniciales}{25}{subsection.4.14.2}
+\contentsline {section}{\numberline {4.15}Tipo de dato Tipo de Unidad de Aprendizaje}{25}{section.4.15}
+\contentsline {subsection}{\numberline {4.15.1}Descripci\IeC {\'o}n}{25}{subsection.4.15.1}
+\contentsline {subsection}{\numberline {4.15.2}Valores Iniciales}{26}{subsection.4.15.2}
+\contentsline {section}{\numberline {4.16}Tipo de dato Modalidad}{26}{section.4.16}
+\contentsline {subsection}{\numberline {4.16.1}Descripci\IeC {\'o}n}{26}{subsection.4.16.1}
+\contentsline {subsection}{\numberline {4.16.2}Valores Iniciales}{27}{subsection.4.16.2}
+\contentsline {section}{\numberline {4.17}Tipo de dato Tipo de Nombramiento}{27}{section.4.17}
+\contentsline {subsection}{\numberline {4.17.1}Descripci\IeC {\'o}n}{27}{subsection.4.17.1}
+\contentsline {subsection}{\numberline {4.17.2}Valores Iniciales}{27}{subsection.4.17.2}
+\contentsline {section}{\numberline {4.18}Tipo de dato Estado de Estructura Educativa}{28}{section.4.18}
+\contentsline {subsection}{\numberline {4.18.1}Descripci\IeC {\'o}n}{28}{subsection.4.18.1}
+\contentsline {subsection}{\numberline {4.18.2}Valores Iniciales}{28}{subsection.4.18.2}
+\contentsline {section}{\numberline {4.19}Tipo de dato Actividad Complementaria}{28}{section.4.19}
+\contentsline {subsection}{\numberline {4.19.1}Descripci\IeC {\'o}n}{29}{subsection.4.19.1}
+\contentsline {subsection}{\numberline {4.19.2}Valores Iniciales}{29}{subsection.4.19.2}
+\contentsline {section}{\numberline {4.20}Tipo de dato Tipo de Exposici\IeC {\'o}n}{29}{section.4.20}
+\contentsline {subsection}{\numberline {4.20.1}Descripci\IeC {\'o}n}{29}{subsection.4.20.1}
+\contentsline {subsection}{\numberline {4.20.2}Valores Iniciales}{30}{subsection.4.20.2}
+\contentsline {section}{\numberline {4.21}Tipo de dato Tipo de Carga}{30}{section.4.21}
+\contentsline {subsection}{\numberline {4.21.1}Descripci\IeC {\'o}n}{30}{subsection.4.21.1}
+\contentsline {subsection}{\numberline {4.21.2}Valores Iniciales}{31}{subsection.4.21.2}
+\contentsline {section}{\numberline {4.22}Tipo de dato Estado de Carga del Alumno}{31}{section.4.22}
+\contentsline {subsection}{\numberline {4.22.1}Descripci\IeC {\'o}n}{31}{subsection.4.22.1}
+\contentsline {subsection}{\numberline {4.22.2}Valores Iniciales}{32}{subsection.4.22.2}
+\contentsline {section}{\numberline {4.23}Tipo de dato Estado de Documentaci\IeC {\'o}n}{32}{section.4.23}
+\contentsline {subsection}{\numberline {4.23.1}Descripci\IeC {\'o}n}{32}{subsection.4.23.1}
+\contentsline {subsection}{\numberline {4.23.2}Valores Iniciales}{33}{subsection.4.23.2}
+\contentsline {section}{\numberline {4.24}Tipo de dato Estado del Alumno}{33}{section.4.24}
+\contentsline {subsection}{\numberline {4.24.1}Descripci\IeC {\'o}n}{33}{subsection.4.24.1}
+\contentsline {subsection}{\numberline {4.24.2}Valores Iniciales}{33}{subsection.4.24.2}
+\contentsline {section}{\numberline {4.25}Tipo de dato Documento}{33}{section.4.25}
+\contentsline {subsection}{\numberline {4.25.1}Descripci\IeC {\'o}n}{33}{subsection.4.25.1}
+\contentsline {subsection}{\numberline {4.25.2}Valores Iniciales}{34}{subsection.4.25.2}
+\contentsline {section}{\numberline {4.26}Tipo de dato Estado de Devoluci\IeC {\'o}n de Documento}{34}{section.4.26}
+\contentsline {subsection}{\numberline {4.26.1}Descripci\IeC {\'o}n}{34}{subsection.4.26.1}
+\contentsline {subsection}{\numberline {4.26.2}Valores Iniciales}{35}{subsection.4.26.2}
+\contentsline {chapter}{\numberline {5}Modelo de Informaci\IeC {\'o}n de Alumno}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Alumno}{37}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Entidad: Alumno}{37}{subsection.5.1.1}
+\contentsline {subsubsection}{Resumen}{37}{section*.3}
+\contentsline {chapter}{\numberline {6}Modelo de Informaci\IeC {\'o}n}{41}{chapter.6}
+\contentsline {section}{\numberline {6.1}Planeaci\IeC {\'o}n}{41}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Entidad: Ciclo Escolar}{41}{subsection.6.1.1}
+\contentsline {subsubsection}{Resumen}{41}{section*.4}
+\contentsline {subsection}{\numberline {6.1.2}Entidad: Calendario Acad\IeC {\'e}mico}{42}{subsection.6.1.2}
+\contentsline {subsubsection}{Resumen}{42}{section*.5}
+\contentsline {subsection}{\numberline {6.1.3}Entidad: Periodo Escolar}{43}{subsection.6.1.3}
+\contentsline {subsubsection}{Resumen}{43}{section*.6}
+\contentsline {subsection}{\numberline {6.1.4}Entidad: Actividad de Calendario}{45}{subsection.6.1.4}
+\contentsline {subsubsection}{Resumen}{45}{section*.7}
+\contentsline {subsection}{\numberline {6.1.5}Entidad: Tipo de Actividad}{45}{subsection.6.1.5}
+\contentsline {subsubsection}{Resumen}{45}{section*.8}
+\contentsline {subsection}{\numberline {6.1.6}Entidad: Actividad}{45}{subsection.6.1.6}
+\contentsline {subsubsection}{Resumen}{45}{section*.9}
+\contentsline {section}{\numberline {6.2}Configuraci\IeC {\'o}n de Proceso de Inscripci\IeC {\'o}n}{46}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Entidad: Programa}{46}{subsection.6.2.1}
+\contentsline {subsubsection}{Resumen}{46}{section*.10}
+\contentsline {subsection}{\numberline {6.2.2}Entidad: Corrida}{46}{subsection.6.2.2}
+\contentsline {subsubsection}{Resumen}{47}{section*.11}
+\contentsline {section}{\numberline {6.3}Infraestructura}{47}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Entidad: Unidad Acad\IeC {\'e}mica}{47}{subsection.6.3.1}
+\contentsline {subsubsection}{Resumen}{47}{section*.12}
+\contentsline {section}{\numberline {6.4}Horarios}{48}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Entidad: Plan de Estudio}{48}{subsection.6.4.1}
+\contentsline {subsubsection}{Resumen}{48}{section*.13}
+\contentsline {section}{\numberline {6.5}Inscripciones}{49}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Entidad: Periodo en Unidad Acad\IeC {\'e}mica}{49}{subsection.6.5.1}
+\contentsline {subsubsection}{Resumen}{49}{section*.14}
+\contentsline {subsection}{\numberline {6.5.2}Entidad: Plan de Estudio en Periodo de Unidad Acad\IeC {\'e}mica}{49}{subsection.6.5.2}
+\contentsline {subsubsection}{Resumen}{49}{section*.15}
+\contentsline {subsection}{\numberline {6.5.3}Entidad: Alumno Asignado}{50}{subsection.6.5.3}
+\contentsline {subsubsection}{Resumen}{50}{section*.16}
+\contentsline {subsection}{\numberline {6.5.4}Entidad: Situaci\IeC {\'o}n Escolar}{51}{subsection.6.5.4}
+\contentsline {subsubsection}{Resumen}{51}{section*.17}
+\contentsline {subsection}{\numberline {6.5.5}Entidad: Documento de Alumno Asignado}{53}{subsection.6.5.5}
+\contentsline {subsubsection}{Resumen}{53}{section*.18}
+\contentsline {chapter}{\numberline {7}Modelo de Informaci\IeC {\'o}n de EE}{55}{chapter.7}
+\contentsline {subsection}{\numberline {7.0.1}Entidad: Estructura Educativa}{55}{subsection.7.0.1}
+\contentsline {subsubsection}{Resumen}{55}{section*.19}
+\contentsline {subsection}{\numberline {7.0.2}Entidad: Segmento de Estructura Educativa}{56}{subsection.7.0.2}
+\contentsline {subsubsection}{Resumen}{56}{section*.20}
+\contentsline {subsection}{\numberline {7.0.3}Entidad: Grupo}{57}{subsection.7.0.3}
+\contentsline {subsubsection}{Resumen}{57}{section*.21}
+\contentsline {subsection}{\numberline {7.0.4}Entidad: Profesor en Segmento}{58}{subsection.7.0.4}
+\contentsline {subsubsection}{Resumen}{58}{section*.22}
+\contentsline {subsection}{\numberline {7.0.5}Entidad: Unidad de Aprendizaje en Oferta}{59}{subsection.7.0.5}
+\contentsline {subsubsection}{Resumen}{59}{section*.23}
+\contentsline {subsection}{\numberline {7.0.6}Entidad: Periodo}{60}{subsection.7.0.6}
+\contentsline {subsubsection}{Resumen}{60}{section*.24}
+\contentsline {subsection}{\numberline {7.0.7}Entidad: Sub Unidad de Aprendizaje}{60}{subsection.7.0.7}
+\contentsline {subsubsection}{Resumen}{60}{section*.25}
+\contentsline {subsection}{\numberline {7.0.8}Entidad: Exposici\IeC {\'o}n}{61}{subsection.7.0.8}
+\contentsline {subsubsection}{Resumen}{61}{section*.26}
+\contentsline {subsection}{\numberline {7.0.9}Entidad: Secci\IeC {\'o}n}{62}{subsection.7.0.9}
+\contentsline {subsubsection}{Resumen}{62}{section*.27}
+\contentsline {subsection}{\numberline {7.0.10}Entidad: Profesor en Exposici\IeC {\'o}n}{63}{subsection.7.0.10}
+\contentsline {subsubsection}{Resumen}{63}{section*.28}
+\contentsline {subsection}{\numberline {7.0.11}Entidad: Planeaci\IeC {\'o}n Asignaci\IeC {\'o}n}{63}{subsection.7.0.11}
+\contentsline {subsubsection}{Resumen}{63}{section*.29}
+\contentsline {subsection}{\numberline {7.0.12}Entidad: Turno en Segmento}{64}{subsection.7.0.12}
+\contentsline {subsubsection}{Resumen}{64}{section*.30}
+\contentsline {subsection}{\numberline {7.0.13}Entidad: D\IeC {\'\i }a Laboral}{64}{subsection.7.0.13}
+\contentsline {subsubsection}{Resumen}{64}{section*.31}
+\contentsline {subsection}{\numberline {7.0.14}Entidad: Profesor con Actividad Complementaria}{65}{subsection.7.0.14}
+\contentsline {subsubsection}{Resumen}{65}{section*.32}
+\contentsline {subsection}{\numberline {7.0.15}Entidad: Grupo con Unidad de Aprendizaje en Oferta}{65}{subsection.7.0.15}
+\contentsline {subsubsection}{Resumen}{65}{section*.33}
+\contentsline {subsection}{\numberline {7.0.16}Entidad: Analista de Estructura Educativa}{66}{subsection.7.0.16}
+\contentsline {subsubsection}{Resumen}{66}{section*.34}
+\contentsline {subsection}{\numberline {7.0.17}Entidad: Analista en Unidad Acad\IeC {\'e}mica}{67}{subsection.7.0.17}
+\contentsline {subsubsection}{Resumen}{67}{section*.35}
+\contentsline {subsection}{\numberline {7.0.18}Entidad: Academia de Unidad de Aprendizaje}{67}{subsection.7.0.18}
+\contentsline {subsubsection}{Resumen}{67}{section*.36}
+\contentsline {subsection}{\numberline {7.0.19}Entidad: Programa Acad\IeC {\'e}mico}{67}{subsection.7.0.19}
+\contentsline {subsubsection}{Resumen}{67}{section*.37}
+\contentsline {subsection}{\numberline {7.0.20}Entidad: Plan de Estudio}{68}{subsection.7.0.20}
+\contentsline {subsubsection}{Resumen}{68}{section*.38}
+\contentsline {subsection}{\numberline {7.0.21}Entidad: Unidad de Aprendizaje}{69}{subsection.7.0.21}
+\contentsline {subsubsection}{Resumen}{69}{section*.39}
+\contentsline {subsection}{\numberline {7.0.22}Entidad: Antecedente}{71}{subsection.7.0.22}
+\contentsline {subsubsection}{Resumen}{71}{section*.40}
+\contentsline {subsection}{\numberline {7.0.23}Entidad: Divisi\IeC {\'o}n}{71}{subsection.7.0.23}
+\contentsline {subsubsection}{Resumen}{71}{section*.41}
+\contentsline {subsection}{\numberline {7.0.24}Entidad: Especialidad}{72}{subsection.7.0.24}
+\contentsline {subsubsection}{Resumen}{72}{section*.42}
+\contentsline {subsection}{\numberline {7.0.25}Entidad: Especialidad de Unidad de Aprendizaje}{72}{subsection.7.0.25}
+\contentsline {subsubsection}{Resumen}{72}{section*.43}
+\contentsline {subsection}{\numberline {7.0.26}Entidad: Unidad Acad\IeC {\'e}mica con Plan}{72}{subsection.7.0.26}
+\contentsline {subsubsection}{Resumen}{73}{section*.44}
+\contentsline {chapter}{\numberline {8}Reglas de negocio}{75}{chapter.8}
+\contentsline {section}{\numberline {8.1}Reglas de Negocio del Sistema}{75}{section.8.1}
+\contentsline {section}{\numberline {8.2}Reglas de Negocio}{75}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Reglas de Negocio de Inscripciones}{75}{subsection.8.2.1}
+\contentsline {subsubsection}{{BR-IN-N005} {Determinar Ciclo Escolar}}{75}{section*.45}
+\contentsline {subsubsection}{{BR-IN-N010} {Total de Aspirantes sin Inscribir por Unidad y Periodo}}{76}{section*.46}
+\contentsline {subsubsection}{{BR-IN-N011} {Total de Aspirantes Inscritos por Unidad y Periodo}}{76}{section*.47}
+\contentsline {subsubsection}{{BR-IN-N012} {Total de Alumnos sin Inscribir por Unidad y Periodo}}{77}{section*.48}
+\contentsline {subsubsection}{{BR-IN-N013} {Total de alumnos inscritos por Unidad y Periodo}}{78}{section*.49}
+\contentsline {subsubsection}{{BR-IN-N014} {Total de alumnos con cancelaci\IeC {\'o}n por Unidad y Periodo}}{78}{section*.50}
+\contentsline {subsubsection}{{BR-IN-N024} {Estudiantes necesarios para inscripci\IeC {\'o}n}}{79}{section*.51}
+\contentsline {subsubsection}{{BR-IN-N025} {Capacidad m\IeC {\'a}xima de sobrecupo a un grupo}}{79}{section*.52}
+\contentsline {subsubsection}{{BR-IN-N026} {Estructura Educativa v\IeC {\'a}lida}}{80}{section*.53}
+\contentsline {subsubsection}{{BR-IN-N027} {C\IeC {\'a}lculo de sobrecupo}}{80}{section*.54}
+\contentsline {part}{II\hspace {1em}Modelado Din\IeC {\'a}mico}{81}{part.2}
+\contentsline {chapter}{\numberline {9}Arquitectura l\IeC {\'o}gica del Calm\IeC {\'e}cac}{83}{chapter.9}
+\contentsline {section}{\numberline {9.1}Arquitectura l\IeC {\'o}gica para el proceso de Estructura Educativa}{83}{section.9.1}
+\contentsline {chapter}{\numberline {10}Modelo de estados}{87}{chapter.10}
+\contentsline {chapter}{\numberline {11}Modelo de actores}{89}{chapter.11}
+\contentsline {section}{\numberline {11.1}Descripci\IeC {\'o}n de Actores}{89}{section.11.1}
+\contentsline {section}{\numberline {11.2}Participantes detectados}{90}{section.11.2}
+\contentsline {subsection}{\numberline {11.2.1}Actor Jefe de Gesti\IeC {\'o}n Escolar}{90}{subsection.11.2.1}
+\contentsline {chapter}{\numberline {12}Casos de Uso del m\IeC {\'o}dulo de la Direcci\IeC {\'o}n de Administraci\IeC {\'o}n Escolar}{93}{chapter.12}
+\contentsline {section}{\numberline {12.1}IN-DAE-PR1 Cargar Aspirantes al CALM\IeC {\'E}CAC}{94}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}Resumen}{94}{subsection.12.1.1}
+\contentsline {subsection}{\numberline {12.1.2}Descripci\IeC {\'o}n}{94}{subsection.12.1.2}
+\contentsline {subsection}{\numberline {12.1.3}Trayectorias del Caso de Uso}{95}{subsection.12.1.3}
+\contentsline {chapter}{\numberline {13}Casos de Uso del m\IeC {\'o}dulo de la Direcci\IeC {\'o}n de Educaci\IeC {\'o}n Superior}{99}{chapter.13}
+\contentsline {chapter}{\numberline {14}Casos de Uso del m\IeC {\'o}dulo de las Unidades Acad\IeC {\'e}micas}{101}{chapter.14}
+\contentsline {section}{\numberline {14.1}IN-UA-CU1 Selecci\IeC {\'o}n de ciclo escolar y modalidad}{102}{section.14.1}
+\contentsline {subsection}{\numberline {14.1.1}Resumen}{102}{subsection.14.1.1}
+\contentsline {subsection}{\numberline {14.1.2}Descripci\IeC {\'o}n}{102}{subsection.14.1.2}
+\contentsline {subsection}{\numberline {14.1.3}Trayectorias del Caso de Uso}{103}{subsection.14.1.3}
+\contentsline {section}{\numberline {14.2}IN-UA-CU3 Visualizar proceso de inscripci\IeC {\'o}n}{104}{section.14.2}
+\contentsline {subsection}{\numberline {14.2.1}Resumen}{104}{subsection.14.2.1}
+\contentsline {subsection}{\numberline {14.2.2}Descripci\IeC {\'o}n}{104}{subsection.14.2.2}
+\contentsline {subsection}{\numberline {14.2.3}Trayectorias del Caso de Uso}{105}{subsection.14.2.3}
+\contentsline {subsection}{\numberline {14.2.4}Puntos de extensi\IeC {\'o}n}{106}{subsection.14.2.4}
+\contentsline {section}{\numberline {14.3}IN-UA-CU3.1 Gestionar asignaci\IeC {\'o}n de grupos}{107}{section.14.3}
+\contentsline {subsection}{\numberline {14.3.1}Resumen}{107}{subsection.14.3.1}
+\contentsline {subsection}{\numberline {14.3.2}Descripci\IeC {\'o}n}{107}{subsection.14.3.2}
+\contentsline {subsection}{\numberline {14.3.3}Trayectorias del Caso de Uso}{108}{subsection.14.3.3}
+\contentsline {subsection}{\numberline {14.3.4}Puntos de extensi\IeC {\'o}n}{109}{subsection.14.3.4}
+\contentsline {section}{\numberline {14.4}IN-UA-CU3.1.1 Inscribir alumnos por grupo}{110}{section.14.4}
+\contentsline {subsection}{\numberline {14.4.1}Resumen}{110}{subsection.14.4.1}
+\contentsline {subsection}{\numberline {14.4.2}Descripci\IeC {\'o}n}{110}{subsection.14.4.2}
+\contentsline {subsection}{\numberline {14.4.3}Trayectorias del Caso de Uso}{113}{subsection.14.4.3}
+\contentsline {section}{\numberline {14.5}IN-UA-CU3.1.2 Inscribir alumnos por alumno}{117}{section.14.5}
+\contentsline {subsection}{\numberline {14.5.1}Resumen}{117}{subsection.14.5.1}
+\contentsline {subsection}{\numberline {14.5.2}Descripci\IeC {\'o}n}{117}{subsection.14.5.2}
+\contentsline {subsection}{\numberline {14.5.3}Trayectorias del Caso de Uso}{120}{subsection.14.5.3}
+\contentsline {section}{\numberline {14.6}IN-UA-CU4 Gestionar entrega de documentos}{123}{section.14.6}
+\contentsline {subsection}{\numberline {14.6.1}Resumen}{123}{subsection.14.6.1}
+\contentsline {subsection}{\numberline {14.6.2}Descripci\IeC {\'o}n}{123}{subsection.14.6.2}
+\contentsline {subsection}{\numberline {14.6.3}Trayectorias del Caso de Uso}{124}{subsection.14.6.3}
+\contentsline {subsection}{\numberline {14.6.4}Puntos de extensi\IeC {\'o}n}{124}{subsection.14.6.4}
+\contentsline {section}{\numberline {14.7}IN-UA-CU4.1 Registrar entrega de documentos}{125}{section.14.7}
+\contentsline {subsection}{\numberline {14.7.1}Resumen}{125}{subsection.14.7.1}
+\contentsline {subsection}{\numberline {14.7.2}Descripci\IeC {\'o}n}{125}{subsection.14.7.2}
+\contentsline {subsection}{\numberline {14.7.3}Trayectorias del Caso de Uso}{126}{subsection.14.7.3}
+\contentsline {part}{III\hspace {1em}Interacci\IeC {\'o}n con el usuario}{127}{part.3}
+\contentsline {chapter}{\numberline {15}Men\IeC {\'u}s del sistema}{129}{chapter.15}
+\contentsline {section}{\numberline {15.1}Men\IeC {\'u} del Subsistema de Inscripciones}{129}{section.15.1}
+\contentsline {chapter}{\numberline {16}Interfaces del m\IeC {\'o}dulo de la Direcci\IeC {\'o}n de Administraci\IeC {\'o}n Escolar}{131}{chapter.16}
+\contentsline {chapter}{\numberline {17}Interfaces del m\IeC {\'o}dulo de la Direcci\IeC {\'o}n de Educaci\IeC {\'o}n Superior}{133}{chapter.17}
+\contentsline {chapter}{\numberline {18}Interfaces del m\IeC {\'o}dulo de las Unidades Acad\IeC {\'e}micas}{135}{chapter.18}
+\contentsline {subsection}{\numberline {18.0.1}IN-UA-IU1 Selecci\IeC {\'o}n de Periodo Escolar y Modalidad}{135}{subsection.18.0.1}
+\contentsline {subsubsection}{Objetivo}{135}{section*.55}
+\contentsline {subsubsection}{Dise\IeC {\~n}o}{135}{section*.56}
+\contentsline {subsection}{\numberline {18.0.2}IN-UA-IU3 Resumen del proceso de Inscripci\IeC {\'o}n}{135}{subsection.18.0.2}
+\contentsline {subsubsection}{Objetivo}{135}{section*.57}
+\contentsline {subsubsection}{Dise\IeC {\~n}o}{135}{section*.58}
+\contentsline {subsection}{\numberline {18.0.3}IN-UA-IU3.1 Asignar grupo}{135}{subsection.18.0.3}
+\contentsline {subsubsection}{Objetivo}{135}{section*.59}
+\contentsline {subsubsection}{Dise\IeC {\~n}o}{138}{section*.60}
+\contentsline {subsection}{\numberline {18.0.4}IN-UA-IU3.1.1 Inscribir alumnos por grupo}{138}{subsection.18.0.4}
+\contentsline {subsubsection}{Objetivo}{138}{section*.61}
+\contentsline {subsubsection}{Dise\IeC {\~n}o}{139}{section*.62}
+\contentsline {subsection}{\numberline {18.0.5}IN-UA-IU3.1.2 Inscribir alumnos por alumno}{139}{subsection.18.0.5}
+\contentsline {subsubsection}{Objetivo}{143}{section*.63}
+\contentsline {subsubsection}{Dise\IeC {\~n}o}{143}{section*.64}
+\contentsline {subsection}{\numberline {18.0.6}IN-UA-IU4 Gestionar entrega de documentos}{149}{subsection.18.0.6}
+\contentsline {subsubsection}{Objetivo}{149}{section*.65}
+\contentsline {subsubsection}{Dise\IeC {\~n}o}{149}{section*.66}
+\contentsline {subsection}{\numberline {18.0.7}IN-UA-IU4.1 Registrar entrega de documentos}{149}{subsection.18.0.7}
+\contentsline {subsubsection}{Objetivo}{149}{section*.67}
+\contentsline {subsubsection}{Dise\IeC {\~n}o}{150}{section*.68}
+\contentsline {chapter}{\numberline {A}Dise\IeC {\~n}o de mensajes}{151}{appendix.Alph1}
+\contentsline {subsection}{\numberline {A.0.1}{MSG3}~{}{Elementos No Disponibles}}{152}{subsection.Alph1.0.1}
+\contentsline {subsection}{\numberline {A.0.2}{MSG16}~{}{Condiciones necesarias para realizar operaci\IeC {\'o}n}}{152}{subsection.Alph1.0.2}
+\contentsline {subsection}{\numberline {A.0.3}{MSG181}~{}{Carencia de estudiantes para inscripci\IeC {\'o}n}}{153}{subsection.Alph1.0.3}
+\contentsline {subsection}{\numberline {A.0.4}{MSG182}~{}{Programa Acad\IeC {\'e}mico no v\IeC {\'a}lido}}{153}{subsection.Alph1.0.4}
+\contentsline {subsection}{\numberline {A.0.5}{MSG183}~{}{Estructura Educativa no v\IeC {\'a}lida}}{153}{subsection.Alph1.0.5}
+\contentsline {subsection}{\numberline {A.0.6}{MSG184}~{}{Capacida de Unidad de Aprendizaje excedida}}{154}{subsection.Alph1.0.6}
+\contentsline {subsection}{\numberline {A.0.7}{MSG185}~{}{Carga m\IeC {\'\i }nima no cubierta}}{154}{subsection.Alph1.0.7}
+\contentsline {subsection}{\numberline {A.0.8}{MSG188}~{}{N\IeC {\'u}mero de preboletas/boletas excedido}}{154}{subsection.Alph1.0.8}

@@ -1,0 +1,71 @@
+%Resumen
+
+\begin{cdtEntidad}[Es un lapso anual que surge a raíz de la definición de los ]{CicloEscolar}{Ciclo Escolar}%
+	\brAttr{clave}{Clave}{frase}{Es la palabra o conjunto de palabras que identifican a un lapso anual que comprende el inicio y término de labores docentes.}{\datRequerido}%
+	\brAttr{fechaDeInicio}{Fecha de Inicio}{fecha}{Es el día que marca el inicio del ciclo lectivo y genera así .}{\datRequerido}%
+	\brAttr{fechaDeFin}{Fecha de Fin}{fecha}{Es el día que marca la conclusión del ciclo lectivo.}{\datRequerido}%
+	\cdtEntityRelSection%
+	\brRel{CalendarioAcademico}{Composicion}{En un ciclo escolar se definen uno o más calendarios académicos, los cuales regirán y especificarán las actividades administrativas y académicas que las unidades académicas asociadas a el deberán llevar a cabo dentro de sus fechas y/o periodos especificados. }%
+	\brRel{PeriodoEscolar}{Composicion}{Un ciclo escolar esta dividido en lapsos de tiempo en los cuales los alumnos que están inscritos a  un programa académico cursan Unidades de Aprendizaje.}%
+	\brRel{UnidadAcademica}{Agregacion}{Esta relación da como resultado a la entidad \refElem{CicloEscolarEnUnidadAcademica} y especifica los calendarios y periodos escolares que se deben aplicar en una o más Unidades Académicas.}%
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[ Un calendario académico es la programación que define los tiempos en los cuales se realizan anualmente las actividades académicas y de gestión escolar, en las diversas modalidades educativas que imparte el Instituto Politécnico Nacional.]{CalendarioAcademico}{Calendario Académico}%
+	\brAttr{nombre}{Nombre}{texto}{Es el conjunto de palabras que identifican a un calendario académico y que generalmente indica las Unidades Académicas que en él se incluyen o se excluyen.}{\datRequerido}%
+	\brAttr{modalidad}{Modalidad}{Modalidad}{Indica la modalidad que debe regirse por las actividades definidas en el calendario académico.}{\datRequerido}%
+	\cdtEntityRelSection
+	\brRel{CicloEscolar}{Composicion}{En un ciclo escolar se definen uno o más calendarios académicos, los cuales regirán y especificarán las actividades administrativas y académicas que las Unidades Académicas deberán llevar a cabo a lo largo del mismo. }%
+	\brRel{CalendarioAcademico}{Composicion}{Un Calendario es la base de otros Calendarios que surgieron a raíz de las necesidades particulares de las Unidades Académicas regidas por el primero.}%
+	\brRel{CicloEscolarEnUnidadAcademica}{Agregacion}{Un ciclo escolar aplicable a una Unidad Académica tiene un calendario académico asociado en el que se define la programación de actividades académicas y administrativas que la regirán.}%
+	\brRel{ActividadDeCalendarioAcademico}{Composicion}{En un Calendario Académico se definen las tareas que se llevarán a cabo en una o varias Unidades Académicas por los docentes, alumnos y/o personal de apoyo y asistencia a la educación.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es un lapso señalado en el calendario académico para cursar unidades de aprendizaje de un programa académico. Para definir su inicio y su final se debe tomar en cuenta los límites del ciclo escolar al que el periodo pertenece. La duración de este lapso de tiempo se define de acuerdo a la modalidad definida del programa académico y a las unidades de aprendizaje contenidas en el plan de estudio correspondiente.]{PeriodoEscolar}{Periodo Escolar}%
+	\brAttr{clave}{Clave}{frase}{Es una palabra o conjunto de palabras que identifican a un lapso para cursar Unidades de Aprendizaje de un programa académico.}{\datRequerido}%
+	\brAttr{fechaDeInicio}{Fecha de Inicio}{fecha}{Indica el día en que inicia un lapso de tiempo para cursar Unidades de Aprendizaje de un programa académico.}{\datRequerido}%
+	\brAttr{fechaDeFin}{Fecha de Fin}{fecha}{Indica el día en que concluye un lapso de tiempo para cursar Unidades de Aprendizaje de un programa académico.}{\datRequerido}%
+	\cdtEntityRelSection
+	\brRel{CicloEscolar}{Composicion}{Un ciclo escolar esta dividido en lapos de tiempo en los cuales los Alumnos cursan Unidades de Aprendizaje.}%
+	\brRel{CronogramaDeEstructuraEducativa}{Composicion}{Para un periodo escolar se define la planeación de actividades a realizar por parte del personal de la DGyCE y de los Responsables de la Estructura Educativa de las distintas Unidades Académicas.}%
+	\brRel{UnidadAcademica}{Agregacion}{Esta relación da como resultado a la entidad \refElem{PeriodoEscolarEnUnidadAcademica} y específica aquellos periodos que son aplicables para una Unidad Académica de acuerdo a los programas académicos que en ella se imparten.}%
+	\brRel{ActividadDeCalendarioAcademico}{Agregacion}{En un periodo escolar se llevan a cabo actividades en las que se ven involucrados docentes, alumnos y/o personal de apoyo y asistencia a la educación.}
+\end{cdtEntidad}%
+
+\begin{cdtEntidad}[Es la programación de actividades relacionadas a la generación y validación de la estructura educativa de las unidades académicas del Instituto. Esta programación involucra a los analistas de la DGyCE y a los responsables de estructura educativa de las unidades académicas. Este cronograma es una guía que se debe seguir para la validación de la Estructura Educativa de una Unidad Académica.]{CronogramaDeEstructuraEducativa}{CronogramaDeEstructuraEducativa}%
+	\brAttr{notificacion}{Notificación}{texto}{Es un conjunto de palabras o frases que tienen como propósito comunicar a los responsables de la estructura educativa que se pueden iniciar las actividades relacionadas a la generación y validación de la estructura educativa de su unidad académica.}{\datOpcional}%
+	\brAttr{periodoEscolar}{Periodo Escolar}{Periodo Escolar}{Para un periodo escolar se define la planeación de actividades a realizar por parte del personal de la DGyCE y de los Responsables de la Estructura Educativa de las distintas Unidades Académicas.}{\datRequerido}%
+	\brAttr{nivelAcademico}{Nivel Académico}{NivelAcademico}{Especifica para cual de los niveles que ofrece el Instituto se esta diseñando y realizando la planeación de tiempos para la elaboración de la estructura educativa de una o varias unidades académicas.}{\datRequerido}
+	\cdtEntityRelSection%
+	\brRel{UnidadAcademica}{Agregacion}{Esta relación da como resultado a la entidad \refElem{CronogramaDeUnidadAcademica } y especifica las actividades que el personal de la DGyCE y los Responsables de la Estructura Educativa de la Unidad Académica asociada al cronograma deberán realizar para  validar  y programar a la Estructura Educativa correspondiente.}
+	\brRel{ActividadDeEstructuraEducativa}{Composicion}{En un cronograma de estructura educativa se definen las actividades que los analistas de la DGyCE y los Responsables de la Estructura Educativa deberán realizar para la validación y la elaboración de las Estructuras Educativas de las Unidades Académicas.}
+\end{cdtEntidad}%
+
+\begin{cdtEntidad}[Es una tarea que se lleva a cabo para la generación y validación de la Estructura Educativa de una Unidad Académica. Esta actividad debe llevarse a cabo por los analistas de la DGyCE o por los responsables de la estructura educativa de las unidades académicas.]{ActividadDeEstructuraEducativa}{Actividad de Estructura Educativa}%
+	\brAttr{actividad}{Actividad}{Actividad}{Indica el nombre de la actividad que se debe realizar para la generación y/o validación de la estructura educativa de una unidad académica.}{\datRequerido}%
+	\brAttr{fechaDeInicio}{Fecha de Inicio}{fecha}{Es el día dentro de un Ciclo Escolar en el que se define el comienzo de una Actividad que pertenece al Cronograma de Actividades para la elaboración o validación de una Estructura Educativa y que se sugiere que el Responsable de este proceso en la Unidad Académica lleve a cabo. }{\datRequerido}%
+	\brAttr{fechaDeFin}{Fecha de Fin}{fecha}{}{\datRequerido}%
+	\cdtEntityRelSection%
+	\brRel{CronogramaDeEstructuraEducativa.}{Composicion}{En un cronograma de estructura educativa se definen las actividades que los analistas de la DGyCE y los Responsables de la Estructura Educativa deberán realizar para la validación y la elaboración de las Estructuras Educativas de las Unidades Académicas.}%
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es una tarea que involucra a los docentes, alumnos o a el personal de apoyo y asistencia a la educación de las unidades académicas asociadas a calendario académica.]{ActividadDeCalendarioAcademico}{Actividad de Calendario Académico}%
+	\brAttr{actividad}{Actividad}{Actividad}{Indica el nombre de la actividad que debe llevarse a cabo por los docentes, alumnos o personal de apoyo y asistencia a la educación de las Unidades Académicas  asociadas al calendario académico. }{\datRequerido}%
+	\brAttr{fechaDeInicio}{Fecha}{fecha}{Es el día dentro de un Ciclo Escolar en el que se define el comienzo de una Actividad que pertenece al Calendario Académico y que las Unidades Académicas asociadas a ese Calendario deberán comenzar a realizar.}{\datRequerido}%
+	\brAttr{fechaDeFin}{Fecha}{fecha}{Es el día dentro de un Ciclo Escolar en el que se define el la conclusión de una Actividad que pertenece al Calendario Académico y que las Unidades Académicas asociadas a ese Calendario deberán finalizar.}{\datRequerido}%
+	\cdtEntityRelSection%
+	\brRel{CalendarioAcademico}{Composicion}{En un Calendario Académico se definen las tareas que se llevarán a cabo en una o varias Unidades Académicas por los docentes, alumnos y/o personal de apoyo y asistencia a la educación.}%
+	\brRel{PeriodoEscolar}{Agregacion}{En un periodo escolar se llevan a cabo actividades en las que se ven involucrados docentes, alumnos y/o personal de apoyo y asistencia a la educación.}%
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{CronogramaDeEstructuraEducativa} y \refElem{UnidadAcademica} y que tiene como propósito indicar al cronograma al que el Responsable de la Estructura Educativa de una Unidad Académica debe apegarse de acuerdo al nivel académico.]{CronogramaDeUnidadAcademica}{Cronograma de Unidad Académica}
+%
+\end{cdtEntidad}%
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{PeriodoEscolar} y \refElem{UnidadAcademica} y tiene como propósito especificar los periodos escolares que se aplican para un o más Unidades Académicas.]{PeriodoEscolarEnUnidadAcademica}{Periodo Escolar en Unidad Académica}
+
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{CicloEscolar} y \refElem{UnidadAcademica} y tiene como propósito especificar los distintos ciclos que son aplicables en una Unidad Académica a través del tiempo.]{CicloEscolarEnUnidadAcademica}{Ciclo Escolar en Unidad Académica}%
+	\cdtEntityRelSection%
+	\brRel{CalendarioAcademico}{Agregacion}{Un ciclo escolar aplicable a una Unidad Académica tiene un calendario académico asociado en el que se define la programación de actividades académicas y administrativas que la regirán.}%
+\end{cdtEntidad}

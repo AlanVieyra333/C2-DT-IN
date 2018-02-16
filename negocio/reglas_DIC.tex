@@ -1,0 +1,2865 @@
+\subsection{Reglas de Negocio de Dictamenes}
+%
+%
+%======================================================================
+\begin{BusinessRule}{BR-S005}{Formato de archivo}{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos Alberto
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los archivos que pueden ser adjuntados en el sistema deben cumplir con los siguientes lineamientos:
+		\begin{itemize}
+			\item Documentos de peso para dictámenes: Archivo con formato PDF con un peso máximo de 5MB.
+		\end{itemize}
+%	\BRItem[Sentencia] 	\BRItem[Sentencia] $ \forall sd \in Dictamenes \Rightarrow sd.FechaDeSolicitud \leq fechaLimiteRecepecion $
+%	\BRItem[Motivación] 
+	\BRItem[Ejemplo positivo] 
+	\begin{itemize}
+		\item Se adjunta un archivo con formato y extensión 'pdf' con un peso de 3.5 MB, el sistema acepta dicho archivo.
+		\item Se adjunta un archivo con formato y extensión 'pdf' con un peso de 5.1 MB, el sistema rechaza dicho archivo.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	\begin{itemize}
+		\item Se adjunta un archivo con formato y extensión 'exe' con un peso de 3.5 MB, el sistema rechaza dicho archivo.
+		\item Se adjunta un archivo con formato y extensión 'pdf' con un peso de 4.1 MB, el sistema rechaza dicho archivo.
+	\end{itemize}	
+\end{BusinessRule}
+
+%%%%%%%%%%%%%%%%%%%REGLAS DE NEGOCIO%%%%%%%%%%%%%%%
+%
+%%%======================================================================
+%%======================================================================
+%\subsection{Reglas de Negocio del Negocio}
+%%%======================================================================
+%
+%
+%
+\begin{BusinessRule}{BR-DIC-N001}{Límite de recepción de solicitudes de dictámenes}	% TODO Hacer referencia a la máquina de estados de solicitud
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos Alberto
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Únicamente serán consideradas para la sesión inmediata de consejo aquellas solicitudes que tengan fecha de recepción menor o igual a la fecha límite de recepción de la sesión a celebrarse. Para aquellas que no cumplan, se asociarán a la próxima sesión.
+	\BRItem[Sentencia] $ \forall sd \in Dictamenes \Rightarrow sd.FechaDeSolicitud \leq fechaLimiteRecepecion $
+	\BRItem[Motivación] 
+	\BRItem[Ejemplo positivo] 
+	Tomando en cuenta que:\\
+			 1. La fecha límite para la recepción de documentos de la COSIE del CTCE es el día 27-Abril-2017.\\ 
+			 2. La fecha de la sesión inmediata de la COSIE del CTCE es el día 02-Mayo-2017.\\
+			 3. La fecha de la sesión que prosigue de la sesión inmediata de la COSIE del CTCE es el día 23-Mayo-2017.\\
+	 Cumplen la regla:
+	\begin{itemize}
+		\item Un alumno solicita un dictamen el día 26-Abril-2017, de acuerdo a la fecha límite de recepción de la COSIE del CTCE, se asocia la solicitud de dictamen a la sesión inmediata del día 02-Mayo-2017.
+		\item Un alumno solicita un dictamen el día 27-Abril-2017, de acuerdo a la fecha límite de recepción de la COSIE del CTCE, se asocia la solicitud de dictamen a la sesión inmediata del día 02-Mayo-2017.
+		\item Un alumno solicita un dictamen el día 28-Abril-2017, de acuerdo a la fecha límite de recepción de la COSIE del CTCE, se asocia la solicitud de dictamen a la sesión que prosigue de la inmediata del día 23-Mayo-2017.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	Tomando en cuenta que:\\
+			 1. La fecha límite para la recepción de documentos de la COSIE del CTCE es el día 27-Abril-2017.\\ 
+			 2. La fecha de la sesión inmediata de la COSIE del CTCE es el día 02-Mayo-2017.\\
+			 3. La fecha de la sesión que prosigue de la sesión inmediata de la COSIE del CTCE es el día 23-Mayo-2017.\\
+	Incumple la regla:
+	\begin{itemize}
+		\item Un alumno solicita un dictamen el día 26-Abril-2017, de acuerdo a la fecha límite de recepción de la COSIE del CTCE, se asocia la solicitud de dictamen a la sesión que prosigue de la sesión inmediata del día 23-Mayo-2017.
+		\item Un alumno solicita un dictamen el día 27-Abril-2017, de acuerdo a la fecha límite de recepción de la COSIE del CTCE, se asocia la solicitud de dictamen a la sesión que prosigue de la sesión inmediata del día 23-Mayo-2017.
+		\item Un alumno solicita un dictamen el día 28-Abril-2017, de acuerdo a la fecha límite de recepción de la COSIE del CTCE, se asocia la solicitud de dictamen a la del día 02-Mayo-2017.
+	\end{itemize}
+	
+\end{BusinessRule} 
+
+
+%%=========================REGLA N002=============================================
+\begin{BusinessRule}{BR-DIC-N002}{Token para confirmación}{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos Alberto
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un token se define como una cadena de alfa-numérica generada de manera pseudoaleatoria, el cual tendrá un tiempo de caducidad de 72hrs y podrá ser utilizado una sola vez. 
+	\BRItem[Sentencia] $\forall tiempoDuracion \in Token \Rightarrow tiempoDuracion < 48 horas.$
+	\BRItem[Motivación] 
+	\BRItem[Ejemplo positivo] 
+		Tomando en cuenta que:\\
+			 1. El token se generó el día 24-Agosto-2017 a las 13:00 pm.\\ 
+	Cumple la regla:
+	\begin{itemize}
+		\item El token pierde su funcionalidad el día 27-Agosto-2017 a las 13:00 pm.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	Tomando en cuenta que:\\
+			 1. El token se generó el día 24-Agosto-2017 a las 13:00 pm.\\ 
+	Incumple la regla:
+	\begin{itemize}
+		\item El token pierde su funcionalidad el día 26-Agosto-2017 a las 13:01 pm.
+	\end{itemize}
+
+\end{BusinessRule}
+
+%%%=========================REGLA N003=============================================
+\begin{BusinessRule}{BR-DIC-N003}{Fin de sesión de consejo}{\bcAutorization}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos Alberto
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Únicamente se podrán finalizar las sesiones de consejo que no tengan solicitudes de dictamen pendientes por resolver.
+ 	\BRItem[Sentencia] $\forall ConsejoFinalizado \in Consejo \Rightarrow consejoFinalizado.sesionesPorCelebrar= 0.$
+	\BRItem[Ejemplo positivo] 
+		Tomando en cuenta que:\\
+			 1. Existe un consejo que tiene una sesión por celebrar\\ 
+	Cumple la regla:
+	\begin{itemize}
+		\item Al solicitar que se finalice un consejo: No se permite que se finalice.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	Tomando en cuenta que:\\
+			 1. Existe un consejo que tiene una sesión por celebrar\\ 
+	Incumple la regla:
+	\begin{itemize}
+		\item Al solicitar que se finalice un consejo: Se permite que se finalice.
+	\end{itemize}
+\end{BusinessRule}
+%%%=========================REGLA N004=============================================
+\begin{BusinessRule}{BR-DIC-N004}{Fecha para iniciar sesión de COSIE}{\bcAutorization} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos 	
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Una sesión de consejo puede iniciarse si y solo si se encuentra en la fecha indicada.
+	\BRItem[Sentencia] $\forall SesionDeCOSIE \in Consejo \Rightarrow SesionDeCOSIE.FechaDeInicio = SesionDeCOSIE.FechaEstablecida$
+	\BRItem[Ejemplo positivo]
+		Tomando en cuenta que:\\
+			 1. La sesión 10 de la 15 COSIE del CTCE tiene establecido que se celebrará el día 25-Abril-2017\\ 
+	Cumple la regla:
+	\begin{itemize}
+		\item Al solicitar iniciar el día 24-Abril-2017, no se permite celebrarse la sesión de la COSIE.
+		\item Al solicitar iniciar el día 25-Abril-2017, se permite celebrarse la sesión de la COSIE.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	Tomando en cuenta que:\\
+			 1. La sesión 10 de la 15 COSIE del CTCE tiene establecido que se celebrará el día 25-Abril-2017\\ 
+	Incumple la regla:
+	\begin{itemize}
+		\item Al solicitar iniciar el día 23-Abril-2017, se permite celebrarse la sesión de la COSIE.
+		\item Al solicitar iniciar el día 25-Abril-2017, no se permite celebrarse la sesión de la COSIE.	\end{itemize}
+\end{BusinessRule}
+
+%%%=========================REGLA N005=============================================
+
+\begin{BusinessRule}{BR-DIC-N005}{Cálculo de la situación escolar del alumno}{\bcAutorization}
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos 
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+		\label{ch:reglas-CalculoSituacion} 
+	\BRItem[Descripción] La situación escolar de un alumno se debe calcular con base en su trayectoria escolar. Dependiendo de la situación escolar, su calidad de alumno dentro del Instituto Politécnico Nacional puede ser afectada. A continuación se describen las distintas situaciones escolares que se pueden a presentar
+	\BRItem[Sentencia] $\forall Alumno \in IPN \Rightarrow Alumno.situacionEscolar= (regular \oplus irregular(Adeudada  \lor Desfasada )) \lor ConBaja \lor SinTiempo$ 
+	Las causas que originan la situación escolar del alumno son:
+		\begin{itemize}
+		\item \textbf{Alumno regular}: Cuando en el periodo escolar actual el alumno tiene todas las unidades de aprendizaje acreditadas cursadas hasta el momento sin acabar su plan de estudios.
+		\item \textbf{Alumno irregular}: Cuando en el periodo escolar actual el alumno tiene unidades de aprendizaje sin acreditar, dentro de este estado puede presentar los siguientes sub estados.
+		\begin{enumerate}
+		\item \textbf{Alumno con unidades de aprendizaje adeudadas}: Cuando en el periodo escolar actual el alumno tiene unidades de aprendizaje sin acreditar y de las cuales no han pasado 3 periodos escolares a partir del curse.
+		\item \textbf{Alumno con unidades de aprendizaje desfasadas}: Cuando en el periodo escolar actual el alumno tiene unidades de aprendizaje sin acreditar por más de tres periodos escolares a partir del curse.
+		\end{enumerate}					
+		\item \textbf{Alumno con baja}: Cuando en el periodo escolar actual el alumno tiene una baja emitida por algún organismo del instituto.
+		\item \textbf{Alumno sin tiempo}: Cuando en el periodo escolar actual el alumno no tiene derecho a reinscribirse al siguiente periodo escolar ya que la división de sus créditos faltantes entre los periodos faltantes de su plan de estudios superan la carga media del plan de estudio que está cursando.
+		\item \textbf{Alumno con tiempo agotado}: Cuando en el periodo escolar actual el alumno ha cursado el número máximo de periodos permitidos para su plan de estudios.
+			\end{itemize}
+	\BRItem[Ejemplo positivo] 
+	\begin{itemize}
+		\item Un alumno tiene dos unidades de aprendizaje sin acreeditar durante dos periodos escolares. El alumno esta en una situación escolar con materias adeudadas sin desfase.
+		\item Un alumno tiene dos unidades de aprendizaje sin acreeditar durante 4 periodos escolares. El alumno esta en una situación escolar con materias adeudadas desfasadas.
+		\item Un alumno tiene todas las unidades de aprendizaje acreditadas, así mismo tiene una baja emitida por el Consejo General Consultivo. El alumno es regular con una baja.
+	\end{itemize}
+
+	\BRItem[Ejemplo negativo] 	Incumple la regla:
+	
+	\begin{itemize}
+
+		\item Un alumno tiene dos unidades de aprendizaje sin acreeditar durante dos periodos escolares. El alumno esta en una situación escolar con materias adeudadas con desfase.
+		\item Un alumno tiene dos unidades de aprendizaje sin acreeditar durante 4 periodos escolares. El alumno esta en una situación escolar sin materias adeudadas desfasadas.
+		\item Un alumno tiene todas las unidades de aprendizaje acreditadas, así mismo tiene una baja emitida por el Consejo General Consultivo. El alumno es regular.
+	\end{itemize}
+\end{BusinessRule}
+
+%%%=========================REGLA N006=============================================
+\begin{BusinessRule}{BR-DIC-N006}{Evaluación de la situación escolar del alumno para solicitar un dictamen}{\bcAutorization}
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos 	
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] En la petición de un dictamen se debe solicitar solo los términos necesarios y suficientes para solventar la situación escolar de un alumno, para ello el sistema debe calcular que términos debe mostrar con base en la situación escolar del alumno descrita en la regla de negocio \refIdElem{BR-DIC-N005} como se muestra a continuación:
+	\begin{enumerate}
+		 \item Cuándo se encuentra que el alumno solicitante no tiene tiempo:
+			 \begin{itemize}
+			 \item Se debe agregar la opción "Solicitar ampliación de tiempo" para que el alumno pueda solicitar dicho término.
+			 \end{itemize}
+		\item Cuándo el alumno se encuentra en baja:
+			\begin{itemize}
+			 \item Se debe agregar la opción "Solicitar revocación de baja".
+			 \end{itemize}
+ 		\item Cuándo el alumno se encuentra en estado irregular con unidades de aprendizaje desfasadas:
+	 		\begin{itemize}
+			 \item Se agrega las opción "Solicitar Presentar materias desfasadas en ETS".
+			 \item Se agrega la opción "Presentar materias desfasadas en recurse".
+			 \end{itemize}
+		\item Cuándo el alumno se encuentra irregular con unidades de aprendizaje adeudadas:
+			\begin{itemize}
+			 \item Se agrega la opción "Solicitar reinscripción a carga menor a la mínima".
+			 \end{itemize}
+		\item Cuándo el alumno se encuentra en una situación regular:
+			\begin{itemize}
+			 \item Se agrega la opción "Solicitar reconocimiento de calificaciones".
+			 \item Se agrega la opción "Solicitar baja de modalidad académica".
+			 \end{itemize}
+	\end{enumerate}
+%	\BRItem[Sentencia] $\forall solicitudDictamen \in Consejo \Rightarrow SesionDeCOSIE.FechaDeInicio = SesionDeCOSIE.FechaEstablecida$
+	\BRItem[Ejemplo positivo] 
+		Tomando en cuenta que:\\
+			 1. La sesión 10 de la 15 COSIE del CTCE tiene establecido que se celebrará el día 25-Abril-2017\\ 
+	Cumple la regla:
+	\begin{itemize}
+		\item Al solicitar iniciar el día 24-Abril-2017, no se permite celebrarse la sesión de la COSIE.
+		\item Al solicitar iniciar el día 25-Abril-2017, se permite celebrarse la sesión de la COSIE.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	Tomando en cuenta que:\\
+			 1. La sesión 10 de la 15 COSIE del CTCE tiene establecido que se celebrará el día 25-Abril-2017\\ 
+	Incumple la regla:
+	\begin{itemize}
+		\item Al solicitar iniciar el día 23-Abril-2017, se permite celebrarse la sesión de la COSIE.
+		\item Al solicitar iniciar el día 25-Abril-2017, no se permite celebrarse la sesión de la COSIE.	\end{itemize}
+\end{BusinessRule}
+
+
+%%%%%%%------------------BR-DIC-N007
+\begin{BusinessRule}{BR-DIC-N007}{Periodo de sesiones de consejo}
+	{\bcAutorization}  %  \bdCondition % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}    %\btEnabler
+	 % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Nayeli Vega García
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción]  El periodo de sesiones está definido como el periodo en el cual se celebran reuniones ordinarias y extraordinarias de consejo. El periodo de sesiones de un consejo $A$ no puede tener traslapes con el periodo de sesiones de un consejo $B$.  
+	
+	\BRItem[Sentencia] Sean $A$ y $B$ dos consejos diferentes:
+	\begin{center}
+		$ \{ \{P_{Afin} > P_{Bini} \} \&\& \{P_{Aini} < P_{Bfin}\} 
+		\} \neq true$ 
+	\end{center}
+	
+	En donde:
+	\begin{itemize}
+		\item $P_{Aini}$: Fecha de inicio del periodo del consejo $A$
+		\item $P_{Afin}$: Fecha de fin del periodo del consejo $A$
+		\item $P_{Bini}$: Fecha de inicio del periodo del consejo $B$
+		\item $P_{Bfin}$: Fecha de fin del periodo del consejo $B$
+		
+	\end{itemize} 
+
+	\BRItem[Ejemplo positivo] 
+	Sea $A$ el consejo con periodo de sesiones definido por:\\
+	$P_{Aini}=$ 27-07-2014
+	$P_{Afin}=$ 26-12-2014 \\
+	Y $B$ el consejo con periodo de sesiones definido por: \\
+	$P_{Bini}=$ 26-01-2014
+	$P_{Bfin}=$ 26-07-2014 \\
+	
+	Cumple la regla:
+	$ \{ \{26-12-2014 > 26-01-2014 \} \&\& \{27-07-2014 < 26-07-2014\} 
+	\} \neq true$ 
+
+
+	\BRItem[Ejemplo negativo] 
+	Sea $A$ el consejo con periodo de sesiones definido por:\\
+	$P_{Aini}=$ 24-07-2014
+	$P_{Afin}=$ 26-12-2014 \\
+	Y $B$ el consejo con periodo de sesiones definido por: \\
+	$P_{Bini}=$ 26-01-2014
+	$P_{Bfin}=$ 26-07-2014 \\
+	
+	No cumple la regla:
+	$ \{ \{26-12-2014 > 26-01-2014 \} \&\& \{24-07-2014 < 26-07-2014\} 
+	\} \neq true$
+	
+\end{BusinessRule}
+
+%%%=========================REGLA N008=============================================
+\begin{BusinessRule}{BR-DIC-N008}{Finalizar consejo}
+	{\bcAutorization}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Robles Ruiz Carlos Alberto
+	\BRItem[Revisada por] Nayeli Vega.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Únicamente se podrá finalizar un consejo cuando todas las sesiones del CTCE seleccionado hayan sido celebradas.
+	\BRItem[Sentencia] 
+		\begin{itemize}
+				$\forall Sesion \in Consejo  \: / \:  Sesion.estado="celebrada"  \Rightarrow cerrarConsejo="true"$
+		\end{itemize}
+
+	\BRItem[Ejemplo positivo] 
+	Tomando en cuenta que:\\
+	1. Existe un consejo que tiene una sesión por celebrar\\ 
+	Cumple la regla:
+	\begin{itemize}
+		\item Al solicitar que se finalice un consejo: No se permite que se finalice.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	Tomando en cuenta que:\\
+	1. Existe un consejo que tiene una sesión por celebrar\\ 
+	Incumple la regla:
+	\begin{itemize}
+		\item Al solicitar que se finalice un consejo: Se permite que se finalice.
+	\end{itemize}
+\end{BusinessRule}
+
+%%%=========================REGLA BR-DIC-N009=============================================
+\begin{BusinessRule}{BR-DIC-N009}{Periodo escolar para unidades de aprendizaje condicionadas}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Mejía Mendoza
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El periodo escolar que se aprueba para una unidad de aprendizaje $A$ debe ser mayor y diferente para la unidad de aprendizaje condicionada  $B$, esta última es la condición que debe satisfacer el alumno para poder aplicar la acción requerida sobre la unidad de aprendizaje $A$ . Es decir uqe la unidad de aprendizaje $A$ no puede estar aprobada para el mismo periodo que la unidad de aprendizaje $B$ .
+	
+	\BRItem[Sentencia] Sean $A$ y $B$ dos unidades de aprendizaje:
+	\begin{center}
+		$ \{ \{P_{AA} > P_{AB} \} \&\& \{P_{AA} \neq P_{AB}\} \} = true$ 
+	\end{center}
+	
+	En donde:
+	\begin{itemize}
+		\item $P_{AA}$: Periodo aprobado para la unidad de aprendizaje $A$
+		\item $P_{AB}$: Periodo aprobado para la unidad de aprendizaje $B$		
+	\end{itemize} 
+	
+	\BRItem[Ejemplo positivo] 
+	
+	Sea $A$ la unidad de aprendizaje condicionada con el periodo escolar aprobado: \\
+	$P_{AA}$ = 18/1\\
+	Y $B$ la unidad de aprendizaje condición con el periodo escolar aprobado:\\
+	$P_{AA}$ = 17/2\\
+	
+	Cumple la regla:
+	$ \{ \{18/1 > 17/2 \} \&\& \{18/1 \neq 17/2\} \} = true$ 
+	
+	\BRItem[Ejemplo negativo] 
+	Sea $A$ la unidad de aprendizaje condicionada con el periodo escolar aprobado: \\
+	$P_{AA}$ = 18/1\\
+	Y $B$ la unidad de aprendizaje condición con el periodo escolar aprobado:\\
+	$P_{AA}$ = 18/1 \\
+	
+	No cumple la regla:
+	$ \{ \{18/1 > 18/1 \} \&\& \{18/1 \neq 18/1\} \} = true$ 
+	
+\end{BusinessRule}
+
+%%%=========================REGLA BR-DIC-N010=============================================
+\begin{BusinessRule}{BR-DIC-N010}{Periodo escolar válido}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Mejía Mendoza
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El periodo escolar $A$ que se introduce debe ser mayor al periodo escolar actual $B$ que es el actual o vigente.
+	
+	\BRItem[Sentencia] Sean $A$ y $B$ dos periodos escolares:
+	\begin{center}
+		$ \{ \{P_{PI} > P_{PA} \} \} = true$ 
+	\end{center}
+	
+	En donde:
+	\begin{itemize}
+		\item $P_{PI}$: Periodo que se introduce para el periodo escolar $A$
+		\item $P_{PA}$: Periodo actual $B$ o que se encuentra en vigencia 		
+	\end{itemize} 
+	
+	\BRItem[Ejemplo positivo] 
+	
+	Sea $A$ el periodo escolar elegido definido por: \\
+	$P_{PI}$ = 18/1\\
+	Y $B$ el periodo escolar actual o vigente definido por:\\
+	$P_{PA}$ = 17/1\\
+	
+	Cumple la regla:
+	$ \{ \{18/1 > 17/1 \}\} = true$ 
+	
+	\BRItem[Ejemplo negativo] 
+	Sea $A$ el periodo escolar elegido definido por: \\
+	$P_{PI}$ = 18/1\\
+	Y $B$ el periodo escolar actual o vigente definido por:\\
+	$P_{PA}$ = 19/2\\
+	
+	No cumple la regla:
+	$ \{ \{18/1 > 19/2 \} \} = true$ 
+	
+	
+\end{BusinessRule}
+
+%%%=========================REGLA BR-DIC-N011=============================================
+\begin{BusinessRule}{BR-DIC-N011}{Formato válido de periodos para duración del predictamen}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Mejía Mendoza
+	\BRItem[Revisada por] Carlos Alberto Robles Ruiz
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El formato del periodo escolar de vencimiento $B$ debe ser mayor o igual al periodo escolar inicial $A$.
+	
+	\BRItem[Sentencia] Sean $A$ y $B$ dos periodos escolares:
+	\begin{center}
+		$ \{ \{P_{PV} > P_{PI} \} || \{P_{PV} = P_{PI} \} \} = true$ 
+	\end{center}
+	
+	En donde:
+	\begin{itemize}
+		\item $P_{PV}$: Periodo escolar para el periodo escolar de vencimiento $B$
+		\item $P_{PI}$: Periodo escolar para el periodo escolar inicial $A$
+	\end{itemize} 
+	
+	\BRItem[Ejemplo positivo] 
+	
+	Sea $A$ el periodo escolar inicial definido por: \\
+	$P_{PI}$ = 18/1\\
+	Y $B$ el periodo escolar de vencimiento definido por:\\
+	$P_{PV}$ = 19/2\\
+	
+	Cumple la regla:
+	$ \{ \{19/2 > 18/1 \} \} = true$ \\
+	
+	Sea $A$ el periodo escolar inicial definido por: \\
+	$P_{PI}$ = 18/1\\
+	Y $B$ el periodo escolar de vencimiento definido por:\\
+	$P_{PV}$ = 18/1\\
+	
+	Cumple la regla:
+	$ \{ \{18/1 = 18/1 \} \} = true$  
+	
+	\BRItem[Ejemplo negativo] 
+	Sea $A$ el periodo escolar inicial definido por: \\
+	$P_{PI}$ = 18/1\\
+	Y $B$ el periodo escolar de vencimiento definido por:\\
+	$P_{PV}$ = 17/2\\
+	
+	No cumple la regla:
+	$ \{ \{17/2 > 18/1 \} \} = true$ \\
+	
+	
+\end{BusinessRule}
+
+
+%%%=========================REGLA BR-DIC-N013=============================================
+\begin{BusinessRule}{BR-DIC-N013}{Fecha de inicio de sesión válida}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Mejía Mendoza
+	\BRItem[Revisada por] Carlos Alberto Robles Ruiz
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Una sesión sólo puede comenzar dentro de las 24 horas de la fecha en la que fue programada. Si se ha excedido esta fecha, el actor correspondiente debe reprogramar la sesión.
+	
+	\BRItem[Sentencia] $\forall Sesion \in Consejo  /  Sesion.fechaRealizacion= fechaActual  \Rightarrow IniciarSesion="true"$
+	\BRItem[Motivacion] Evitar que la sesión programada en una fecha dada, comience antes de ésta o después.
+	\BRItem[Ejemplo positivo] 
+	Sea la fecha de inicio de sesión 19/Septiembre/2017.
+	\begin{itemize}
+		\item Se inicia la sesión el 19/Septiembre/2017 a las 12:00 horas del día.
+		\item Se inicia la sesión el 19/Septiembre/2017 a las 23:59 horas del día.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] 
+	Sea la fecha de inicio de sesión 19/Septiembre/2017.
+	\begin{itemize}
+		\item Se inicia sesión el 18/Septiembre/2017.
+		\item Se inicia sesión el 20/Septiembre/2017.
+	\end{itemize}
+\end{BusinessRule}
+
+
+
+%%%=========================REGLA BR-DIC-N015================================
+%\begin{BusinessRule}{BR-DIC-N015}{Asistencia de cosejeros para iniciar sesión de consejo de la COSIE}
+%{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%\BRItem[Versión] 0.1 
+%\BRItem[Estado] En revisión.
+%\BRItem[Propuesta por] Diana Mejía Mendoza
+%\BRItem[Revisada por] Carlos Robles Ruiz
+%\BRItem[Aprobada por] 
+%\BRItem[Descripción] Una sesión de consejo puede iniciar si y sólo si se ha registrado la asistencia de al menos un consejero.
+%\BRItem[Sentencia] Sea $CCP$ la cantidad de consejeros presentes en la sesión de la COSIE y sea $SESION$ una sesión de la COSIE 
+%	\begin{center}
+%	$  \forall Sesion \in Consejo \ { \{Sesion.CCP > 1 \} \} \Rightarrow Sesion.HabilitadaParaIniciar=true$ 
+%\end{center}
+%\end{BusinessRule}
+
+
+%%%=========================REGLA BR-DIC-N016=============================================
+\begin{BusinessRule}{BR-DIC-N016}{Número de solicitudes de dictamen asignadas a equipos para sesión de la COSIE.}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Carlos Alberto Robles Ruiz
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Los dictámenes con estado 'predictaminado'  deben ser asignadas en su totalidad a uno o más equipos, de lo contrario, la sesión de consejo no podrá iniciar.
+	\BRItem[Sentencia] Sea $ C_{x}$ Un Consejo Técnico Consultivo Escolar o un Consejo General Consultivo.\\
+	$COSIE$ La Comisión de Situación Escolar del $ C_{x}$.\\
+	$Sesion_{x}$ Una Sesión de la $COSIE$ ordinaria o extraordinaria\\
+	$TSA$ El total de dictámenes con estado 'Predictaminado' asociados a la $Sesion_{x}$\\
+	$NED$ Número de equipos dictaminadores que participarán en la $Sesion_{x}$.\\
+	$ ED{e} $ El conjunto de equipos dictaminadores asociados a la $Sesion_{x}$.\\
+	$DEPAE{e}$ el número de dictamenes en estado predictaminado asociados a un equipo $ED_{e}$\\
+
+
+	\begin{center}
+		$ \forall Sesion_{x}  \: /  \:  \sum_{n=1}^{NED}ED_{n}.DEPAE{e}= TSA \Rightarrow Sesion_{x} $ se permite iniciar.
+	\end{center}
+	
+	\BRItem[Ejemplo positivo] 
+	
+ Sea $ C_{10}$ El 10 Consejo General Consultivo .\\
+$COSIE$ La Comisión de Situación Escolar del $ C_{10}$.\\
+$Sesion_{4}$ La Sesión 4 extraordinaria de la $COSIE$\\
+$TSA=300$ El total de dictámenes con estado 'Predictaminado' asociados a la $Sesion_{4}$\\
+$NED= 3$ Número de equipos dictaminadores que participarán en la $Sesion_{4}$.\\
+$ ED_{1}$ El Equipo 1 asociado a la $Sesion_{4}$.\\
+$ ED_{2}$ El Equipo 2 asociado a la $Sesion_{4}$.\\
+$ ED_{3}$ El Equipo 3 asociado a la $Sesion_{4}$.\\
+$DEPAE_{1}= 200 $ El número de dictamenes en estado predictaminado asociados al equipo $ED_{1}$\\
+$DEPAE_{2}= 50 $ El número de dictamenes en estado predictaminado asociados al equipo $ED_{2}$\\
+$DEPAE_{3}= 50 $ El número de dictamenes en estado predictaminado asociados al equipo $ED_{3}$\\
+
+	Cumple la regla:
+		$ \forall Sesion_{x}  \: /  \:  \sum_{n=1}^{4}ED_{n}.DEPAE{e}= 300 \Rightarrow Sesion_{4} $ se permite iniciar.
+	
+%%xxxxxxxEJEMPLO NEGATIVOxxxxx
+	\BRItem[Ejemplo negativo] 
+
+Sea $ C_{5}$ El 5 Consejo Técnico Consultivo Escolar .\\
+$COSIE$ La Comisión de Situación Escolar del $ C_{5}$.\\
+$Sesion_{3}$ La Sesión 3 ordinaria de la $COSIE$\\
+$TSA=120$ El total de dictámenes con estado 'Predictaminado' asociados a la $Sesion_{4}$\\
+$NED= 2$ Número de equipos dictaminadores que participarán en la $Sesion_{4}$.\\
+$ ED_{1}$ El Equipo 1 asociado a la $Sesion_{3}$.\\
+$ ED_{2}$ El Equipo 2 asociado a la $Sesion_{3}$.\\
+$DEPAE_{1}= 10 $ El número de dictamenes en estado predictaminado asociados al equipo $ED_{1}$\\
+$DEPAE_{2}= 50 $ El número de dictamenes en estado predictaminado asociados al equipo $ED_{2}$\\
+
+No Cumple la regla:
+$ \forall Sesion_{x}  \: /  \:  \sum_{n=1}^{2}ED_{n}.DEPAE{e}= 60 \Rightarrow Sesion_{3} $ no se permite iniciar.
+\end{BusinessRule}
+
+%%%=========================REGLA BR-DIC-N017=============================================
+\begin{BusinessRule}{BR-DIC-N017}{Número de integrantes mínimo para equipo dictaminador }
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Carlos Alberto Robles Ruiz
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Un equipo del Consejo General Consultivo y del Consejo Técnico Consultivo Escolar para tener las facultades de dictaminar debe estar conformada por al menos de un consejero Activo.
+	\BRItem[Sentencia]
+	Sea $Consejo_{x}$ un Consejo Técnico Consultivo Escolar o un Consejo General Consultivo.\\
+      $SC_{s}$ Una sesión Ordinaria o Extraordinaria del $Consejo_{x}$\\
+       $ED_{e}$ Un equipo dictaminador perteneciente a $S_{s}$ \\
+	  $	CED$ El conjunto de  consejeros pertenecientes al $ED_{e}$ \\ 
+	\begin{center}
+		$ \forall  ED_{e} \: / \: \sum_{n=0}^{CED}CED{n}.{Estado='Activo'} > 0 \Rightarrow ED_{e} $ se permite dictaminar 
+	\end{center}
+
+	\BRItem[Ejemplo positivo] 
+		Sea $Consejo_{5}$ El 5 Consejo Técnico Consultivo Escolar.\\
+	$S_{2}$ La 2 Sesión Ordinaria del $Consejo_{5}$\\
+	$ED_{3}$ El equipo dictaminador 3  perteneciente a $S_{2}$ \\
+	$CED_{1}$ El consejero 1 perteneciente al $ED_{3}$ que tiene estado 'inactivo' en el $Consejo_{5}$\\ 
+	$CED_{2}$ El consejero 2perteneciente al $ED_{3}$ que tiene estado 'inactivo' en el $Consejo_{5}$\\ 
+	\begin{center}
+		$ \forall  ED_{3} \: / \: \sum_{n=0}^{CED}CED{n}.{Estado='Activo'} = 0 \Rightarrow ED_{e} $ No se permite dictaminar 
+	\end{center}
+%%xxxxxxxEJEMPLO NEGATIVOxxxxx
+	\BRItem[Ejemplo negativo] 
+Sea $Consejo_{3}$ El 3 Consejo General Consultivo.\\
+$S_{1}$ La 1 Sesión Ordinaria del $Consejo_{3}$\\
+$ED_{1}$ El equipo dictaminador 1 perteneciente a $S_{1}$ \\
+$CED_{1}$ El consejero 1 perteneciente al $ED_{1}$ que tiene estado 'inactivo' en el $Consejo_{3}$\\ 
+$CED_{2}$ El consejero 2 perteneciente al $ED_{1}$ que tiene estado 'Activo' en el $Consejo_{3}$\\ 
+$CED_{3}$ El consejero 3 perteneciente al $ED_{1}$ que tiene estado 'inactivo' en el $Consejo_{3}$\\ 
+\begin{center}
+	$ \forall  ED_{3} \: / \: \sum_{n=0}^{CED}CED{n}.{Estado='Activo'} > 0 \Rightarrow ED_{e} $ No se permite dictaminar 
+\end{center}
+
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N018=============================================
+\begin{BusinessRule}{BR-DIC-N018}{Aprobación de solicitudes para revisión del consejo en pleno}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btExecutive}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul	
+	\BRItem[Revisada por] Carlos Alberto Robles Ruíz.
+	\BRItem[Aprobada por] Pendiente.	\begin{center}
+		$  \forall S_{n} \: / \:\frac{(\sum_{n=1}^{CP}CP_{n}.estado \: = \: Resuelto)*(100)}{DP} \: = \: 100 \: \Rightarrow$ se permite finalizar 
+	\end{center}
+	\BRItem[Descripción] Un dictamen en estado de 'predictaminado' puede ser establecido como 'por revisión de consejo en pleno' por los analistas de la COSIE, sin embargo, el jefe de los analistas puede modificar dicha acción para que el predictamen sea revisado de acuerdo a los criterios de Dictamen.
+	\BRItem[Motivación] Que los dictámenes predictaminados puedan ser controlados por el jefe de los Analistas de la COSIE. 
+	%Que las solicitudes marcadas con revisión en pleno sean aprobadas solamente por el \refElem{EncCOSIECTCE}.
+	\BRItem[Ejemplo positivo] 
+	Sea $D_{1}$ un dictamen en estado 'Predictaminado'\\
+	$JefeAnalistas_{1}$ un jefe de los Analistas de la COSIE\\
+	$A_{1}$ un analista de la COSIE que establece $D_{1}$ como 'Por revisión de consejo en pleno'\\
+	Se cumple la regla cuando:\\
+	El $JefeAnalistas_{1}$ modifica el dictamen predictaminado $D_{1}$ inhabilitando la 'revisión de consejo en pleno', por lo que $D_{1}$ se clasifica conforme a los criterios de solicitud. 
+	\BRItem[Ejemplo negativo] 
+	Sea $D_{2}$ un dictamen en estado 'Predictaminado'\\
+	$JefeAnalistas_{2}$ un analista de la COSIE que establece $D_{2}$ como 'por revisión de consejo en pleno'\\
+	No se cumple la regla cuando:\\
+	$JefeAnalistas_{1}$ modifica el dictamen predictaminando $D_{2}$, pero no se permite inhabilitar la 'revisión de consejo en pleno'. 
+\end{BusinessRule}
+
+
+
+
+%%%=========================REGLA BR-DIC-N019=============================================
+\begin{BusinessRule}{BR-DIC-N019}{Asistencia miníma de consejeros en la sesión de consejo de la COSIE}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Carlos Alberto Robles Ruiz
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Mientras una sesión de consejo de la COSIE del CTCE se encuentre \textbf{En proceso}, la asistencia mínima debe de ser de al menos un consejero, en caso contrario la sesión de la COSIE no podrá continuar.
+	\BRItem[Sentencia]
+Sea $ C_{x}$ Un Consejo Técnico Consultivo Escolar o un Consejo General Consultivo.\\
+$COSIE$ La Comisión de Situación Escolar del $ C_{x}$.\\
+$Sesion_{x}$ Una Sesión de la $COSIE$ ordinaria o extraordinaria que tiene estado 'En proceso' \\
+ $CPC$ El conjunto de consejeros pertenecientes al $C_{x}$ \\ 
+	\begin{center}
+			$  \forall Sesion_{x} \: / \: \sum_{n=0}^{CPC}CPC{n}.{asistencia='Presente'} > 0 \Rightarrow Sesion_{x}$ se permite continuar.
+	\end{center}
+	
+	\BRItem[Ejemplo positivo] 		
+	Sea $ C_{4}$ El 4 Consejo Técnico Consultivo Escolar.\\
+	$COSIE$ La Comisión de Situación Escolar del $ C_{4}$.\\
+	$Sesion_{1}$ La sesión 1 ordinaria  de la $COSIE$ en estado 'En proceso' \\
+	$CPC$ El conjunto de consejeros pertenecientes al $C_{4}$ \\ 
+	$CPC_{1}$ El consejero 1 perteneciente al $C_{4}$ con estado 'presente'\\ 
+	$CPC_{2}$ El consejero 2 perteneciente al $C_{4}$ con estado 'presente'\\ 
+	$CPC_{3}$ El consejero 3 perteneciente al $C_{4}$ con estado 'ausente'\\ 
+	
+	Cumple la regla:
+		\begin{center}
+			$  \forall Sesion_{1} \: / \: \sum_{n=0}^{CPC}CPC{n}.{asistencia='Presente'} > 0 \Rightarrow Sesion_{1}$ se permite continuar.
+		\end{center}
+	\BRItem[Ejemplo negativo] 
+	Sea $ C_{3}$ El 3 Consejo General Consultivo\\
+$COSIE$ La Comisión de Situación Escolar del $ C_{3}$.\\
+$Sesion_{3}$ La sesión 3 ordinaria  de la $COSIE$ en estado 'En proceso' \\
+$CPC$ El conjunto de consejeros pertenecientes al $C_{3}$ \\ 
+$CPC_{1}$ El consejero 1 perteneciente al $C_{3}$ con estado 'ausente'\\ 
+$CPC_{2}$ El consejero 2 perteneciente al $C_{3}$ con estado 'ausente'\\ 
+
+
+No cumple la regla:
+	\begin{center}$  \forall Sesion_{3 } \: / \: \sum_{n=0}^{CPC}CPC{n}.{asistencia='Presente'} > 0 \Rightarrow Sesion_{3}$ se permite continuar.
+	\end{center}
+\end{BusinessRule}
+
+
+%%%=========================REGLA BR-DIC-N020=============================================
+\begin{BusinessRule}{BR-DIC-N020}{Cantidad de solicitudes para finalizar sesión de la COSIE}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Mejía Mendoza
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Para finalizar una sesión de consejo de la COSIE correspondiente, es obligatorio haber resulto un cierto porcentaje de predictamenes asociados a la sesión de la COSIE.
+	\BRItem[Sentencia] 
+	Sea $C_{x}$ un Consejo Técnico Consultivo Escolar o un Consejo General Consultivo\\
+	Sea $S_{n}$ una sesión de la COSIE perteneciente al $C_{x}$\\
+	Sea $DP = {dp_{1}, dp_{2}, dp_{3}, ... , dp_{n}}$ el conjunto de dictámenes en estado predictaminado que pertenece a la sesión $S_{n}$
+	\begin{center}
+%		$ \forall S_{n} \: / \:\frac{(\sum_{n=1}^{CP}CP_{n}.estado \: = \: Resuelto)*(100)}{DP} \: = \: 100 \: \Rightarrow$ se permite finalizar 
+	\end{center}
+
+%	\BRItem[Motivación] Evitar que se cierre una sesión de consejo cuando en esta aun se están atendiendo solicitudes de dictamen.
+%	\BRItem[Ejemplo positivo] 
+%	Sea $C_{1}$ un Consejo Técnico Consultivo Escolar\\
+%	Sea $S_{1}$ una sesión ordinario de la COSIE perteneciente al $C_{1}$\\
+%	Sea $DP = {dp_{1}, dp_{2}, dp_{3}}$ el conjunto de dictámenes en estado predictaminado que pertenece a la sesión $S_{1}$\\
+%	Cumple la regla: \\
+%		\begin{center}
+%	$ \frac{(\[\sum_{n=1}^{3}CP_{n}.estado \: = \: 'Resuelto'\])*(100)}{3} \: = \: 100 $
+%		\end{center}
+%	\BRItem[Ejemplo negativo] 
+%	Sea $C_{2}$ un Consejo Técnico Consultivo Escolar\\
+%	Sea $S_{2}$ una sesión ordinario de la COSIE perteneciente al $C_{2}$\\
+%	Sea $DP = \{ dp_{1}, dp_{2}, dp_{3}, dp{4} \}$ el conjunto de dictámenes en estado predictaminado que pertenece a la sesión $S_{2}$\\
+%		No cumple la regla: 
+%			\begin{center}
+%		$ \frac{(\[\sum_{n=1}^{4}CP_{n}.estado \: = \: 'Resuelto'\])*(100)}{4} \: = \: 80$
+%			\end{center}
+\end{BusinessRule}
+
+
+%%%%%%%------------------REGLA BR-DIC-N021==============================================
+\begin{BusinessRule}{BR-DIC-N021}{Clasificación de dictamen para el CTCE}
+	{\bcDerivation}  %  \bdCondition % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}    %\btEnabler
+	% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Una solicitud de dictamen puede tener distintos criterios de solicitud debido a que el alumno tiene múltiples problemáticas. Sin embargo una solicitud de dictamen solo puede tener una clasificación, esto con base en la siguiente jerarquía, donde 1 representa la de mayor jerarquía, mientras que 3 representa la de menor jerarquia.
+	\begin{itemize}
+		
+%		\item 1: ''Revisión de Consejo en Pleno''. Se clasifican en este criterio las solicitudes de dictamen que fueron enviadas a revisión de Consejo en pleno debido a que con base en la situación escolar del alumno y los criterios de operación de la COSIE, no se puede emitir un predictamen adecuado.
+				
+		\item 1: ''Reinscripción por discontinuidad''. Se clasifican en este criterio las solicitudes de dictamen emitidas por un alumno con baja temporal y solicita su reinscripción. Basada en el artículo 52 fracción 2 y artículo 53 del Reglamento General de Estudios del IPN
+		
+		\item 2: ''Desfasadas''. Son las solicitudes de dictamen que contemplan la solicitud de un alumno para inscribir en ETS (Examen a Título de Suficiencia) o en recurse una unidad de aprendizaje que se encuentra desfasada. Basada en el artículo 98 del Reglamento Interno del IPN
+		
+		\item 3: ''Carga menor a la mínima''. Las solicitudes de dictamen que se clasifican en este criterio, son las que pertenecen a un alumno que requiere inscribir la carga mínima de créditos que permite su plan de estudios. Basada en el artículo 52 fracción 3 del Reglamento General de Estudios del IPN.
+		
+	\end{itemize}
+		\BRItem[Sentencia]
+		Sea $SolDictamen_{x}$ una solicitud de dictamen que un Alumno realizó \\
+		Sea $CD$ El conjunto de clasificaciones que puede tener un dictamen \\
+		Sea $cd_{n}$ Una clasificación que pertenece a $CD$\\
+		
+				\begin{center}
+						$  \forall \: / \: \: / \:SolDictamen_{x} \: / \:  \exists! \: \: cd_{n} $. 
+			\end{center}
+		
+		\BRItem[Ejemplo positivo] 
+		Sea $SolDictamen_{120} $ que tiene como criterio de solicitud Reinscripción por discontinuidad y carga menor a la mínima.
+			Sea $CD_{1}$ El criterio de clasificación Reinscripción por discontinuidad \\
+			Sea $CD_{2}$ El criterio de clasificación Desfasadas\\
+			Sea $CD_{3}$ El criterio de clasificación Carga menor a la mínima \\
+			Cumple la regla:
+			\begin{center}
+				La $SolDictamen_{120}$  es clasificada como $CD_{1}$
+			\end{center}
+		
+					\BRItem[Ejemplo positivo] 
+			Sea $SolDictamen_{130} $ que tiene como criterio de solicitud Reinscripción por discontinuidad y carga menor a la mínima.
+			Sea $CD_{1}$ El criterio de clasificación Reinscripción por discontinuidad \\
+			Sea $CD_{2}$ El criterio de clasificación Desfasadas\\
+			Sea $CD_{3}$ El criterio de clasificación Carga menor a la mínima \\
+			Cumple la regla:
+			\begin{center}
+				La $SolDictamen_{130}$  es clasificada como $CD_{3}$
+			\end{center}
+			
+		
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N022==============================================
+\begin{BusinessRule}{BR-DIC-N022}{Traslape de sesiones de consejo}
+	{\bcCondition}  %  \bdCondition % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}    %\btEnabler
+	% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Carlos Alberto Robles Ruíz.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Durante un periodo de consejo existen n sesiones y cada una de éstas deben de iniciar su celebración en una fecha distinta, es decir, que únicamente se puede establecer una sesión de la COSIE por día.
+	%	Durante un periodo de consejo existen $n$ sesiones, sin embargo no puede haber más de una sesión programada para el mismo día, es decir, sólo se puede registrar una sesión por día.
+	\BRItem[Sentencia] 
+	Sea $Consejo_{x}$ un Consejo Técnico Consultivo Escolar o un Consejo  General Consultivo\\
+	$S = \{ s_{1}, s_{2}, s_{3}, ... , s_{n} \}$ El conjunto de sesiones de la COSIE que se llevarán a cabo que existen en $Consejo_{x}$.\\
+	$F = \{ f_{1}, f_{2}, f_{3}, ... , f_{n} \}$ El conjunto de fechas que existen dentro del periodo del $Consejo_{x}$.\\	
+	\begin{center}
+		$ \forall f_{n} \in Consejo_{x} \Rightarrow \exists! s_{n}$ que se permite establecer en $f_{n}$ 
+	\end{center}
+	
+	%\lstinputlisting[language=C, firstline=19, lastline=27]{../C2-DT-DIC/regla.c}
+	%	\begin{lstlisting}[language=C]
+	%		if (sesionPorRegistrar.fecha == sesionRegistrada.fecha) {
+	%			return registro = false;		
+	%		} else {
+	%			return registro = true;
+	%		}
+	%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que se registren 2 sesiones de consejo en una misma fecha.
+	\BRItem[Ejemplo positivo] 
+	Sea $Consejero_{1}$ el Consejo General Consultivo número 1 que comprende del 18/Abril/2018 al 20/Abril/2018\\
+	$S = \{ Sesion 1 ordinaria, sesion 1 extraordinaria \} $\\
+	$F = \{ 18/Abril/2018, 19/Abril/2018, 20/Abril/2018 \} $\\
+	Cumple la regla:\\
+	18/Abril/2018 se establece la sesión 1 ordinaria.
+	\BRItem[Ejemplo negativo] 
+	Sea $Consejero_{2}$ el Consejo General Consultivo número 2 que comprende del 20/Mayo/2018 al 23/Mayo/2018\\
+	$S = \{ Sesion 1 ordinaria, sesion 2 extraordinaria \}$\\
+	$F = \{ 20/Mayo/2018, 21/Mayo/2018, 22/Mayo/2018, 23/Mayo/2018 \}$\\
+	No cumple la regla:\\
+	En la fecha 20/Mayo/2018 se establece la sesión 1 ordinaria y la sesión 2 ordinaria.  
+\end{BusinessRule}
+
+
+%%%%%%%%------------------REGLA BR-DIC-N023==============================================
+\begin{BusinessRule}{BR-DIC-N023}{Establecer permisos de perfil}
+	{\bcCondition}  %  \bdCondition % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}    %\btEnabler
+	% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] En el momento en el que se agrega un empleado como analista o consejero, o un alumno como consejero, se establecerán los permisos correspondientes para los perfiles del consejero o analista.
+	Solo se podrán establecer los permisos correspondientes si el estado del analista o consejero es \textbf{Activo}.
+	
+	\BRItem[Sentencia] \cdtEmpty
+	Sea A: El conjunto de autorizaciones que se otorgan a un analista que participa en la COSIE. \\ 
+	 A = \{ \begin{itemize} \item Registrar Sugerencia 
+     \item Redirigir Solicitud de Dictamen
+	 \item Consultar Sesiones de Consejo para Predictaminacion
+	 \item Consultar Solicitud de dictamen
+	 \item Consultar Situación Escolar
+	 \item Consultar Boleta Global
+	 \item Modificar Predictaminación
+	 \item Consultar Indicadores
+	 \item Registrar Predictaminacion
+	 \item Gestionar Predictamenes con Cambios  \end{itemize}\}
+	\begin{center}
+	$ \forall Analista \in Consejo / Analista.Estado = Activo \Rightarrow Analista.Permisos = A$
+	\end{center}
+	
+	Sea B: El conjunto de autorizaciones que se otorgan a un consejero que participa en la COSIE. \\ 
+	 B = \{ \begin{itemize} 
+	 \item Consultar Solicitud de dictamen
+	 \item Consultar Situacion Escolar
+	 \item Consultar Boleta Global
+	 \item Modificar Dictamen
+	 \item Consultar Indicadores
+	 \item Registrar Dictaminación
+	  \end{itemize}\}
+	\begin{center}
+	$ \forall Consejero \in Consejo / Consejero.Estado = Activo \Rightarrow Consejero.Permisos = B$
+	\end{center}
+	Sea C: El conjunto de autorizaciones que se otorgan a un consejero tipo Directivo que participa en la COSIE. \\ 
+	 C = \{Iniciar Sesión de la COSIE del CTCE\}
+	\begin{center}
+	$ \forall ConsejeroDirectivo \in Consejo / ConsejeroDirectivo.Estado = Activo \Rightarrow ConsejeroDirectivo.Permisos = C$
+	
+	\end{center}
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N024=============================================
+\begin{BusinessRule}{BR-DIC-N024}{Fecha para iniciar un Consejo}
+	{\bcAutorization} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un Consejo puede iniciarse si y solo si la fecha en la que se esta iniciando es mayor o igual a la fecha de inicio establecida en el sistema.
+%	\BRItem[Sentencia] \cdtEmpty
+%	\lstinputlisting[language=C, firstline=29, lastline=37]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%		
+%			if (fechaActual >= Consejo.FechaInicioEstablecida) {
+%				return true;
+%			} else {
+%				break;
+%			}
+%		
+%	\end{lstlisting}	
+	
+	\BRItem[Ejemplo positivo] Considerando que la fecha de inicio del Consejo registrada en el sistema es el 15/Enero/2018:
+	\begin{itemize}
+		\item El actor solicita iniciar el Consejo el 15/Enero/2018: Inicia el periodo del Consejo.
+		\item El actor solicita iniciar el Consejo el 09/Enero/2018: No inicia el periodo del Consejo.
+	\end{itemize} 
+	
+	\BRItem[Ejemplo negativo] Considerando que la fecha de inicio del Consejo registrada en el sistema es el 22/Enero/2018:
+	\begin{itemize}
+		\item El actor solicita iniciar el Consejo el 15/Enero/2018: Inicia el periodo del Consejo.
+		\item El actor solicita iniciar el Consejo el 22/Enero/2018: No inicia el periodo del Consejo.
+	\end{itemize} 
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N025=============================================
+\begin{BusinessRule}{BR-DIC-N025}{Atención de solicitudes con correcciones}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul	
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Mientras se esta llevando a cabo una sesión de consejo sólo es posible modificar el predictamen a aquellas solicitudes que fueron enviadas a corrección, es decir, mientras la sesión se encuentre en estado \textbf{En proceso} con base en el \refElem{ME-Sesion} sólo se hará la modificación en solicitudes cuyo estado sea \textbf{Por corregir} con base en el \refElem{ME-Predictamen}.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=39, lastline=47]{../C2-DT-DIC/regla.c}
+%		\begin{lstlisting}[language=C]
+%			if solicitud.Estado == PorCorregir {
+%				solicitud.habilitadoParaCorregir=true;
+%			} else {
+%				break;
+%			}
+%		\end{lstlisting}
+	\BRItem[Ejemplo positivo] Considerando que se esta llevando a cabo la novena sesión del \refElem{tCTCE}:
+	\begin{itemize}
+		\item Se pueden corregir las solicitudes que se encuentren en estado \textbf{Por corregir}.
+	\end{itemize} 
+	
+	\BRItem[Ejemplo negativo] Considerando que se esta llevando a cabo la novena sesión del \refElem{tCTCE}:
+	\begin{itemize}
+		\item Se pueden corregir las solicitudes que se encuentren en estado \textbf{Por atender}.
+	\end{itemize}
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N026=============================================
+\begin{BusinessRule}{BR-DIC-N026}{Direccionamiento de solicitud de dictamen}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Pendiente
+	\BRItem[Descripción] En el momento que un alumno realiza una solicitud de dictamen con base en los términos necesario para solventar su situación escolar, ésta será dirigida al órgano competente con base en los siguientes criterios: 
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=49, lastline=67]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if solicitud.termino == requiereTiempo {
+%		direccionDictamen = "CGC";
+%	} else if solicitud.termino == revocacionBaja {
+%		direccionDictamen = "CGC";
+%	} else if solicitud.termino == requiereBajaDefinitiva {
+%		direccionDictamen = "CGC";
+%	} else if solicitud.termino == requiereRevocacionDeBajaNoDefinitiva {
+%		direccionDictamen = "CTCE";
+%	} else if solicitud.termino == cursarUnidadesDeAprendizajeDesfasadas {
+%		direccionDictamen = "CTCE";
+%	} else if solicitud.termino == requiereCargaMenorALaMinima {
+%		direccionDictamen = "CTCE";
+%	} else {
+%		break;
+%	}
+%	\end{lstlisting}
+%	\BRItem[Ejemplo positivo] Considerando que se esta llevando a cabo la novena sesión del \refElem{tCTCE}:
+%	\begin{itemize}
+%		\item Se pueden corregir las solicitudes que se encuentren en estado \textbf{Por corregir}.
+%	\end{itemize} 
+%	
+%	\BRItem[Ejemplo negativo] Considerando que se esta llevando a cabo la novena sesión del \refElem{tCTCE}:
+%	\begin{itemize}
+%		\item Se pueden corregir las solicitudes que se encuentren en estado \textbf{Por atender}.
+%	\end{itemize}
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N027=============================================
+\begin{BusinessRule}{BR-DIC-N027}{Criterio de revisión para dictaminación}{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul	
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Para poder dictaminar las solicitudes se debe tomar en cuenta el \textbf{criterio de revisión} que le fue asignada a los equipos de la sesión del consejo. Los criterios de revisión pueden ser: \\
+	\begin{Citemize}
+		\item \textbf{Todos: }En este criterio, se considera una solicitud de dictamen como atendida cuando todos los consejeros que pertenecen a un equipo emiten su opinión. 
+		\item \textbf{Uno: }Basta con que alguno de los consejeros pertenecientes al equipo emita su opinión para que la solicitud sea considerada atendida.
+	\end{Citemize}
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=69, lastline=85]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(criterio== todos   ){
+%		if(solicitud.consejerosQueAtendieron== totalPersonasEnEquipo){
+%		solicitud.atendido=true;
+%		}
+%		else{
+%		 solicitud.atendido=false;
+%		}
+%	 
+%	}
+%	else if( criterio==1){ 
+%		if(solicitud.consejerosQueAtendieron==1) 
+%	solicitud.atendido=true;
+%	}
+%	   else{
+%	   solicitud.atendido=false;
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Determinar como deben ser atendidas las solicitudes de dictamen. 
+	\BRItem[Ejemplo positivo] Considerando que a un equipo conformado por tres personas se le asigna el criterio de todos:
+	\begin{itemize}
+		\item La solicitud con folio 100-57 se considera como atendida cuando el consejero Ricardo López Guerra, Raúl Acosta Guerrero y Carlos Robles Ruiz perteneciente al equipo emiten cada uno por separado la resolución para dictamen.
+	\end{itemize} 
+	
+	\BRItem[Ejemplo negativo] Considerando que a un equipo conformado por tres personas se le asigna el criterio de todos:
+	\begin{itemize}
+		\item La solicitud con folio 100-57 se considera como atendida cuando el consejero Ricardo López Guerra emite la resolución del dictamen.
+	\end{itemize}
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N028=============================================
+\begin{BusinessRule}{BR-DIC-N028}{Edición de periodo de consejo}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btExecutive}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul	
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Para poder editar un periodo de consejo, este debe encontrarse en estado \textbf{Activo} o \textbf{En edición} con base en el \refElem{ME-Consejo}, cuando se edita un periodo de consejo no puede haber sesiones de consejo asociadas posteriores a la fecha de fin del periodo del consejo, así como tampoco puede haber sesiones asociadas previas a la fecha de inicio del periodo del consejo. 
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=88, lastline=101]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if (consejo.estado == "Edicion" || consejo.estado == "Activo") {
+%
+%			if (fechaInicioConsejo > fechaInicioSesion 
+%			|| fechaFinConsejo < fechaInicioSesion) {
+%				permisoParaEditarConsejo = false;
+%			} else {
+%				permisoParaEditarConsejo = true;
+%			}
+%		 else {
+%			permisoParaEditarConsejo = true;
+%		}
+%	} else {
+%		permisoParaEditarConsejo = false;
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que, cuando se edite un consejo, queden fuera del nuevo periodo fechas de sesión
+	\BRItem[Ejemplo positivo] Considerando la sesión del 30 de enero de 2017 al 31 de octubre de 2017:
+	\begin{itemize}
+		\item Cuando se encuentra en estado \textbf{Activo}: Se puede editar solamente la fecha de fin, pero si requiere hacerse más corta y se tienen sesiones asociadas, estas deben ser eliminadas primero.
+		\item Cuando se encuentra en estado \textbf{En edición}: Se pueden editar la fecha de inicio y la fecha de fin, pero si la fecha de inicio se quiere prolongar y ya se tienen sesiones asociadas, estas deben ser eliminadas primero. Para el caso el caso en el que se requiere acortar la fecha de fin aplica lo mismo que el caso anterior.
+	\end{itemize} 
+	
+	\BRItem[Ejemplo negativo] Considerando la sesión del 30 de enero de 2017 al 31 de octubre de 2017:
+	\begin{itemize}
+		\item Cuando se encuentra en estado \textbf{Activo}: Se puede editar solamente la fecha de fin, no importando si quedan fuera fechas de sesión.
+		\item Cuando se encuentra en estado \textbf{En edición}: Se pueden editar la fecha de inicio y la fecha de fin, no importando si quedan fuera fechas de sesión.
+	\end{itemize} 
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N029=============================================
+\begin{BusinessRule}{BR-DIC-N029}{Eliminar analista de la COSIE}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza 
+	\BRItem[Revisada por] Carlos Alberto Robles Ruiz.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un analista solo podrá eliminarse de un Consejo, si y solo si éste no ha predictaminado una solicitud de dictamen durante el Consejo gestionado. 
+	\BRItem[Sentencia] \cdtEmpty  
+	Sea $Consejo_{n}$ un consejo que se esta gestionando.\\
+	$ TDAC$ El total de Dictamenes Asociados al $Consejo_{n}$\\
+	$A_{1}$ un analista del consejo  $Consejo_{n}$ gestionado.\\
+	Tal que:
+	\begin{center}
+	$\sum_{i=0}^{TDAC}Dictamen_{i.analista=A_{1}} \neq 0 \Rightarrow A_{1}  no se permite eliminar $
+	\end{center}
+	
+%	\lstinputlisting[language=C, firstline=243, lastline=256]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	Iterator sesionDeConsejo;
+%	consejero.habilitarEliminacion;
+%	while(sesionDeConsejo.hasNext()) {
+%	if(sesionDeConsejo.listaGeneral.next.exist(consejero.getName())) {
+%	consejero.inhabilitarEliminacion;
+%	break;
+%	} else {
+%	consejero.habilitarEliminacion;
+%	}
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar perder el registro de un analista que ya ha participado en alguna sesión de la COSIE.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N030=============================================
+\begin{BusinessRule}{BR-DIC-N030}{Consultar avance de aprovechamiento del Alumno}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Es la información general del avance de aprovechamiento del alumno, la cual es de utilidad para el personal encargado de resolver la situación del alumno permitiéndole conocer el resumen del aprovechamiento que ha tenido a lo largo de tu trayectoria escolar respecto al tiempo  y sus unidades de aprendizaje.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=103, lastline=127]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%int A = 0; // Periodos transcurridos desde el ingreso
+%int B = 0; // Periodos de baja temporal
+%int C = A - B; // Periodos Transcurridos Efectivos 
+%		
+%int creditosProgramaAcademico;
+%int creditosObtenidos;
+%int P = (creditosObtenidos x 100) / creditosProgramaAcademico;
+%	//Porcentaje de Avance en Creditos
+%		
+%int duracionPlanEstudio;
+%int creditosFaltantes = creditosProgramaAcademico - creditosObtenidos;
+%int cargaMedia = creditosProgramaAcademico / duracionPlanEstudio;
+%int D = creditosFaltantes / cargaMedia; 
+%	// Periodos Estimados Para Concluir Plan de Estudios
+%		
+%int E = C + D; // Total de Periodos Transcurridos Para Conclusion
+%int F = duracionPlanEstudio + (duracionPlanEstudio x 0.5) 
+%	// Duracion Maxima del Programa Academico
+%	
+%int G = (E x 100) / F; // Porcentaje de Utilizacion del Tiempo Maximo
+%int H = 0; // Promedio General
+%	\end{lstlisting}
+	\BRItem[Motivación] Que los actores encargados de resolver la situación del alumno tengan un referente que le permita visualizar el aprovechamiento del alumno con respecto al tiempo y unidades de aprendizaje.
+%	\BRItem[Ejemplo positivo] 
+%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+%%%%%%%------------------REGLA BR-DIC-N031=============================================
+\begin{BusinessRule}{BR-DIC-N031}{Eliminar CTCE sin información asociada}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Solo se permite eliminar un CTCE si y solo si éste no tiene asociada sesiones de COSIE del CTCE, ni analistas de unidad académica, así como consejeros de la unidad académica.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=129, lastline=140]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(consejoTecnicoEnEdicion.sesionesCOSIE == null && 
+%	consejoTecnicoEnEdicion.analistas == null && 
+%	consejoTecnicoEnEdicion.consejeros == null){
+%		return consejoTecnicoEnEdicion.habilitadoParaEliminar=verdadero;
+%	}
+%	else {
+%		return consejoTecnicoEnEdicion.habilitadoParaEliminar=falso;
+%	}
+%	\end{lstlisting} 
+	\cdtEmpty
+	\BRItem[Motivación] Evitar que el usuario elimine información que ha asociado a un consejo con el fin de que el trabajo realizado y planeado para crear un CTCE se conserve.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N032=============================================
+\begin{BusinessRule}{BR-DIC-N032}{Permisos para redireccionar una solicitud de dictamen}
+	{\bcAutorization} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Solo se permite redireccionar una solicitud de dictamen al \refElem{EncCOSIECTCE} o al \refElem{CoorCOSIECGC}.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=142, lastline=151]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(actor.rol == 'Coordinador de COSIE' 
+%		|| actor.rol == 'Encargado de COSIE'){
+%		return true;
+%	}
+%	else {
+%		return false;
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Controlar los actores que pueden redirigir una solicitud de dictamen.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+
+%%%%%%%%------------------REGLA BR-DIC-N033=============================================
+\begin{BusinessRule}{BR-DIC-N033}{Verificación de tiempo para concluir un plan de estudio}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Carlos Alberto Robles Ruíz.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El plan de estudio de un programa académico tiene un periodo máximo de duración, es decir, es el periodo que el alumno tiene como límite para concluir el plan de estudio. Si un alumno requiere un dictamen se debe de verificar que aún cuente con tiempo para concluir el plan de estudio y se le pueda dar resolución en la COSIE del CTCE, de lo contrario deberá ser atendido en la COSIE de la CGC.
+	Para saber si un alumno requiere ampliación de tiempo se requiere el periodo máximo para concluir su programa académico (Pm), que se obtiene con base en la regla BR-DIC-N091, y el periodo escolar actual (Pa), que se obtiene de la regla BR-EE-N037. Y si Pa es mayor a Pm, la solicitud podrá ser atendida en la COSIE del CTCE; si Pa es menor a Pm, la solicitud no podrá ser atendida en la COSIE del CTCE y deberá enviarse a la COSIE de la CGC.
+	\BRItem[Sentencia] 
+	Sea $Pm$ el periodo máximo para concluir el plan de estudio, $Pa$ el periodo escolar actual\\
+	\begin{center}
+		$ \forall Pa > Pm \Rightarrow solicitud \in COSIE CTCE $
+	\end{center}
+	
+	\BRItem[Motivación] Evitar autorizar una solicitud de dictamen en la cual el alumno ya no cuente con tiempo para concluir el plan de estudio. 
+	\BRItem[Ejemplo positivo] 
+	Sea $Pa = 2018/1$ cumplen la regla\\
+	\begin{itemize}
+		\item $Pm = 2018/2$
+		\item $Pm = 2019/1$
+	\end{itemize}  
+	\BRItem[Ejemplo negativo] 
+	Sea $Pa = 2018/2$ no cumplen la regla\\
+	\begin{itemize}
+		\item $Pm = 2018/2$
+		\item $Pm = 2017/1$
+	\end{itemize}  
+	\BRItem[Referenciado por] 
+\end{BusinessRule}
+
+
+
+%%%%%%%------------------REGLA BR-DIC-N034=============================================
+\begin{BusinessRule}{BR-DIC-N034}{Fechas válidas para sesión de COSIE de un consejo }
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Las sesiones de consejo\footnote{Ver \refElem{tSesionDeConsejo}} deben pertenecer estrictamente a un periodo de Consejo, es decir, no puede haber sesiones antes de la fecha de inicio del consejo, así como no puede haber sesiones despúes de su fecha de término.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=153, lastline=162]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if (fecha.Sesion < PeriodoDeConsejo.fechaInicio 
+%	|| fecha.Sesion > PeriodoDeConsejo.fechaFin) {
+%		return false;
+%	} else {
+%		return true;
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que el actor registre fechas de sesiones de consejo fuera del periodo del Consejo.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N035=============================================
+\begin{BusinessRule}{BR-DIC-N035}{Duración del periodo de Consejo}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El periodo de Consejo tiene una duración delimitada por su fecha de inicio y su fecha de término, por lo cual la fecha de término debe ser estrictamente mayor a la fecha de inicio.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=164, lastline=172]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if (periodoDeConsejo.fechaTermino < periodoDeConsejo.fechaInicio) {
+%		return false;
+%	} else {
+%		return true;
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que se registren periodos inconsistentes en sus fechas de inicio y término.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N036=============================================
+\begin{BusinessRule}{BR-DIC-N036}{Participación de consejeros en equipos dictaminadores}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los equipos de revisión de solicitudes de dictamen están conformados por uno o varios consejeros, así mismo debe tomarse en cuenta que un solo consejero puede pertenecer a muchos equipos.
+%	\BRItem[Sentencia] \cdtEmpty
+%	\begin{lstlisting}[language=C]
+%		
+%	\end{lstlisting}
+	\BRItem[Motivación] Indicarle al actor que puede registrar a un consejero en muchos equipos.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+	\BRItem[Referenciado por] %\refIdElem{DIC-UA-COSIE-CU1.2.2.1}, \refIdElem{DIC-UA-COSIE-CU1.2.3.1}, 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-DIC-N037=============================================
+\begin{BusinessRule}{BR-DIC-N037}{Modifición de equipo dictaminador durante sesión de la COSIE}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los equipos dictaminadores que tengan establecido el criterio de revisión "Todos" no pueden ser modificados 
+	%	\BRItem[Sentencia] \cdtEmpty
+	%	\begin{lstlisting}[language=C]
+	%		
+	%	\end{lstlisting}
+	\BRItem[Motivación] Indicarle al actor que puede registrar a un consejero en muchos equipos.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N038=============================================
+\begin{BusinessRule}{BR-DIC-N038}{Cambio de tipo de consejero de la COSIE}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Carlos Alberto Robles Ruiz
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Se permite modificar el tipo de consejero que una persona tiene dentro de la COSIE, sin embargo debe considerarse que solamente permite modificarse el tipo de consejero a aquellos consejeros que no sean del tipo Alumno. \\
+	Si el tipo de consejero que solicita editar es \textbf{Profesor} se cambia el tipo de consejero a \textbf{Directivo}. \\
+	Si el tipo de consejero que solicita editar es \textbf{Directivo} se cambia el tipo de consejero a \textbf{Profesor}.
+	
+	\BRItem[Motivación] Que los consejeros de tipo Alumno no puedan asumir atribuciones de los consejeros de tipo .
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+	
+\end{BusinessRule}
+
+
+%%%%%%%------------------REGLA BR-DIC-N039=============================================
+\begin{BusinessRule}{BR-DIC-N039}{Envío de solicitudes al CGC}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Se pueden enviar las solicitudes de dictamen dirigidas al CGC no importando si su estado es \textbf{Por revisar}, \textbf{En revisión} o \textbf{Revisado}, con base en el \refElem{ME-PredictamenParaCGC}, ya que esos estados lo único que indican es si se registró sugerencia o no.
+	
+	\BRItem[Motivación] Que las solicitudes de dictamen dirigidas al CGC puedan ser enviadas no importando si tienen sugerencia o no.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo]
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N040=============================================
+\begin{BusinessRule}{BR-DIC-N040}{Cálculo de periodos transcurridos}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los periodos escolares transcurridos son el número total de periodos que han transcurrido desde un periodo inicial ($P_{1}$) hasta un segundo periodo ($P_{2}$). Para calcularlo debe hacerse una diferencia entre $P_{2}$ y $P_{1}$.  \\
+	
+	\BRItem[Sentencia] \cdtEmpty
+	Sea:$P_{1}$ el periodo escolar a partir del cual se quiere saber los periodos escolares transcurridos, $P_{2}$ el periodo actual, y $P_{T}$ los periodos transcurridos. \\
+	donde: 
+		\begin{center}
+			$P_{1}\{anio + / + semestre\}$
+		\end{center}
+	siendo: 
+		\begin{itemize}
+			\item $anio$ el año del periodo 
+			\item $semestre$ el número de semestre, que puede ser 1 o 2
+		\end{itemize}
+	Los periodos transcurridos $P_{T}$ se calculan de la siguiente manera: \\ \\
+	Para $P_{2}.semestre == 2$:
+		\begin{center}
+			$P_{T} = [(P_{2}.anio - P_{1}.anio) x 2] + (P_{1}.semestre \oplus P_{2}.semestre)$
+		\end{center}
+	Para $P_{2}.semestre == 1$:
+		\begin{center}
+			$P_{T} = [(P_{2}.anio - P_{1}.anio) x 2] - (P_{1}.semestre \oplus P_{2}.semestre)$
+		\end{center} 
+	\BRItem[Motivación] Obtener el número total de periodos transcurridos entre un periodo $P_{1}$ y $P_{2}$.
+	\BRItem[Ejemplo 1] \cdtEmpty
+	Se quiere calcular el número total de periodos transcurridos a partir del ingreso del alumno hasta el periodo actual. \\
+	Sea: $P_{1} = 2014/1$ y $P_{2} = 2017/2$ \\
+	como:$P_{2}.semestre == 2$ \\  
+	entonces: 
+		\begin{center}
+			\[P_{T} = [(2017 - 2014) x 2] + (1 \oplus 2)\]  
+			\[P_{T} = [(3) x 2] + 1 \] 
+			\[P_{T} = [6 + 1]\]  
+			\[P_{T} = 7\]  
+		\end{center}
+	Por lo tanto el número total de periodos transcurridos desde el ingreso del alumno al plan de estudio es: \fbox{$7$}
+%	\BRItem[Ejemplo 2] \cdtEmpty
+%	Se quiere calcular el total de periodos transcurridos en los que el alumno ha estado en baja temporal. Para ello debe considerarse que $P_{T}=P_{T1}+P_{T2}+...+P_{Tn}$
+%	Sea: $P_{1} = 2015/2$ y $P_{2} = 2016/1$ el primer periodo en baja, y $P_{1}=2017/1$ y $P_{2}=2018/1$ el segundo periodo en baja.\\
+%	\textbf{Para el primer periodo en baja}: \\
+%	Como: $P_{2}.semestre == 1$ \\
+%	entonces: 
+%		\begin{center}
+%			\[P_{T1} = [(2016 - 2015) x 2] - (2 \oplus 1)\] 
+%			\[P_{T1} = [(1) x 2] - 1\]  
+%			\[P_{T1} = [2 - 1] \]
+%			\[P_{T1} = 1\] 
+%		\end{center}
+%	\textbf{Para el segundo periodo en baja}: \\
+%	Como: $P_{2}.semestre == 1$ \\
+%	entonces: 
+%	\begin{center}
+%		\[P_{T2} = [(2018 - 2017) x 2] - (1 \oplus 1)\]  
+%		\[P_{T2} = [(1) x 2] - 0\]  
+%		\[P_{T2} = [2 - 0] \] 
+%		\[P_{T2} = 2\]  
+%	\end{center}
+%	Por lo anterior y que $P_{T}=P_{T1}+P_{T2}+...+P_{Tn}$, se tiene que:
+%	\begin{center}
+%		\[P_{T}=1+2\]
+%		\[P_{T}=3\]
+%	\end{center}
+%	por lo tanto el total de periodos transcurridos en los que el alumno ha estado en baja es: \fbox{3}
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N040=============================================
+%\begin{BusinessRule}{BR-DIC-N041}{Cálculo de periodos en baja }
+%	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+%	\BRItem[Versión] 0.1 
+%	\BRItem[Estado] En revisión.
+%	\BRItem[Propuesta por]  Alberto García Paul
+%	\BRItem[Revisada por] Pendiente.
+%	\BRItem[Aprobada por] Pendiente.
+%	\BRItem[Descripción] Los periodos en baja son periodos escolares en los que el alumno no ha estado inscrito al plan de estudio de un programa académico, pero sigue siendo parte del Instituto. Para calcular los periodos en los que el alumno ha estado en baja se toman los periodos escolares que han transcurrido desde el ingreso del alumno al plan de estudio y se verifica en que periodos el alumno no tiene registrado una reinscripción para obtener la cantidad de periodos que ha estado en baja \\
+%	
+%	\BRItem[Sentencia] \cdtEmpty
+%	\lstinputlisting[language=C, firstline=174, lastline=184]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%		while (periodo.next) {
+%			if (alumno.periodo[i].reinscrito == false) {
+%				periodosDeBaja++;
+%			} else {
+%				i++;
+%			}
+%		}
+%	\end{lstlisting}
+%	 
+%	\BRItem[Motivación] Obtener el total de periodos escolares en los que el alumno ha estado en baja temporal.
+%\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N042=============================================
+\begin{BusinessRule}{BR-DIC-N042}{Cálculo de los periodos transcurridos efectivos}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los periodos escolares efectivos transcurridos son el número total de periodos en los que el alumno ha estado inscrito en el plan de estudio. Para calcularlo debe hacerse una diferencia entre el número total de periodos transcurridos desde el ingreso del alumno ($A$) y el número total de periodos en los que el alumno ha estado en baja ($B$). Cabe mencionar que $A$ se obtiene con base en la regla \refIdElem{BR-DIC-N040}, mientras que $B$ se calcula \refIdElem{BR-DIC-N041}.  \\
+	\BRItem[Sentencia] \cdtEmpty
+	Sea: $A$ el número de periodos transcurridos desde que el alumno ingresó al programa académico, $B$ el número de periodos escolares en los que el alumno ha estado en baja temporal, y $C$ el número de periodos efectivos transcurridos \\ 
+	entonces:
+	\begin{center}
+		$C = A - B$
+	\end{center}
+	\BRItem[Motivación] Calcular el número de periodos efectivos transcurridos desde el ingreso del alumno al plan de estudio.
+	\BRItem[Ejemplo 1] Considerando que el alumno ingreso al plan de estudio en el periodo $2014/1$, que estuvo de baja temporal en los periodos $2015/2$, $2016/1$ y $2016/2$, y que el periodo actual es el $2018/1$. \\ \\ 
+	Primero se calculan los periodos transcurridos desde el ingreso del alumno al programa académico, para ello se utiliza la regla \refIdElem{BR-DIC-N040}. Se tiene que: \\ \\
+	Sea: $P_{1} = 2014/1$ y $P_{2} = 2018/1$ \\
+	como: $P_{2}.semestre == 1$ \\
+	entonces: 
+	\begin{center}
+		\[P_{T} = A = [(2018 - 2014) x 2] - (1 \oplus 1)\] 
+		\[P_{T} = A = [(4) x 2] - 0\] 
+		\[P_{T} = A = [8 - 0]\] 
+		\[P_{T} = A = 8\] 
+	\end{center}
+	Ahora se calcula los periodos que el alumno ha estado en baja temporal, de la misma manera se utiliza la regla \refIdElem{BR-DIC-N041}. 
+	Entonces: \\
+	\begin{center}
+		$B = 3$
+	\end{center}
+	Una vez que se tiene $A$ y $B$ solamente se sustituyen en la ecuación:
+	\begin{center}
+		$C = A - B$
+	\end{center} 
+	por lo tanto: 
+	\begin{center}
+		$C = 8 - 3 = 5$
+	\end{center} 
+	Entonces el número de periodos efectivos transcurridos desde el ingreso del alumno al plan de estudio es: \fbox{$5$}
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N043=============================================
+\begin{BusinessRule}{BR-DIC-N043}{Cálculo del porcentaje de avance en créditos}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El porcentaje de avance en créditos es el número que representa la proporción de créditos del plan de estudios que ha acreditado el Alumno a lo largo de su trayectoria escolar. Para calcular el avance se realiza una división entre el número de créditos obtenidos por el alumno $C_{o}$ y los créditos totale que establece el plan de estudios  ($C_{t}$). 
+	\BRItem[Sentencia] \cdtEmpty
+	Sea: $C_{o}$ los créditos obtenidos por el alumno, $C_{t}$ los créditos totales del plan de estudio del programa académico al que pertenece el alumno, y $C_{a}$ el porcentaje de créditos obtenidos al momento del alumno. \\
+	entonces:
+	\begin{center}
+		\[C_{a} = \frac{[(C_{o})(100)]}{C_{t}}\]
+	\end{center}
+	\BRItem[Motivación] Conocer el porcentaje de avance en créditos que tiene el alumno.
+	\BRItem[Ejemplo 1] \cdtEmpty
+	Considerando: 
+	\begin{center}
+		$C_{o} = 42$ y $C_{t} = 145$
+	\end{center}
+	entonces:
+	\begin{center}
+		\[C_{a} = \frac{[(42)(100)]}{145}\]  
+		\[C_{a} = \frac{[4200]}{145}\] 
+		\[C_{a} = 28.96 \%\]
+	\end{center}
+	Por lo tanto el porcentaje de avance es:\fbox{28.96 \%}
+	\BRItem[Ejemplo 2]
+	Considerando: 
+	\begin{center}
+		$C_{o} = 57$ y $C_{t} = 220$
+	\end{center}
+	entonces:
+	\begin{center}
+		\[C_{a} = \frac{[(57)(100)]}{220}\]  
+		\[C_{a} = \frac{[5700]}{220}\]  
+		\[C_{a} = 25.90 \%\]
+	\end{center} 
+	Por lo tanto el porcentaje de avance es:\fbox{25.90 \%}
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N044=============================================
+\begin{BusinessRule}{BR-DIC-N044}{Cálculo de periodos estimados para concluir plan de estudio}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los periodos estimados para concluir el plan de estudio son el número de periodos que el Alumno necesitaría para concluir su plan de estudios tomando en cuenta los períodos que ha cursado. Para estimar los periodos debe hacerse una división entre el número de créditos que le resta al Alumno por cubrir del plan de estudios ($C_{ta}$) y el número de créditos de la carga media del plan de estudios ($C_{m}$). Cabe mencionar que al resultante de la división se le debe aplicar la \textit{operación techo} para que el número se redondee hacia arriba, es decir, si se obtiene un 8.45 se redondea a 9.
+	\BRItem[Sentencia] \cdtEmpty
+	Sea: $C_{t}$ el total de créditos que contempla el plan de estudio del programa académico al que pertenece el alumno, $C_{m}$ el número de créditos que contempla la carga media del plan de estudio del programa académico al que pertenece el alumno, $C_{ta}$ el total de créditos restantes del alumno,$C_{c}$ el número de créditos cubiertos por el alumno, $P_{r}$ el número de periodos restantes que le quedan al alumno. \\
+	entonces: 
+	\begin{center}
+		\[C_{ta} = C_{t} - C_{c}\]
+		
+		\[P_{r} = \overline{\frac{C_{ta}}{C_{m}}} \]
+	\end{center}
+	\BRItem[Motivación] Conocer el número de periodos estimados para que el alumno concluya el plan de estudio.
+	\BRItem[Ejemplo 1] \cdtEmpty
+	Considerando: 
+	\begin{center}
+		$C_{t} = 239.29$, $C_{m} = 30$, $C_{c} = 50$
+	\end{center}
+	primero se obtiene el total de créditos restantes del alumno:
+	\begin{center}
+		\[C_{ta} = 239.29 - 50\] 
+		\[C_{ta} = 189.29\]
+	\end{center}
+	una vez teniendo el total de créditos restantes ya sólo queda obtener el número de periodos estimados para la conclusión del plan de estudio:
+	\begin{center}
+		\[P_{r} = \overline{\frac{189.29}{30}}\] 
+		\[P_{r} = \overline{6.30}\] 
+		\[P_{r} = 7 \]
+	\end{center}
+	como se utilizó la operación techo el $6.30$ se redondea a $7$. 
+	
+	Por lo tanto el número de periodos restantes para concluir el plan de estudio es: \fbox{7}.
+%	\BRItem[Ejemplo 2]
+%	Considerando: 
+%	\begin{center}
+%		$C_{o} = 57$ y $C_{t} = 220$
+%	\end{center}
+%	entonces:
+%	\begin{center}
+%		$C_{a} = \frac{[(57)(100)]}{220}$ \\ 
+%		$C_{a} = \frac{[5700]}{220}$ \\ 
+%		$C_{a} = 25.90 \%$
+%	\end{center} 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N045=============================================
+\begin{BusinessRule}{BR-DIC-N045}{Cálculo del total de periodos transcurridos para la conclusión del plan de estudio}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El total de periodos estimados para concluir el plan de estudio es el número de periodos que deben transcurrir para que el alumno concluya con el plan de estudio. Para calcularlo se hace un adición entre el número de periodos transcurridos efectivos ($C$) y el número de periodos estimados para concluir el plan de estudio ($D$). Cabe mencionar que $C$ se obtiene con base en la regla \refIdElem{BR-DIC-N042}, mientras que $D$ se obtiene con base en la regla \refIdElem{BR-DIC-N044}. 
+	\BRItem[Sentencia] \cdtEmpty
+	Sea: $C$ el número de periodos efectivos transcurridos, $D$ el número de periodos estimados para concluir el plan de estudio, y $E$ el número total de periodos transcurridos para la conclusión del plan de estudio. \\
+	Entonces:
+	\begin{center}
+		$E = C + D$
+	\end{center} 
+	Donde: $C$ se calcula con base en la regla \refIdElem{BR-DIC-N042} y $D$ con base en la regla \refIdElem{BR-DIC-N044}.
+	\BRItem[Motivación] Saber si el alumno requiere una ampliación de periodos para concluir el plan de estudio.
+	\BRItem[Ejemplo 1] \cdtEmpty
+	Considerando $C = 4$ y $D = 11$ 
+	\begin{center}
+		$E = C + D$ \\
+		$E = 4 + 11$ \\
+		$E = 15$
+	\end{center}
+	por lo tanto el número de periodos transcurridos para la conclusión del plan de estudio es: \fbox{15}
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N045=============================================
+\begin{BusinessRule}{BR-DIC-N046}{Cálculo de la duración máxima del plan de estudio}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La duración máxima de un plan de estudio es el número máximo de periodos que ese puede durar. Para calcularlo debe calcularse primero la duración del plan de estudio ($D$), que se obtiene dividiendo el número de créditos totales ($C_{t}$) y el número de créditos que contempla la carga media ($C_{m}$). Una vez que se tiene la división se le aplica la \textit{operación techo} para rendondear el número obtenido y a este número se le suma el 50\% de $D$.
+	\BRItem[Sentencia] \cdtEmpty
+	Sea: $C_{t}$ el total de créditos que contempla el plan de estudio del programa académico al que pertenece el alumno, $C_{m}$ el número de créditos que contempla la carga media del plan de estudio, $D$ la duración del plan de estudio, y $D_{max}$ la duración máxima del plan de estudio del programa académico al que pertenece el alumno. \\
+	Entonces:
+	\begin{center}
+		\[D = \overline{\frac{C_{t}}{C_{m}}}\]
+		\[D_{max} = D + 50\%(D)\]
+	\end{center} 
+	\BRItem[Motivación] Saber cual es la duración máxima del plan de estudio.
+	\BRItem[Ejemplo 1] \cdtEmpty
+	Considerando $C_{t} = 239.29$ y $C_{m} = 30$
+	\begin{center}
+		\[D = \overline{(\frac{239.29}{30})}\]
+		\[D = \overline{7.87}\]
+		\[D = 8\] 
+		\[D_{max} = 8 + 50\%(8)\] 
+		\[D_{max} = 8 + 4\]
+		\[D_{max} = 12\]
+	\end{center}
+	por lo tanto la duración máxima del plan de estudio es: \fbox{12}.
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N046=============================================
+\begin{BusinessRule}{BR-DIC-N047}{Cálculo del porcentaje de utilización del tiempo máximo}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El porcentaje de utilización del tiempo máximo es el número que representa la proporción que requiere el alumno para concluir el plan de estudio. Para calcularlo debe hacerse un división entre el total de periodos transcurridos para la conclusión del plan de estudio ($E$) y la duración máxima del plan de estudio ($F$). Cabe mencionar que $E$ se obtiene con base en la regla \refIdElem{BR-DIC-N045}, mientras que $F$ se obtiene con base en la regla \refIdElem{BR-DIC-N046}.
+	\BRItem[Sentencia] \cdtEmpty
+	Sea $E$ el número total de periodos escolares transcurridos para la conclusión del plan de estudio, $F$ la duración máxima de periodos del plan de estudio, y $P$ el porcentaje de utilización del tiempo máximo. \\
+	Entonces:
+	\begin{center}
+		$P = (\frac{E}{D})(100)$
+	\end{center} 
+	\BRItem[Motivación] Conocer el porcentaje de utilización que tiene el alumno de tiempo máximo.
+	\BRItem[Ejemplo 1] \cdtEmpty
+	Considerando $E = 12$ y $F = 10$
+	
+	\begin{center}
+			\[P = (\frac{12}{10})(100\%)\] 
+			\[P = (1.2)(100\%)\] 
+			\[P = 120\%\]
+	\end{center}
+	por lo tanto el porcentaje de utilización del tiempo máximo es: \fbox{120\%}. 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N048=============================================
+\begin{BusinessRule}{BR-DIC-N048}{Cálculo del promedio general}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El promedio general es la suma de todas las calificaciones obtenidas en las unidades de aprendizaje ($C_{n}$) dividida entren el número de unidades de aprendizaje cursadas $n$. Se obtiene para conocer un número que representa de la mejor manera las calificaciones obtenidas por el alumno.\begin{flushright}
+		
+	\end{flushright}
+	\BRItem[Sentencia] \cdtEmpty
+	Sea: $n$ el número de unidades de aprendizaje que ha cursado el alumno, $C_{n}$ la calificación obtenida en la unidades de aprendizaje cursadas, y $P$ el promedio general que tiene el alumno.
+	Entonces:
+	\begin{center}
+		$P=\frac{\sum\limits_{1}^{n}C_{n}}{n}$
+	\end{center} 
+	\BRItem[Motivación] Conocer el promedio general que tiene el alumno al momento.
+	\BRItem[Ejemplo 1] \cdtEmpty
+	Considerando $n=10$ y $C_{1}=9, C_{2}=10, C_{3}=7, C_{4}=8, C_{5}=5, C_{6}=3, C_{7}=9, C_{8}=6, C_{9}=10, C_{10}=9$ \\
+	entonces:
+	\begin{center}
+		\[P=\frac{9+10+7+8+5+3+9+6+10+9}{10}\] 
+		\[P=\frac{76}{10}\] 
+		\[P=7.6\]
+	\end{center}
+	por lo tanto el promedio general del alumno al momento es: \fbox{7.6}. 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N049=============================================
+\begin{BusinessRule}{BR-DIC-N049}{Obtención de la información general del alumno}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La información general son todos los datos acerca del alumno que solicitó un dictamen. Esta información le permite a los analistas emitir una predictaminación que será atendida posteriormente por los consejeros. La información general esta compuesta por los siguientes puntos:
+	\begin{itemize}
+		\item \textbf{Periodos transcurridos desde el ingreso}: estos son los periodos escolares que han transcurrido desde que el alumno ingresó al plan de estudio y se obtiene con base en la regla \refIdElem{BR-DIC-N040}.
+		\item \textbf{Periodos de baja temporal}: estos son los periodos escolares en los que el alumno ha estado en baja temporal y se obtiene con base en la regla \refIdElem{BR-DIC-N041}.
+		\item \textbf{Periodos transcurridos efectivos}: estos son los periodos escolares en los que el alumno ha estado reinscrito en el plan de estudio del programa académico y se obtiene con base en la regla \refIdElem{BR-DIC-N042}.
+		\item \textbf{Porcentaje de avance en créditos}: este es el avance que tiene el alumno al momento, respecto a los créditos totales que contempla el plan de estudio. Este avance se calcula con base en la regla \refIdElem{BR-DIC-N043}.
+		\item \textbf{Periodos estimados para concluir el plan de estudio}: estos son los periodos que se consideran para que el alumno concluya el plan de estudio y se obtiene con base en la regla \refIdElem{BR-DIC-N044}.
+		\item \textbf{Total de periodos transcurridos para conclusión}: estos son los periodos que deben transcurrir para completar el total de créditos del plan de estudio del programa académico y se obtiene con base en la regla \refIdElem{BR-DIC-N045}.
+		\item \textbf{Duración máxima del plan de estudio}: este es el número máximo de periodos que se contemplan para concluir con el plan de estudio del programa académico, se obtiene con base en la regla \refIdElem{BR-DIC-N046}.
+		\item \textbf{Porcentaje de utilización del tiempo máximo}: este es la proporción de la duración máxima que requiere el alumno para concluir el plan de estudio, se calcula con base en la regla \refIdElem{BR-DIC-N047}.
+		\item \textbf{Promedio general}: este es el número que representa la mayoría de las calificaciones obtenidas por el alumno en las unidades de aprendizaje, se calcula con base en la regla \refIdElem{BR-DIC-N048}.
+	\end{itemize} 
+
+	\BRItem[Motivación] Proporcionarle a los analistas la información general del alumno que solicitó el dictamen y de esta manera se pueda emitir una predictaminación.
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N050=============================================
+\begin{BusinessRule}{BR-DIC-N050}{Habilitar secciones de autorización}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Con base en los puntos de solicitud contenidos en una solicitud de dictamen se mostrarán y habilitarán las herramientas en las cuales un Analista podrá registrar las autorizaciones concernientes a los puntos solicitados.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=186, lastline=203]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%if(solicitud.contiene("Presentar ETS")) {
+%	solicitud.habilitarSeccion("Autorizar");
+%	solicitud.habilitarSeccion("Condicionar Reinscripcion");
+%} else if(solicitud.contiene("Ampliacion de tiempo")){
+%	solicitud.habilitarSeccion("Ampliacion de tiempo");
+%} else if(solicitud.contiene("Reconocimiento de Calificaciones")){
+%	solicitud.opcionales.habilitar("Reconocimiento de Calificaciones");
+%} else if(solicitud.contiene("Carga menor a la minima")){
+%	solicitud.opcionales.habilitar("Carga menor a la minima");
+%} else if(solicitud.contiene("Baja de modalidad Academica")){
+%	solicitud.opcionales.habilitar("Baja de modalidad Academica");
+%}else{
+%	break;
+%}
+%	\end{lstlisting}
+	\BRItem[Motivación] Habilitar las secciones correspondientes a los puntos de solicitud para que éstas sean atendidas.
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N051=============================================
+\begin{BusinessRule}{BR-DIC-N051}{Autorización de revocación de baja}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por]  Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Con base en los puntos de solicitud contenidos en una solicitud de dictamen se mostrarán y habilitarán las herramientas en las cuales un Analista podrá registrar las autorizaciones concernientes a los puntos solicitados.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=205, lastline=215]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%if(solicitud.aprobada == true) {
+%	if(solicitud.contiene("Rebocacion de baja")) {
+%		solicitud.revocacionDeBaja = true;
+%	}
+%}else{
+%	break;
+%}
+%	\end{lstlisting}
+	\BRItem[Motivación] Habilitar las secciones correspondientes a los puntos de solicitud para que éstas sean atendidas.
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N052=============================================
+\begin{BusinessRule}{BR-DIC-N052}{Órgano al que se solicita el dictamen}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Una solicitud de dictamen debe ser dirigida al CTCE o al CGC por parte del alumno, con base en lo siguiente:
+	\begin{itemize}
+		\item Cuando el alumno tiene un dictamen dirigido al CGC y se encuentra vigente: Se solicita una reconsideración al CGC.
+		\item Cuando el alumno se encuentre en estado regular o baja: Se solicita el dictamen al CGC.
+		\item Cuando el alumno se encuentre en estado irregular: Se solicita el dictamen al CTCE.
+	\end{itemize}
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=217, lastline=231]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	a = alumno();
+%	d = a.getDictamenVigente();
+%	if (d != null && d.dirigido == "CGC") {
+%		a.solicitarReconsideracionAlCGC;
+%	} else {
+%		if (a.getEstado() == "Regular" || a.getEstado() == "Baja") {
+%			
+%		}
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Habilitar las secciones correspondientes a los puntos de solicitud para que éstas sean atendidas.
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N053=============================================
+\begin{BusinessRule}{BR-DIC-N053}{Ampliación de tiempo}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Una ampliación de tiempo se le otorga a un alumno cuando este no ha concluido el plan de estudio y la duración máxima del plan de estudio ya ha transcurrido. Sin embargo el órgano encargado de otorgar las ampliaciones es el CGC por lo que un alumno no puede solicitar una ampliación de tiempo al CTCE. Para asegurar que eso se cumpla en la pantalla \refElem{DIC-UA-COSIE-UI2.1.2} este campo estará inhabilitado.
+%	\BRItem[Sentencia] \cdtEmpty
+%	\begin{lstlisting}[language=C]
+%	a = alumno();
+%	d = a.getDictamenVigente();
+%	if (d != null && d.dirigido == "CGC") {
+%	a.solicitarReconsideracionAlCGC;
+%	} else {
+%	if (a.getEstado() == "Regular" || a.getEstado() == "Baja") {
+%	
+%	}
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Permitir que sólo el CGC pueda conceder ampliaciones de tiempo a los alumnos.
+
+\end{BusinessRule}
+%%%%%%%------------------REGLA BR-DIC-N054=============================================
+\begin{BusinessRule}{BR-DIC-N054}{Modificación de fechas de sesiones con solicitudes de dictamen asociadas}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción]  Se permite modificar una sesión de la COSIE que tenga asociadas solicitudes de dictamen asociadas, sin embargo no podrán ser dictaminadas en la fecha que estaba establecida sino hasta la nueva fecha de sesión seleccionada, así mismo no se permite eliminar una sesión de la COSIE que tenga solicitudes de dictamen asociadas.
+	%	\BRItem[Sentencia] \cdtEmpty
+	%	\begin{lstlisting}[language=C]
+	%	a = alumno();
+	%	d = a.getDictamenVigente();
+	%	if (d != null && d.dirigido == "CGC") {
+	%	a.solicitarReconsideracionAlCGC;
+	%	} else {
+	%	if (a.getEstado() == "Regular" || a.getEstado() == "Baja") {
+	%	
+	%	}
+	%	}
+	%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que las solicitudes de dictamen que estén asociadas a una COSIE se atiendan en un tiempo mayor al plandeado.
+\end{BusinessRule}
+%%%%%%%------------------REGLA BR-DIC-N055=============================================
+\begin{BusinessRule}{BR-DIC-N055}{Cerrar CTCE con solicitudes de dictamen}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] No se permite cerrar un CTCE si existen solicitudes en estado  \textbf{Por asociar}, \textbf{Por predictaminar},\textbf{En predictaminación} o \textbf{Predictaminada} conforme al \refElem{ME-Predictamen}.
+	%	\BRItem[Sentencia] \cdtEmpty
+	%	\begin{lstlisting}[language=C]
+	%	a = alumno();
+	%	d = a.getDictamenVigente();
+	%	if (d != null && d.dirigido == "CGC") {
+	%	a.solicitarReconsideracionAlCGC;
+	%	} else {
+	%	if (a.getEstado() == "Regular" || a.getEstado() == "Baja") {
+	%	
+	%	}
+	%	}
+	%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que solicitudes de dictamen no sean atendidas durante un CTCE.
+\end{BusinessRule}
+
+%%%============================BR-DIC-N056==========================================
+%
+\begin{BusinessRule}{BR-DIC-N056}{Fechas Transcurridas para Registro}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] García Paul Alberto
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] Todas las fechas que se quieran registrar deben ser estrictamente mayores a la fecha actual:
+	\BRItem[Sentencia] 	\cdtEmpty
+	\lstinputlisting[language=C, firstline=233, lastline=241]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if (fechaActual < fechaParaRegistrar) {
+%	return true;
+%	} else {
+%	return false;
+%	}
+%	\end{lstlisting}
+	
+	
+	\BRItem[Motivación] Evitar que se realicen registros en fechas ya transcurridas.
+	\BRItem[Ejemplo positivo] Considerando que la fecha actual es 1 de enero de 2017: 
+	\begin{itemize}
+		\item Se registra un nuevo consejo cuya fecha de inicio es 20 de enero de 2017.
+		\item Se registra una nueva sesión a un consejo cuya fecha de inicio es 1 de abril de 2017.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] Considerando que la fecha actual es 1 de junio de 2017:
+	\begin{itemize}
+		\item Se quiere registrar un nuevo consejo cuya fecha de inicio es 31 de marzo de 2017.
+		
+	\end{itemize}	
+	%	\BRItem[Referenciado por] %\refIdElem{DIC-CGC-COSIE-CU1.2.1}
+	
+\end{BusinessRule}
+%%%%%%%------------------REGLA BR-DIC-N057=============================================
+\begin{BusinessRule}{BR-DIC-N057}{Duración máxima de consejo}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] Cuando se requiere registrar o editar un CTCE , su duración no se puede definir por más de n días, donde n=365.
+	%	\BRItem[Sentencia] \cdtEmpty
+	%	\begin{lstlisting}[language=C]
+	%	a = alumno();
+	%	d = a.getDictamenVigente();
+	%	if (d != null && d.dirigido == "CGC") {
+	%	a.solicitarReconsideracionAlCGC;
+	%	} else {
+	%	if (a.getEstado() == "Regular" || a.getEstado() == "Baja") {
+	%	
+	%	}
+	%	}
+	%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que la duración de un CTCE sea mayor a 365 días.
+	\BRItem[Referenciado por] %\refIdElem{DIC-UA-COSIE-CU1.2.6}
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N058=============================================
+\begin{BusinessRule}{BR-DIC-N058}{Eliminar consejero de la COSIE}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un consejero solo podrá eliminarse de un Consejo, si y solo si éste no tiene asistencia dentro de la lista general de asistencia de ninguna sesión de la COSIE.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=243, lastline=256]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	Iterator sesionDeConsejo;
+%	consejero.habilitarEliminacion;
+%	while(sesionDeConsejo.hasNext()) {
+%	if(sesionDeConsejo.listaGeneral.next.exist(consejero.getName())) {
+%	consejero.inhabilitarEliminacion;
+%	break;
+%	} else {
+%	consejero.habilitarEliminacion;
+%	}
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar perder el registro de un consejero que ya ha participado en alguna sesión de la COSIE.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N059=============================================
+\begin{BusinessRule}{BR-DIC-N059}{Obtención de unidades de aprendizaje adeudadas con y sin desfase}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] Una unidad de aprendizaje adeudada se desfasa cuando han transcurrido dos o más periodos escolares desde su primer curse, con base en el artículo 98 del reglamento interno del IPN. Para saber cuales y cuantas son estas unidades de aprendizaje primero se debe obtener todas las unidades de aprendizaje adeudadas y el periodo ($P_{a}$) en que fueron cursadas, posteriormente se obtiene el periodo actual ($P_{b}$) y con base en la regla \refIdElem{BR-DIC-N040} se obtiene el número de periodos ($P_{c}$) que han transcurrido desde que fue cursada por primera vez la unidad de aprendizaje adeudada, y si $P_{c} > 2$ la unidad de aprendizaje estará desfasada, mientras que si $P_{c} \leq 2$ la unidad de aprendizaje no estará desfasada.
+	\BRItem[Sentencia] \cdtEmpty
+	Sea $UA_{1} \ldots UA_{n}$ las unidades de aprendizaje que el alumno adeuda, $P_{a}$ el periodo escolar en el que se cursó por primera vez la unidad de aprendizaje, $P_{b}$ el periodo escolar actual, y $P_{c}$ el número de periodos escolares transcurridos desde que se cursó por primera vez la unidad de aprendizaje hasta el periodo escolar actual. \\ \\
+	Entonces: \\
+	\[\forall UA_{n} \in P_{a} \]
+	Las unidades de aprendizaje adeudadas con desfase se obtienen de la siguiente manera:\\ \\
+	Haciendo uso de la regla \refIdElem{BR-DIC-N040} se obtiene $P_{c}$, considerando $P_{a}$ el primer periodo y $P_{b}$ el segundo periodo. Una vez que se obtiene $P_{c}$ se deben cumplir las siguientes desigualdades para poder determinar si la unidad de aprendizaje adeudada esta desfasada o no:
+	\begin{itemize}
+		\item Si $P_{c} > 2$ entonces la unidad de aprendizaje adeudada está desfasada.
+		\item Si $P_{c} \leq 2$ entonces la unidad de aprendizaje adeudada no está desfasada.
+	\end{itemize}
+	\BRItem[Motivación] Conocer cuantas y cuales unidades de aprendizaje adeudadas están o no desfasadas.
+
+\end{BusinessRule}
+
+
+%%%%%%%------------------REGLA BR-DIC-N060=============================================
+\begin{BusinessRule}{BR-DIC-N060}{Obtención de periodos escolares de unidad de aprendizaje adeudada más antigua}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] Una unidad de aprendizaje adeudada puede permanecer en ese estado por $n$ periodos escolares hasta que el alumno la apruebe. Para que conocer el número de periodos escolares que tiene la unidad de aprendizaje más antigua primero debe obtenerse las unidades de aprendizaje adeudadas y el periodo $P_{a}$ en que fueron cursadas, posteriormente se obtiene el periodo actual $P_{b}$ y con base en la regla \refIdElem{BR-DIC-N040} se obtiene el número de periodos ($P_{c}$) que han transcurrido desde que la unidad de aprendizaje fue cursada por primera vez. Dado esto el número mayor a todos los demás obtenidos será el de la unidad de aprendizaje adeudada más antigua. 
+	\BRItem[Sentencia] \cdtEmpty
+	Sea $UA_{1} \ldots UA_{n}$ las unidades de aprendizaje que el alumno adeuda, $P_{a}$ el periodo escolar en el que se cursó por primera vez la unidad de aprendizaje, $P_{b}$ el periodo escolar actual, y $P_{c}$ el número de periodos escolares transcurridos desde que se cursó por primera vez la unidad de aprendizaje hasta el periodo escolar actual. \\ \\
+	Entonces: \\
+	\[\forall UA_{n} \in P_{a} \]
+	Las unidades de aprendizaje adeudadas con desfase se obtienen de la siguiente manera:\\ \\
+	Haciendo uso de la regla \refIdElem{BR-DIC-N040} se obtiene $P_{c}$, considerando $P_{a}$ el primer periodo y $P_{b}$ el segundo periodo. Una vez que se obtiene $P_{c}$ se verifica que valor obtenido es el mayor respecto a los demás y ese será el número de periodos escolares de la unidad de aprendizaje adeudada más antigua.
+	\BRItem[Motivación] Conocer cuantos periodos lleva una unidad de aprendizaje en adeudo.
+\end{BusinessRule}
+
+
+%%%%%%%------------------REGLA BR-DIC-N061=============================================
+\begin{BusinessRule}{BR-DIC-N061}{Periodos escolares para autorización de dictamen}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] El periodo inicial de autorización de un dictamen se establecerá solo entre el periodo escolar actual y el periodo consecutivo al actual. 
+	\BRItem[Motivación] Brindarle al analista los periodos escolares en los que podrá autorizar el periodo inical del dictamen.
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N062=============================================
+\begin{BusinessRule}{BR-DIC-N062}{Puntos de solicitud y criterios de resolución del CGC y CTCE}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] Para poder emitir un predictamen deben considerarse los puntos de la solicitud y los criterios de resolución que pertenecen a los órganos competentes, ya que una solicitud cuyos puntos de solicitud pertenecen al CGC no podrá ser atendida en el CTCE, sin embargo si los puntos de la solicitud pertenecen al CTCE esta podrá ser atendida en el CGC. Los puntos de solicitud que competen a ambos órganos son descritos a continuación:
+	\begin{itemize}
+		\item \textbf{Para el CTCE}:
+			\begin{itemize}
+				\item Presentar Evaluación a Título de Suficiencia.
+				\item Reinscripción al semestre o nivel correspondiente con unidad(es) de aprendizaje desfasada(s), cunado no requieran ampliación de tiempo para la conclusión de su plan de estudio.
+				\item Recursamiento de unidad(es) de aprendizaje desfasada(s) que no hayan sido recursadas hasta el momento, cuando no requieran ampliación de tiempo para la conclusión de su plan de estudio.
+				\item Baja del Programa Académico en la Modalidad Educativa, solicitada por el alumno.
+				\item Baja del Programa Académico en la Modalidad Educativa, por trayectoria escolar del alumno. 
+				\item Cambio de plan de estudio.
+			\end{itemize}
+		\item \textbf{Para el CGC}:
+			\begin{itemize}
+				\item Ampliación de tiempo cuando el resultado de dividir los créditos restantes para concluir su plan de estudio, entre los periodos escolares disponibles para completarlos, es mayor a la carga media.
+				\item Presentar Evaluación a Título de Suficiencia de unidad(es) de aprendizaje adeudada(s) desfasada(s), cuando haya agotado el tiempo máximo para la conclusión de su plan de estudio.
+				\item Recursamiento de unidad(es) de aprendizaje adeudada(s) desfasada(s), cuando haya agotado el tiempo máximo para la conclusión de su plan de estudio.
+				\item Incumplimiento de dos dictámenes emitidos por la misma causal de la Comisión de Situación Escolar del Consejo Técnico Consultivo Escolar.
+				\item Autorizar la validación de reinscripción durante el periodo escolar vigente.
+				\item Revocación de baja definitiva.
+			\end{itemize}
+	\end{itemize}
+	\BRItem[Motivación] Que la solicitud de dictamen sea atendida en el órgano competente.
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N063=============================================
+\begin{BusinessRule}{BR-DIC-N063}{Eliminar equipo dictaminador sin información asociada}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Solo se permite eliminar un equipo dictaminador si y solo si éste no tiene asociadas solicitudes de dictamen.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=360, lastline=370]{../C2-DT-DIC/regla.c}
+
+%	if(equipoDictaminador.solicitudesAsociadas == null){
+%		return equipoDictaminador.habilitadoParaEliminar=true;
+%	}
+%	else{
+%			return equipoDictaminador.habilitadoParaEliminar=false;
+%	}
+
+	\BRItem[Motivación] Evitar que el usuario elimine información que ha asociado a un equipo dictaminador con el fin de que el trabajo realizado y planeado para crear un equipo dictaminador se conserve.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+
+%%%%%%%------------------REGLA BR-DIC-N064=============================================
+\begin{BusinessRule}{BR-DIC-N064}{Autorizaciones opcionales de una solicitud de dictamen del CGC y CTCE}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] Al momento de predictaminar, los analistas pueden hacer algunas autorizaciones opcionales. Sin embargo, cada órgano competente tiene sus propias autorizaciones opcionales, estas son descritas a continuación:
+	\begin{itemize}
+		\item \textbf{Para el CTCE}:
+		\begin{itemize}
+			\item Cambio de plan de estudio cuando no requiera autorización de ampliación de tiempo para la conclusión de su plan de estudios.
+			\item Autorización de reincripción con carga menor a la mínima con adeudos.
+		\end{itemize}
+		\item \textbf{Para el CGC}:
+		\begin{itemize}
+			\item Reconocimiento de calificaciones acreditadas de manera extemporánea.
+			\item Autorizar cambio de plan de estudio.
+		\end{itemize}
+	\end{itemize}
+	\BRItem[Motivación] Mostrarle al analista cuales son las autorizaciones opcionales que puede otorgar al emitir la predictaminación.
+\end{BusinessRule}
+
+
+
+
+%%%%%%%------------------REGLA BR-DIC-N065=============================================
+\begin{BusinessRule}{BR-DIC-N065}{Requisitos necesarios para iniciar sesión de la COSIE}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Carlos Alberto Robles Ruiz
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] Para iniciar una sesión de la COSIE se deben cumplir con ciertos requisitos como lo es:
+	El estado del CTCE al que pertenece la sesión debe ser \textbf{Activo} con base en el \refElem{ME-Consejo}.\\
+	
+	 El estado de la sesión de la COSIE del CTCE debe ser \textbf{Edición} con base en el \refElem{ME-Sesion}. \\
+	 
+	 La fecha actual en la que se solicita iniciar la sesión de la COSIE debe ser exactamente igual con la fecha de inicio registrada previamente, con base en la regla de negocio \refIdElem{BR-DIC-N013}. \\
+	 
+	Debe existir por lo menos un consejero en estado  \textbf{Activo} en el CTCE al que pertenece la sesión de la COSIE con base en la regla de negocio \refElem{ME-Consejero}. \\
+	
+	 Debe existir por lo menos un analista de la unidad académica en estado  \textbf{Activo} en el CTCE al que pertenece la sesión de la COSIE. 
+	\begin{itemize}
+		\item \textbf{Para el CTCE}:
+		\begin{itemize}
+			\item Cambio de plan de estudio cuando no requiera autorización de ampliación de tiempo para la conclusión de su plan de estudios.
+			\item Autorización de reincripción con carga menor a la mínima con adeudos.
+		\end{itemize}
+		\item \textbf{Para el CGC}:
+		\begin{itemize}
+			\item Reconocimiento de calificaciones acreditadas de manera extemporánea.
+			\item Autorizar cambio de plan de estudio.
+		\end{itemize}
+	\end{itemize}
+	\BRItem[Motivación] Mostrarle al analista cuales son las autorizaciones opcionales que puede otorgar al emitir la predictaminación.
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N066=============================================
+\begin{BusinessRule}{BR-DIC-N066}{Acta sintética asociada a sesión de Consejo}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente. 
+	\BRItem[Descripción] Solo se permite consultar un acta sintética si y solo si la sesión de Consejo haya sido celebrada y se haya registrado una acta sintética.
+	
+	\BRItem[Motivación] Conocer lo acontecido en la sesión de la COSIE correspondiente.
+\end{BusinessRule}
+
+
+%%%%%%%------------------REGLA BR-DIC-N067=============================================
+\begin{BusinessRule}{BR-DIC-N067}{Eliminar sesión sin información asociada}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Solo se permite eliminar una sesión de la COSIE del Consejo si y solo si ésta no tiene asociadas solicitudes de dictamen.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=258, lastline=266]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%if(sesionConsejoEdicion.solicitudesDictamen == null){
+%	return sesionConsejoEdicion.habilitadoParaEliminar=verdadero;
+%}
+%else{
+%		return sesionConsejoEdicion.habilitadoParaEliminar=falso;
+%}
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que el usuario elimine información que ha sido asociada a una sesión de Consejo con el fin de que el trabajo realizado y planeado para crear una sesión con solicitudes de dictamen asociadas se conserve.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+
+%%%=========================REGLA BR-DIC-N068=============================================
+\begin{BusinessRule}{BR-DIC-N068}{Cálculo de avance en la atención de solicitudes de dictamen}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El cálculo del porcentaje de avance que se tiene en la atención de solicitudes de dictámenes debe realizarse, tomando en cuenta que el 100\% de avance se logra cuando todas las solicitudes pasan al estado \textbf{Atendido} con base en el \refElem{ME-Predictamen}.
+	\BRItem[Sentencia]	\cdtEmpty
+	
+	$ Avance = [(solicitudesAtendidas)(100)]/(totalDeSolicitudesPorCorregir)$
+	
+	\BRItem[Motivacion] Mostrar el porcentaje de avance que se tiene y así saber el trabajo que está pendiente.
+	\BRItem[Ejemplo positivo] 
+	
+	\BRItem[Ejemplo negativo] 
+	
+\end{BusinessRule}
+
+%%%=========================BR-DIC-N069=============================================
+\begin{BusinessRule}{BR-DIC-N069}{Cálculo de avance en la atención de solicitudes de dictamen por corrección}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El cálculo del porcentaje de avance que se tiene en la atención de solicitudes de dictámenes que fueron enviados a revisión debe realizarse, tomando en cuenta que el 100\% de avance se logra cuando todas las solicitudes pasan al estado \textbf{Corregido} con base en el \refElem{ME-Predictamen}, sin embargo también es posible consultar el porcentaje de avance que se tiene en las solicitudes de dictamen con estado \textbf{Por corregir} y \textbf{En corrección}.
+	\BRItem[Sentencia]	\cdtEmpty
+	
+	$$AvanceCorregidas = \frac{[(solicitudesCorregidas)(100)]}{totalDeSolicitudesPorCorregir}$$
+	$$ AvanceEnCorreccion = \frac{[(solicitudesEnCorreccion
+		)(100)]}{(totalDeSolicitudesPorCorregir)}$$
+	
+	$$AvancePorCorregir = \frac{[(solicitudesPorCorregir)(100)]}{(totalDeSolicitudesPorCorregir)}$$
+	
+	\BRItem[Motivacion] Mostrar el porcentaje de avance que se tiene y así saber el trabajo que está pendiente.
+	\BRItem[Ejemplo positivo] 
+	
+	\BRItem[Ejemplo negativo] 
+	
+\end{BusinessRule}
+
+%%%=========================BR-DIC-N06=============================================
+\begin{BusinessRule}{BR-DIC-N070}{Cálculo de semestre máximo de avance}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El cálculo del semestre máximo de avance debe hacerse tomando en cuenta la o las unidades de aprendizaje \footnote{Ver \refElem{tUnidadDeAprendizaje}} de más alto nivel que hayan sido cursadas por el \refElem{tAlumno}.
+	\BRItem[Sentencia]	\cdtEmpty
+	\lstinputlisting[language=C, firstline=268, lastline=279]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	int nivelUnidadAprendizaje[];
+%	int nivelMaximo = 0;
+%	for (int i = 0; i < nivelPlanEstudio; i++) {
+%	if (nivelUnidadAprendizaje[i] > nivelMaximo) {
+%	nivelMaximo = nivelUnidadAprendizaje[i];
+%	}
+%	}
+%	int maximoSemestre = nivelMaximo;
+%	\end{lstlisting}
+	
+	\BRItem[Motivacion] Obtener el máximo semestre que el alumno haya cursado.
+	\BRItem[Ejemplo positivo] 
+	
+	\BRItem[Ejemplo negativo] 
+	
+\end{BusinessRule}
+
+%%%=========================REGLA BR-DIC-N071=============================================
+\begin{BusinessRule}{BR-DIC-N071}{Cálculo del total de solicitudes para predictaminación}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El cálculo del total de solicitudes para predictaminación que se tienen asociadas a una sesión de \refElem{tCTCE} o \refElem{tCGC} se hace tomando en cuenta que el total de solicitudes es la suma de las solicitudes que se encuentran en estado \textbf{Atendido} y \textbf{Por atender} con base en el \refElem{ME-Predictamen}.
+	\BRItem[Sentencia]	\cdtEmpty
+	
+	$ Total = solicitudesPorAtender + solicitudesAtendidas$
+	
+	\BRItem[Motivacion] Mostrar el total de solicitudes que se tienen asociadas a una sesión de consejo.
+	\BRItem[Ejemplo positivo] 
+	
+	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+
+%%=========================REGLA BR-DIC-N072=============================================
+\begin{BusinessRule}{BR-DIC-N072}{Cálculo del total de solicitudes para dictaminar en una sesión de la COSIE del Consejo}
+	{\bcDerivation}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza 
+	\BRItem[Revisada por] 
+	\BRItem[Aprobada por] 
+	\BRItem[Descripción] El cálculo del total de solicitudes que se tienen asociadas a una sesión de la \refElem{tCOSIECTCE} o a la \refElem{tCOSIECGC} que se atenderán para ser dictaminadas es la sumatoria de todas las solicitudes de dictamen que tienen como resultado de predictamen Favorable y No favorable.
+	\BRItem[Sentencia]	\cdtEmpty
+	
+	$ TotalSolicitudes = solicitudesPredictamenFavorable + solicitudesPredictamenNofavorable$
+	
+	\BRItem[Motivacion] Mostrar el total de solicitudes que se atenderán para ser dictaminadas en una sesión de la COSIE del CTCE o CGC.
+	
+\end{BusinessRule}
+
+%%%%%%%------------------REGLA BR-DIC-N073=============================================
+\begin{BusinessRule}{BR-DIC-N073}{Redirección de solicitudes de dictamen}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Una solicitud de dictamen puede ser redireccionada como máximo en tres ocasiones.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=281, lastline=290]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(contadorDeRedireccion < 3) {
+%	solicitud.habilitarRedireccion();
+%	contadorDeRedireccion ++;
+%	} else {
+%	break;
+%	}
+%	
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar que el usuario redireccione una solicitud y esta pueda no ser dictaminada en tiempo y forma.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%=========================REGLA BR-DIC-N074=============================================
+\begin{BusinessRule}{BR-DIC-N074}{Concurrencia de predictaminación de solicitud de dictamen}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Durante la sesión de consejo una solicitud puede ser atendida sólo por un analista, sin embargo si otro analista atiende la misma solicitud debe ser tomando en cuenta que se sobrescribirán los cambios realizados a la solicitud de dictamen por el primer analista.
+	\BRItem[Sentencia]	\cdtEmpty
+	\lstinputlisting[language=C, firstline=292, lastline=302]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if (solicitud.estado == "EnCorrecion" || "EnAtencion") {
+%	return disponibilidadSolicitud = true;
+%	} else if (solicitud.estado = "Corregido" || "Atendido") {
+%	return disponibilidadSolicitud = false;
+%	} else {
+%	return disponibiladSolicitud = true;
+%	}
+%	\end{lstlisting} 
+	
+	\BRItem[Motivación] 
+	%	\BRItem[Ejemplo positivo] 
+	%	Sea analista 1 y analista 2:
+	%	\begin{itemize}
+	%		\item Analista 1 solicita corregir la solicitud con folio 100-57.
+	%		\item Analista 2 solicita corregir la solicitud con folio 110-26.
+	%	\end{itemize}
+	%	\BRItem[Ejemplo negativo] 
+	%	Sea analista 3 y analista 4.
+	%	\begin{itemize}
+	%		\item Analista 3 solicita corregir la solicitud con folio 100-57.
+	%		\item Analista 4 solicita corregir la solicitud con folio 100-57.
+	%	\end{itemize}
+	
+	
+\end{BusinessRule}
+
+
+%%%=========================REGLA BR-DIC-N075=============================================
+\begin{BusinessRule}{BR-DIC-N075}{Conformación de equipos de consejeros para predictaminación}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul 
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Durante la sesión de consejo una solicitud puede ser atendida sólo por un analista, sin embargo si otro analista atiende la misma solicitud debe ser tomando en cuenta que se sobrescribirán los cambios realizados a la solicitud de dictamen por el primer analista.
+	\BRItem[Sentencia]	\cdtEmpty
+	
+%	\begin{lstlisting}[language=C]
+%	if (solicitud.estado == "EnCorrecion" || "EnAtencion") {
+%	return disponibilidadSolicitud = true;
+%	} else if (solicitud.estado = "Corregido" || "Atendido") {
+%	return disponibilidadSolicitud = false;
+%	} else {
+%	return disponibiladSolicitud = true;
+%	}
+%	\end{lstlisting} 
+	
+	\BRItem[Motivación] 
+	%	\BRItem[Ejemplo positivo] 
+	%	Sea analista 1 y analista 2:
+	%	\begin{itemize}
+	%		\item Analista 1 solicita corregir la solicitud con folio 100-57.
+	%		\item Analista 2 solicita corregir la solicitud con folio 110-26.
+	%	\end{itemize}
+	%	\BRItem[Ejemplo negativo] 
+	%	Sea analista 3 y analista 4.
+	%	\begin{itemize}
+	%		\item Analista 3 solicita corregir la solicitud con folio 100-57.
+	%		\item Analista 4 solicita corregir la solicitud con folio 100-57.
+	%	\end{itemize}
+	
+	
+\end{BusinessRule}
+
+
+
+%%%%%%%%------------------REGLA BR-S017=============================================
+%\begin{BusinessRule}{BR-S017}{Eliminar analista de la COSIE}
+%	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+%	\BRItem[Versión] 0.1 
+%	\BRItem[Estado] En revisión.
+%	\BRItem[Propuesta por] Eduardo Espino Maldonado
+%	\BRItem[Revisada por] Pendiente.
+%	\BRItem[Aprobada por] Pendiente.
+%	\BRItem[Descripción] Un analista solo podrá eliminarse de un Consejo, si y solo si éste no ha predictaminado ninguna solicitud de dictamen.
+%	\BRItem[Sentencia] \cdtEmpty
+%	\begin{lstlisting}[language=C]
+%	Iterator solicitudesDeDictamen;
+%	analista.habilitarEliminacion;
+%	while(solicitudesDeDictamen.hasNext()) {
+%	if(solicitudesDeDictamen.next.atendida(analista.getName())) {
+%	analista.inhabilitarEliminacion;
+%	break;
+%	} else {
+%	analista.habilitarEliminacion;
+%	}
+%	}
+%	\end{lstlisting}
+%	\BRItem[Motivación] Evitar perder el registro de un analista que ya ha participado en alguna sesión de la COSIE.
+%	%	\BRItem[Ejemplo positivo] 
+%	%	\BRItem[Ejemplo negativo]
+%\end{BusinessRule}
+
+%%%%%%------------------ BR-DIC-N078=============================================
+\begin{BusinessRule}{BR-DIC-N078}{Cálculo de solicitudes restantes para dictaminación en sesión de la COSIE}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El total de solicitudes de dictamen que restan por dictaminar en una sesión de consejo es igual a la sumatoria de solicitudes que están en estado \textbf{Por dictaminar} asociadas a la sesión de Consejo.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=304, lastline=317]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	int solicitudesRestantes=0
+%	SolicitudesDictamen[];
+%	SolicitudesDeSesion= obtenerSolicitudesDeSesion();
+%	for(iteradorSolicitud =0; iteradorSolicitudes < solicitudesEnSesion; iteradorSolicitud){
+%	if(SolicitudesDeSesion[iteradorSolicitudes].estado.equals("PorDictaminar")){
+%	solicitudesRestantes++;
+%	}
+%	}
+%	
+%	\end{lstlisting}
+	\BRItem[Motivación] Conocer la cantidad de las solicitudes de dictamen que falten por dictaminar.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------BR-DIC-N079=============================================
+\begin{BusinessRule}{BR-DIC-N079}{Permisos para aprobación de solicitudes para revisión de Consejo en pleno}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Solo pueden aprobarse solicitudes para revisión de Consejo en pleno si la sesión de Consejo está en estado \textbf{En Edición}.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=319, lastline=327]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(sesionDeConsejo.estado == 'En Edicion') {
+%	sesionDeConsejo.habilitaBotonDeAprobacionDeSolitudesParaElPleno();
+%	} else {
+%	sesionDeConsejo.inhabilitaBotonDeAprobacionDeSolitudesParaElPleno();
+%	}	
+%	\end{lstlisting}
+	\BRItem[Motivación] Evitar perder el registro de un analista que ya ha participado en alguna sesión de la COSIE.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-DIC-N080=============================================
+\begin{BusinessRule}{BR-DIC-N080}{Días para envío de solicitudes al CGC}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Las solicitudes de dictamen que son dirigidas al CGC se envían a dicho órgano 7 día después de que se registran en el sistema.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=329, lastline=335]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(solicitud.FechaRecepcion == FechaActual + 7) {
+%	solicitud.envioCGC;
+%	} 	
+%	\end{lstlisting}
+	\BRItem[Motivación] Indicar al actor que sólo cuenta con 7 días naturales para poder registrar la sugerencia o redirigir la solicitud al CTCE.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-S081=============================================
+\begin{BusinessRule}{BR-DIC-N081}{Permisos de dictaminación}
+	{\bcAutorization} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Eduardo Espino Maldonado
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Las solicitudes de dictamen que están asociadas a una sesión de Consejo, solo podrán ser atendidas por los consejeros que se encuentren presentes en la sesión de Consejo.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=337, lastline=349]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(consejero.getEstado() == 'Activo') { 
+%	if(consejero.presenteEnSesion() == true) {
+%	consejero.permisosParaDictaminar = true;
+%	} else {
+%	break;
+%	}
+%	} else {
+%	break;
+%	}
+%	\end{lstlisting}
+	\BRItem[Motivación] Controlar los consejeros que tendrán acceso a la gestión y dictaminación de solicitudes de dictamen durante una sesión de Consejo.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+
+%%%%%%------------------REGLA  BR-DIC-N082=============================================
+\begin{BusinessRule}{BR-DIC-N082}{Unidades de aprendizaje}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La información de las unidades de aprendizaje es aquella que le permite a los analistas emitir una predictaminación para que esta sea atendida posteriormente por los consejeros. La información de las unidades de aprendizaje está compuesta por los siguientes puntos:
+	\begin{itemize}
+		\item \textbf{Unidades de aprendizaje adeudadas sin desfase}: Son unidades de aprendizaje, que aunque estén adeudadas, no se han desfasado, es decir, no han transcurrido mas de 2 periodos escolares desde su primer cursamiento. Se calculan con base en la regla \refIdElem{BR-DIC-N059}.
+		\item \textbf{Unidades de aprendizaje adeudadas con desfase}: Son unidades de aprendizaje que el alumno adeuda y que han transcurrido más de dos periodos escolares desde su primer cursamiento. Se calculan con base en la regla \refIdElem{BR-DIC-N059}.
+		\item \textbf{Periodos escolares de unidad de aprendizaje adeudada más antigua}: Es el número de periodos escolares que han transcurrido a partir del primer cursamiento de la unidad de aprendizaje adeudada más antigua que tiene el alumno. Se obtiene con base en la regla \refIdElem{BR-DIC-N060}.
+	\end{itemize}
+	\BRItem[Motivación] Obtener la información respecto a las unidades de aprendizaje que tiene adeudadas el alumno.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-S083=============================================
+\begin{BusinessRule}{BR-DIC-N083}{Tiempo para consultar avance }
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Cuando el actor solicita ver el avance de las solicitudes de dictamen cuando la sesión esta en proceso, cada  600 segundos se obtiene el resultado de dictaminación de las solicitudes de dictamen que han sido resueltas por los consejeros.
+	\BRItem[Sentencia] \cdtEmpty
+	\lstinputlisting[language=C, firstline=351, lastline=357]{../C2-DT-DIC/regla.c}
+%	\begin{lstlisting}[language=C]
+%	if(tiempoTranscurrido == 600) { 
+%	obtieneAvanceDeSolicitudes();
+%	}
+%	
+%	\end{lstlisting}
+	\BRItem[Motivación] Actualizar la información sobre el resultado de las solicitudes de dictamen atendidas y no atendidas asociadas a la sesión de Consejo.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-N084=============================================
+\begin{BusinessRule}{BR-DIC-N084}{Condición de Consejo para Inicar una sesión de la COSIE}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Carlos Alberto Robles Ruiz
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] "Los elementos necesarios que requiere un Consejo para Iniciar una Sesión de la COSIE son: 
+Que el estado del Consejo al que tiene asociada la sesión sea Activo con base en el Modelo de ciclo de vida de un Consejo".
+	\BRItem[Sentencia] \cdtEmpty
+	
+	\BRItem[Motivación] Saber que una sesión de la COSIE puede ser iniciada siempre y cuando el estado del Consejo sea Activo.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+%%%%%%------------------REGLA BR-N085=============================================
+\begin{BusinessRule}{BR-DIC-N085}{Condición de Roles necesarias para iniciar una Sesión de la COSIE}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Carlos Alberto Robles Ruiz.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] "Los roles necesarios que se requiere para Iniciar una Sesión de la COSIE son: 
+1. Que exista por lo menos un consejero en estado Activo en el Consejo al que pertenece la sesón de la COSIE.
+2. Que exista por lo menos un analista de la unidad acad emica en estado Activo en el Consejo al que pertenece la sesión de la COSIE"
+	\BRItem[Sentencia] \cdtEmpty
+	
+	\BRItem[Motivación] Saber cuales son los actores que deben estar presentes para iniciar una sesión de Consejo de la COSIE.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-N086=============================================
+\begin{BusinessRule}{BR-DIC-N086}{Información necesaria para dictaminar solicitud de dictamen}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Carlos Alberto Robles Ruiz.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Para que una solicitud de dictamen pueda ser analizada en la sesión de la COSIE, la solicitud de dictamen debe de tener un predictamen asociado con el fin de que el consejero de la COSIE tenga los elementos necesarios para emitir una resolución.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	\BRItem[Motivación] Que una solicitud de dictamen tenga un resultado de predictamen para que pueda ser dictaminada en la sesión del Consejo de la COSIE.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-N087=============================================
+\begin{BusinessRule}{BR-DIC-N087}{Obtención de unidades de aprendizaje desfasadas sin curse}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Una unidad de aprendizaje desfasada sin curse es aquella que, con base en el artículo 98, no ha sido cursada y han transcurrido tres o más periodos en a partir del momento en que debió ser cursada. Para determinar si se encuentra desfasada se debe tomar el periodo en que debió ser cursada ($P_{a}$) y el periodo actual ($P_{b}$) y con utilizando la regla \refIdElem{BR-DIC-N040} se obtiene un tercer periodo ($P_{c}$) y si ($P_{c} > 3$) la unidad de aprendizaje estará desfasada.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	\BRItem[Motivación] Saber si una unidad de aprendizaje se encuentra desfasada sin haber sido cursada.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-N088=============================================
+\begin{BusinessRule}{BR-DIC-N088}{Integración del CGC}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] La COSIE del CGC estará integrado máximo por:
+	
+\Titem 3 Consejeros alumnos con estado \textbf{Activo} representando a cada nivel del IPN.
+	\Titem 3 Consejeros profesores con estado \textbf{Activo} representando a cada nivel del IPN.
+	\Titem 15 Consejeros directivos con estado \textbf{Activo}.
+%	\BRItem[Sentencia] \cdtEmpty
+%	
+	\BRItem[Motivación] Saber si una unidad de aprendizaje se encuentra desfasada sin haber sido cursada.
+		\BRItem[Ejemplo positivo] Se requiere agregar un nuevo consejero alumno a la COSIE del CGC y ya existen 3 consejeros del tipo Alumno  registrados, dos con estado \textbf{Activo} y uno con estado \textbf{Inactivo}:
+	\item Permite agregar al consejero del tipo Alumno con estado \textbf{Activo}.
+		\BRItem[Ejemplo negativo] 
+		Se requiere agregar un nuevo consejero alumno a la COSIE del CGC y ya existen 3 consejeros registrados del tipo Alumno con estado \textbf{Activo}:
+	\item Permite agregar al consejero del tipo Alumno con estado \textbf{Activo}.
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-N089=============================================
+\begin{BusinessRule}{BR-DIC-N089}{Unidades de adscripción para consejeros}
+	{\bcAutorization} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blInfluencing}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Los empleados que sean establecidos como consejeros directivos de la COSIE del CGC, deben ser recursos humanos del IPN y deben tener por lo menos una unidad de adscripción asociada a su número de empleado.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	Sea $ TUA$ El total de Unidades de adscripción asociados al número de empleado.\\
+	
+	Tal que:
+	\begin{center}
+	$\sum_{i=0}^{TUA} numEmpleado.unidadAdscripcion \geq 1  \Rightarrow El empleado puede ser consejero Directivo$
+	\end{center}
+	
+	\BRItem[Motivación] Conocer las unidades de adscripción del empleado para seleccionar que unidad representará en el CGC.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+%%%%%%------------------REGLA BR-N090=============================================
+\begin{BusinessRule}{BR-DIC-N090}{Participacion de Alumno Consejero en la COSIE}
+	{\bcCondition} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Diana Laura Mejía Mendoza
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] Un alumno consejero que participa en el CGC debe ser consejero en estado Activo del CTCE.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	\begin{center}
+	$\forall alumno.consejero \in COSIECGC \Rightarrow alumno.consejeroActivo \in COSIECTCE $
+	\end{center}
+	
+	\begin{center}
+	$\forall profesor.consejero \in COSIECGC \Rightarrow profesor.consejeroActivo \in COSIECTCE $
+	\end{center}
+%	\lstinputlisting[language=C, firstline=409, lastline=416]{../C2-DT-DIC/regla.c}
+	\BRItem[Motivación] Que solo los alumnos o profesores que son consejeros de la COSIE del CGC, sean también consejeros de la COSIE del CTCE.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+
+%%%%%%------------------REGLA BR-N089=============================================
+\begin{BusinessRule}{BR-DIC-N091}{Obtención de periodo máximo para conclusión de plan de estudio}
+	{\bcDerivation} % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}     %Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}     %Nivel:  \blControlling, \blInfluencing.
+	\BRItem[Versión] 0.1 
+	\BRItem[Estado] En revisión.
+	\BRItem[Propuesta por] Alberto García Paul
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] El periodo máximo para conclusión de plan de estudio es el periodo escolar que el alumno tiene como máximo para concluir el plan de estudio de su programa académico. Para obtenerlo se requiere el periodo escolara en que el alumno ingreso al plan de estudio ($P_{i}$), la duración máxima del plan de estudio ($D_{max}$), que se obtiene con base en la regla \refIdElem{BR-DIC-N044}. Una vez obtenidos los valores se hace una adición entre $P_{i}$ y $\frac{P_{max}}{2}$.
+	\BRItem[Sentencia] \cdtEmpty
+	
+	\BRItem[Motivación] Conocer las unidades de adscripción del empleado para seleccionar que unidad representará en el CGC.
+	%	\BRItem[Ejemplo positivo] 
+	%	\BRItem[Ejemplo negativo] 
+\end{BusinessRule}
+

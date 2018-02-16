@@ -1,0 +1,1342 @@
+\subsection{Reglas de Negocio de Estructura Educativa}
+
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N001}{Ocupabilidad para asociar la unidad de aprendizaje}
+	{\bcAutorization}    %Clase: \bcAutorization.
+	{\btEnabler}     %Tipo:  \btEnabler.
+	{\blControlling}    %Nivel: \blControlling.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Victor
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Los grupos se asignarán a una unidad de aprendizaje cuando la ocupabilidad sea mayor que cero.
+		\BRItem[Sentencia]  Sea O = Ocupabilidad, si $O>0$, la unidad de aprendizaje se asigna al grupo.
+		\BRItem[Motivación] Evitar que existan grupos sin asignación de unidades de aprendizaje.
+		\BRItem[Ejemplo positivo] Cumplen la regla:
+		\begin{itemize}
+			\item En la unidad de aprendizaje Comunicación Oral y Escrita para el grupo 1CM2 se marca la ocupabilidad para dicho grupo, por lo tanto el grupo se asocia a la unidad de aprendizaje.
+		\end{itemize}
+		\BRItem[Ejemplo negativo] No cumplen con la regla:
+		\begin{itemize}
+			\item En la unidad de aprendizaje Comunicación Oral y Escrita para el grupo 1CM2 se marca la ocupabilidad igual a 0 o vacía para dicho grupo, por lo tanto el grupo no se asocia a la unidad de aprendizaje.
+		\end{itemize}
+	%	\referencedBy{BR-EE-N001}
+\end{BusinessRule}
+
+%%%======================================================================
+%\begin{BusinessRule}{BR-EE-N002}{Sugerencia de apertura de unidad de aprendizaje-grupo}
+%	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Victor
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Siendo N = unidad de aprendizaje-grupo y S = sugerencia de apertura unidad de aprendizaje-grupo. N<=S por lo tanto N debe ser menor o igual a S.
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] Evitar que se asocien todas las unidades de aprendizaje sugeridas para el semestre a todos los grupos definidos.
+%	%	\BRItem[Ejemplo positivo] \cdtEmpty
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%	\BRItem[Ejemplo negativo]
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.2}
+%\end{BusinessRule}
+%
+%%%======================================================================
+%\begin{BusinessRule}{BR-EE-N003}{Tipo de profesor asignado a una unidad de aprendiza teórica}
+%	{\bcCondition}     %Clase: \bcCondition.
+%	{\btEnabler}      %Tipo:  \btEnabler.
+%	{\blControlling}    % Nivel: \blControlling.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Angeles, Sandra Ivette Bautista Rosales
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] A una unidad de aprendizaje de nivel superior sólo se le pueden asignar profesores de tipo titular.
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] Evitar que se utilice el concepto de profesor "adjunto", ya que no existe en los planes de estudio ni en los mapas curriculares de  nivel superior, únicamente los titulares.
+%		\BRItem[Ejemplo positivo] Cumplen con la regla: 
+%		\begin{itemize}
+%			\item Un profesor, aunque sólo esté apoyando en la parte práctica de una unidad de aprendizaje, debe ser titular.
+%	%		\item 
+%	%		\item 
+%		\end{itemize}
+%		\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item Un profesor que esté apoyando en una sola exposición de tipo práctica, se le denomina "adjunto" por no impartir la clase teórica.
+%	%		\item 
+%	%		\item 
+%		\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+%\end{BusinessRule}
+%
+%%%======================================================================
+%\begin{BusinessRule}{BR-EE-N004}{Número de horas de interinado por parcialidad solicitadas}
+%	{\bcCondition}     %Clase: \bcCondition.
+%	{\btEnabler}      %Tipo:  \btEnabler.
+%	{\blControlling}     %Nivel: \blControlling.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Angeles, Sandra Ivette Bautista Rosales
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] El número de horas de interinato por parcialidad de un profesor deben ser mayores o iguales que cero y  menores o iguales a las horas en las que se excede la carga máxima reglamentaria.
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] 
+%	\begin{itemize}
+%				\item Evitar que un profesor que no cubre su carga máxima reglamentaria tenga un interinato por parcialidad.
+%				\item Evitar que a un profesor de base se le asignen más horas de interinato de las que excede su carga máxima reglamentaria.
+%			\end{itemize}
+%		\BRItem[Ejemplo positivo] Cumplen con la regla:
+%		\begin{itemize}
+%			\item A un profesor que adeuda 3 horas de su carga máxima reglamentaria se le asigna una unidad de aprendizaje de 5 horas, con ésta cubre las 3 horas que adeudaba y ahora excede en 2 horas, por lo tanto no se permite pedir más de 2 horas en interinato por parcialidad.
+%		\end{itemize}
+%		\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%			\item A un profesor que adeuda 3 horas de su carga máxima reglamentaria se le asigna una unidad de aprendizaje de 5 horas, con ésta cubre las 3 horas que adeudaba y ahora excede en 2 horas, se le permite pedir las 5 horas de la materia como interinato de carga parcial.
+%	%		\item 
+%	%		\item 
+%		\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+%\end{BusinessRule}
+%
+%%%====================================================================== 
+%\begin{BusinessRule}{BR-EE-N005}{Solicitar horas de interinato por parcialidad}
+%	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Angeles, Sandra Ivette Bautista Rosales
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Sólo se pueden solicitar horas de interinato por parcialidad si las Horas Frente a Grupo de un profesor exceden su carga máxima reglamentaria y no existen horas de parcialidad solicitadas para ese profesor, esto implica que solamente está permitida una carga parcial por profesor. La asignación de horas de interinato por parcialidad únicamente aplica para los profesores de base en ambos niveles.
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] \cdtEmpty
+%	\begin{itemize}
+%		\item Evitar que a un profesor de base se le asigne más de una carga parcial.
+%		\item Evitar que se soliciten automáticamente las horas de interinato por parcialidad cuando al asignar un grupo-unidad de aprendizaje al profesor exceda su carga máxima reglamentaria.
+%		\item Evitar que se le asigne un interinato por parcialidad a un candidato. 
+%	\end{itemize}
+%	\BRItem[Ejemplo positivo] Cumplen con la regla:
+%	\begin{itemize}
+%		\item A un profesor que adeuda 3 horas de su carga máxima reglamentaria se le asigna una unidad de aprendizaje de 5 horas, con ésta cubre las 3 horas que adeudaba y ahora excede en 2 horas, las cuales le solicitan en interinato por parcialidad.
+%		\item A un profesor que adeuda 3 horas de su carga máxima reglamentaria se le asigna una unidad de aprendizaje de 5 horas, con ésta cubre las 3 horas que adeudaba y ahora excede en 2 horas, las cuáles no se piden como interinato porque el profesor decidió cubrir las horas sin una remuneración.
+%		\item A un profesor que adeuda 3 horas de su carga máxima reglamentaria se le asigna una unidad de aprendizaje de 5 horas, con ésta cubre las 3 horas que adeudaba y ahora excede en 2 horas, se decide pedirle solamente una hora en interinato por parcialidad y la otra hora la cubrirá sin una remuneración.
+%	\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla:
+%		\begin{itemize}
+%		\item A un profesor que adeuda 3 horas de su carga máxima reglamentaria se le asigna una unidad de aprendizaje de 5 horas, con ésta cubre las 3 horas que adeudaba y ahora excede en 2 horas, pero no se habilita la opción de elegir el número de horas en interinato por parcialidad.
+%		\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+%\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N006}{Validación de Carga Máxima Reglamentaria}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Angeles, Sandra Ivette Bautista Rosales
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] \cdtEmpty \\
+	\begin{Titemize}
+		\Titem Un profesor cubre su carga máxima reglamentaria cuando sus Horas Frente a Grupo son iguales a su Carga Máxima Reglamentaria.
+		\Titem Un profesor excede carga máxima reglamentaria si sus Horas Frente a Grupo son mayores a su Carga Máxima Reglamentaria.
+		\Titem Un profesor adeuda horas de su carga máxima reglamentaria cuando sus Horas Frente a Grupo son menores a su Carga Máxima Reglamentaria.
+	\end{Titemize}
+		\BRItem[Sentencia]  $Sean:$ \\
+		$Horas\ Maximas\ Reglamentarias\ =$ $\{x \mid x\ es\ cualquier\ numero\ de\ horas\ que\ el\ profesor\ debe\\\ cumplir\ frente\ a\ grupo\}$ \\
+		$Horas\ Frente\ a\ Grupo\ =$ $\{y \mid y\ es\ cualquier\ numero\ de\ horas\ frente\ a\ grupo\ asignadas\ al\\\ profesor\}$ \\
+		$Horas\ Unidad\ de\ Aprendizaje\ =$ $\{w \mid w\ es\ cualquier\ numero\ de\ horas\ de\ la\ unidad\ de\\\ aprendizaje\}$ \\\\
+		$Entonces:$ \\\\
+		$Si\ (y\ <\ x);$  $y\ se\ asigna\ w\ a\ y;$  $entonces:\ (w\ +\ y\ =\ valor1);$ \\
+		$Si\ (valor1 ==\ x);$  $entonces\ cubre\ x;$ \\
+		$Si\ (valor1\ <\ x);$  $entonces\ adeuda\ x;$ \\
+		$Si\ (valor1\ >\ x);$  $enonces\ excede\ x;$ \\
+	\BRItem[Motivación] Evitar que se pidan horas de interinato por parcialidad para un profesor de base que no excede su carga máxima reglamentaria.
+		\BRItem[Ejemplo positivo] Cumplen con la regla
+		\begin{itemize}
+			\item Un profesor Titular C con 40 horas de nombramiento tiene como carga máxima reglamentaria 12 horas, si hasta el momento tiene asignados dos grupos-unidad de aprendizaje que suman 9 horas y se le asigna una tercera unidad de aprendizaje de 4.5 horas, entonces cubre su carga máxima y se excede en 1.5 horas que le pueden solicitar como horas de interinato por parcialidad.
+		\end{itemize}
+		\BRItem[Ejemplo negativo] No cumplen con la regla
+		\begin{itemize}
+			\item Un profesor Titular C con 40 horas de nombramiento tiene como carga máxima reglamentaria 12 horas, si hasta el momento tiene asignados dos grupos-unidad de aprendizaje que suman 9 horas y se le asigna una tercera unidad de aprendizaje de 3 horas, entonces cubre su carga máxima y no excede la misma y no se habilita el campo para solicitar horas de interinato por parcialidad. 
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N007}{Estimado de horas frente a grupo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Rocio Guerrero Gómez
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] José Jaime López Rabadán
+	\BRItem[Descripción] Un profesor tiene Horas Frente a Grupo asignadas, entonces para que el profesor cumpla con las horas otorgadas debe cubrir las horas de las unidades de aprendizaje que se establecieron.
+		\BRItem[Sentencia]  $Sean:$ \\
+		$Horas\ Maximas\ Reglamentarias\ =$ $\{x \mid x\ es\ cualquier\ numero\ de\ horas\ que\ el\ profesor\ debe\\\ cumplir\ frente\ a\ grupo\}$ \\
+		$Horas\ Frente\ a\ Grupo\ =$ $\{y \mid y\ es\ cualquier\ numero\ de\ horas\ frente\ a\ grupo\ asignadas\ al\\\ profesor\}$ \\
+		$Horas\ Unidad\ de\ Aprendizaje\ =$ $\{w \mid w\ es\ cualquier\ numero\ de\ horas\ de\ la\ unidad\ de\\\ aprendizaje\}$ \\\\
+		$Entonces:$ \\\\
+		$(y\ +\ w\ =\ valor1);$ \\
+		$Por lo tanto:$ \ $Si\ (valor1 ==\ x);$  $entonces\ cubre\ x;$  \\		
+	\BRItem[Motivación] Estimar las Horas Frente a Grupo cuando se asigna una unidad de aprendizaje al profesor.
+		
+		\BRItem[Ejemplo positivo] Cumplen con la regla: \\
+			\begin{Titemize}
+				\Titem Un profesor Asociado A con 20 horas de nombramiento tiene como carga máxima reglamentaria 12 horas, si hasta el momento tiene asignados dos grupos-unidad de aprendizaje que suman 9 horas y se le asigna una tercera unidad de aprendizaje de 3 horas, entonces cubre su carga máxima y no excede la misma por lo tanto no se habilita el campo para para solicitar horas de interinato por parcialidad.
+			\end{Titemize}
+		\BRItem[Ejemplo negativo] No cumplen con la regla: \\
+			\begin{Titemize}
+				\Titem Un profesor Asociado A con 20 horas de nombramiento tiene como carga máxima reglamentaria 12 horas, si hasta el momento tiene asignados dos grupos-unidad de aprendizaje que suman 9 horas y ya no se le asigna unidad de aprendizaje, entonces no cubre su carga máxima y no excede la misma por lo tanto no se habilita el campo para para solicitar horas de interinato por parcialidad.
+			\end{Titemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N008}{Horas máximas de nombramiento}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Angeles
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] José Jaime López Rabadán
+	\BRItem[Descripción] La suma de horas de nombramiento de un profesor, tomando en cuenta base e interinato, no puede exceder las 40 horas.
+		\BRItem[Sentencia]  $Sean:$ \\\\
+		$Horas\ Maximas\ de\ Nombramiento\ =$ $\{40\ horas\}$ \\
+		$Horas\ de\ Nombramiento\ =$ $\{z \mid z\ es\ cualquier\ numero\ de\ horas\ otorgadas\ al\ profesor\}$ \\\\
+		$Entonces:$ \\\\
+		$(z\ <\ 40\ horas)$ \\
+	\BRItem[Motivación] Evitar que el profesor tenga más de 40 horas a la semana entre la suma de horas de todas sus plazas en todas las modalidades.
+		\BRItem[Ejemplo positivo] Cumplen con la regla: \cdtEmpty
+		\begin{itemize}
+			\item El profesor tiene una plaza de 20 horas de base en modalidad escolarizada y otra plaza de 20 horas de interinato en modalidad no escolarizada, en total suma 40 horas máximas de nombramiento por las 2 plazas correspondientes al profesor.
+			\item El profesor tiene una plaza de 30 horas de base en modalidad no escolarizada y otra plaza de 5 horas de interinato en modalidad escolarizada, en total suma 35 horas de nombramiento.
+		\end{itemize}
+		\BRItem[Ejemplo negativo] No cumplen con la regla: \cdtEmpty
+		\begin{itemize}
+			\item El profesor tiene una plaza de 20 horas de base en modalidad escolarizada y otra plaza de 21 horas de interinato en modalidad no escolarizada, en total suma 41 horas de nombramiento por las 2 plazas correspondientes al profesor, por lo tanto rebasa las 40 horas máximas de nombramiento.
+			\item El profesor tiene una plaza de 40 horas de base en modalidad no escolarizada y otra plaza de 5 horas de interinato en modalidad escolarizada, en total suma 45 horas de nombramiento, por lo tanto rebasa las 40 horas máximas de nombramiento. 
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N009}{Traslape de horario de profesor}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Victor
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] José Jaime López Rabadán
+	\BRItem[Descripción] Existe traslape en el horario de un profesor si éste está asignado a dos o más unidades de aprendizaje que tienen al menos una exposición programada el mismo día, tal que la hora de fin de una sea mayor que la hora de inicio de la otra.
+	%	\BRItem[Sentencia]  $ $
+	\BRItem[Motivación] Evitar que se asocien unidades de aprendizaje definidas en el mismo horario de un profesor.
+		\BRItem[Ejemplo positivo] Cumplen con la regla: \cdtEmpty
+		\begin{itemize}
+			\item Un profesor tiene asignada la unidad de aprendizaje Análisis de Algoritmos los días Lunes y Martes de 08:30-10:00 para los dos días, y también tiene asignada la unidad de aprendizaje Álgebra Lineal los días Lunes y Martes de 10:30-12:00 para los dos días.
+			\item Un profesor tiene asignada la unidad de aprendizaje Matemáticas Avanzadas los días Martes, Miércoles y Viernes para el día Martes tiene un horario de 07:00-08:30, el día Miércoles de 07:00-08:30 y el día Viernes de 08:30:10:00, y también tiene asignada la unidad de aprendizaje Teoría de Comunicaciones y Señales los días Lunes, Martes y Jueves para el día Lunes de 07:00-08:30, el día Martes 08:30-10:00 y el día Jueves de 07:00-08:30. 
+		\end{itemize}
+		\BRItem[Ejemplo negativo]
+		\begin{itemize}
+			\item Un profesor tiene asignada la unidad de aprendizaje Análisis de Algoritmos los días Lunes y Martes de 08:30-10:00 para los dos días, y también tiene asignada la unidad de aprendizaje Álgebra Lineal los días Lunes y Martes de 08:30-10:00 para los dos días.
+			\item Un profesor tiene asignada la unidad de aprendizaje Matemáticas Avanzadas los días Martes, Miércoles y Viernes para el día Martes tiene un horario de 07:00-08:30, el día Miércoles de 07:00-08:30 y el día Viernes de 08:30:10:00, y también tiene asignada la unidad de aprendizaje Teoría de Comunicaciones y Señales los días Lunes, Martes y Jueves para el día Lunes de 07:00-08:30, el día Martes 07:00-08:30 y el día Jueves de 07:00-08:30. 
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N010}{Nivelar horas de carga parcial para un profesor}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Tanya S. Hernández Valdez 
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] En el momento que a un profesor se le quita alguna unidad de aprendizaje y el profesor excede su carga máxima reglamentaria entonces se quitan en automático el total de horas de la unidad de aprendizaje. Por otro lado cuando se le quita una unidad de aprendizaje de la cual se tomaron horas de base y horas de interinato para cubrir una parcialidad, se reduce el número de horas que fueron tomadas de base y también se quitan las horas que se tomaron para la parcialidad y si el profesor con esa asignación excedía la carga máxima de nombramiento y como consecuencia se tomaron horas complementarias por lo tanto se a completan las horas que se le habían quitado y por ultimo se obtiene el total de de horas frente a grupo. \\
+	
+	Si se le quita otra materia Y, se verifica si las horas por parcialidad solicitadas todavía son válidas, si lo son se dejan las horas por parcialidad como tal. Si no son válidas, se reducen hasta el máximo número válido.
+	\BRItem[Sentencia]  $Sean:$ \\\\
+	$Horas\ Maximas\ Reglamentarias\ =$ $\{x \mid x\ es\ cualquier\ numero\ de\ horas\ que\ el\ profesor\ debe\\\ cumplir\ frente\ a\ grupo\}$ \\
+	$Horas\ Frente\ a\ Grupo\ =$ $\{y \mid y\ es\ cualquier\ numero\ de\ horas\ frente\ a\ grupo\ asignadas\ al\\\ profesor\}$ \\
+	$Horas\ Maximas\ de\ Nombramiento\ =$ $\{40\ horas\}$ \\
+	$Horas\ de\ Nombramiento\ =$ $\{z \mid z\ es\ cualquier\ numero\ de\ horas\ otorgadas\ al\ profesor\}$ \\
+	$Horas\ Unidad\ de\ Aprendizaje\ =$ $\{w \mid w\ es\ cualquier\ numero\ de\ horas\ de\ la\ unidad\ de\\\ aprendizaje\}$ \\
+	$Parcialidad\ =$ $\{v \mid v\ son\ las\ horas\ de\ una\ unidad\ de\ aprendizaje\ las\ cuales\ una\ parte\ se\\\ tomo\ para\ cubrir\ horas\ de\ base\ y\ la\ otra\ parte\ como\ horas\ de\ interinato\}$ \\
+	$Horas\ excedentes\ =$ $\{u \mid u\ es\ el\ numero\ de\ horas\ que\ hacen\ que\ exceda\ la\ carga\ maxima\\\ reglamentria\ del\ profesor\}$ \\\\
+	$Entonces:$ \\\\
+	$(z\ -\ w)\ =\ valor1$ \\\\
+	$Por\ lo\ tanto:$ \\\\
+	$Si\ (valor1 ==\ x);$  $entonces\ cubre\ x;$ \\
+	$Si\ (valor1\ <\ x);$  $entonces\ adeuda\ x;$ \\
+	$Si\ (valor1\ >\ x);$  $entonces\ excede\ x;$ \\\\
+	$Por\ lo\ tanto:\ se\ validan\ que\ las\ horas\ de\ Carga\ Parcial\ tal\ que\ (0\ \leq w\ \leq u)$\\\\
+	$Entonces:$ \\\\
+	$No\ puede\ pedir\ v$ \\
+	\BRItem[Motivación] Evitar que al quitar unidad(es) de aprendizaje al profesor no se realice correctamente la re-asignación de horas. \\
+		\BRItem[Ejemplo positivo] \cdtEmpty
+		\begin{itemize}
+			\item Un profesor tiene asignadas 12 horas reglamentarias y 3 horas tomadas como parcialidad en total suma 15 horas, por lo tanto excede su carga máxima reglamentaria que equivale a 12 horas y deciden quitarle una unidad de aprendizaje de 4.5 horas entonces se resta (15 - 4.5) por lo que el profesor adeuda horas. 
+		\end{itemize}
+		\BRItem[Ejemplo negativo] \cdtEmpty
+		\begin{itemize}
+			\item Un profesor tiene asignadas 12 horas reglamentarias y 3 horas tomadas como parcialidad en total suma 15 horas, por lo tanto excede su carga máxima reglamentaria que equivale a 12 horas y deciden asignarle una unidad de aprendizaje de 4.5 horas entonces no se asignan las horas de la unidad de aprendizaje ya que el profesor ya tenia horas tomadas como parcialidad. 	
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N011}{Estructuras educativas para creación}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Tanya, Sandra, Rocío
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, María Rocío Guerrero Gómez, Tanya Hernández Valdéz
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Las estructuras educativas que sirven como base para la creación de una nueva estructura educativa son: 1) Estructuras educativas que tienen el estado cerrada y aprobada y 2) Estructuras educativas que pertenecen hasta los 2 periodos escolares inmediatos anteriores al que se va a planear. 
+	\BRItem[Sentencia]  Sean:\\
+	$p$ = Periodo escolar actual\\
+	$ee$ = Estructura Educativa del periodo escolar actual\\
+	$(p+1)$ = Periodo escolar a planear\\
+	$(ee+1)$ = Estructura Educativa del periodo a planear\\
+	$(p-1)$ = Periodo escolar anterior\\
+	$(ee-1)$ = Estructura Educativa del periodo escolar anterior\\
+	estado = Estado de la estructura educativa\\
+	Si $p$ tiene los siguientes valores 0$<$ $p$ $\leq$ 2, entonces para crear la estructura educativa de $(p+1)$ se pueden utilizar las estructuras educativas donde:\\
+	$ee.estado$ = $aprobado$ $\in$ $p$ o $(ee-1)$.estado = $cerrada$ $\in$ $(p-1)$.
+
+%Sean 0<$p=periodo Escolar Actual$<=2 y $ee=estructura Educativa$, entonces sólo se pueden tomar como base para copiar una $ee \in p$ $\&$ $ee.estado=aprobada$ o una $ee \in p-1$ $\&$  $ee.estado=cerrada$. 
+	%$\forall ee$ tal que $e=cerrada | e=aprobada$ y  $ee$ pertenezca a $p | p-1$.
+	\BRItem[Motivación] \cdtEmpty
+		\begin{itemize}
+			\item Evitar que se copien estructuras de periodos muy anteriores, ya que cada semestre van cambiando características de la unidad académica y eso impacta en la estructura educativa, por ejemplo la matricula de alumnos.
+			\item Tratar de copiar la mayor parte del soporte documental ya que parte de él tiene documentos probatorios con cierta vigencia,  por lo que es más probable que no varíe tanto en dos semestres anteriores inmediatos.
+		%	y si esa vigencia ya venció no se podrían copiar. ...... No tiene sentido copiarlos, pues son documentos que no tendrían validez 
+		\end{itemize}
+		\BRItem[Ejemplo positivo] Cumplen con la regla
+		\begin{itemize}
+			\item Cuando el responsable de estructura educativa está en el periodo actual 2017-2018/1 y desea definir una nueva estructura para el siguiente periodo 2017-2018/2, solamente debe tener la opción de copiar alguna de las estructuras educativas correspondiente a los periodos 2017-2018/1 y 2016-2017/2.
+	%		\item 
+	%		\item 
+		\end{itemize}
+		\BRItem[Ejemplo negativo] No cumplen con la regla
+		\begin{itemize}
+			\item Cuando el responsable de estructura educativa está en el periodo 2017-2018/1 y desea definir una nueva estructura para el siguiente periodo 2017-2018/2, le aparece la opción de copiar solamente periodos espejo al que se está planeando, es decir, 2016-2017/2, 2015-2016/2, etc.
+			\item Cuando el responsable de estructura educativa está en el periodo 2017-2018/1 y desea definir una nueva estructura para el siguiente periodo 2017-2018/2, no le aparece la opción de copiar el periodo actual.
+			%\item Cuando el responsable de estructura educativa está en el periodo 2017-2018/2 y desea definir una nueva estructura para el siguiente periodo 2017-2018/2, no le aparece la opción de copiar el periodo actual.
+			%alguna de las estructuras educativas correspondiente a los periodos 2017-2018/1, 2016-2017/2
+	%		\item 
+	%		\item 
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{UA-EE-CFG-CU1},\refIdElem{UA-EE-CFG-CU2.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N012}{Horas Frente a Grupo de un profesor correspondiente a un periodo escolar en una Unidad Académica}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Ángeles
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] José Jaime López Rabadán
+	\BRItem[Descripción] Las Horas Frente a Grupo de un profesor es la suma de las horas semanales de las exposiciones de cada Unidad de Aprendizaje que tiene asignadas en la Estructura Educativa del periodo escolar seleccionado en la Unidad Académica indicada.
+	\BRItem[Sentencia] $Sean:$ \\\\
+	$Horas\ de\ la\ Unidad\ de\ Aprendizaje\ =$ $\{x \mid x\ es\ cualquier\ numero\ de\ horas\ por\ semana\ de\ la\ unidad\ de\ aprendizaje\}$
+	$Horas\ Frente\ a\ Grupo\ =$ $\{x_{1}\ +\ x_{2}\ +\ x_{3}\ +...\ x_{n}\}$
+	\BRItem[Motivación] Evitar que no se tomen correctamente la suma de horas.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+		\begin{itemize}
+			\item Un profesor debe cumplir con 12 horas máximas reglamentarias, por lo tanto se asignan 2 unidades de aprendizaje de 4.5 horas cada una y otra unidad de aprendizaje de 3 horas en total suma 12 horas por lo que el profesor cumple con su carga máxima reglamentaria.
+		\end{itemize}
+	\BRItem[Ejemplo negativo]
+		\begin{itemize}
+			\item Un profesor debe cumplir con 12 horas máximas reglamentarias, por lo tanto se asignan 2 unidades de aprendizaje de 4.5 horas cada una y otra unidad de aprendizaje de 3 horas en total suma 12 horas por lo que se asignan 11 horas al profesor. 
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.2.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.2.1}
+\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N013}{Estado de las estructuras educativas de las que se puede obtener información}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, María Rocío Guerrero Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Sólo se obtendrá INFORMACIÓN, de los periodos escolares espejo donde la Estructura Educativa se encuentre en estado de \textbf{Cerrada} \refElem{sec:SM-EE}. Siendo INFORMACIÓN: grupo-unidad de aprendizaje o alumnos inscritos en cada grupo-unidad de aprendizaje.
+	\BRItem[Sentencia] Sea $\Sigma$ el conjunto de ESTADOS $\{creada,revision,aprobado,edicion\}$  y $\psi$ cualquier estado de  $\Sigma$  entonces: \\
+	\begin{itemize}
+		\item si $\psi = cerrada$ se puede obtener información
+		\item si $\psi \neq cerrada$  no se puede obtener información
+	\end{itemize}	
+	\BRItem[Motivación] Evitar que se obtenga información de estructuras educativas en un estado diferente a cerrada.
+		\BRItem[Ejemplo positivo] \cdtEmpty
+		\begin{itemize}
+			\item La estructura educativa correspondiente al periodo escolar $2017-2018/1$ se encuentra en estado de \textbf{Cerrada}, por tal motivo se puede obtener información de ella para métodos estadísticos.
+		\end{itemize}
+		\BRItem[Ejemplo negativo] \cdtEmpty
+		\begin{itemize}
+			\item La estructura educativa correspondiente al periodo escolar $2017-2018/2$ se encuentra en estado de \textbf{Creada}, por tal motivo no se puede obtener información de ella para métodos estadísticos.
+		\end{itemize}
+\end{BusinessRule}
+
+%%====================================================================== 
+\begin{BusinessRule}{BR-EE-N014}{Exposición dentro de un turno}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Rocio Guerrero Gómez
+	\BRItem[Revisada por] Tanya S. Hernández Valdez, Andrés Hernández Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Sólo se asociarán las horas de inicio y fin de una exposición a una unidad de aprendizaje siempre y cuando se encuentren dentro de algún turno definido en la unidad académica.
+	\BRItem[Sentencia]  $Sea\ Estado =$ $\{Valido, Invalido\}$ $y$ $\psi$ $\in$ $Estado$ \\
+	$Sea:$ \\\\ $Matutino =$ [$Hora\_Inicio\_M; Hora\_Final\_M$] \\
+	$Vespertino =$ [$Hora\_Inicio\_V; Hora\_Final\_V$] \\
+	$Mixto =$ [$Hora\_Inicio\_Mi; Hora\_Final\_Mi$] \\
+	$Exposicion =$ [$Hora\_Inicio\_Ex; Hora\_Final\_Ex$] \\\\
+	$Entonces:$ \\\\
+	($\psi$ $= Valido$) $\longleftrightarrow$ [$Exposicion$ $\subset$ ($Matutino$ $\vee$ $Vespertino$ $\vee$ $Mixto$)] \\
+	($\psi$ $= Invalido$) $\longleftrightarrow$ [$Exposicion$ $\nsubset$ ($Matutino$ $\wedge$ $Vespertino$ $\wedge$ $Mixto$)] \\
+	\BRItem[Motivación] Evitar que se asocien horas de inicio y fin de una exposición a una unidad de aprendizaje fuera de los turnos definidos en la unidad académica.
+		\BRItem[Ejemplo positivo] \cdtEmpty
+			En la unidad académica se definió que para el turno matutino la hora de inicio es a las 7:00 y la hora de fin a las 14:00, y se determina que la hora de inicio de una exposición es a las 8:00 y la hora de fin a las 9:30.
+	
+		\BRItem[Ejemplo negativo]
+			En la unidad académica se definió que para el turno matutino la hora de inicio es a las 7:00 y la hora de fin a las 14:00, y se determina que la hora de inicio de una exposición es a las 15:00 y la hora de fin a las 16:30.
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.1.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.1.1},\refIdElem{HR-UA-GG-CU1.5.2.1}
+\end{BusinessRule}
+
+%%====================================================================== 
+\begin{BusinessRule}{BR-EE-N015}{Traslape de exposición de la unidad de aprendizaje}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Rocio Guerrero Gómez
+	\BRItem[Revisada por] Tanya S. Hernández Valdez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Ya existe una exposición para la unidad de aprendizaje definida en el mismo día, a la misma hora de inicio o de fin o en el intervalo de tiempo.
+	\BRItem[Sentencia]  Sean: \\\\
+	$Dias\ Semana\ =$ $\{Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo\}$ \\
+	$Exposicion\ =$ $\{Hora\_Inicio, Hora\_Fin\}$ \\
+	$Por\ lo\ tanto\ se\ puede\ decir\ que:$ \\\\
+	$Dias\ Semana\ =$ $\{x \mid x\ es\ un\ dia\ de\ la\ semana\}$\\
+	$Exposicion\ =$ $\{y \mid y\ es\ una\ hora\ inicio\ y\ una\ hora\ fin\}$ \\
+	$Unidad\ Aprendizaje\ =$ $\{z \mid z\ es\ cualquier\ unidad\ de\ aprendizaje\}$ \\\\
+	$Entonces:$ $y$ $\subset$ ($x$ $\wedge$ $z$) \\\\
+	$Por\ lo\ tanto\ si:$\\\\
+	\big[$y$ $\subset$ ($x$ $\wedge$ $z$) \big] $\bigcap$ \big[$y$ $\subset$ ($x$ $\wedge$ $z$) \big] = $Traslape\ Unidad\ Aprendizaje$ \\
+	\BRItem[Motivación] Evitar que se traslapen exposiciones para un grupo - unidad de aprendizaje en el mismo día.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+		Se asigna una hora de inicio y una hora de fin a la unidad de aprendizaje (Matemáticas discretas) los días Lunes, Martes y Viernes.
+
+	\BRItem[Ejemplo negativo] \cdtEmpty
+		Se asigna la misma hora de inicio y una hora de fin a la unidad de aprendizaje (Matemáticas discretas) los días Lunes, Martes y Viernes.	
+	%\BRItem[Referenciado por] %\refIdElem{HR-UA-GG-CU1.5.1.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.1.1}
+\end{BusinessRule}
+
+%%====================================================================== 
+\begin{BusinessRule}{BR-EE-N016}{Traslape de exposición con una unidad de aprendizaje del mismo grupo}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Rocio Guerrero Gómez
+	\BRItem[Revisada por] Tanya S. Hernández Valdez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Ya existe una exposición en el grupo definida el mismo día y a la misma hora de inicio o fin para otra unidad de aprendizaje.
+	\BRItem[Sentencia] Sean: \\\\
+	$Dias\ Semana\ =$ $\{Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo\}$ \\
+	$Exposicion\ =$ $\{Hora\_Inicio, Hora\_Fin\}$ \\
+	$Por\ lo\ tanto\ se\ puede\ decir\ que:$ \\\\
+	$Dias\ Semana\ =$ $\{x \mid x\ es\ un\ dia\ de\ la\ semana\}$\\
+	$Exposicion\ =$ $\{y \mid y\ es\ una\ hora\ inicio\ y\ una\ hora\ fin\}$ \\
+	$Unidad\ Aprendizaje\ =$ $\{z \mid z\ es\ cualquier\ unidad\ de\ aprendizaje\}$ \\\\
+	$Entonces:$ ($y$ $\subset$ $x$) \\\\
+	$Por\ lo\ tanto\ si:$\\\\
+	($y$ $\subset$ $x$) $\bigcap$ ($y$ $\subset$ $x$) = $Traslape\ Grupo$ \\\\
+	\BRItem[Motivación] Evitar que se asocien todas las unidades de aprendizaje sugeridas para el semestre a todos los grupos definidos.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+		Se asigna una hora de inicio y hora de fin distinta ademas se designa el mismo día a las unidades de aprendizaje (Matemáticas Discretas y Comunicación Oral y Escrita).
+	\BRItem[Ejemplo negativo] \cdtEmpty
+		Se asigna la misma hora de inicio y hora de fin y también el mismo día a las unidades de aprendizaje (Matemáticas Discretas y Comunicación Oral y Escrita) 
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.1.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.1.1}
+\end{BusinessRule}
+
+%%====================================================================== 
+\begin{BusinessRule}{BR-EE-N017}{Cálculo de horas definidas por exposición}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Rocio Guerrero Gómez
+	\BRItem[Revisada por] Rocio Guerrero Gómez, Tanya S. Hernández Valdez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Para obtener las horas definidas: \\
+	\begin{Titemize}
+		\Titem Si la Hora\_Fin y/o Hora\_Inicio de una exposición son horas exactas se realiza la resta de Hora\_Fin \- Hora\_Inicio 
+		\Titem Si la Hora\_Fin y/o Hora\_Inicio de una exposición contienen fracciones de minutos se dividen las fracciones entre 60, se suma la Hora\_Exacta correspondiente a la fracción y se realiza la resta Hora\_Fin \- Hora\_Inicio.
+	\end{Titemize}
+	\BRItem[Sentencia] Sean: \\\\
+	$Horas\ =$ $\{h \mid h\ es\ cualquier\ hora\ exacta\ del\ dia\}$ \\
+	$Horas\ Fraccion\ =$ $\{hf \mid hf\ es\ cualquier\ fraccion\ dada\ en\ minutos\}$\\
+	$Tiempo\ =$ $\{Hora\_Inicio, Hora\_Fin\}$ \\
+	$Horas\ Definidas\ =$ $\{hd_i \mid hd_i\ es\ la\ conversion\ de\ horas\ y\ minutos\ a\ numeros\ decimales\ a\ lo\ mas\\ 2\ numeros\ decimales\}$\\\\
+	$Si\ Hora\_Inicio\ y\ Hora\_Fin\ contienen\ h;$\\
+	$Entonces:$\\
+	$hd_i\ =\ Hora\_Inicio\ -\ Hora\_Fin$\\\\
+	$Si\ Hora\_Fin\ contiene\ hf;$\\
+	$Entonces:$ \\
+	$\frac{hf}{60}\ =\ Valor1;$ \\ $hd_{i1}\ =\ (Valor1\ +\ Hora\_Fin)\ -\ Hora\_Inicio$ \\\\
+	$Si\ Hora\_Inicio\ contiene\ hf;$\\
+	$Entonces:$ \\
+	$\frac{hf}{60}\ =\ Valor2;$ \\ $hd_{i2}\ =\ Hora\_Fin\ -\ (Valor2\ +\ Hora\_Inicio)$ \\\\
+	$Si\ Hora\_Fin\ y\ Hora\_Fin\ contiene\ hf;$\\
+	$Entonces:$ \\
+	$\frac{hf}{60}\ =\ Valor3;$ \\ $hd_{i3}\ =\ (Valor3\ +\ Hora\_Fin)\ -\ (Valor3\ +\ Hora\_Inicio)$\\ 
+	\BRItem[Motivación] Evitar que las fracciones en minutos no se tomen en cuenta.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+		Se tiene una Hora\_Inicio\ = 07:00 y una Hora\_Fin = 10:00 entonces se resta la Hora\_Inicio\ -\ Hora\_Fin\ = 03:00
+	\BRItem[Ejemplo negativo]
+		Se tiene una Hora\_Inicio\ = 08:30 y una Hora\_Fin\ = 10:00 entonces se resta la Hora\_Inicio\ -\ Hora\_Fin\ = 01:30
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.1.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.1.1}
+'\end{BusinessRule}
+
+%%====================================================================== Revisar
+\begin{BusinessRule}{BR-EE-N018}{Cálculo de horas definidas}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Rocio Guerrero Gómez
+	\BRItem[Revisada por] Rocio Guerrero Gómez, Tanya S. Hernández Valdez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Para obtener la suma de horas definidas de la unidad de aprendizaje se realiza la sumatoria de cada hora definida por cada exposición.
+	\BRItem[Sentencia]  $Sean:$ \\\\
+	$Horas\ Definidas\ =$ $\{hd_i \mid hd_i\ es\ la\ conversion\ de\ horas\ y\ minutos\ a\ numeros\ decimales\ a\ lo\\ mas\ 2\ numeros\ decimales\}$\\
+	$Calculo\ de\ horas\ definidas\ =$ $\{hd_{i1},\ hd_{i2},\ hd_{i3},\ ....\ hd_{in}\}$ \\
+	$Horas\ Semana:$ $\{hs \mid hs\ horas\ semanales\ obtenidas\ del\ progama\ academico\ al\ que\ pertence\ la\\ unidad\ de\ aprendizaje\}$\\\\
+	$Por\ lo\ tanto:$\\
+	$Calculo\ de\ horas\ definidas\ =$ $hs$
+	\BRItem[Motivación] Evitar que se rebasen las horas por semana definidas para cada unidad de aprendizaje.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+		Las horas definidas por día en la unidad de aprendizaje coinciden con el total de horas semanales definidas en el programa académico que corresponde la unidad de aprendizaje.
+	\BRItem[Ejemplo negativo] \cdtEmpty
+		Las horas definidas por día en la unidad de aprendizaje rebasa el total de horas semanales definidas en el programa académico que corresponde la unidad de aprendizaje.
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.1.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.1.1}
+\end{BusinessRule}
+
+%%%====================================================================== 
+%\begin{BusinessRule}{BR-EE-N019}{Validación de horas semanales de la unidad de aprendizaje}
+%	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Rocio Guerrero Gómez
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Verifica que la suma de "Horas definidas" sean las mismas que las "Horas semanales de la Unidad de Aprendizaje". Siendo Horas definidas = HD y Horas semanales = HS. Se debe cumplir HD= HS
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] Evitar que se definan más horas a una unidad de aprendizaje que las que debería tener por semana. 
+%	%	\BRItem[Ejemplo positivo] \cdtEmpty
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%	\BRItem[Ejemplo negativo]
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.1.1}
+%\end{BusinessRule}
+
+%%%====================================================================== 
+%\begin{BusinessRule}{BR-EE-N020}{Editar oferta educativa}
+%	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Sandra Ivette Bautista Rosales
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Una vez definida la oferta educativa, en la edición solamente se podrán desmarcar unidades de aprendizaje que no tengan asociados  <ELEMENTOS>. Por ejemplo: ELEMENTOS = grupo
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] 
+%		\begin{itemize}
+%			\item Evitar que se dejen de ofertar unidades de aprendizaje cuando ya están asociadas con algún elemento en la generación de horarios.
+%			\item Evitar que se pueda editar la oferta de unidades de aprendizaje cuando la estructura educativa está en revisión o cerrada.
+%		\end{itemize}
+%		\BRItem[Ejemplo positivo] Cumplen con la regla
+%		\begin{itemize}
+%			\item Se desea quitar de la oferta educativa una unidad de aprendizaje optativa que no ha sido asociada a ningún grupo.
+%			\item Se desmarca una unidad de aprendizaje que ya está asociada a un grupo-unidad de aprendizaje de tercer nivel, por lo que no se permite desmarcar esa unidad de aprendizaje.
+%		\end{itemize}
+%		\BRItem[Ejemplo negativo] No cumplen con la regla
+%		\begin{itemize}
+%			\item Se permite desmarcar una unidad de aprendizaje cuando la estructura educativa se encuentra en revisión.
+%			\item Se permite quitar de la selección a una unidad de aprendizaje que ya ha sido asociada a un grupo y tiene un horario establecido para sus exposiciones. 
+%		\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{UA-EE-CFG-CU7.1}
+%\end{BusinessRule}
+
+%%====================================================================== 
+\begin{BusinessRule}{BR-EE-N021}{Formato de hora válida}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Victor
+	\BRItem[Revisada por] Rocio Guerrero Gómez, Tanya S. Hernández Valdez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Para validar el formato de horas se toma en cuenta:
+	\begin{itemize}
+		\item La hora ingresada sera en formato de 24 horas, es decir de las 00:00 horas a las  23:59 horas.
+		\item Únicamente se aceptarán ingresar números.
+		\item Los minutos deben estar en intervalos de 5.
+	\end{itemize}
+	%	\BRItem[Sentencia]  $ $
+	\BRItem[Motivación] Evitar confusiones y errores en la asignación de horas con el uso del formato de 12 horas.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+		\begin{itemize}
+			\item Se asigna la siguiente hora 07:00 para la unidad de aprendizaje Compiladores. 
+			\item Se asigna la siguiente hora 20:00 para la unidad de aprendizaje Cálculo Aplicado.
+		\end{itemize}
+	\BRItem[Ejemplo negativo] \cdtEmpty
+		\begin{itemize}
+			\item Se asigna la siguiente hora 07:00 a.m para la unidad de aprendizaje Compiladores. 
+			\item e asigna la siguiente hora 08:00 p.m para la unidad de aprendizaje Cálculo Aplicado.
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.1.1},\refIdElem{HR-UA-GG-DEMS-CU1.5.1.1}
+\end{BusinessRule}
+
+%%====================================================================== 
+\begin{BusinessRule}{BR-EE-N022}{Formato de intervalo de hora valida}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Victor
+	\BRItem[Revisada por] Rocio Guerrero Gómez, Tanya S. Hernández Valdez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Para considerar un formato de intervalo de hora válido se debe cumplir lo siguiente:
+	\begin{itemize}
+		\item La hora de inicio debe ser menor a la hora de fin. Se debe cumplir que la $HORA\_INICIO < HORA\_FIN$
+		\item En la $HORA\_INICIO$ u $HORA\_FIN$ se podrá ingresar el mismo valor de hora, con diferentes valores de minutos.
+	\end{itemize}
+	\BRItem[Sentencia] $Sean:$\\\\
+	$Horas\ Exacta\ =$ $\{h \mid h\ es\ cualquier\ hora\ exacta\ del\ dia\}$ \\
+	$Hora\ Fraccion\ =$ $\{hf \mid hf\ es\ cualquier\ fraccion\ dada\ en\ minutos\}$\\
+	$Tiempo\ =$ $\{Hora\_Inicio, Hora\_Fin\}$ \\\\
+	$Donde:$\\\\
+	$(hf \subset Tiempo)$ \\
+	$(h \subset Tiempo)$\\\\
+	$Por\ lo\ tanto:$\\\\
+	$Hora\_Inicio\ <\ Hora\_Fin$\\
+	$(h \subset Tiempo)\ =\ (h \subset Tiempo)$\\
+	$(hf \subset Tiempo) \neq (hf \subset Tiempo)$\\
+	\BRItem[Motivación] Evitar problemas de integridad para el conteo de la hora de inicio y fin de una exposición.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+		\begin{itemize}
+			\item Se define una Hora\_Inicio = 09:00 y una Hora\_Fin = 10:00
+			\item Se define una Hora\_Inicio = 11:00 y una Hora\_Fin = 12:00
+		\end{itemize}
+	\BRItem[Ejemplo negativo] \cdtEmpty
+		\begin{itemize}
+			\item Se define una Hora\_Inicio = 12:00 y una Hora\_Fin = 10:00
+			\item Se define una Hora\_Inicio = 13:00 y una Hora\_Fin = 12:00
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.5.1.1, HR-UA-GG-DEMS-CU1.5.1.1}
+\end{BusinessRule}
+
+%%%======================================================================
+%\begin{BusinessRule}{BR-EE-N023}{Definición de horas}
+%	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Victor
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Cuando se define una $HORA\_INICIO$, obligatoriamente se debe definir una $HORA\_FIN$ y viceversa.
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] Evitar que se asocien todas las unidades de aprendizaje sugeridas para el semestre a todos los grupos definidos.
+%	%	\BRItem[Ejemplo positivo] \cdtEmpty
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%	\BRItem[Ejemplo negativo]
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.3},\refIdElem{HR-UA-GG-DEMS-CU1.3},\refIdElem{HR-UA-GG-CU1.4},\refIdElem{HR-UA-GG-DEMS-CU1.4},\refIdElem{DES-EE-CFG-CU2.1.1},\refIdElem{DES-EE-CFG-CU2.1.2}
+%\end{BusinessRule}
+
+%%======================================================================
+\begin{BusinessRule}{BR-EE-N024}{Oferta Educativa}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Victor
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Únicamente las unidades de aprendizaje seleccionadas en la gestión de la oferta educativa son las que se trabajarán en la estructura educativa del periodo seleccionado y se le podrán asociar otros elementos.
+	\BRItem[Sentencia] Sea $p$ = Periodo Escolar, $A$ conjunto de unidades de aprendizaje y  $A = \{a_{1},a_{2},...,a_{n}\}$. Si $a_{n} \in p$ entonces la unidad de aprendizaje se ofertará en el periodo escolar.
+	\BRItem[Motivación] Definir las unidades de aprendizaje que forman parte de la oferta educativa.
+	\BRItem[Ejemplo positivo] \cdtEmpty
+	\begin{itemize}
+			\item Se selecciona \textbf{Análisis Vectorial} para ofertarse en el periodo escolar $2017-2018/2$.
+	%		\item 
+	%		\item 
+	\end{itemize}
+	\BRItem[Ejemplo negativo]
+	\begin{itemize}
+		\item No se selecciona ninguna unidad de aprendizaje para ofertarse.
+	%		\item 
+	%		\item 
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.3},\refIdElem{HR-UA-GG-DEMS-CU1.3},\refIdElem{HR-UA-GG-CU1.4}, \refIdElem{HR-UA-GG-DEMS-CU1.4},\refIdElem{UA-EE-CFG-CU7.1}
+\end{BusinessRule}
+
+%%%======================================================================
+%\begin{BusinessRule}{BR-EE-N025}{Número de Horas de interinato por parcialidad solicitadas}
+%	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Victor
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Siendo N = unidad de aprendizaje-grupo y S = sugerencia de apertura unidad de aprendizaje-grupo. N<=S por lo tanto N debe ser menor o igual a S.
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] Evitar que se asocien todas las unidades de aprendizaje sugeridas para el semestre a todos los grupos definidos.
+%	%	\BRItem[Ejemplo positivo] \cdtEmpty
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%	\BRItem[Ejemplo negativo]
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.2}
+%\end{BusinessRule}
+%
+%
+%\begin{BusinessRule}{BR-EE-N026}{Falta nombre}
+%	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] Victor
+%	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Siendo N = unidad de aprendizaje-grupo y S = sugerencia de apertura unidad de aprendizaje-grupo. N<=S por lo tanto N debe ser menor o igual a S.
+%	%	\BRItem[Sentencia]  $ $
+%	\BRItem[Motivación] Evitar que se asocien todas las unidades de aprendizaje sugeridas para el semestre a todos los grupos definidos.
+%	%	\BRItem[Ejemplo positivo] \cdtEmpty
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%	\BRItem[Ejemplo negativo]
+%	%	\begin{itemize}
+%	%		\item 
+%	%		\item 
+%	%		\item 
+%	%	\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{HR-UA-GG-CU1.2}
+%\end{BusinessRule}
+
+
+\begin{BusinessRule}{BR-EE-N027}{Modalidades asociadas a la unidad académica}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+%	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Se debe permitir seleccionar la modalidad a cualquier actor perteneciente a la unidad académica. Se mostrarán tantas modalidades como se encuentren asociadas a los programas académicos que se imparten en la unidad.
+	%	\BRItem[Sentencia]  $ $
+	\BRItem[Motivación] Mantener un orden en la planeación o consulta de la estructura al realizarla por modalidad aparte del periodo.
+		\BRItem[Ejemplo positivo] Cumplen con la regla
+		\begin{itemize}
+			\item Cuando el responsable de estructura educativa del CECyT 3 inicia sesión y selecciona el periodo con el que va a trabajar, se le debe habilitar un combo para seleccionar la modalidad, ya que tiene al menos un programa académico que se imparte en más de una modalidad.
+			\item Cuando el responsable de estructura educativa del CICS UMA inicia sesión y selecciona el periodo con el que va a trabajar, el combo para seleccionar la modalidad únicamente debe desplegar la modalidad escolarizada, ya que sus programas académicos solamente se imparten en esa modalidad.
+		\end{itemize}
+		\BRItem[Ejemplo negativo] No cumplen con la regla
+		\begin{itemize}
+			\item Cuando el responsable de estructura educativa del CECyT 3 inicia sesión y selecciona el periodo con el que va a trabajar, únicamente se muestra el combo con una modalidad para seleccionar, cuando sus programas académicos se imparten en más de una modalidad.
+			\item Cuando el responsable de estructura educativa del CICS UMA inicia sesión y selecciona el periodo con el que va a trabajar, se le muestra un combo con más de una opción para seleccionar una modalidad cuando los programas académicos solamente están relacionados a una modalidad.
+		\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{UA-DES-DEMS-EE-CFG-CU1}
+\end{BusinessRule}
+
+
+\begin{BusinessRule}{BR-EE-N028}{Unidades académicas asociadas al actor}
+	{\bcCondition}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 2.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Tanya Hernández Valdéz, Rocío Guerrero
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales
+	\BRItem[Aprobada por] José Jaime López Rabadán
+	\BRItem[Descripción] El sistema sólo mostrará las unidades académicas del nivel académico al que esté asociado el actor.
+	%	\BRItem[Sentencia]  $ $
+	\BRItem[Motivación] Evitar que se muestren unidades académicas que no corresponden al nivel académico asociado al actor en cuestión, ya que varios actores de diferentes niveles pueden realizar las mismas funcionalidades en el sistema.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Cuando el analista es parte de la División de Gestión y Calidad Educativa de Nivel Superior sólo se le permitirá trabajar con unidades académicas de su nivel académico.
+		\item Cuando el analista es parte de la División de Gestión y Calidad Educativa de Nivel Medio Superior solo se le permitirá trabajar con unidades académicas de su nivel académico.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Cuando el analista es parte de la División de Gestión y Calidad Educativa de Nivel Superior y el sistema permite que se le asignan unidades académicas que no son de su nivel académico.
+		\item Cuando el analista es parte de la División de Gestión y Calidad Educativa de Nivel Medio Superior y se le asignan unidades académicas de nivel superior.
+	\end{itemize}
+	%\BRItem[Referenciado por] \refIdElem{DES-DEMS-EE-CFG-CU3.1}, \refIdElem{DES-DEMS-EE-CFG-CU2.1}
+	
+\end{BusinessRule}
+
+
+\begin{BusinessRule}{BR-EE-N029}{Congruencia en la fecha de inicio y fin}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Sandra Ivette Bautista Rosales
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, María Rocío Guerrero Gómez
+	\BRItem[Aprobada por] José Jaime López Rabadán
+	\BRItem[Descripción] La fecha de inicio no puede ser posterior a la fecha de fin.
+	\BRItem[Sentencia] Sea $F_i = Fecha Inicial$ y $F_f = Fecha Final$, donde $F_i\leq F_f$.
+	\BRItem[Motivación] Evitar incongruencias en las fechas de inicio y fin de las actividades del cronograma de estructura educativa.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Cuando se selecciona una fecha de inicio 01/02/2017 y una fecha de fin 04/02/2017.
+		\item Cuando se selecciona una fecha de inicio 17/04/2017 y una fecha de fin 17/04/2017.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Cuando se selecciona una fecha de inicio 16/08/2017 y una fecha de fin 06/02/2017.
+		\item Cuando se selecciona una fecha de inicio 16/09/2017 y una fecha de fin 31/03/2017.
+	\end{itemize}
+	%\BRItem[Referenciado por:] \refIdElem{DES-EE-CFG-CU2.1.1}, \refIdElem{UA-EE-CFG-CU6.1}, \refIdElem{UA-EE-CFG-CU6.3},\refIdElem{DES-DEMS-EE-CFG-CU2.1.2}
+\end{BusinessRule}
+
+
+%\begin{BusinessRule}{BR-EE-N030}{Periodos escolares para trabajar}
+%	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 2.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+%	\BRItem[Revisada por] Pendiente
+%	\BRItem[Aprobada por] Sin aprobar
+%	\BRItem[Descripción] El sistema le mostrará al actor periodos escolares para trabajar la estructura educativa para los siguientes casos:
+%	\begin{itemize}
+%		\item La primera vez que el \textbf{CALMÉCAC} entre en funcionamiento debe permitir al actor visualizar al menos un periodo escolar a planear.
+%		\item La segunda vez que el \textbf{CALMÉCAC} entre en funcionamiento podrá visualizar el periodo escolar actual \refIdElem{BR-EE-N037} y el periodo escolar siguiente \refIdElem{BR-EE-N037}.
+%		\item Para seleccionar un periodo escolar en las veces subcecuentes de funcionamiento, el sistema mostrará un periodo escolar siguiente \refIdElem{BR-EE-N037}, el periodo escolar actual y 4 periodos escolares anteriores inmediatos en caso de que existan.
+%	\end{itemize}
+%	\BRItem[Sentencia] Sea $p$ = Periodo escolar actual, $f_i$ = Fecha de inicio de un periodo escolar, $f_n$ = Fecha de fin de periodo un escolar, $f_a$ = Fecha en la que el usuario utiliza el sistema, $p1$ = Periodo 1 del ciclo escolar, $p2$ = Periodo 2 del ciclo escolar, $X$ = cualquier año, $Z$ = cualquier año, $pi$ = Periodo intersemestral, $f_ii$ = Fecha de inicio del periodo intersemestral, $f_ni$ =  Fecha de fin del periodo intersemestral.\\
+%	Si $f_a$ se encuentra en el $p$ y el $p$ es el $p2$ entonces el periodo escolar siguiente es: $X + 1$ - $Z+1$ /1.\\
+%	Si $f_a$ se encuentra en el $p$ y el $p$ es el $p1$ entonces el periodo escolar siguiente es: $X$ - $Z$ /2.\\
+%	Si $f_a$ se encuentra en el $p$ y el $p$ es el $p2$ entonces el periodo escolar anterior es: $X$ - $Z$ /1.\\
+%	Si $f_a$ se encuentra en el $p$ y el $p$ es el $p1$ entonces el periodo escolar anterior es: $X-1$ - $Z-1$ /2.\\
+%	Si $f_a$ se encuentra en el $pi$ el periodo escolar actual es aquel que tenga una fecha de fin $f_n < f_a$.\\
+%	Si $f_a$ se encuentra en el $pi$ el periodo escolar siguiente es aquel que tenga una fecha de inicio $f_i > f_a$.
+%	\BRItem[Motivación] Definir la forma de contar los periodos escolares para trabajar la estructura educativa.
+%	\BRItem[Ejemplo positivo] Cumplen con la regla
+%	\begin{itemize}
+%		\item Periodos escolares históricos: 2015-2016/1, 2015-2016/2, 2016-2017/1, 2016-2017/2. Periodo escolar actual: 2017-2018/1. Periodo escolar siguiente: 2017-2018/2. 
+%		\item Periodo escolar actual: 2017-2018/1. Periodo escolar siguiente: 2017-2018/2. 
+%	\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla
+%	\begin{itemize}
+%		\item No se muestra ningún periodo escolar.
+%		\item Se muestra únicamente el periodo escolar histórico 2015-2016/1.
+%	\end{itemize}
+%	%\BRItem[Referenciado por] \refIdElem{UA-DES-DEMS-EE-CFG-CU1}
+%\end{BusinessRule}
+
+
+\begin{BusinessRule}{BR-EE-N031}{Copia de la estructura educativa}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, María Rocío Guerrero Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] El sistema obtendrá del periodo escolar seleccionado los elementos: turnos, oferta educativa, grupos, profesores de base (adscritos a la unidad académica en cuestión), espacios, personal directivo, personal funciones administrativas, personal del sistema nacional de investigadores, posgrado, presidentes de academia, personal técnico docente y solicitud de horas de técnico docente (sólo para nivel superior) de los cuales creará una copia para asignarla a una estructura educativa.
+	\BRItem[Sentencia]  Sea $p = PeriodoEscolarSeleccionado$, $e = ElementoEstructuraEducativa,$ \\
+	$ ee = EstructuraEducativaPeriodoSeleccionado$, $p' = PeriodoEscolarAPlanear$ y $ee' = EstructuraEducativaAPlanear$ \\
+	Entonces $\forall \{p.e_1,p.e_2,p.e_3,...,p.e_n\} \in p.ee$ al realizar la copia
+	$ \forall \{p.e_1,p.e_2,p.e_3,...,p.e_n\} \in p'.ee'$.
+	\BRItem[Motivación] Especificar los elementos que se copiarán para definir una nueva estructura educativa.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Se va a definir la estructura educativa para el periodo escolar: 2017-2018/2, selecciona el periodo escolar 2017-2018/1 y los elementos que se van a copiar son: turnos, oferta educativa, grupos, profesores de base (adscritos a la unidad académica en cuestión), espacios, personal directivo, personal funciones administrativas, personal del sistema nacional de investigadores, posgrado, presidentes de academia, personal técnico docente y solicitud de horas de técnico docente (sólo para nivel superior) de los cuales creará una copia para asignarla a una estructura educativa.
+		\item Se va a definir la estructura educativa para el periodo escolar: 2017-2018/2, selecciona el periodo escolar 2016-2017/2 y los elementos que se van a copiar son: turnos, oferta educativa, grupos, profesores de base (adscritos a la unidad académica en cuestión), espacios, personal directivo, personal funciones administrativas, personal del sistema nacional de investigadores, posgrado, presidentes de academia, personal técnico docente y solicitud de horas de técnico docente (sólo para nivel superior) de los cuales creará una copia para asignarla a una estructura educativa.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Se va a definir la estructura educativa para el periodo escolar: 2017-2018/2, selecciona el periodo escolar 2017-2018/1 y los elementos que se van a copiar son: turnos, oferta educativa, grupos, profesores de base (adscritos a la unidad académica en cuestión), espacios, personal directivo, personal funciones administrativas, personal del sistema nacional de investigadores, posgrado, presidentes de academia, personal técnico docente y solicitud de horas de técnico docente (sólo para nivel superior) pero el \textbf{CALMÉCAC} no permite realizar la copia de ninguno de los elementos antes mencionados.
+		\item Se va a definir la estructura educativa para el periodo escolar: 2017-2018/2, selecciona el periodo escolar 2016-2017/2 y los elementos que se van a copiar son: turnos, oferta educativa, grupos, profesores de base (adscritos a la unidad académica en cuestión), espacios, personal directivo, personal funciones administrativas, personal del sistema nacional de investigadores, posgrado, presidentes de academia, personal técnico docente y solicitud de horas de técnico docente (sólo para nivel superior) pero el \textbf{CALMÉCAC} no permite realizar la copia de turnos, grupos y profesores de base.
+	\end{itemize}
+	%\referencedBy{BR-EE-N031}
+\end{BusinessRule}
+
+
+\begin{BusinessRule}{BR-EE-N032}{Elementos que se copiaron}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Tanya Hernández Valdéz %Sandra Ivette Bautista Rosales
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Para la copia de la estructura educativa no se van a copiar:
+	\begin{Titemize}
+		\Titem Profesores no basificados
+		\Titem Espacios no utilizables
+		\Titem Espacios prestados
+		\Titem Soporte documental de profesores no basificados
+		\Titem Documentos con fecha de fin anterior a la fecha de inicio del periodo
+	\end{Titemize}	
+	\BRItem[Sentencia]  Sea $p = PeriodoEscolarSeleccionado$, $e = ElementoEstructuraEducativa,$ \\
+	$ ee = EstructuraEducativaPeriodoSeleccionado$, $p' = PeriodoEscolarAPlanear$ y $ee' = EstructuraEducativaAPlanear$ \\
+	Entonces $\forall \{p.e_1,p.e_2,p.e_3,...,p.e_n\} \in p.ee$ al realizar la copia
+	$ \forall \{p.e_7,...,p.e_n\} \in p'.ee'$ se excluirán:
+	$e_1 = ProfesoresNoBasificados,$ \\
+	$e_2 = EspacioNoUtilizable,$ \\
+	$e_3 = EspacioPrestado,$ \\
+	$e_4 = SoporteDocumentalNoBasificados,$ \\
+	$e_5 = DocumentosFechaFinAnteriorAFechaInicioPeriodo.$ \\
+	
+	\BRItem[Motivación] Definir los criterios por los cuáles no se copiarán los elementos.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item No se toman en cuenta para la copia profesores no basificados.
+		\item No se toman en cuenta para la copia un espacio no utilizable.
+		\item No se toman en cuenta para la copia un espacio prestado.
+		\item No se toman en cuenta para la copia el soporte documental de profesores no basificados.
+		\item No se toman en cuenta para la copia los documentos con fecha de fin anterior a la fecha de inicio del periodo que se está planeando.	
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Se toman en cuenta para la copia profesores no basificados.
+		\item Se toman en cuenta para la copia un espacio no utilizable.
+		\item Se toman en cuenta para la copia un espacio prestado.
+		\item Se toman en cuenta para la copia el soporte documental de profesores no basificados.
+		\item Se toman en cuenta para la copia los documentos con fecha de fin anterior a la fecha de inicio del periodo que se está planeando.	
+	\end{itemize}
+%	\referencedBy{BR-EE-N032}
+\end{BusinessRule}
+
+
+\begin{BusinessRule}{BR-EE-N033}{Eliminación de estructura educativa}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Rocio Guerrero Gómez
+	\BRItem[Revisada por] Sandra Ivette Bautista Rosales, Rocio Guerrero Gómez
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] La estructura educativa sólo puede eliminarse si se encuentra en estado de creada como se indica en la máquina de estados \refIdElem{sec:SM-EE}.
+	\BRItem[Sentencia]  Sea $\Sigma$ el conjunto de ESTADOS $\{creada,revision,aprobado,edicion\}$  y $\psi$ cualquier estado de  $\Sigma$  entonces \\
+	\begin{itemize}
+		\item si $\psi = creado$ se puede eliminar.
+		\item si $\psi \neq creado$  no se puede eliminar.	
+	\end{itemize}
+
+	\BRItem[Motivación] Proporcionar un mecanismo de eliminación de la estructura educativa con sus respectivos elementos.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Cuando el responsable de estructura educativa de la unidad académica acaba de copiar una estructura anterior espejo a la que va a planear y se da cuenta que necesitaba la inmediata anterior, selecciona la opción de eliminar estructura educativa.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Cuando la estructura educativa está en revisión por parte de la DGyCE y el responsable de estructura educativa de la unidad académica acaba de copiar una estructura anterior espejo a la que va a planear y se da cuenta que necesitaba la inmediata anterior, selecciona la opción de eliminar estructura educativa.
+	\end{itemize}
+	%\referencedBy{BR-EE-N033}
+\end{BusinessRule}
+
+\begin{BusinessRule}{BR-EE-N034}{Elementos mínimos necesarios}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Es necesario seleccionar al menos un ELEMENTO para que la operación pueda ser completada.
+	\BRItem[Sentencia]  Sea un conjunto de ELEMENTOS $ \{e_1, e_2, e_3, ..., e_n\}$ donde al menos un ELEMENTO $\{e_n = true\}$
+	\BRItem[Motivación] Evitar que se realicen acciones como asociaciones sin elementos necesarios.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Se seleccionará al menos una unidad académica para asociarle al analista.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item No se selecciona al menos una unidad académica para asociar el analista.
+	\end{itemize}
+	%\referencedBy{BR-EE-N034}
+\end{BusinessRule}
+
+\begin{BusinessRule}{BR-EE-N035}{Asociación de unidad de adscripción}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Tanya Silvana Hernández Valdez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Cuando se registra un personal de honorarios en el Calmécac, se le debe asociar como unidad de adscripción la unidad dónde se está dando de alta.
+	\BRItem[Sentencia] $If TipoRecurso $  
+	\BRItem[Motivación] Asociar unidad de adscripción al personal de honorarios.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Se asocia la misma unidad de adscripción donde se da de alta al personal de honorarios.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item No se asocio unidad de adscripción al personal de honorarios que se dio de alta.
+	\end{itemize}
+	%\referencedBy{BR-EE-N035}
+\end{BusinessRule}
+
+\begin{BusinessRule}{BR-EE-N036}{Actividades dentro del periodo escolar}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Las actividades que conforman el cronograma de actividades tienen fecha de inicio y pueden o no tener fecha de fin. La fecha de inicio de la actividad debe ser mayor o igual a la fecha en la que se está utilizando el sistema. La fecha de fin de la actividad debe ser menor o igual a la fecha de fin del periodo escolar correspondiente al cronograma. Se pueden definir actividades en el periodo intersemestral.
+	\BRItem[Sentencia]  Sea $f_a$ = Fecha actual, $f_{ia}$ = Fecha de inicio de actividad, $f_{fa}$ = Fecha de fin de actividad, $f_{fps}$ = Fecha de fin del periodo escolar siguiente. Entonces $f_{ia} \geq f_a \leq f_{fps}$, en caso de tener fecha de fin de actividad se debe cumplir $f_{fa} \leq f_{fps}$. 
+	\BRItem[Motivación] Evitar que las actividades tengan fechas incongruentes o fuera de los límites establecidos.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Periodo escolar siguiente: 2017-2018/2 con fecha de inicio: 29/01/2018 y fecha de fin 21/06/2018. Fecha actual: 15/01/2018. Fecha de inicio de actividad: 16/01/2018 y fecha de fin de actividad: 18/01/2018.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Periodo escolar siguiente: 2017-2018/2 con fecha de inicio: 29/01/2018 y fecha de fin 21/06/2018. Fecha actual: 15/01/2018. Fecha de inicio de actividad: 01/01/2018 y fecha de fin de actividad: 18/01/2018.
+	\end{itemize}
+	%\referencedBy{BR-EE-N034}
+\end{BusinessRule}
+
+
+%\begin{BusinessRule}{BR-EE-N037}{Periodo escolar}
+%	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+%	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+%	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+%	\BRItem[Versión] 1.0.
+%	\BRItem[Estado] Propuesta.
+%	\BRItem[Propuesta por] María Rocío Guerrero Gómez, Ángeles Ramírez Cerritos
+%	\BRItem[Revisada por] Pendiente
+%	\BRItem[Aprobada por] Sin aprobar.
+%	\BRItem[Descripción] Definir un periodo escolar actual, periodo escolar siguiente y un periodo intersemestral.
+%	\BRItem[Sentencia]  Sea $p1$ = Periodo escolar 1, $p2$ = Periodo escolar 2, $F_{ip1}$ = Fecha de inicio de p1, $F_{fp1}$ = Fecha de fin de p1, $F_{ip2}$ = Fecha de inicio de p2, $F_{fp2}$ = Fecha de fin de p2 y $f_a$ = Fecha actual, entonces:\\
+%	Periodo escolar actual está definido como: $F_{ip1} \leq f_a \leq F_{ip2}$.\\
+%	Periodo escolar siguiente está definido como: $f_a \geq F_i{p2}$ hasta $F_{fp2}$.\\
+%	Periodo intersemestral está definido como: $f_{fp1} \geq f_a$ hasta $F_{ip2}$.\\	
+%	\BRItem[Motivación] 
+%	\BRItem[Ejemplo positivo] Cumplen con la regla
+%	\begin{itemize}
+%		\item Periodo escolar actual: $ 19/12/2017 \leq 15/01/2018 \leq 21/06/2018$
+%		\item Periodo escolar siguiente está definido como: $15/01/2018 \geq 29/01/2018$ hasta $21/06/2018$.\\ 
+%		\item Periodo intersemestral está definido como: $19/12/2017 \geq 15/01/2018$ hasta $29/01/2018$.\\  
+%	\end{itemize}
+%	\BRItem[Ejemplo negativo] No cumplen con la regla
+%	\begin{itemize}
+%		\item Periodo escolar actual: $ 19/01/2017 \leq 15/01/2018 \leq 21/06/2018$
+%		\item Periodo escolar siguiente está definido como: $18/01/2019 \geq 29/01/2018$ hasta $21/06/2018$.\\ 
+%		\item Periodo intersemestral está definido como: $20/03/2017 \geq 15/01/2018$ hasta $29/01/2019$.\\  
+%	\end{itemize}
+%	%\referencedBy{BR-EE-N034}
+%\end{BusinessRule}
+
+
+\begin{BusinessRule}{BR-EE-N037}{Periodo escolar actual}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Si la fecha actual se encuentra en algún periodo escolar, se define a ese periodo escolar como el periodo escolar actual. Se debe considerar que la fecha de inicio del periodo escolar debe ser menor que la fecha de fin del periodo escolar y que la fecha actual se debe encontrar entre la fecha de inicio del periodo escolar y la fecha de fin del periodo escolar. Si la fecha actual no se encuentra entre la fecha de inicio o fin de un periodo escolar, se considera al periodo escolar actual como aquel periodo escolar con la fecha de fin más cercana y menor a la fecha actual.
+	\BRItem[Sentencia]  Sea $p$ = Periodo escolar, $p = \{f_{pi} y f_{pf}\}$ y $f_a$ = Fecha actual.\\
+	Se debe considerar que $f_{pi}  < f_{pf}$.\\
+	Si $f_a \in p$ dado que $f_{pi} \leq f_{a} \geq f_{pf}$ entonces se define a $p$ como el periodo escolar actual.\\
+	Si $f_{pi} \nleqq f_{a} \ngeqq f_{pf}$ se considera al periodo escolar actual el que $f_{pf} < f_{a}$.
+	\BRItem[Motivación] Se requiere definir el periodo escolar actual dependiendo de la fecha actual.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Fecha actual: $09/08/2017$, periodo escolar $2017-2018/1$ y $09/08/2017 \in 2017-2018/1$ entonces $2017-2018/1$ es el periodo escolar actual, debido a que la fecha de inicio del periodo escolar es $07/08/2017$ y la fecha de fin del periodo escolar es $19/12/2017$.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+	\item Fecha actual: $09/08/2016$, periodo escolar $2017-2018/1$ y $09/08/2016 \not \in 2017-2018/1$ entonces $2017-2018/1$ no es el periodo escolar actual, debido a que la fecha de inicio del periodo escolar es $07/08/2017$ y la fecha de fin del periodo escolar es $19/12/2017$.
+	\end{itemize}
+	%\referencedBy{BR-EE-N034}
+\end{BusinessRule}
+
+\begin{BusinessRule}{BR-EE-N038}{Periodo escolar siguiente}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Si la fecha actual se encuentra en el periodo escolar actual, se define al periodo escolar siguiente como el periodo escolar inmediato del periodo escolar actual. Si la fecha actual no se encuentra entre la fecha de inicio y fin de un periodo escolar, se considera al periodo escolar siguiente al que tenga la fecha de inicio mayor y más cercana a la fecha actual.
+	\BRItem[Sentencia]  
+	Sea $p$ = Periodo escolar, $p_{z}$ = Periodo escolar siguiente y $f_a$ = Fecha actual.\\
+	Si $f_a \in p$ por lo tanto $p$ es el periodo escolar actual, entonces se define el periodo escolar siguiente como $p_{z} = \{f_{zi} y f_{zf}\}$.\\	
+	Si $f_{a} \not \in p$ y $f_{a} \not \in p_{z}$ entonces $f_{a}$ no se encuentra entre $p$ y $p_{z}$ se define el periodo escolar siguiente como $p_{z}$, cumpliendo que $f_{a} < f_{zi}$.
+		
+	\BRItem[Motivación] Se requiere definir el periodo escolar siguiente dependiendo de la fecha actual.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Fecha actual: $20/12/2017$ no se encuentra en $2017-2018/1$  dado que tiene una fecha de inicio: $07/08/2017$ y  fecha de fin: $19/12/2017$ y no se encuentra en $2017-2018/2$ dado que tiene una fecha de inicio: $29/01/2018$ y  fecha de fin: $21/06/2018$ por lo tanto el periodo escolar siguiente es $2017-2018/2$. 		
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Fecha actual: $02/02/2017$ no se encuentra en $2017-2018/1$  dado que tiene una fecha de inicio: $07/08/2017$ y  fecha de fin: $19/12/2017$ y se encuentra en $2017-2018/2$ dado que tiene una fecha de inicio: $29/01/2018$ y  fecha de fin: $21/06/2018$ por lo tanto el periodo escolar $2017-2018/2$ es el periodo escolar actual y no el periodo escolar siguiente. 
+	\end{itemize}
+	%\referencedBy{BR-EE-N034}
+\end{BusinessRule}
+
+\begin{BusinessRule}{BR-EE-N039}{Periodo escolar anterior}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Dado que todos los periodos escolares se componen de una fecha de inicio y una fecha de fin y para todo periodo escolar la fecha de fin debe ser mayor que la fecha de inicio. El periodo escolar anterior se define considerando que la fecha inicial del periodo actual debe ser mayor a la fecha inicial del periodo anterior y mayor a la fecha final del periodo escolar anterior. 
+	Si la fecha actual no se encuentra entre la fecha de inicio y fin de un periodo escolar, se define al periodo escolar anterior como aquel donde la fecha inicial del periodo escolar actual es mayor a la fecha de fin del periodo escolar más cercano.
+	%Si la fecha actual se encuentra en el periodo escolar actual, se define al periodo escolar anterior como el periodo escolar anterior del periodo escolar actual. 	
+	\BRItem[Sentencia] Sea $p$ = Periodo escolar actual, $p$ está definido por $p = \{f_{in},f_{f}\}$. Entonces $\forall$ $i$ donde $i$ identifica un periodo $P_{i-1}$ $\Rightarrow$ $P_{i}.f_{in} > P_{i-1}.f_{f}$ y $P_{i-1}.f_{f} > P_{i-1}.f_{in}$.
+	Si $f_{in} \nleqq f_{a} \ngeqq f_{f}$ se considera al periodo escolar anterior $f_{in} > P_{i-1}.f_{f}$.
+	%Sea $p$ = Periodo escolar, $p_{a}$ = Periodo escolar anterior y $f_a$ = Fecha actual.\\
+	%Si $f_a \in p$ por lo tanto $p$ es el periodo escolar actual, entonces se define el periodo escolar anterior como $p_{a} = \{f_{ai} y f_{af}\}$.\\
+	%Si $f_{a} \not \in p$ y $f_{a} \not \in p_{a}$ y $f_{a}$ se encuentra entre $p$ y $p_{a}$ se define el periodo escolar anterior como $p_{a}$.
+	%Sea $p1$ = Periodo escolar1, $p0$ = Periodo escolar0 y $f_a$ = Fecha actual. Si $f_a \in p1$ y $p0$ es el inmediato anterior de $p1$ se define a $p0$ como el  periodo escolar anterior.
+	\BRItem[Motivación] Se requiere definir el periodo escolar anterior dependiendo de la fecha actual.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Periodo escolar 1: $2017-2018/1$ con fecha de inicio 1: 07/08/2017 y fecha de fin 1: 19/12/2017. Periodo escolar 2: $2017-2018/2$ con fecha de inicio 2: 29/01/2018 y fecha de fin 2: 21/06/2018.\\
+		$Fecha de inicio 2: 29/01/2018 > Fecha de fin 1: 19/12/2017$\\
+		Entonces $2017-2018/1$ es el periodo escolar anterior.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Periodo escolar 1: $2017-2018/1$ con fecha de inicio 1: 07/08/2017 y fecha de fin 1: 19/12/2017. Periodo escolar 2: $2017-2018/2$ con fecha de inicio 2: 06/08/2017 y fecha de fin 2: 21/06/2018.\\
+		$Fecha de inicio 2: 06/08/2017 \ngtr Fecha de fin 1: 19/12/2017$\\
+		Entonces $2017-2018/1$ no es el periodo escolar anterior.
+	\end{itemize}
+	%\referencedBy{BR-EE-N034}
+\end{BusinessRule}
+
+\begin{BusinessRule}{BR-EE-N040}{Periodo intersemestral}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Si la fecha actual se encuentra fuera de la fecha de inicio y fecha de fin de el periodo escolar, entonces se encuentra en un periodo intersemestral.
+	\BRItem[Sentencia]  
+	Sea $p$ = Periodo escolar actual, $p_{z}$ = Periodo escolar siguiente, $p_{a}$ = Periodo escolar anterior y todo periodo escolar está definido por $\{f_{i},f_{f}\}$. Se define un periodo intersemestral donde $f_{i} \nleqq f_{a} \ngeqq f_{f}$ para todo periodo escolar.
+	\BRItem[Motivación] Se requiere definir el periodo intersemestral dependiendo de la fecha actual.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Fecha actual: $16/01/2018$ no se encuentra en $2017-2018/2$, $2018-2019/1$, $2017-2018/2$ entonces se encuentra en un periodo intersemestral.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item Fecha actual: $14/02/2018$ no se encuentra en $2017-2018/2$, $2018-2019/1$, $2017-2018/2$ entonces se encuentra en un periodo intersemestral.
+	\end{itemize}
+	%\referencedBy{BR-EE-N034}
+\end{BusinessRule}
+
+\begin{BusinessRule}{BR-EE-N041}{Ocupabilidad por unidad de aprendizaje}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Para obtener la \textbf{Sugerencia de apertura grupo-unidad de aprendizaje}, se obtiene por cada periodo escolar espejo la cantidad de grupos creados, el total de inscritos y se obtiene el promedio, se realiza la sumatoria de los promedios obtenidos y se divide entre la cantidad de periodos escolares espejo para calcular el \textbf{Promedio de ocupabilidad por grupo esperado}. Se realiza la sumatoria del total de alumnos inscritos, se divide entre la cantidad de periodos escolares espejo para obtener el \textbf{Promedio de alumnos inscritos en los últimos periodos escolares espejo}. Para obtener la \textbf{Sugerencia de apertura grupo-unidad de aprendizaje} se divide el \textbf{Promedio de alumnos inscritos en los últimos periodos escolares espejo} entre el \textbf{Promedio de ocupabilidad por grupo esperado}.
+	\BRItem[Sentencia] Para obtener el \textbf{promedio de ocupabilidad por grupo} para cada periodo escolar espejo: $c_{n}=\frac{b_{n}}{a_{n}}$\\
+	Donde:
+	\begin{itemize}
+		\item $n$ = Periodo escolar espejo
+		\item $a$ = Cantidad de grupos creados en cada periodo escolar espejo
+		\item $b$ = Total de alumnos inscritos en cada periodo escolar espejo
+		\item $c$ = Promedio de ocupabilidad por grupo en cada periodo escolar espejo
+	\end{itemize}
+	
+	Se obtiene la sumatoria de $c_{1}$ hasta $c_{n}$ y se divide entre la cantidad de $n$. Donde el \textbf{promedio de ocupabilidad por grupo esperado} es igual $d$. Resulta de la expresión: $d1 = \frac{(c_{1}+...+c_{n})}{n}$.\\
+	
+	Se obtiene la sumatoria de $b_{1}$ hasta $b_{n}$ y se divide entre la cantidad de $n$. Donde el \textbf{promedio de alumnos inscritos en los últimos periodos escolares espejo} es igual $d2$. Resulta de la expresión: $d2 = \frac{(b_{1}+...+c_{n})}{n}$.\\
+	
+	Finalmente se obtiene la \textbf{Sugerencia de apertura grupo-unidad de aprendizaje} que es $d3$. Resulta de la expresión $d3 =  \frac{d2}{d3}$.
+
+	\BRItem[Motivación] Obtener datos estadísticos para la asignación de unidades de aprendizaje a los grupos.
+	\BRItem[Ejemplo positivo] Cumplen con la regla
+	\begin{itemize}
+		\item Se tienen 4 periodos escolares espejo:\\
+		Periodo escolar espejo 1: 7 grupos y 203 alumnos inscritos\\
+		Periodo escolar espejo 2: 6 grupos y 207 alumnos inscritos\\
+		Periodo escolar espejo 3: 7 grupos y 204 alumnos inscritos\\
+		Periodo escolar espejo 4: 7 grupos y 204 alumnos inscritos\\
+		Para cada periodo se obtiene el promedio de ocupabilidad por grupo:\\
+		Periodo escolar espejo 1: $\frac{203}{7}$ = 29\\
+		Periodo escolar espejo 2: $\frac{207}{6}$ = 34.5\\
+		Periodo escolar espejo 3: $\frac{204}{7}$ =29\\
+		Periodo escolar espejo 4: $\frac{204}{7}$ = 30\\
+		Se obtiene el promedio $\frac{(29+34.5+29+30)}{4} = 30$\\
+		Se obtiene el promedio $\frac{(203+207+204+204)}{4} = 204$\\
+		Se obtiene el promedio $\frac{204}{30} = 7$\\
+		Por lo tanto el \textbf{Promedio de ocupabilidad por grupo esperado} es 30 y la \textbf{Sugerencia de apertura grupo-unidad de aprendizaje} es 7 grupos.
+	\end{itemize}
+	\BRItem[Ejemplo negativo] No cumplen con la regla
+	\begin{itemize}
+		\item No se tiene ningún periodo escolar espejo.
+	\end{itemize}
+\end{BusinessRule}
+
+%---------- BR-EE-N042 ----------%
+\begin{BusinessRule}{BR-EE-N042}{Exposiciones dentro del turno laboral del profesor}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Tanya S. Hernández Valdez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Para saber si las exposiciones están dentro del horario laboral del profesor se tiene que dentro del horario laboral del profesor se debe contener el conjunto de las exposiciones del profesor. \\
+	\BRItem[Sentencia] $Sean:$ \\\\
+	$Turno\ =$ $\{Matutino, Vespertino, Mixto\}$ $y$ $\psi$ $\in$ $Turno$ \\
+	$Matutino\ =$ [$Hora\_Inicio\_M; Hora\_Final\_M$] \\
+	$Vespertino\ =$ [$Hora\_Inicio\_V; Hora\_Final\_V$] \\
+	$Mixto\ =$ [$Hora\_Inicio\_Mi; Hora\_Final\_Mi$] \\
+	$Exposicion\ del\ Profesor\ =$ [$Hora\_Inicio\_Ex; Hora\_Final\_Ex$] \\
+	$Horario\ Laboral\ Profesor$ $\subset$ ($Turno$)\\
+	$Por\ lo\ tanto:$ \\\\
+	$Exposicion\ del\ Profesor$ $\subset$ ($Horario\ Laboral\ Profesor$) \\
+	\BRItem[Motivación] Saber si las exposiciones se encuentran dentro del horario laboral del profesor. \\
+	\BRItem[Ejemplo positivo] Cumplen con la regla: \\
+		\begin{Titemize}
+			\Titem El horario laboral de un profesor es de 08:00 a 14:00, por lo tanto las exposiciones asignadas son de 09:00 a 10:00.
+		\end{Titemize}	
+	\BRItem[Ejemplo negativo] No cumplen con la regla: \\
+		\begin{Titemize}
+			\Titem El horario laboral de un profesor es de 08:00 a 14:00, por lo tanto las exposiciones asignadas son de 09:00 a 15:00.
+		\end{Titemize}	
+\end{BusinessRule}
+
+%---------- BR-EE-N043 ----------%
+\begin{BusinessRule}{BR-EE-N043}{Periodo escolar espejo}
+	{\bcIntegridad}    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btEnabler}     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] María Rocío Guerrero Gómez
+	\BRItem[Revisada por] Pendiente
+	\BRItem[Aprobada por] Sin aprobar.
+	\BRItem[Descripción] Si la fecha actual se encuentra dentro de la fecha de inicio y la fecha de fin de un periodo escolar, se define al periodo escolar espejo al periodo que es su semejante anterior inmediato.\\
+	\BRItem[Sentencia] Sea $p$ = Periodo escolar actual, $p$ está definido por $p = \{f_{in},f_{f}\}$. 
+	Si el periodo escolar es: 2017-2018/1, considerando que la $fa$ cumple $f_{in} \nleqq f_{a} \ngeqq f_{f}$, entonces el periodo escolar espejo inmediato anterior es 2016-2017/1.
+	\BRItem[Motivación] Se requiere definir al periodo escolar espejo dependiendo de la fecha actua.\\
+	\BRItem[Ejemplo positivo] Cumplen con la regla: \\
+	\begin{Titemize}
+		\Titem Fecha actual: $09/08/2017$, periodo escolar $2017-2018/1$ y $09/08/2017 \in 2017-2018/1$ entonces $2016-2017/1$ es el periodo escolar espejo inmediato anterior.
+	\end{Titemize}	
+	\BRItem[Ejemplo negativo] No cumplen con la regla: \\
+	\begin{Titemize}
+		\Titem Fecha actual: $09/08/2017$, periodo escolar $2017-2018/1$ y $09/08/2017 \in 2017-2018/1$ entonces $2017-2018/2$ es el periodo escolar espejo inmediato anterior.
+	\end{Titemize}	
+\end{BusinessRule}
+

@@ -1,0 +1,223 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tipo de documento y paquetes
+\documentclass[10pt]{book}
+\usepackage{cdt/cdtAnalisis}
+\usepackage{cdt/calmecac}
+\usepackage{subfigure}
+\usepackage{appendix}
+%\texttt{}
+\lstset{
+    basicstyle=\small\ttfamily, %footnotesize
+    language=Java, %C, csh, Java, HTML, XML, sh, SQL, Delphi, C, C++
+    keywordstyle=\color{blue},%
+    tabsize=3,%
+    frame=trBL,%
+    commentstyle=\it\ttfamily,%
+    numbers=left, numberstyle=\tiny,%
+    stringstyle=\color{red}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Datos del proyecto
+    \sistema[Etapa 1]{Investigación y Desarrollo de un Modelo Ubicuo de Interoperabilidad para la Gestión de un Sistema de Información Institucional}
+    
+        \documento{C2-DT}{Documentación Técnica}{\DRAFT{\today}} %\RELEASE{1.0}
+        \fecha{\today}
+        \proyecto[CALMECAC]{CALMÉCAC}
+        \organizacion{Instituto Politécnico Nacional}
+        \author{Escuela Superior de Cómputo del IPN}
+        \elaboro[Líder de proyecto IPN-ESCOM]{M.en C. José Jaime López Rabadán}
+        \aprobo[Comité Técnico]{ }
+        \dae[Dirección de Administración Escolar]{Dr. Flavio A. Sánchez Garfias}
+        \des[Dirección de Educación Superior]{Dr. Gilberto A. García Guerra}
+        \dems[Dirección de Educación Media Superior]{Dr. Ricardo G. Sánchez Alvarado}
+        \superviso[Enlace Técnico]{Ing. José  Martín Haro Martínez}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Presentación
+
+        \title{\varProyecto}
+        \subtitle {\varCveDocumento--\varDocumento}
+        
+        \setImgPortada{calmecacTheme/banner2}
+        \setImgPleca{calmecacTheme/footer3}
+        \setImgHeader{calmecacTheme/logoPar}{calmecacTheme/logoInp}
+        \setImgLogo{calmecacTheme/headerInp}{calmecacTheme/headerPar}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Configuración
+
+        %=========================================================
+        % Para ocultar la información de control de cambios.
+         \hideControlVersion
+        
+        %=========================================================
+        % Para desactivar las referencias cruzadas.
+    	% \disablePersistence
+    	
+    	
+%		\cdtSetCompileMode{genrefs}
+%    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inicio del Documento
+\begin{document}
+
+        %=========================================================
+        % Portada
+        \thispagestyle{empty}
+        \maketitle
+        
+        %=========================================================
+        % Hoja de revisión
+        \makeDocInfo
+        \bigskip\\
+        \makeObservaciones[3cm]
+        \vspace{2cm}
+        \makeFirmas
+        
+        %=========================================================
+        % Indices del documento
+        \frontmatter
+        \tableofcontents
+        \listoffigures
+        \mainmatter
+        
+        %=========================================================
+        % Preambulo
+        
+        %---------- Introducción ----------
+        \chapter{Introducción}
+        \label{ch:introduccion}
+        \input{introduccion/introduccion}
+        
+        %---------- Nomenclatura ----------
+        \chapter{Nomenclatura}
+        \label{ch:nomenclatura}
+        \input{introduccion/nomenclatura}
+        
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % Primera Parte: Modelado del negocio.
+        \part{Modelado del negocio}
+        \label{ch:modeloNegocio}
+        
+        %---------- Glosario ----------
+        \chapter{Glosario}
+        \label{ch:glosario}
+        \input{negocio/glosario}
+        
+        %---------- Modelo de Tipos de Datos ----------
+        \chapter{Modelo de Tipos de Datos}
+        \label{ch:tipos}
+        \input{../negocio/informacion-tipoDeDatos}
+        
+        %---------- Modelo de Información de Alumno
+        \chapter{Modelo de Información de Alumno}
+        \label{ch:alumno}
+        \input{negocio/informacion-Alumno}
+        
+        %---------- Modelo de información de Inscripciones----------
+        \chapter{Modelo de Información}
+        \label{ch:informacion}
+        \input{negocio/informacion-Inscripciones}
+        
+        
+        %---------- Modelo de información de EE ----------
+	    \chapter{Modelo de Información de EE}
+	    \label{ch:ee}
+	    \input{../negocio/informacion-EE}
+	    
+	            
+        %---------- Reglas de negocio ----------
+        \chapter{Reglas de negocio}
+        \label{ch:reglas}
+        \input{negocio/reglas}
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % Segunda Parte: Modelado dinámico
+        \part{Modelado Dinámico}
+        \label{ch:modeloDinamico}
+        
+        %---------- Arquitectura lógica ----------
+        \chapter{Arquitectura lógica del Calmécac}
+        \label{ch:arquitectura}
+        \input{dinamico/arquitectura}
+        
+        %---------- Modelo de estados ----------
+        \chapter{Modelo de estados}
+        \label{ch:estados}
+        \input{dinamico/estados}
+        
+        %---------- Modelo de actores ----------
+        \chapter{Modelo de actores}
+        \label{ch:actores}
+        \input{dinamico/actores}
+        
+        %----------pInscripciones---------------------
+
+        \chapter{Casos de Uso del módulo de la Dirección de Administración Escolar}
+        \label{ch:CUpInscripcionesDAE}
+        \input{moduloInscripciones/DAE/casosdeuso}
+        
+        \chapter{Casos de Uso del módulo de la Dirección de Educación Superior}
+        \label{ch:CUpInscripcionesDES}
+        \input{moduloInscripciones/DES/casosdeuso}
+        
+        \chapter{Casos de Uso del módulo de las Unidades Académicas}
+		\label{ch:CUpInscripcionesUA}
+		\input{moduloInscripciones/UA/casosdeuso}
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % Tercera Parte: Modelado de interacción
+        \part{Interacción con el usuario}
+        \label{ch:Interaccion}
+        
+        %----------pInscripciones---------------------
+        
+        %------ Menús-------
+        \chapter{Menús del sistema}
+        \label{ch:menus}
+        \input{moduloInscripciones/menus-inscripciones.tex}
+
+        %------DAE--------%
+        \chapter{Interfaces del módulo de la Dirección de Administración Escolar}
+        \label{ch:subsistemaDAE}
+        \input{moduloInscripciones/DAE/interfacesInscripciones}	
+        
+        %------DES--------%
+        \chapter{Interfaces del módulo de la Dirección de Educación Superior}
+        \label{ch:subsistemaDES}
+        \input{moduloInscripciones/DES/interfacesInscripciones}
+        
+        %------UA--------%
+        \chapter{Interfaces del módulo de las Unidades Académicas}
+        \label{ch:subsistemaUA}
+        \input{moduloInscripciones/UA/interfacesInscripciones}
+        
+        \appendix
+        
+        %---------- Catálogo de mensajes ----------
+        \chapter{Diseño de mensajes}
+        \label{ch:mensajes}
+        \input{interfaz/mensajes}
+        
+        %   %---------- Catálogo de Formatos ----------
+        %	\chapter{Diseño de Notificaciones}
+        %	\label{ch:notif}
+        %	\input{interfaz/notificaciones}
+        %
+        %    %---------- Catálogo de Formatos ----------
+        %    \chapter{Diseño de Formatos}
+        %    \label{ch:formatos}
+        %	\input{interfaz/formatos}
+        %
+        %    %---------- Catálogo de reportes ----------
+        %    \chapter{Diseño de reportes}
+        %    \label{ch:reportes}
+        %	\input{interfaz/reportes}
+        
+        \clossing
+%		\cdtSaveData
+
+\end{document}

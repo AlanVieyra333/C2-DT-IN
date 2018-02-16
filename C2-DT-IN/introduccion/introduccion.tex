@@ -1,0 +1,58 @@
+% !TEX root = ../integrado.tex
+	
+	El presente documento representa el segundo entregable del Proyecto CALMÉCAC, correspondiente al mes de Agosto. Dicho entregable contiene los avances del proceso de Inscripciones con los siguientes elementos:
+
+	\begin{itemize}
+		\item Modelo de Negocio, el cual incluye el glosario de términos, modelo de información y reglas de negocio.
+		\item Modelo de Dinámico, el cual incluye la arquitectura lógica, modelo de estados y el modelo de actores.
+		\item Interacción con el usuario, el cual incluye las interfaces y los mensajes del sistema.
+	\end{itemize}
+
+\section{Intención del documento}
+
+	En este documento se refleja el resultado de los avances realizados en el proceso de Inscripciones y tiene como objetivo mostrar en detalle los términos, reglas de negocio, casos de uso, interfaces y mensajes correspondientes.\\
+
+	Va dirigido al personal involucrado en tareas de dirección, análisis, arquitectura, desarrollo y pruebas del proyecto CALMÉCAC para la realización de su trabajo y al Comité Técnico para su revisión y aprobación. También servirá de base para el diseño de pruebas y el proceso de aceptación y transferencia del sistema.
+
+%---------------------------------------------------------
+\section{Estructura del documento}
+
+	El presente documento se encuentra organizado en tres partes, cada una dividida a su vez en capítulos, como se muestra a continuación.
+
+	\begin{itemize}
+		\item El capítulo \ref{ch:nomenclatura} presenta la nomenclatura utilizada a lo largo del documento.
+		\item Parte 1. Modelo de negocio:
+			\begin{itemize}
+				\item El capítulo \ref{ch:glosario} presenta el glosario de términos utilizados en el documento.
+				\item El capítulo \ref{ch:tipos} presenta el modelo de datos utilizados en el documento. contiene la descripción de la información manejada y generada por el módulo de inscripciones para este avance y sirve de base para la construcción de la Base de Datos del CALMÉCAC.
+				\item El capítulo \ref{ch:alumno} presenta el modelo de información del alumno: datos personales, domciilio, datos de contacto, antecedentes académicos, etc.
+				\item El capítulo \ref{ch:informacion} presenta el modelo de información utilizado para manejar la información de inscripciones  en el sistema.
+				\item El capítulo \ref{ch:reglas} presenta las reglas de negocio identificadas y que son necesarias a ser contempladas para el funcionamiento del sistema.
+			\end{itemize}
+
+		\item Parte 2, Modelo dinámico. Esta sección describe la funcionalidad del sistema mediante los siguientes capítulos:
+		\begin{itemize}
+			\item El capítulo \ref{ch:arquitectura} presenta la arquitectura lógica del sistema. Especificando los casos de uso y las principales áreas y actores a interactuar con el módulo de inscripciones.
+			\item El capítulo \ref{ch:estados} presenta las máquinas de estados que modelarán el comportamiento de las entidades dentro del sistema y las reglas de operación al rededor dichas entidades.
+			\item El capítulo \ref{ch:actores} describe los actores del sistema para este módulo, describe sus roles, responsabilidades y una breve descripción de donde provienen o a que departamento o área funcional del instituto pertenecen.
+			\item El capítulo \ref{ch:CUpInscripcionesDAE} contiene los casos de uso que describen la funcionalidad del sistema en el módulo de inscripciones para la Dirección de Administración Escolar.
+			\item El capítulo \ref{ch:CUpInscripcionesDES} contiene los casos de uso que describen la funcionalidad del sistema para la Dirección de Educación Superior y Dirección de Educación Media Superior.
+			\item El capítulo \ref{ch:CUpInscripcionesUA} contiene los casos de uso que describen funcionalidad del sistema para las Unidades Académicas del Instituto.
+		\end{itemize}
+
+		\item Parte 3, Interacción con el usuario. Esta parte del documento describe la interacción de los usuarios con el sistema mediante los siguientes capítulos:
+		\begin{itemize}
+		
+			\item El capítulo \ref{ch:menus} contiene los menús de los actores involucrados en el sistema.
+
+			\item El capítulo \ref{ch:subsistemaDAE} contiene la descripción de las interfaces del sistema para la Dirección de Administración Escolar.
+			
+			\item El capítulo \ref{ch:subsistemaDES} contiene la descripción de las interfaces del sistema, para la Dirección de Educación Superior y Dirección de Educación Media Superior.
+			
+			\item El capítulo \ref{ch:subsistemaUA} contiene la descripción de las interfaces del sistema para las Unidades Académicas.
+
+		\end{itemize}
+		
+	\item El apéndice \ref{ch:mensajes} contiene los mensajes que se mostrarán al usuario para notificaciones de operaciones en el sistema.
+
+	\end{itemize}

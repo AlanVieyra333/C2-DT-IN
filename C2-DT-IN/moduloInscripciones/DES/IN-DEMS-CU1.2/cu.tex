@@ -1,0 +1,138 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DEMS-CU1.2}{Modificar Oferta Educativa}{
+	La oferta educativa modificada servirá para establecer la planificación de los cupos a ofrecer a los aspirantes para un ciclo escolar y modalidad seleccionados.\\
+	
+	Una vez que se modifica la planificación de la oferta educativa cuando ésta ya tiene aspirantes registrados y la nueva asignación es menor al número de aspirantes registrados, se enviará una notificación informativa, mas no controlará la operación e impedirá ésta modificación.	
+}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Modificación}
+	\UCccitem{Prioridad}{Alta}
+	\UCccitem{Complejidad}{Baja}
+	\UCccitem{Volatilidad}{Baja} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Edición}
+	\UCccitem{Dificultades}{}
+	\UCccitem{Fecha del último estatus}{6 de diciembre de 2017}
+	
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{}
+	\UCccitem{Evaluador}{}
+	\UCccitem{Resultado}{}
+	\UCccitem{Observaciones}{}
+
+	\UCsection{Atributos}
+	
+	\UCitem{Actores}{\begin{Titemize}
+	
+		\Titem \refElem{DESEncargadoDeOfertaEducativa}
+	
+	\end{Titemize}} 
+	
+	\UCitem{Propósito}{Modificar el número estudiantes esperados para la Unidad Académica para los la modalidad seleccionada.}
+	
+	\UCitem{Entradas}{\begin{Titemize}
+		
+		\Titem Cantidad de \refElem{tOfertaEducativa} para cada Programa Académico ofertado.
+		
+		\end{Titemize}}
+
+	\UCitem{Origen}{\begin{Titemize}
+			
+		\Titem \ioSeleccionar
+	
+	\end{Titemize}}
+
+	\UCitem{Salidas}{%
+		
+		\begin{Titemize}
+			
+			\Titem Cantidad de \refElem{tOfertaEducativa} para cada Programa Académico ofertado.
+			
+			\Titem La \refElem{UnidadAcademica.siglas} de la Unidad Académica.
+			
+			\Titem \refIdElem{MSG1}
+	
+		\end{Titemize}}
+
+	\UCitem{Destino}{Pantalla}
+
+	\UCitem{Precondiciones}{%
+		
+		\begin{Titemize}
+		
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado un \textbf{Ciclo Escolar} y \textbf{Modalidad}.
+		
+		\end{Titemize}}
+
+	\UCitem{Postcondiciones}{Se modificará la oferta educativa de la Unidad Académica seleccionada.} 
+
+	\UCitem{Reglas de Negocio}{\begin{Titemize}
+
+		\Titem \refIdElem{BR-S002}
+
+	\end{Titemize}}
+
+	\UCitem{Errores}{\begin{Titemize}
+			
+			\Titem \UCerr{Uno}{Cuando la oferta educativa es menor a los aspirantes cargados al programa académico,}{se muestra el mensaje \refIdElem{MSG178} y termina el caso de uso.}
+			
+			\Titem \UCerr{Dos}{Cuando los campos ingresados no cumplen con el tipo de dato solicitado,}{se muestra el mensaje \refIdElem{MSG7} y continua en el paso \ref{IN-DEMS-CU1.1:Registrar} de la trayectoria principal.}
+			
+			\Titem \UCerr{Tres}{Cuando la operación no se pudo llevar a cabo,}{se muestra el mensaje \refIdElem{MSG2} y continua en el paso \ref{IN-DEMS-CU1.1:Registrar} de la trayectoria principal.}
+
+	\end{Titemize}}
+
+	\UCitem{Viene de}{\refIdElem{IN-DEMS-CU1}}
+
+	\UCitem{Disparador}{\begin{Titemize}
+	
+		\Titem Se determino el número de lugares a ofertar de la Unidad Académica.
+	
+	\end{Titemize}}
+
+	\UCitem{Condiciones de Término}{Se registra la modificación de la oferta educativa asignada a la Unidad Académica.}
+
+	\UCitem{Efectos Colaterales}{El número de oferta educativa de la Unidad Académica para la Modalidad serán actualizados.}
+
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+
+	\UCitem{Auditable}{Si, se guarda el nombre del actor, la fecha y hora de registro y la información registrada.}
+
+	\UCitem{Datos sensibles}{Ninguno identificado.}
+	
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+\begin{UCtrayectoria}
+
+	\UCpaso [\UCactor] Solicita modificar la oferta educativa de una Unidad Académica dando clic en el icono \IUEditar de la pantalla \refIdElem{IN-DEMS-IU1}.
+
+	\UCpaso Muestra la pantalla \refIdElem{IN-DEMS-IU1.1} con la información obtenida.
+	
+	\UCpaso [\UCactor] Ingresa las cantidades de Oferta Educativa de los periodos escolares a ofertar para el ciclo escolar seleccionado.
+	
+	\UCpaso Verifica que la oferta educativa registrada sea mayor que los aspirantes cargados en el programa académico. \refErr{Uno}
+	
+	\UCpaso [\UCactor] \label{IN-DEMS-CU1.2:Registrar} Solicita registrar la oferta educativa presionando el botón \IUbutton{Aceptar}. \refTray{A}
+	
+	\UCpaso Verifica que los datos ingresados cumplan con el tipo de definido en el diccionario de datos con base en la regla de negocio \refIdElem{BR-S002}. \refErr{Dos}
+	
+	\UCpaso Registra la Oferta Educativa de los Programas Académicos a ofertar registrados. \refErr{Tres}.
+	
+	\UCpaso Muestra el mensaje \refIdElem{MSG1} en la pantalla \refIdElem{IN-DEMS-IU1} indicando que el registro de la Oferta Educativa se realizo de manera exitosa.
+	
+\end{UCtrayectoria}
+
+%Trayectoria Alternativas
+
+%----------------- Trayectoria A ----------------- 
+\begin{UCtrayectoriaA}[Fin de la trayectoria]{A}{Cuando el actor no desea llevar a cabo la operación.}
+
+	\UCpaso [\UCactor] Solicita cancelar la operación presionando el botón \IUbutton{Cancelar}.
+
+	\UCpaso Muestra la pantalla \refIdElem{IN-DEMS-IU1}.
+
+\end{UCtrayectoriaA}

@@ -1,0 +1,164 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DAE-CU5}{Gestionar avance global de estudiantes}{
+	% V 0.1 Ok.
+	Permite visualizar el avance de los estudiantes de las Unidades Académicas, así como el avance de la carga de estudiantes que se tienen planificadas para las Unidades Académicas del Instituto. \\
+	
+	En esta consulta se muestra el total de los \refElem{tAspirantesNoInscritos} los cuales son los estudiantes a los que no se les ha asignado un número de boleta ni un grupo, \refElem{tAspirantesInscritos} los cuales son los estudiantes que no cuentan con un número de boleta pero ya han sido asignados a un grupo de la Unidad Académica a la que se encuentran asociados, \refElem{tAlumnosNoInscritos} los cuales son los estudiantes que ya cuentan con un número de boleta pero no han sido asignados a un grupo y los \refElem{tAlumnosInscritos} los cuales son los estudiantes a los cuales. se les ha asignado tanto un número de boleta como un grupo en su \refElem{tUnidadAcademica}.	
+}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Consulta}
+	\UCccitem{Prioridad}{Media} 
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Baja} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Revisado}
+	\UCccitem{Dificultades}{Ninguna
+%	\begin{Titemize}
+%		\Titem ¿Los alumnos que son mostrados se agregarán al glosario de términos?
+%		\Titem ¿Cuándo se considera un alumno en cancelación?	
+%		\Titem ¿En que parte de la base de datos se va a guardar la cantidad de estos aspirantes?
+%	\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{5 de Enero de 2018}
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{5 de Enero de 2018}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{}
+	\UCccitem{Observaciones}{}
+	\UCsection{Atributos}
+	% V 0.1 Ok.
+	\UCitem{Actor}{%
+		\begin{Titemize}
+			\Titem \refElem{DAEJefeDeRegistro}
+			\Titem \refElem{DAEAdministradorDeRegistro}	
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Propósito}{Brindar una herramienta que permita visualizar el avance conforme a la carga de estudiantes de los procesos de inscripción ejecutados por el Calmécac.}
+	% V 0.1 Ok.
+	\UCitem{Entradas}{
+		\begin{Titemize}
+			\Titem Nivel educativo
+			\Titem Periodo escolar
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Origen}{\ioSeleccionar}
+	% V 0.1 TOCHK: Cambiar por viñetas (revisar CU6) especificando como se genera cada dato, basarse en el primer dato de ejemplo (ver tambien BR-IN-N055 en adelante).
+	\UCitem{Salidas}{%
+		Gráfica de barras coloreando para cada Unidad Académica que participa en el Periodo Escolar (ver \refElem{PeriodoEnUnidadAcademica}). \break \cdtEmpty
+		\begin{Titemize}
+			\Titem Total de Alumnos esperados de cada Unidad Académica en el Periodo Escolar seleccionado, con base en la \refIdElem{BR-IN-N051}.
+			\Titem El número de \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesInscritosConBoleta}.
+			\Titem El número de \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesInscritosSinBoleta}.
+			\Titem El número de \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesCargadosConBoleta}.
+			\Titem El número de \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesCargadosSinBoleta}.
+			\Titem El número de \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesCancelados}.
+			\Titem El número de \refElem{PlandeEstudioenPeriododeUnidadAcademica.estudiantesEsperados}.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado un \textbf{Ciclo Escolar} y \textbf{Modalidad}.			
+			\Titem \textbf{Sistematizada:} Que la DAE haya definido lugares para los programas académicos ofertados en las Unidades Académicas.	
+			
+			\Titem \textbf{Sistematizada:} Que se exista al menos un nivel educativo registrado en el sistema.
+			\Titem \textbf{Sistematizada:} Que se exista al menos un periodo escolar registrado en el sistema.
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Ninguna} 
+	% V 0.1 TODO: Actualizar.
+	\UCitem{Reglas de Negocio}{
+%		\begin{Titemize}
+			\Titem \refIdElem{BR-IN-N009}
+%			\Titem \refIdElem{BR-IN-N010}
+%			\Titem \refIdElem{BR-IN-N011}
+%			\Titem \refIdElem{BR-IN-N012}
+%			\Titem \refIdElem{BR-IN-N013}
+%		\end{Titemize}
+	}
+	% V 0.1 TOCHK: Dar de alta el mensaje.
+	\UCitem{Errores}{%
+		\begin{Titemize}
+			\Titem \UCerr{Uno}{Cuando no hay lugares definidos para las Unidades Académicas,}{se muestra el mensaje \refIdElem{MSG157} y termina el caso de uso.}
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{Primario}
+	% V 0.1 Ok.
+	\UCitem{Disparador}{La Comisión especial ha acordado el número de lugares a ofertar en el Instituto.}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se muestra el avance de estudiantes importados al Calmécac.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{Ninguno.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 Ok.
+	\UCitem{Auditable}{No}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No se encontró ninguno}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita visualizar el avance de estudiantes de nuevo ingreso del Instituto dando clic en la opción \textbf{Avance de aspirantes} del menú \refIdElem{IN-DAE-MN1}.
+	% V 0.1 Ok.
+	\UCpaso Verifica que se haya registrado la oferta educativa para al menos una Unidad Académica para el Ciclo Escolar seleccionado. \refErr{Uno}
+	
+	\UCpaso [\UCactor] \label{IN-DAE-CU5:Seleccionar} Selecciona el nivel educativo y el periodo escolar del cual desea visualizar el avance de aspirantes cargados al sistema.
+	% V 0.1 Ok.
+	\UCpaso \label{IN-DES-CU5:Obtiene} Obtiene el nombre de las Unidades Académicas del nivel seleccionado.
+	% V 0.1 Ok.
+	\UCpaso Obtiene la oferta educativa registrada para las Unidades Académicas obtenidas en el paso \ref{IN-DES-CU5:Obtiene} del periodo escolar seleccionado.
+	% V 0.1 TODO: Cambiar obtiene por calcula, separar para cada uno de los datos y referenciar las reglas de negocio, ver CU6.
+	
+	
+	
+%	\UCpaso Calcula el número de alumnos inscritos con base en la regla de negocio \refIdElem{BR-IN-N013}.
+%	
+%	\UCpaso Calcula el número de alumnos no inscritos con base en la regla de negocio \refIdElem{BR-IN-N012}.
+%	
+%	\UCpaso Calcula el número de aspirantes inscritos con base en la regla de negocio \refIdElem{BR-IN-N011}.
+%	
+%	\UCpaso Calcula el número de aspirantes no inscritos con base en la regla de negocio \refIdElem{BR-IN-N010}.
+%	
+%	\UCpaso Calcula el número de estudiantes cancelados.
+
+
+	\UCpaso Obtiene el número de aspirantes inscritos, aspirantes no inscritos, alumnos no inscritos, alumnos sin inscribir, aspirantes con cancelación y el total esperado.
+	
+	% V 0.1 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DES-IU5} con la información obtenida.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] \label{IN-DAE-CU5:Gestionar} Visualiza el avance de estudiantes de nuevo ingreso. \refTray{A} \refTray{B}
+\end{UCtrayectoria}
+
+%----------------- Trayectoria A ----------------- 
+\begin{UCtrayectoriaA}[Fin de la trayectoria]{A}{El actor solicita ver el porcentaje de avance de una sección de los estudiantes.}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita ver el detalle del porcentaje de avance de una sección de los estudiantes dando clic en la Unidad Académica
+	% V 0.1 Ok.
+	\UCpaso Calcula el porcentaje con base en la regla de negocio \refIdElem{BR-IN-N009}.
+	% V 0.1 Ok.
+	\UCpaso Muestra el porcentaje de avance de la sección seleccionada.
+	% V 0.1 Ok.		
+	\UCpaso[] Continúa en el paso \ref{IN-DAE-CU5:Gestionar}.
+	% V 0.1 Ok.
+\end{UCtrayectoriaA}
+
+%----------------- Trayectoria B ----------------- 
+\begin{UCtrayectoriaA}[Fin de la trayectoria]{B}{El actor solicita ver el porcentaje de avance de un nivel educativo o periodo escolar diferente.}
+	% V 0.1 Ok.
+	\UCpaso[] Continúa en el paso \ref{IN-DAE-CU5:Seleccionar}.
+	% V 0.1 Ok.
+\end{UCtrayectoriaA}
+

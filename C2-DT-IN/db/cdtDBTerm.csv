@@ -1,0 +1,163 @@
+id,name
+tAlfanumerico,Alfanum\IeC {\'e}rico
+tArchivoDigital,Archivo digital
+tAtributo,Atributo
+tBooleano,Booleano
+tCadena,Cadena
+tCatalogo,Cat\IeC {\'a}logo
+tDecimal,Decimal
+tEntero,Entero
+tEntidad,Entidad
+tFecha,Fecha
+tFechaCorta,Fecha corta
+tFechaLarga,Fecha larga
+tFrase,Frase
+tNumerico,Num\IeC {\'e}rico
+tOpcional,Opcional
+tPalabra,Palabra
+tParrafo,P\IeC {\'a}rrafo
+tRequerido,Requerido
+tTipoDato,Tipo de dato
+tAcademia,Academia
+tAlumno,Alumno
+tAreaDeConocimiento,\IeC {\'A}rea de conocimiento
+tAspirantesNoInscritos,Aspirantes no inscritos
+tCalendarioAcademico,Calendario Acad\IeC {\'e}mico
+tCredito,Cr\IeC {\'e}dito
+tCicloEscolar,Ciclo Escolar
+tCategoria,Categor\IeC {\'\i }a
+tCategoriaPA,Categor\IeC {\'\i }a del personal acad\IeC {\'e}mico
+tCategoriaProfC,Categor\IeC {\'\i }a del profesor por carrera
+tCategoriaTecnicoC,Categor\IeC {\'\i }a del t\IeC {\'e}cnico docente por carrera
+tCarga,Carga
+tCargaReglamentaria,Carga reglamentaria
+tCicloEscolar,Ciclo Escolar
+tDAE,DAE
+tDES,DES
+tUA,UA
+tEstructuraEducativa,Estructura Educativa
+tEdificio,Edificio
+tEspacio,Espacio
+tEstudiante,Estudiante
+tDescargaAcad\IeC {\'e}mica,Descarga acad\IeC {\'e}mica
+tDictamenCategoria,Dictamen de categor\IeC {\'\i }a
+tFormato,Formato
+tGrupo,Grupo
+tHorario,Horario
+tHorasInterinato,Horas de interinato
+tHorasBasificadas,Horas basificadas
+tHorasCompactadas,Horas compactadas
+tHorasNoCompactadas,Horas no compactadas
+tModalidad,Modalidad Educativa
+tNivelEdificio,Nivel de edificio
+tNivelEducativo,Nivel educativo
+tOcupabilidad,Ocupabilidad
+tOfertaEducativa,Oferta Educativa
+tPeriodo,Periodo
+tPeriodoDeTrabajo,Periodo de Trabajo
+tPeriodoEscolar,Periodo Escolar
+tPEAntInmediato,Periodo escolar siguiente inmediato
+tPESigInmediato,Periodo escolar anterior inmediato
+tPEsiguiente,Periodo escolar siguiente
+tPEanterior,Periodo escolar anterior
+tPlaza,Plaza
+tPlanEstudio,Plan de Estudio
+tProgramaAcademico,Programa Acad\IeC {\'e}mico
+tProfesor,Profesor
+tProfeInterino,Profesor Interino
+tPersonalAcademico,Personal Acad\IeC {\'e}mico
+tPersonalAcademicoCarrera,Personal Acad\IeC {\'e}mico por Carrera
+tPersonalAcademicoAsignatura,Personal Acad\IeC {\'e}mico por asignatura
+tPromocion,Promoci\IeC {\'o}n
+tProcBasificacion,Proceso de basificaci\IeC {\'o}n
+tTecnicoDocente,T\IeC {\'e}cnico docente
+tTipoEspacio,Tipo de Espacio
+tTipoPermanecia,Tipo de permanecia
+tTipoNivel,Tipo de nivel
+tTurno,Turno
+tUnidadAcademica,Unidad Acad\IeC {\'e}mica
+tUnidadDeAprendizaje,Unidad de Aprendizaje
+tUnidadDeAprendizajeModular,Unidad de Aprendizaje Modular
+tSalon,Sal\IeC {\'o}n
+tSoporteDocumental,Soporte Documental
+tdentero,Entero
+tdflotante,Flotante
+tdbooleano,Booleano
+tdpalabra,Palabra
+tdfrase,Frase
+tdparrafo,P\IeC {\'a}rrafo
+tdtexto,Texto
+tdfecha,Fecha
+tdhora,Hora
+tdarchivo,Archivo
+tdGradoAcademico,Grado Acad\IeC {\'e}mico
+tdDia,D\IeC {\'\i }a
+tdSexo,Sexo
+tdTurno,Turno
+tdTurno.nombre,Nombre
+tdTurno.abreviatura,Abreviatura
+tdTipoDeContacto,Tipo de Contacto
+tdPais,Pa\IeC {\'\i }s
+tdEntidad,Entidad
+tdMunicipio,Municipio
+tdNivelAcademico,Nivel Acad\IeC {\'e}mico
+tdNivelAcademico.nombre,Nombre
+tdRamaDelConocimiento,Rama del Conocimiento
+tdTipoDeDivision,Tipo de Divisi\IeC {\'o}n
+tdTipoDeDivision.nombre,Nombre
+tdEstadoDePlanDeEstudio,Estado de Plan de Estudio
+tdEstadoDePlanDeEstudio.nombre,Nombre
+tdTipoDeEnsenanza,Tipo de Ense\IeC {\~n}anza
+tdTipoDeEnsenanza.nombre,Nombre
+tdTipoDeUdeA,Tipo de Unidad de Aprendizaje
+tdTipoDeUdeA.nombre,Nombre
+tdTipoDeUdeA.descripcion,Descripci\IeC {\'o}n
+tdModalidad,Modalidad
+tdModalidad.nombre,Nombre
+tdModalidad.abreviatura,Abreviatura
+tdActividad,Actividad
+tdTipoDeActividad,Tipo de Actividad
+tdTipoDeRecurso,Tipo de Recurso
+tdTipoDeUnidadAdscripcion,Tipo de Unidad de Adscripci\IeC {\'o}n
+tdCategoria,Categor\IeC {\'\i }a
+tdTipoDeNombramiento,Tipo de Nombramiento
+tdTipoDeNombramiento.nombre,Nombre
+tdTipoDeNombramiento.descripcion,Descripci\IeC {\'o}n
+tdRolFuncional,Rol Funcional
+tdEstadoDeEstructuraEducativa,Estado de Estructura Educativa
+tdEstadoDeEstructuraEducativa.nombre,Nombre
+tdActividadComplementaria,Actividad Complementaria
+tdActividadComplementaria.actividad,Actividad
+tdActividadComplementaria.clave,Clave
+tdTipoDeAsignacion,Tipo de Asignaci\IeC {\'o}n
+tdTipoDeExposicion,Tipo de Exposici\IeC {\'o}n
+tdTipoDeExposicion.nombre,Nombre
+tdTipoDeExposicion.descripcion,Descripci\IeC {\'o}n
+tdEstadoDeConsejo,Estado de Consejo
+tdEstadoDeSesion,Estado de Sesi\IeC {\'o}n
+tdTipoDeSesion,Tipo de Sesi\IeC {\'o}n
+tdEstadoDeSolicitud,Estado de Solicitud
+tdEstadoDeDictamen,Estado de Dictamen
+tdCriterio,Criterio
+tdEvaluacion,Evaluaci\IeC {\'o}n
+tdCriterioResolutivo,CriterioResolutivo
+tdTipoDeParentesco,Tipo de Parentesco
+tdTipoDeDocumento,Tipo de Documento
+tdTipoDeSangre,Tipo de Sangre
+tdTipoDeDiscapacidad,Tipo de Discapacidad
+tdDeporte,Deporte
+tdTipoDeCarga,Tipo de Carga
+tdTipoDeCarga.nombre,Nombre
+tdTipoDeCarga.descripcion,Descripci\IeC {\'o}n
+tdEstadoDeCargaDelAlumno,Estado de Carga del Alumno
+tdEstadoDeCargaDelAlumno.nombre,Nombre
+tdEstadoDeDocumentacion,Estado de Documentaci\IeC {\'o}n
+tdEstadoDeDocumentacion.nombre,Nombre
+tdEstadoDelAlumno,Estado del Alumno
+tdEstadoDelAlumno.nombre,Nombre
+tdOrigenDeAlumno,Origen de Alumno
+tdDocumento,Documento
+tdDocumento.nombre,Nombre
+tdEstadoDeDevolucionDeDocumento,Estado de Devoluci\IeC {\'o}n de Documento
+tdEstadoDeDevolucionDeDocumento.nombre,Nombre
+tdTipoDeEvaluacion,Tipo de Evaluaci\IeC {\'o}n

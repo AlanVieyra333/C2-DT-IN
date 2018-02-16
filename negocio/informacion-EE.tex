@@ -1,0 +1,404 @@
+\begin{cdtEntidad}[Es el proceso mediante el cual el Responsable de Estructura Educativa de una Unidad Académica asigna espacios,horarios y profesores a las Unidades de Aprendizaje que se ofertarán para un periodo. También se puede ver como una entidad que almacenará toda esa información así como toda la bitácora de control de parte de la DGyCE ,que es el órgano que tiene como tarea vigilar que cada uno de los profesores, cuya relación con el Instituto esta definida por un contrato, estén cumpliendo su carga máxima de horas.]{EstructuraEducativa}{Estructura Educativa}
+	
+	\brAttr{estadoDeEstructuraEducativa}{Estado de Estructura Educativa}{EstadoDeEstructuraEducativa}{Indica la situación de la estructura educativa que define si es editable o no y de esta forma establecer sus procesos aplicables.}{\datRequerido}
+	
+	\cdtEntityRelSection
+	
+	\brRel{\brRelComposition}{\refElem{SegmentoDeEstructuraEducativa}}{Una Estructura Educativa se encuentra compuesta por segmentos(grupos que implican horarios,  profesores, espacios y el soporte documental que justifica la falta de horas frente a grupo de un profesor) que requieren su aprobación o corrección de acuerdo a su contenido.}
+	
+	\brRel{\brRelComposition}{\refElem{tUnidadAcademica}}{Cada periodo el Responsable de la Estructura Educativa de una Unidad Académica planea y  crea la Estructura Educativa que mejor se ajuste a la demanda de Unidades de Aprendizaje y al número de alumnos(matrícula) que se estima se inscribirán en un periodo.  }
+	
+		\brRel{\brRelAgregation}{\refElem{PeriodoEscolar}}{Para un periodo escolar se definen:
+			\begin{Citemize}
+				\item Unidades de Aprendizaje a Ofertar las cuales vienen de un Plan de Estudio.
+				\item Días en los que se llevarán a cabo actividades académicas y de administración.
+				\item Grupo junto con su asignación de espacios, horarios y profesores.
+			\end{Citemize} 
+			En conjunto está información compone a una Estructura Educativa.}
+
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Una Estructura Educativa está conformada por conjuntos de elementos en los que, de acuerdo a la modalidad de los programas académicos y/o a los planes de estudio que en una Unidad Académica se ofertan, se requiere realizar la definición de las Unidades de Aprendizaje a ofertar en adición a su asignación de espacios en donde se realizará la exposición de  de sus contenidos, la asignación los profesores que realizarán estas exposiciones,sus horarios y los espacios en los que se llevarán a cabo. Estos elementos son revisados por los analistas de la DGyCE.]{SegmentoDeEstructuraEducativa}{Segmento de Estructura Educativa}
+
+	\brAttr{estadoDeSegmentoDeEstructuraEducativa}{Estado de Segmento de Estructura Educativa}{EstadoDeEstructuraEducativa}{Indica la situación en la que se encuentra el segmento de la estructura educativa y de esta forma definir si es editable o no y establecer sus procesos aplicables.}{\datRequerido}
+	
+	\brAttr{nivelAcademico}{Nivel Académico}{NivelAcademico}{Indica para cuál de los niveles ofertados en la unidad académica se crea el segmento de la estructura educativa.}{\datRequerido}
+	
+	\brAttr{modalidad}{Modalidad}{Modalidad}{Indica para cuál de las distintas modalidades que se ofrecen en el Instituto y están definidos en los programas académicos en una unidad académica se crea el segmento de estructura educativa.}{\datRequerido}
+	
+	 \brAttr{dia}{Día}{dia}{Es el conjunto de días de la semana en los que una Unidad Académica labora para un Segmento de Estructura Educativa.}
+	{\datRequerido}
+	
+	\brAttr{turno}{Turno}{Turno}{El Responsable de Estructura Educativa de una Unidad Académica definirá la hora de inicio y la hora de término de los que turnos que se aplicarán para los días laborales de un Segmento de Estructura Educativa. }{\datRequerido}
+	 \cdtEntityRelSection
+	 %AQUIII
+	 \brRel{\brRelComposition}{\refElem{EstructuraEducativa}}{Una Estructura Educativa se encuentra compuesta por segmentos(grupos que implican horarios,  profesores, espacios y el soporte documental que justifica la falta de horas frente a grupo de un profesor) que requieren su aprobación o corrección de acuerdo a su contenido.}
+	 
+	 
+	 \brRel{\brRelComposition}{\refElem{UdeAEnOferta}}{Para un Segmento de Estructura Educativa se seleccionarán las Unidades de Aprendizaje de un plan de estudio que correspondan con la modalidad y el nivel académico del Segmento, las cuales  se ofrecerán para un periodo de acuerdo a la plantilla estudiantil y a el historial generado por  Estructuras Educativas previas.}
+	 
+	\brRel{\brRelComposition}{\refElem{Grupo}}{Para un segmento de Estructura Educativa se definen los  grupos en los que se realizará la exposición de los contenidos de las Unidades de Aprendizaje que se seleccionaron para su oferta.}
+	 
+	\brRel{\brRelComposition}{\refElem{ProfesorEnSegmento}}{Un segmento de estructura educativa está compuesto por los profesores asignados para la exposición de contenidos de las Unidades de Aprendizaje o la realización de Actividades Complementarias.}
+	 
+\end{cdtEntidad}
+ 
+ 
+ \begin{cdtEntidad}[Un grupo es un mecanismo el cual esta constituido por  un cierto número de Unidades de Aprendizaje, pertenecientes a un Plan de Estudio que se ofertará para un periodo, los horarios y días de la semana en que sus contenidos deberán ser expuestos a una agrupación de alumnos.]{Grupo}{Grupo}
+ 
+ 	\brAttr{nombre}{Nombre del Grupo}{frase}{Es el conjunto de caracteres que definen e identifican a una agrupación de Unidades de Aprendizaje junto con su asignación de horarios y profesores en un Segmento de Estructura Educativa. Por ejemplo: 
+ 	\begin{itemize}
+ 		\item 1CM1
+ 		\item 4CV2
+ 	\end{itemize}}{\datRequerido}
+ 	
+ 	\brAttr{traslapeDeHorario}{Traslape de Horario}{booleano}{Especifica que es posible que en el grupo se pueden impartir unidades de aprendizaje al mismo tiempo o cubriendo tiempo una de otra.}{\datRequerido}
+ 	
+ 	\brAttr{traslapeDeSalon}{Traslape de Salón}{booleano}{Especifica que es posible que en el grupo se puedan impartir unidades de aprendizaje en el mismo espacio. }{\datRequerido}
+ 	
+	\cdtEntityRelSection
+	
+	 \brRel{\brRelComposition}{\refElem{SegmentoDeEstructuraEducativa}}{Para un segmento de Estructura Educativa se definen los  grupos en los que se realizará la exposición de los contenidos de las Unidades de Aprendizaje que se seleccionaron para su oferta.}
+	 
+	 \brRel{\brRelAgregation}{\refElem{TurnoEnSegmento}}{A un grupo se le asigna el segmento de horas en el día en que se realizará la exposición del contenido de las Unidades de Aprendizaje que le fueron definidas.}
+	 
+	 \brRel{\brRelAgregation}{\refElem{UdeAEnOferta}}{A un grupo se le asignan un subconjunto de las Unidades de Aprendizaje en Oferta para que se realice la exposición de su contenido durante un periodo.}
+	 
+\end{cdtEntidad}
+ 
+\begin{cdtEntidad}[Es un Profesor que se encuentra dentro de uno o más segmentos de una Estructura Educativa porque se le han definido Actividades Complementarias que realizar durante un periodo y/o esta asignado para realizar la Exposición de los contenidos de varias Unidades de Aprendizaje Ofertadas.]{ProfesorEnSegmento}{Profesor en Segmento}
+
+	\brAttr{numeroDeHoras}{Número de Horas}{flotante}{Es el dígito que representa el número de horas totales a las que un profesor esta asignado dentro de un Segmento de Estructura Educativa.}{\datRequerido}
+	
+	\brAttr{horasDeInterinato}{Horas de Interinato}{flotante}{Es el dígito que representa el número de horas totales de interinato a las que un profesor está asignado dentro de un Segmento de Estructura Educativa. }{\datOpcional}
+ 	
+ 	\brAttr{horaDeAporte}{Horas de Aporte}{flotante}{Es el dígito que representa el número de horas totales a las que un profesor esta asignado dentro de un Segmento de Estructura Educativa y por las cuales no se le paga.}{\datOpcional}
+ 
+ 	\brAttr{actividadComplementaria}{Actividad Complementaria}{ActividadComplementaria}{Es el conjunto de actividades que un profesor del Instituto realiza con el fin de reponer aquellas horas que no pudieron ser asignadas frente a grupo.}{\datRequerido}
+ 	
+ 	\cdtEntityRelSection
+ 	
+ 	\brRel{\brRelAgregation}{\refElem{Profesor}}{Un profesor es adherido a un Segmento de Estructura Educativa cuando se le asignan  una o más actividades complementarias a realizar o horas para la exposición de contenidos de las Unidades de Aprendizaje.}
+ 	
+ 	\brRel{\brRelComposition}{\refElem{SegmentoDeEstructuraEducativa}}{Un segmento de estructura educativa esta compuesto por los profesores asignados para la exposición de contenidos de las Unidades de Aprendizaje o la realización de Actividades Complementarias.}
+ 	
+ 	\brRel{\brRelComposition}{\refElem{PlaneacionAsignacion}}{Un profesor se encuentra dentro de un Segmento de Estructura Educativa cuando ha sido asignado para realizar la exposición }
+ 
+ \end{cdtEntidad}
+ 
+ \begin{cdtEntidad}[Es la entidad que representa a una Unidad de Aprendizaje de un Plan de Estudios que fue seleccionada para ofertarse en el periodo para el cual se elabora la Estructura Educativa .Estas Unidades de Aprendizaje son seleccionadas con base en la plantilla estudiantil y al historial de Estructuras Educativa previas y pertenecen a un  Segmento de Estructura Educativa.]{UdeAEnOferta}{Unidad de Aprendizaje en Oferta}
+ 	
+ 	\cdtEntityRelSection
+ 	
+ 	\brRel{\brRelAgregation}{\refElem{Grupo}}{A un grupo se le asignan un subconjunto de las Unidades de Aprendizaje en Oferta para que se realice la exposición de su contenido durante un periodo.}
+ 	
+ 	\brRel{\brRelAgregation}{\refElem{UdeA}}{Una de Unidad de Aprendizaje en Oferta adquiere la información de la Unidad de Aprendizaje del Plan de Estudios que pertenece al Segmento de la Estructura Educativa. }
+ 	
+ 	 \brRel{\brRelComposition}{\refElem{SegmentoDeEstructuraEducativa}}{Para un segmento de Estructura Educativa se seleccionarán las Unidades de Aprendizaje de los distintos planes de estudio,que correspondan con la modalidad y el nivel académico, que se ofrecerán para un periodo de acuerdo a la demanda y plantilla estudiantil de la Unidad Académica.}
+ 	 
+ 	 \brRel{\brRelComposition}{\refElem{Periodo}}{Una Unidad de Aprendizaje es ofertada en un lapo de tiempo durante la ejecución de un periodo escolar.}
+ 	 
+ \end{cdtEntidad}
+ 
+ 
+ \begin{cdtEntidad}[Es un lapso de tiempo en el que los contenidos de una Unidad de Aprendizaje Ofertada se debe impartir. Este lapso debe encontrarse dentro del rango del Periodo Escolar del cual se esta generando la Estructura Educativa.]{Periodo}{Periodo}
+ 
+ 	\brAttr{fechaDeInicio}{Fecha de Inicio}{fecha}{Indica el día dentro de un Periodo Escolar en que se comienzan a impatir los contenidos de una Unidad de Aprendizaje en Oferta.}{\datOpcional}
+ 	
+ 	\brAttr{fechaDeFin}{Fecha de Fin}{fecha}{Indica el día dentro de un Periodo Escolar en que se concluye de impartir los contenidos de una Unidad de Aprendizaje en Oferta.}{\datOpcional}
+ 	
+ 	\cdtEntityRelSection
+ 	
+ 	\brRel{\brRelComposition}{\refElem{UdeAEnOferta}}{Una Unidad de Aprendizaje es ofertada en un lapo de tiempo durante la ejecución de un periodo escolar.}
+ 
+\end{cdtEntidad}
+  
+ \begin{cdtEntidad}[Es el conjunto de Unidades Temáticas que conforman el contenido de Unidad de Aprendizaje y que se seleccionan para formar parte de un Segmento de la Estructura Educativa ]{SubUdeA}{Sub Unidad de Aprendizaje}
+ 
+ 	\brAttr{horas}{Horas}{horas}{Es el conjunto de horas que determinan cuánto tiempo se le dedicará a exponer los contenidos de la Sub Unidad de Aprendizaje.}{\datOpcional}
+ 
+ 	\brAttr{profesores}{Profesores}{entero}{Es un dígito que representa la cantidad mínima de profesores que deben cubrir las exposiciones para una Sub Unidad de Aprendizaje.}{\datOpcional}
+ 	
+ 	\brAttr{clave}{Clave}{texto}{Conjunto de palabras que identifican a una Sub Unidad de Aprendizaje.}{\datOpcional}
+ 	
+ 	\brAttr{tipoUnidadAprendizaje}{Tipo de Unidad de Aprendizaje}{TipodeUdeA}{Indica si los contenidos de una Unidad de Aprendizaje que conforman a la sub unidad son obligatorios y si deben ser aprobados en su totalidad o no.}{\datRequerido}
+ 	\cdtEntityRelSection
+ 	
+ 	\brRel{\brRelComposition}{\refElem{UdeA}}{Una unidad de aprendizaje está compuesta por unidades temáticas y que para un periodo son seleccionables generando una Sub Unidad de Aprendizaje a la que los alumnos se inscriben, si todo el contenido de la unidad de aprendizaje es aprobado, la Unidad de aprendizaje se aprueba directamente, por otro en cambio si se reprueba al menos un contenido, la Unidad de Aprendizaje se dará por reprobada.}
+ 	
+ 	\brRel{\brRelAgregation}{\refElem{Exposicion}}{Para una sub unidad de aprendizaje se requiere definir los días de la semana en que se realizaran las exposiciones para que un Profesor transmita su contenido a un grupo de alumnos.}
+ \end{cdtEntidad}
+ 
+%% GrupoconUdeA
+\begin{cdtEntidad}[Es un periodo de tiempo destinado a la tranmisión de conocimientos de parte de un docente hacía a un conjunto de alumnos inscritos a una unidad de aprendizaje de un grupo.]{Exposicion}{Exposición}
+ 	
+ 	\brAttr{horaDeInicio}{Hora de Inicio}{hora}{Indica la hora en un día laboral en que inicia la exposición de los contenidos de  la Unidad de Aprendizaje asignada a un grupo.}{\datRequerido}
+ 	
+ 	\brAttr{horaDeTermino}{Hora de Término}{hora}{Indica la hora en un día laboral en que concluye la exposición de los contenidos de  la Unidad de Aprendizaje asignada a un grupo.}{\datRequerido}
+ 	
+ 	\brAttr{tipoDeExposicion}{Tipo de Exposición}{TipoDeExposicion}{Indica la forma en que la transmisión de conocimientos se llevará a cabo por parte de el o los profesores asignados a la Unidad de Aprendizaje.}{\datRequerido}
+ 	
+ 	\brAttr{seccion}{Sección}{entero}{Es un dígito que representa el número de veces que una Exposición será dividida para impartir los contenidos de la Unidad de Aprendizaje en diferentes espacios. }{\datOpcional}
+ 	
+ 	\cdtEntityRelSection
+ 	
+ 	\brRel{\brRelAgregation}{\refElem{SubUdeA}}{Para una sub unidad de aprendizaje se requiere definir los días de la semana en que se realizaran las exposiciones para que un Profesor transmita su contenido a un grupo de alumnos.}
+ 	
+ 	\brRel{\brRelComposition}{\refElem{GrupoConUdeAEnOferta}}{Para una Unidad de Aprendizaje que se encuentra en un grupo, se requieren definir las distintas exposiciones en las que uno o varios profesores transmitirán los contenidos a una agrupación de alumnos .}
+ 	
+ 	\brRel{\brRelAgregation}{\refElem{DiaLaboral}}{La exposición de una Unidad de Aprendizaje o de una Sub Unidad debe llevarse a cabo en uno de los días establecidos como laborales de la Estructura Educativa de una Unidad Académica.}
+ 	
+ 	\brRel{\brRelComposition}{\refElem{Seccion}}{Es la división que una exposición puede adquirir a raíz de las necesidades de un grupo dado el número de alumnos que lo conforman y la infraestructura de una Unidad Académica.}
+
+	\brRel{\brRelAgregation}{\refElem{EspacioAsignado}}{Una Exposición requiere impartirse en alguno de los espacios con los que una Unidad Académica cuenta pudiendo ser externos o internos.}
+	
+	\brRel{\brRelAgregation}{\refElem{PlaneacionAsignacion}}{Un profesor que se encuentra dentro de un Segmento de Estructura Educativa es asignado a más de una exposición de contenido de las Unidades de Aprendizaje asignadas a grupos.}
+	
+
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Tiene como objetivo permitir la exposición de los contenidos de una Unidad de Aprendizaje Ofertada en diferentes horarios y espacios a un subconjunto de alumnos inscritos a un grupo.  ]{Seccion}{Sección}
+
+	\brAttr{capacidad}{Capacidad}{entero}{Es el dígito que representa el número de Alumnos que podrán ingresar a la Sección de una Exposición.}{\datOpcional}
+
+	\cdtEntityRelSection
+	
+	\brRel{\brRelComposition}{\refElem{Exposicion}}{Es la división que una exposición puede adquirir a raíz de las necesidades un grupo dada la infraestructura de una Unidad Académica y el número de alumnos que conforman a un grupo. }
+	
+	\brRel{\brRelAgregation}{\refElem{EspacioParaExposicion}}{Para una sección se requiere definir un espacio(de los determinados para la Exposición de una Unidad de Aprendizaje asignada a un grupo)  donde se impartirá el contenido de una Unidad de Aprendizaje.}
+
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es el resultado de la relación entre Planeación Asignación y Exposición. Almacena todos las exposiciones a las que un Profesor ha sido asignado para transmitir los conocimientos de una Unidad de Aprendizaje Ofertada.]{ProfesorEnExposicion}{Profesor en Exposición}
+	
+	\brAttr{tipoDeNombramiento}{Tipo de Nombramiento}{TipoDeNombramiento}{Específica el si al profesor al que se le esta asignando a una exposición se le requieren asignar horas de interinato.}{\datRequerido}
+
+
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[En está entidad se almacenan todos los cambios realizados a la asignación de profesores y su exposición de contenidos a grupos con Unidades de Aprendizaje.]{PlaneacionAsignacion}{Planeación Asignación}
+ 	
+ 	\brAttr{horasDeInterinato}{Horas de Interinato}{flotante}{Es el dígito que representa el número de horas totales de interinato a las que un profesor está asignado para realizar una exposición. }{\datOpcional}
+ 	
+ 	\brAttr{horasDeAporte}{Horas de Aporte}{flotante}{Es el dígito que representa el número de horas totales a las que un profesor esta asignado para realizar una Exposición y por las cuales no se le paga.}{\datOpcional}
+
+	\brAttr{tipoDeAsignacion}{Tipo de Asignación}{TipodeAsignacion}{Indica la asignación adquirida por el profesor para su exposición.}{\datRequerido}
+	
+	\cdtEntityRelSection
+	
+	\brRel{\brRelAgregation}{\refElem{Exposicion}}{Un profesor que se encuentra dentro de un Segmento de Estructura Educativa es asignado a más de una exposición de contenido de las Unidades de Aprendizaje asignadas a grupos.}	
+	\brRel{\brRelComposition}{\refElem{GrupoConUdeAEnOferta}}{Una unidad de aprendizaje en un grupo puede o no sufrir cambios de su exposición así como de la asignación profesores.}	
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado entre la relación entre \textbf{Segmento de Estructura Educativa} y \textbf{Turno} y almacena todos los turnos que están disponibles y que pueden ser utilizados por un segmento de estructura educativa.]{TurnoEnSegmento}{Turno en Segmento}
+	
+		\brAttr{horaDeInicio}{Hora de Inicio}{hora}{Representa la hora del día en que el turno da inicio.}{\datRequerido}
+		
+		\brAttr{horaDeTermino}{Hora de Término}{hora}{Representa la hora del día en que el turno concluye.}{\datRequerido}
+		
+		
+		\cdtEntityRelSection
+		
+		 \brRel{\brRelAgregation}{\refElem{Grupo}}{A un grupo se le asigna el segmento de horas en el día en que se impartirán las clases de sus unidades de aprendizaje.}
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \textbf{Día} y \textbf{Segmento de Estructura Educativa}. Almacena todos los días de la semana en que para un Segmento de Estructura se requiere laborar en actividades académicas o administrativas. ]{DiaLaboral}{Día Laboral}
+
+	\cdtEntityRelSection
+	
+	\brRel{\brRelAgregation}{\refElem{Exposicion}}{La exposición de una unidad de aprendizaje se realiza en un día laboral.}
+	
+	\brRel{\brRelAgregation}{\refElem{ProfesorConActividad}}{Una actividad complementaria requiere llevarse a cabo en uno de los días establecidos por el Segmento de Estructura Educativa.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \textbf{Profesor en Segmento} y \textbf{Actividad Complementaria} y almacena todas las actividades de descarga académica que el Profesor de un segmento realiza para cubrir las horas que no pudieron ser asignadas a grupos.]{ProfesorConActividadComplementaria}{Profesor con Actividad Complementaria}
+
+	\brAttr{horaDeInicio}{Hora de Inicio}{hora}{Representa la hora del día en que la actividad a desarrollar por el profesor da inicio.}{\datRequerido}
+	
+	\brAttr{horaDeTermino}{Hora de Término}{hora}{Representa la hora del día en que la actividad a desarrollar por el profesor concluye.}{\datRequerido}
+	
+	\cdtEntityRelSection
+	
+	\brRel{\brRelAgregation}{\refElem{DiaLaboral}}{Una actividad complementaria requiere llevarse a cabo en uno de los días establecidos por el Segmento de Estructura Educativa.}
+
+
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \textbf{Grupo} y \textbf{Unidad de Aprendizaje en Oferta}. Almacena todas la Unidades de Aprendizaje que se impartirán en un grupo.]{GrupoConUdeAEnOferta}{Grupo con Unidad de Aprendizaje en Oferta}
+
+	\brAttr{capacidad}{Capacidad}{entero}{Es el dígito que representa el numero de alumnos que podrán inscribirse al grupo.}{\datRequerido}
+	
+	\brAttr{ocupacion}{Ocupación}{entero}{Es el dígito que representa el numero de alumnos que se encuentran inscritos a la Unidad de Aprendizaje del grupo.}{\datOpcional}
+	
+	\cdtEntityRelSection
+	
+	\brRel{\brRelComposition}{\refElem{PlaneacionAsignacion}}{Una unidad de aprendizaje en un grupo puede o no sufrir cambios de su exposición así como de profesores.}
+	
+	\brRel{\brRelComposition}{\refElem{Exposicion}}{Para una Unidad de Aprendizaje que se encuentra en un grupo, se requieren definir las distintas exposiciones en las que uno o varios profesores la impartirán.}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es un Recurso Humano que tiene como propósito validar la Estructura Educativa proporcionada por una Unidad Académica y si ésta cumple con los siguientes criterios:
+	\begin{Citemize}
+		\item Cantidad de grupos abiertos con respecto a periodos anteriores.
+		\item Capacidad de alumnos por grupo con respecto a la matrícula de la Unidad Académica.
+		\item Cumplimiento de la carga máxima de Profesores de acuerdo a la categoría y nombramiento correspondiente. 
+	\end{Citemize}]{AnalistaDeEstructuraEducativa}{Analista de Estructura Educativa}
+
+	\brAttr{activo}{Activo}{booleano}{Indica si el Analista de la Estructura Educativa puede realizar la validación de la Estructura Educativa de una Unidad Académica.}{\datRequerido}
+	
+	\cdtEntityRelSection
+	
+	\brRel{\brRelAgregation}{\refElem{RecursoHumano}}{Un Analista de Estructura Educativa es un Recurso Humano con el que el Instituto cuenta para validar la Estructura Educativa de una o más Unidades Académicas.}
+	
+	\brRel{\brRelAgregation}{\refElem{tUnidadAcademica}}{A un Analista de Estructura Educativa se le asigna una o más Unidades Académicas para validar su Estructura Educativa.}
+
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es el resultado de la relación entre el \refElem{AnalistaDeEstructuraEducativa} y la \refElem{tUnidadAcademica}. Tiene como propósito indicar la asignación que se le proporciona a un Analista para visualizar y realizar la validación de la Estructura Educativa de una o más Unidades Académicas.]{AnalistaenUnidadAcademica}{Analista en Unidad Académica}
+
+	\cdtEntityRelSection
+	
+	\brRel{\brRelAgregation}{\refElem{PeriodoEscolar}}{Un Analista esta asignado para laborar en un Periodo Escolar y validar la Estructura Educativa de una Unidad Académico.}
+
+\end{cdtEntidad}
+
+%%%%%%%%UdeA's Integración
+
+\begin{cdtEntidad}[Es el resultado de la relación entre Unidad de Aprendizaje y Academia, indicando que una Unidad de Aprendizaje de un plan puede pertenecer a más de una academia.]{AcademiaDeUdeA}{Academia de Unidad de Aprendizaje}
+	\brAttr{vigente}{Vigente}{booleano}{Indica si la relación entre la Unidad de Aprendizaje y la Academia es válida y utilizable.}{\datRequerido}
+\end{cdtEntidad}
+
+%%%%%Programa Académico
+\begin{cdtEntidad}[Esta entidad es el conjunto de todos los programas académicos que el Instituto oferta en cada una de sus Unidades Académicas.]{ProgramaAcademico}{Programa Académico}
+
+	 \brAttr{nombre}{Nombre}{frase}{Es la palabra o conjunto de palabras que representan a un conjunto de elementos necesarios para adquirir, generar y aplicar el conocimiento de un campo en específico.}{\datRequerido}
+	 
+	 \brAttr{ramaDelConocimiento}{Rama del Conocimiento}{RamadelConocimiento}{}{\datRequerido}
+	 
+	 \brAttr{nivelAcademico}{Nivel Académico}{NivelAcademico}{}{\datRequerido}
+	 
+	 \cdtEntityRelSection
+	 
+	 \brRel{\brRelComposition}{\refElem{PlandeEstudios}}{Un Plan de Estudios deriva de un Programa Académico que permite el cumplimiento de la formación general, adquisición de conocimientos y desarrollo de capacidades correspondientes a un nivel.}
+
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[Es la entidad que integra todos los planes de estudios ofertados por las Unidades Académicas del Instituto.]{PlanDeEstudio}{Plan de Estudio}
+
+	\brAttr{cargaMinima}{Carga Mínima de Créditos}{flotante}{Es un dígito que representa el cálculo obtenido de dividir el número total de créditos del programa académico entre el número de periodos escolares de la duración máxima del plan de estudio.}{\datOpcional}
+	
+	\brAttr{cargaMedia}{Carga Media de Créditos}{flotante}{Es un dígito que representa el cálculo obtenido de al dividir el número total de créditos del programa académico entre el número de periodos escolares de la duración máxima del plan de estudio}{\datOpcional}
+	
+	\brAttr{cargaMaxima}{Carga Máxima de Créditos}{flotante}{Es un dígito que representa el cálculo obtenido de dividir  el número total de créditos del programa académico entre el número de periodos escolares de la duración mínima del plan de estudio.}{\datOpcional}
+	
+	\brAttr{division}{División}{entero}{Es un dígito que representa el número segmentaciones que un Plan de Estudios tiene para ubicar sus Unidades de Aprendizaje.}{\datRequerido}
+	
+	\brAttr{red}{Red}{Entero}{Indica si el Plan de Estudio es compartido e impartido entre distintas Unidades Académicas.}{\datOpcional}
+	
+	\brAttr{nombre}{Nombre}{frase}{Es la palabra o conjunto de palabras que representan e identifica a la estructura curricular derivada de un Programa Académico.}{\datOpcional}
+	
+	\brAttr{tipoDeDivision}{Tipo de División}{TipoDeDivision}{}{\datRequerido}
+	
+	\brAttr{estadoDePlanDeEstudio}{Estado de Plan de Estudio}{EstadoDePlanDeEstudio}{}{\datRequerido}
+	
+	\cdtEntityRelSection
+	
+	\brRel{\brRelComposition}{\refElem{ProgramaAcademico}}{Un Plan de Estudios deriva de un Programa Académico que permite el cumplimiento de la formación general, adquisición de conocimientos y desarrollo de capacidades correspondientes a un nivel.}
+	
+	\brRel{\brRelComposition}{\refElem{tUnidadAcademica}}{Una Unidad Académica oferta distintos programas académicos de los cuales se derivan planes de estudio diseñados y estructurados a partir de las necesidades particulares de la misma.}
+	
+	\brRel{\brRelComposition}{\refElem{Especialidad}}{Para un Plan de Estudios se pueden definir distintas ramas  que tienen como objeto cultivar habilidades y conocimientos en ciertas áreas específicas relacionadas al Plan y al Programa Académico.}
+	
+	\brRel{\brRelComposition}{\refElem{UdeA}}{Un Plan de Estudios está compuesto por Unidades de Aprendizaje que son la estructura didáctica para  la transmisión de conocimientos y de habilidad.}
+	
+	\brRel{\brRelComposition}{\refElem{Division}}{Un Plan de Estudio define el número de divisiones que ocupará para definir la posición de sus Unidades de Aprendizaje, las cuales pueden ser visualizada dentro de un Mapa Curricular.}
+
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es la entidad que almacena todo el conjunto de Unidades de Aprendizaje que se Ofrecen en las distintas Unidades Académicas del Instituto Politécnico Nacional]{UdeA}{Unidad de Aprendizaje}
+
+	\brAttr{udeA}{Unidad de Aprendizaje}{frase}{Es la palabra o el conjunto de palabras que representan A la estructura didáctica que integra los contenidos formativos de un curso, materia, módulo, asignatura o sus equivalentes.}{\datRequerido}
+	
+	\brAttr{clave}{Clave}{palabra}{Conjunto de caracteres que representan el código asignado a una Unidad de Aprendizaje y que sirve para identificarla de entre las demás.}{\datRequerido}
+	
+	\brAttr{creditosSATCA}{Créditos SATCA}{flotante}{Es un dígito que representa el reconocimiento en créditos de la Unidad de Aprendizaje para la movilidad en México.}{\datRequerido}
+	
+	\brAttr{creditosTEPIC}{Créditos TEPIC}{flotante}{Es un dígito que representa los créditos que equivalen a 15 semanas efectivas de clase.}{\datRequerido}
+	
+	\brAttr{horasTeoricasSemanales}{Horas Teóricas Semanales}{flotante}{Es un dígito que representa la cantidad de horas de teoría en las que se debe definir a un profesor para realizar exposiciones en un espacio.}{\datRequerido}
+	
+	\brAttr{horasPracticasSemanales}{Horas Prácticas Semanales}{flotante}{Es un dígito que representa la cantidad de horas de práctica en las que se debe definir a un profesor para realizar exposiciones en un espacio.}{\datRequerido}
+	
+	\brAttr{semestreSugerido}{Semestre Sugerido}{entero}{Es el dígito que representa el semestre en que se le sugiere a un Alumno cursar una Unidad de Aprendizaje.}{\datRequerido}
+	
+	\brAttr{horasDeOtrosAmbientes}{Horas de Otros Ambientes}{flotante}{Es el dígito que indica el número de horas en que se debe adquirir conocimiento en otros s.}{\datOpcional}
+	
+	\brAttr{tipoDeEnsenanza}{Tipo de Enseñanza}{TipoDeEnsenanza}{}{\datRequerido}
+	
+	\brAttr{tipoDeUdeA}{Tipo de Unidad de Aprendizaje}{TipoDeUdeA}{}{\datRequerido}
+	
+	\cdtEntityRelSection
+	
+	\brRel{\brRelAgregation}{\refElem{UdeA}}{Una Unidad de Aprendizaje sugiere que el alumno haya cursado una o varias Unidades de Aprendizaje para adquirir un mejor conocimiento.}
+	
+	\brRel{\brRelComposition}{\refElem{PlanDeEstudio}}{Un Plan de Estudios está compuesto por Unidades de Aprendizaje que son la estructura didáctica para  la transmisión de conocimientos y de habilidad.}
+
+	\brRel{\brRelComposition}{\refElem{SubUdeA}}{Una unidad de aprendizaje está compuesta por unidades temáticas y que para un periodo son seleccionables generando una Sub Unidad de Aprendizaje a la que los alumnos se inscriben, si todo el contenido de la unidad de aprendizaje es aprobado, la Unidad de aprendizaje se aprueba directamente, sin en cambio si se reprueba al menos un contenido, la Unidad de Aprendizaje se dará por reprobada.}
+	
+	\brRel{\brRelComposition}{\refElem{Especialidad}}{Para una Unidad de Aprendizaje se pueden definir distintas ramas  que tienen como objeto cultivar habilidades y conocimientos en ciertas áreas específicas relacionadas al Plan de Estudios.}
+	
+	\brRel{\brRelComposition}{\refElem{Academia}}{Una Unidad de Aprendizaje pertenece a una o varias Academias en distintas Unidades Académicas.}
+	
+	\brRel{\brRelAgregation}{\refElem{UdeAEnOferta}}{Una de Unidad de Aprendizaje en Oferta adquiere la información de la Unidad de Aprendizaje del Plan de Estudios que pertenece al Segmento de la Estructura Educativa. }
+	
+	 \brRel{\brRelComposition}{\refElem{Division}}{Una Unidad de Aprendizaje se ubica dentro de una de las divisiones de un Plan de Estudio. }
+	
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es el resultado de la relación de una UdeA con si misma. Tiene como propósito indicar que una Unidad de Aprendizaje puede o no requerir de los conocimientos de una o más Unidades de Aprendizaje previas. Esto ayuda a determinar una secuencia que se le sugiere a un Alumno debe cursar para concluir un Plan de Estudio.]{Antecedente}{Antecedente}
+
+	\brAttr{tipoDeAntecedente}{Tipo de Antecedente}{TipoDeAntecedente}{Indica si el antecedente es necesario para poder cursar una Unidad de Aprendizaje.}{\datRequerido}
+	
+	\brAttr{tipoDeUdeA}{Tipo de Unidad de Aprendizaje}{TipoDeUdeA}{}{\datRequerido}
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es el grado de organización, generalmente en niveles, que adquiere un Plan de Estudios con el fin de separar conforme a las necesidades del programa académico la posición de una Unidad de Aprendizaje.]{Division}{División}
+
+	\brAttr{unidadesOptativas}{Unidades de Aprendizaje Optativas por División}{entero}{Es un dígito que representa la cantidad de Unidades de Aprendizaje Optativas que se deben impartir por división.}{\datOpcional}
+	
+	\brAttr{creditosOptativos}{Número de Créditos Optativos por División}{flotante}{Es un dígito que representa la cantidad de Créditos Optativos que se requieren obtener por división.}{\datOpcional}
+
+	\cdtEntityRelSection
+
+	\brRel{\brRelComposition}{\refElem{Division}}{Un Plan de Estudio define el número de divisiones que ocupará para definir la posición de sus Unidades de Aprendizaje, las cuales pueden ser visualizada dentro de un Mapa Curricular.}
+	
+	 \brRel{\brRelComposition}{\refElem{UdeA}}{Una Unidad de Aprendizaje se ubica dentro de una de las divisiones de un Plan de Estudio. }
+
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es una rama de un Plan de Estudio que tiene objetivo otorgar habilidades y conocimientos relacionados a un área específica.]{Especialidad}{Especialidad}
+
+	\brAttr{nombre}{Nombre}{frase}{Es la palabra o el conjunto de palabras que denota e identifica  a una rama que otorga habilidades y conocimientos relacionados a un área específica de un Plan de Estudio. }{\datRequerido}
+	
+	\brAttr{tronco}{Tronco}{booleano}{}{\datRequerido}
+
+	\cdtEntityRelSection
+	
+	\brRel{\brRelComposition}{\refElem{UdeA}}{Para una Unidad de Aprendizaje se pueden definir distintas ramas  que tienen como objeto cultivar habilidades y conocimientos en ciertas áreas específicas relacionadas al Plan de Estudio.}
+	
+	\brRel{\brRelComposition}{\refElem{PlanDeEstudio}}{Para un Plan de Estudio se pueden definir distintas ramas  que tienen como objeto cultivar habilidades y conocimientos en ciertas áreas específicas relacionadas al Plan y al Programa Académico.}
+\end{cdtEntidad}
+
+
+\begin{cdtEntidad}[Es el resultado de la relación entre \refElem{Especialidad} y \refElem{UdeA} y que tiene como objetivo indicar si una Unidad de Aprendizaje otorga habilidades en más de un área en específico de un Plan de Estudio.]{EspecialidadDeUdeA}{Especialidad de Unidad de Aprendizaje}
+\end{cdtEntidad}
+
+\begin{cdtEntidad}[\TODO]{UnidadAcademicaConPlan}{Unidad Académica con Plan}
+\end{cdtEntidad}

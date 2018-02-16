@@ -1,0 +1,146 @@
+% !TEX root = ../../../integrado.tex
+\begin{UseCase}{IN-DAE-CU6.2}{Gestionar estudiantes cargados por programa académico}{
+	% V 0.1 Ok.
+	Permite visualizar el avance de los estudiantes de una Unidad Académica, así como el avance de la carga de estudiantes para una Unidad Académica.
+}
+	\UCccitem{Versión}{0.1}
+	\UCccsection{Datos para el control Interno}	
+	\UCccitem{Elaboró}{Eduardo Espino Maldonado}
+	\UCccitem{Supervisó}{Ulises Vélez Saldaña}
+	\UCccitem{Operación}{Consulta}
+	\UCccitem{Prioridad}{Media} 
+	\UCccitem{Complejidad}{Media}
+	\UCccitem{Volatilidad}{Baja} 
+	\UCccitem{Madurez}{Media} 
+	\UCccitem{Estatus}{Edición}
+	\UCccitem{Dificultades}{%
+		\begin{Titemize}
+			\Titem \DONE En la pantalla se señala cuantos tienen boleta y cuantos tienen inscripción, pero en el modelo de información solo se tiene un campo donde esta el estado, ¿de donde vamos a obtener esa información? ¿es necesario agregar dos campos boolean a la BD que señale si tiene boleta o inscripción? 
+			\Titem ¿Como se va a documentar el tipo de carga que tuvo si es compuesto? Ej. Automática desde el 25/12/2017 hasta el 25/12/2017 con validaciones y confirmación automática. 
+			\Titem Falta crear términos así que van a aparecer rotos muchas ligas.
+		\end{Titemize}
+	}
+	\UCccitem{Fecha del último estatus}{5 de enero de 2018}
+	\UCccsection{Revisión Version 0.1}
+	\UCccitem{Fecha}{5 de enero de 2018}
+	\UCccitem{Evaluador}{Ulises Vélez Saldaña}
+	\UCccitem{Resultado}{Por corregir}
+	\UCccitem{Observaciones}{Aplicar los cambios marcados con TODO en los comentarios.}
+	\UCsection{Atributos}
+	% V 0.1 Ok.
+	\UCitem{Actor}{%
+		\begin{Titemize}
+			\Titem \refElem{DAEJefeDeRegistro}	
+			\Titem \refElem{DAEAdministradorDeRegistro}	
+		\end{Titemize}
+	} 
+	% V 0.1 Ok.
+	\UCitem{Propósito}{Brindar una herramienta que permita visualizar el avance de los estudiantes de nuevo ingreso por cada Unidad Académica.}
+	% V 0.1 TOCHK: Agregar Unidad Académica (se introduce al seleccionarla de la pantalla de origen (CU6)
+	\UCitem{Entradas}{
+		\begin{Titemize}
+			\Titem \refElem{PeriodoEscolar.clave}
+			\Titem Unidad Académica seleccionada en el caso de uso \refIdElem{IN-DAE-CU6}
+		\end{Titemize}}
+	% V 0.1 Ok.
+	\UCitem{Origen}{\ioSeleccionar}
+	% V 0.1 TODO:
+	\UCitem{Salidas}{%
+		\begin{Titemize}
+			\Titem El número de Programas Académicos (Ver \refElem{tProgramaAcademico}) ofertados en la Unidad Académica seleccionada.
+			% V 0.1 TOCHK: Cuales? es una lista separada de las especialidades de todos los programas académicos ofertados por la unidad académica o es la suma y cuando val cero se coloca ``ninguna''? 
+			% Se eliminará del caso de uso cuando es Superior o Media superior
+			\Titem El número de especialidades ofertadas en la Unidad Académica.(Ver \refElem{tEspecialidad}) 
+			% V 0.1 TOCHK: es una lista separada de las modalidades de los programas académicos ofertados por la unidad académica en el ciclo escolar?
+			% Yo opino que ésta debería ser eliminada debido a que en el caso de uso IN-DAE-CU1 ya se selecciono la modalidad de la cual será elaborada la gestión
+%			\Titem Las Modalidades (Ver \refElem{tModalidad}) ofertadas en la Unidad Académica seleccionada.
+			% V 0.1 TOCHK: Cambiar tipo por solo ``carga'' y especificar en ese campo como un mensaje La frecuencia, el nombre y el periodo en el que se ejecuta. 
+			% Se elimino de la pantalla
+%			\Titem El tipo de carga que tuvo el proceso de inscripción ejecutado.
+			% V 0.1 Ok.
+			\Titem La \refElem{Corrida.fechaDeEjecucion} de la ultima carga que tuvo el proceso de inscripción.	
+			% V 0.1 TODO: Especificar la forma en que se calculan esos datos. Referenciar reglas de negocio correspondientes.
+			% Vienen directamente de la base de datos, entonces solo el total debe ser especificado con base en una regla de negocio
+			\Titem Tabla que muestra el \refElem{PlanDeEstudio}, \refElem{Modalidad}, cantidad de estudiantes \refElem{esperados}, \refElem{cargados}, \refElem{conBoleta}, \refElem{inscritos} y \refElem{rechazados} de los \refElem{ProgramaAcademico} ofertados en el ciclo escolar seleccionado, de la Unidad Académica seleccionada.
+			\Titem El total de alumnos
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Destino}{Pantalla}
+	% V 0.1 Ok.
+	\UCitem{Precondiciones}{%
+		\begin{Titemize}
+			\Titem \textbf{Sistematizada:} Que se haya seleccionado un \textbf{Ciclo Escolar} y \textbf{Modalidad}.	
+		\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Postcondiciones}{Ninguna} 
+	% V 0.1 TODO: actualizar.
+	\UCitem{Reglas de Negocio}{Ninguna}
+	% V 0.1 Ok.
+	\UCitem{Errores}{Ninguno
+%	\begin{Titemize}
+%	
+%		\Titem \UCerr{Uno}{Cuando no hay lugares definidos para las Unidades Académicas,}{se muestra el mensaje \refIdElem{MSGX} y termina el caso de uso.}
+%		% La DAE no ha definido los lugares disponibles, favor de contactarla.
+%	
+%	\end{Titemize}
+	}
+	% V 0.1 Ok.
+	\UCitem{Viene de}{\refIdElem{IN-DAE-CU6}}
+	% V 0.1 Ok.
+	\UCitem{Disparador}{El actor requiere visualizar el avance de los {\bf estudiantes de nuevo ingreso} en una Unidad Académica.}
+	% V 0.1 Ok.
+	\UCitem{Condiciones de Término}{Se muestra el avance de estudiantes importados al Calmécac.}
+	% V 0.1 Ok.
+	\UCitem{Efectos Colaterales}{Ninguno.}
+	% V 0.1 Ok.
+	\UCitem{Referencia Documental}{C1-PF Proceso Fortalecido}
+	% V 0.1 Ok.
+	\UCitem{Auditable}{No}
+	% V 0.1 Ok.
+	\UCitem{Datos sensibles}{No se encontró ninguno}
+\end{UseCase}
+
+%Trayectoria Principal : Happy Path
+
+\begin{UCtrayectoria}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita visualizar el avance de aspirantes cargados a una Unidad Académica dando clic en el ícono de la pantalla \refIdElem{IN-DAE-UI6}.
+	% V 0.1 TODO: Agregar un paso en el que se selecciona por defecto el periodo escolar seleccionado en el CU 6.
+	% V 0.1 TODO: Pasar el siguiente paso al final después de calcular todos los datos.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-IU6.2}.
+	% V 0.1 TODO: Manejar como trayectoria alternativa después de mostrar la pantalla 6.2.
+	\UCpaso [\UCactor] Selecciona el periodo escolar del cual será visualizada la información de carga.
+	% V 0.1 TODO: Separar por cada dato y referenciar las reglas de negocio o mensajes si es que aplican.
+	\UCpaso Obtiene el número de programas académicos, las especialidades y las modalidades de los programas académicos que serán ofertados en la Unidad Académica seleccionada.
+	% V 0.1 TODO: Este dato de donde se obtiene?
+	\UCpaso Obtiene el tipo y fecha de la ultima carga del proceso de inscripción.
+	% V 0.1 TODO: Separar por cada dato y referenciar las reglas de negocio correspondientes.
+	\UCpaso \label{IN-DES-CU6:Obtiene} Obtiene el plan, modalidad, el número de estudiantes esperados, cargados, con boleta, inscritos y rechazados de los programas académicos ofertados.
+	% V 0.1 TODO: Especificar que los totales son la suma de las columnas, ver CU6.
+	\UCpaso Calcula el total de alumnos esperados, cargados, con boleta, inscritos y rechazados obtenidos en el paso \ref{IN-DES-CU6:Obtiene}.
+	% V 0.1 TODO: Indicar este paso en la trayectoria alternativa.
+	\UCpaso \label{IN-DAE-CU6:Gestiona} Actualiza la pantalla \refIdElem{IN-DAE-IU6.2} con la información obtenida.
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Gestiona el avance de aspirantes cargados a una Unidad Académica con los botones \IUbutton{Correr la carga en este momento para esta escuela} y \IUVer. \refTray{A}
+\end{UCtrayectoria}
+
+\begin{UCtrayectoriaA}{A}{El actor desea regresar a la gestión por Unidad Académica.}
+	% V 0.1 Ok.
+	\UCpaso [\UCactor] Solicita regresar a la gestión por Unidad Académica dando clic en el botón \IUbutton{Regresar}.
+	% V 0.1 Ok.
+	\UCpaso Muestra la pantalla \refIdElem{IN-DAE-UI6}.
+\end{UCtrayectoriaA}
+
+\subsection{Puntos de extensión}
+
+\UCExtensionPoint{Ejecutar proceso de inscripción}
+{El actor requiere actualizar la información de los estudiantes de la Unidad Académica}
+{Paso \ref{IN-DAE-CU6:Gestiona} de la Trayectoria Principal}
+{\refIdElem{IN-DAE-PR1}}
+
+\UCExtensionPoint{Gestionar estudiantes cargados en programa académico}
+{El actor requiere Gestionar estudiantes cargados en un programa académico}
+{Paso \ref{IN-DAE-CU6:Gestiona} de la Trayectoria Principal}
+{\refIdElem{IN-DAE-CU6.2.1}}

@@ -1,0 +1,92 @@
+\subsection{Reglas de Negocio de Evaluaciones}
+
+%======================================================================
+\begin{BusinessRule}{BR-RE-N001}{Validación de acta de calificaciones completa}%
+%	
+	{\bcCondition}%    % Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btExecutive}%     % Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}%    % Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Elsi
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] 
+	
+		Para poder cerrar un acta de calificaciones, es necesario que todos los alumnos registrados, tengan asignada una calificación. 	
+			
+	\BRItem[Motivación] 1
+
+\end{BusinessRule}
+%======================================================================
+\begin{BusinessRule}{BR-RE-N002}{Generación de firma del sistema}%
+%	
+	{\bcAutorization}% Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btExecutive}% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}% Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Elsi
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] 
+	
+	Cuando las calificaciones de los alumnos son guardadas o el acta de calificaciones es cerrada, el sistema generará una firma que se concatenará al archivo XML del acta de calificaciones correspondiente. Dicha firma está conformada por X caracteres alfanuméricos y es generada mediante el algoritmo Generación de firma de sistma... 	
+	
+	\BRItem[Motivación] 2
+	
+\end{BusinessRule}
+%======================================================================
+\begin{BusinessRule}{BR-RE-N003}{Generación de folio de acta de califiaciones}%
+%	
+	{\bcAutorization}% Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btExecutive}% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}% Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Elsi
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] 
+	
+	Cada acta de calificaciones debe tener un folio de identificación único, el cual es generado cuando el acta de calificaciones ha sido cerrada y firmada por el sistema. El folio digital es una cadena de 30 caracteres que es generada por el algoritmo X.  	
+	
+	\BRItem[Motivación] 3
+	
+\end{BusinessRule}
+%======================================================================
+\begin{BusinessRule}{BR-RE-N004}{Registro de calificaciones}%
+%	
+	{\bcDerivation}% Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btTimer}% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}% Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Elsi
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] 
+	  	
+	
+	\BRItem[Motivación] 4
+	
+\end{BusinessRule}
+%======================================================================
+\begin{BusinessRule}{BR-RE-N005}{Consulta de calificaciones}%
+%	
+	{\bcCondition}% Clase: \bcCondition,   \bcIntegridad, \bcAutorization, \bcDerivation.
+	{\btExecutive}% Tipo:  \btEnabler,     \btTimer,      \btExecutive.
+	{\blControlling}% Nivel: \blControlling, \blInfluencing.
+	\BRItem[Versión] 1.0.
+	\BRItem[Estado] Propuesta.
+	\BRItem[Propuesta por] Oscar.
+	\BRItem[Revisada por] Pendiente.
+	\BRItem[Aprobada por] Pendiente.
+	\BRItem[Descripción] 
+	
+	Cuando se solicitan las calificaciones previamente registradas de un acta de califiaciones para su consulta, el sistema las obtendrá del archivo xml y de las tablas de la base de datos que las contienen, posteriormente verifica que no exista inconsitencia en el archivo xml mediante la verificacion del hash, y hace una comparación con las calificaciones registradas en la base de datos. Si las calificaciones coinciden, las muestra al usuario. 
+	
+	\BRItem[Motivación] 5
+	
+\end{BusinessRule}
+
